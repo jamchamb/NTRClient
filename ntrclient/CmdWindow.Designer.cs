@@ -36,8 +36,8 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.命令输入器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -121,29 +121,29 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.窗口ToolStripMenuItem});
+            this.ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(680, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 窗口ToolStripMenuItem
+            // ToolStripMenuItem
             // 
-            this.窗口ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.命令输入器ToolStripMenuItem,
+            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CommandToolStripMenuItem,
             this.asmScratchPadToolStripMenuItem});
-            this.窗口ToolStripMenuItem.Name = "窗口ToolStripMenuItem";
-            this.窗口ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.窗口ToolStripMenuItem.Text = "Tools";
-            this.窗口ToolStripMenuItem.Click += new System.EventHandler(this.窗口ToolStripMenuItem_Click);
+            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ToolStripMenuItem.Text = "Tools";
+            this.ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
-            // 命令输入器ToolStripMenuItem
+            // CommandToolStripMenuItem
             // 
-            this.命令输入器ToolStripMenuItem.Name = "命令输入器ToolStripMenuItem";
-            this.命令输入器ToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.命令输入器ToolStripMenuItem.Text = "Hotkey Commands";
-            this.命令输入器ToolStripMenuItem.Click += new System.EventHandler(this.命令输入器ToolStripMenuItem_Click);
+            this.CommandToolStripMenuItem.Name = "CommandToolStripMenuItem";
+            this.CommandToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.CommandToolStripMenuItem.Text = "Hotkey Commands";
+            this.CommandToolStripMenuItem.Click += new System.EventHandler(this.CommandToolStripMenuItem_Click);
             // 
             // asmScratchPadToolStripMenuItem
             // 
@@ -271,8 +271,8 @@
         private System.Windows.Forms.TextBox txtCmd;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem 窗口ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem 命令输入器ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem CommandToolStripMenuItem;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem asmScratchPadToolStripMenuItem;

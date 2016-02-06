@@ -95,11 +95,11 @@ namespace ntrclient
 			Program.ntrClient.disconnect();
 		}
 
-		private void 窗口ToolStripMenuItem_Click(object sender, EventArgs e) {
+		private void ToolStripMenuItem_Click(object sender, EventArgs e) {
 
 		}
 
-		private void 命令输入器ToolStripMenuItem_Click(object sender, EventArgs e) {
+		private void CommandToolStripMenuItem_Click(object sender, EventArgs e) {
 			(new QuickCmdWindow()).Show();
 		}
 
