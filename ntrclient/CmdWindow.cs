@@ -127,5 +127,20 @@ namespace ntrclient
         private void asmScratchPadToolStripMenuItem_Click(object sender, EventArgs e) {
             (new AsmEditWindow()).Show();
         }
+
+        private void button_Connect_Click(object sender, EventArgs e)
+        {
+            runCmd("Connect(" + textBox_Ip.Text + ", 8000)");
+        }
+
+        private void button_processes_Click(object sender, EventArgs e)
+        {
+            runCmd("listprocess()");
+        }
+
+        private void button_memlayout_Click(object sender, EventArgs e)
+        {
+            runCmd("memlayout(pid=" + textBox_pid.Text + ")");
+        }
     }
 }
