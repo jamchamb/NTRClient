@@ -8,5 +8,5 @@ IronPython: http://ironpython.net/
 GPLV2
 
 # Credits
-NTR Client made by 44670
+NTR Client made by 44670  
 Mod by imthe666st
