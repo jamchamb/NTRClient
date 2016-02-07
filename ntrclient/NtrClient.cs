@@ -55,7 +55,7 @@ namespace ntrclient {
 			int ret;
 			NetworkStream stream = netStream;
 
-			while (true) {
+            while (true) {
 				try {
 					ret = readNetworkStream(stream, buf, buf.Length);
 					if (ret == 0) {
@@ -75,7 +75,17 @@ namespace ntrclient {
 					}
 					t += 4;
 					UInt32 dataLen = BitConverter.ToUInt32(buf, t);
-					if (cmd != 0) {
+
+                    // Tinkering with NTR Debugger
+
+                        if (Program.gCmdWindow.checkBox_debug.Checked)
+                        {
+                            log(String.Format("Received MSG: Magic: {0}, SEQ: {1}, Type: {2}, CMD: {3}, LEN: {4}",magic, seq, type, cmd, dataLen));
+                            log("" + ret);
+                        }
+
+                    // END 
+                    if (cmd != 0) {
 						log(String.Format("packet: cmd = {0}, dataLen = {1}", cmd, dataLen));
 					}
 
@@ -89,6 +99,14 @@ namespace ntrclient {
 							byte[] dataBuf = new byte[dataLen];
 							readNetworkStream(stream, dataBuf, dataBuf.Length);
 							string logMsg = Encoding.UTF8.GetString(dataBuf);
+                            // Tinkering even more with the Debugger
+
+                            if (logMsg.StartsWith("valid memregions:"))
+                                // Setting memregions 
+
+                                Program.gCmdWindow.txt_memlayout.Invoke(new CmdWindow.setMemregionsCallback(Program.gCmdWindow.setMemregions), new object[] { logMsg });
+                                
+                            // END
 							log(logMsg);
 						}
 						lock (syncLock) {
@@ -272,6 +290,7 @@ namespace ntrclient {
 
 			}
 			
-		}
+	
+        }
 	}
 }

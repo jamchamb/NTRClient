@@ -41,12 +41,20 @@
             this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox_Ip = new System.Windows.Forms.TextBox();
-            this.button_Connect = new System.Windows.Forms.Button();
-            this.textBox_pid = new System.Windows.Forms.TextBox();
-            this.button_processes = new System.Windows.Forms.Button();
+            this.checkBox_debug = new System.Windows.Forms.CheckBox();
+            this.txt_memlayout = new System.Windows.Forms.TextBox();
+            this.textBox_dump_file = new System.Windows.Forms.TextBox();
+            this.button_dump = new System.Windows.Forms.Button();
+            this.textBox_dump_length = new System.Windows.Forms.TextBox();
+            this.textBox_dump_start = new System.Windows.Forms.TextBox();
+            this.button_hello = new System.Windows.Forms.Button();
             this.button_memlayout = new System.Windows.Forms.Button();
+            this.button_processes = new System.Windows.Forms.Button();
+            this.textBox_pid = new System.Windows.Forms.TextBox();
+            this.button_Connect = new System.Windows.Forms.Button();
+            this.textBox_Ip = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_disconnect = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -160,11 +168,19 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 454);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(680, 200);
+            this.tabControl1.Size = new System.Drawing.Size(680, 250);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button_disconnect);
+            this.tabPage1.Controls.Add(this.checkBox_debug);
+            this.tabPage1.Controls.Add(this.txt_memlayout);
+            this.tabPage1.Controls.Add(this.textBox_dump_file);
+            this.tabPage1.Controls.Add(this.button_dump);
+            this.tabPage1.Controls.Add(this.textBox_dump_length);
+            this.tabPage1.Controls.Add(this.textBox_dump_start);
+            this.tabPage1.Controls.Add(this.button_hello);
             this.tabPage1.Controls.Add(this.button_memlayout);
             this.tabPage1.Controls.Add(this.button_processes);
             this.tabPage1.Controls.Add(this.textBox_pid);
@@ -173,56 +189,73 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(672, 174);
+            this.tabPage1.Size = new System.Drawing.Size(672, 224);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // checkBox_debug
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.checkBox_debug.AutoSize = true;
+            this.checkBox_debug.Location = new System.Drawing.Point(476, 31);
+            this.checkBox_debug.Name = "checkBox_debug";
+            this.checkBox_debug.Size = new System.Drawing.Size(91, 17);
+            this.checkBox_debug.TabIndex = 11;
+            this.checkBox_debug.Text = "Debug output";
+            this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
-            // textBox_Ip
+            // txt_memlayout
             // 
-            this.textBox_Ip.Location = new System.Drawing.Point(8, 6);
-            this.textBox_Ip.Name = "textBox_Ip";
-            this.textBox_Ip.Size = new System.Drawing.Size(150, 20);
-            this.textBox_Ip.TabIndex = 0;
-            this.textBox_Ip.Text = "Nintendo 3DS IP";
+            this.txt_memlayout.Location = new System.Drawing.Point(8, 83);
+            this.txt_memlayout.Multiline = true;
+            this.txt_memlayout.Name = "txt_memlayout";
+            this.txt_memlayout.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_memlayout.Size = new System.Drawing.Size(306, 133);
+            this.txt_memlayout.TabIndex = 10;
             // 
-            // button_Connect
+            // textBox_dump_file
             // 
-            this.button_Connect.Location = new System.Drawing.Point(164, 6);
-            this.button_Connect.Name = "button_Connect";
-            this.button_Connect.Size = new System.Drawing.Size(150, 20);
-            this.button_Connect.TabIndex = 1;
-            this.button_Connect.Text = "Connect";
-            this.button_Connect.UseVisualStyleBackColor = true;
-            this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
+            this.textBox_dump_file.Location = new System.Drawing.Point(320, 57);
+            this.textBox_dump_file.Name = "textBox_dump_file";
+            this.textBox_dump_file.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dump_file.TabIndex = 9;
+            this.textBox_dump_file.Text = "filename";
             // 
-            // textBox_pid
+            // button_dump
             // 
-            this.textBox_pid.Location = new System.Drawing.Point(8, 32);
-            this.textBox_pid.Name = "textBox_pid";
-            this.textBox_pid.Size = new System.Drawing.Size(150, 20);
-            this.textBox_pid.TabIndex = 2;
-            this.textBox_pid.Text = "Process PID";
+            this.button_dump.Location = new System.Drawing.Point(476, 56);
+            this.button_dump.Name = "button_dump";
+            this.button_dump.Size = new System.Drawing.Size(150, 20);
+            this.button_dump.TabIndex = 8;
+            this.button_dump.Text = "Dump memory";
+            this.button_dump.UseVisualStyleBackColor = true;
+            this.button_dump.Click += new System.EventHandler(this.button_dump_Click);
             // 
-            // button_processes
+            // textBox_dump_length
             // 
-            this.button_processes.Location = new System.Drawing.Point(164, 31);
-            this.button_processes.Name = "button_processes";
-            this.button_processes.Size = new System.Drawing.Size(150, 20);
-            this.button_processes.TabIndex = 3;
-            this.button_processes.Text = "List processes";
-            this.button_processes.UseVisualStyleBackColor = true;
-            this.button_processes.Click += new System.EventHandler(this.button_processes_Click);
+            this.textBox_dump_length.Location = new System.Drawing.Point(164, 57);
+            this.textBox_dump_length.Name = "textBox_dump_length";
+            this.textBox_dump_length.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dump_length.TabIndex = 7;
+            this.textBox_dump_length.Text = "Length";
+            // 
+            // textBox_dump_start
+            // 
+            this.textBox_dump_start.Location = new System.Drawing.Point(8, 57);
+            this.textBox_dump_start.Name = "textBox_dump_start";
+            this.textBox_dump_start.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dump_start.TabIndex = 6;
+            this.textBox_dump_start.Text = "Start offset";
+            // 
+            // button_hello
+            // 
+            this.button_hello.Location = new System.Drawing.Point(320, 6);
+            this.button_hello.Name = "button_hello";
+            this.button_hello.Size = new System.Drawing.Size(150, 20);
+            this.button_hello.TabIndex = 5;
+            this.button_hello.Text = "Hello! - Test connection";
+            this.button_hello.UseVisualStyleBackColor = true;
+            this.button_hello.Click += new System.EventHandler(this.button_hello_Click);
             // 
             // button_memlayout
             // 
@@ -234,11 +267,67 @@
             this.button_memlayout.UseVisualStyleBackColor = true;
             this.button_memlayout.Click += new System.EventHandler(this.button_memlayout_Click);
             // 
+            // button_processes
+            // 
+            this.button_processes.Location = new System.Drawing.Point(164, 31);
+            this.button_processes.Name = "button_processes";
+            this.button_processes.Size = new System.Drawing.Size(150, 20);
+            this.button_processes.TabIndex = 3;
+            this.button_processes.Text = "List processes";
+            this.button_processes.UseVisualStyleBackColor = true;
+            this.button_processes.Click += new System.EventHandler(this.button_processes_Click);
+            // 
+            // textBox_pid
+            // 
+            this.textBox_pid.Location = new System.Drawing.Point(8, 32);
+            this.textBox_pid.Name = "textBox_pid";
+            this.textBox_pid.Size = new System.Drawing.Size(150, 20);
+            this.textBox_pid.TabIndex = 2;
+            this.textBox_pid.Text = "Process PID";
+            // 
+            // button_Connect
+            // 
+            this.button_Connect.Location = new System.Drawing.Point(164, 6);
+            this.button_Connect.Name = "button_Connect";
+            this.button_Connect.Size = new System.Drawing.Size(150, 20);
+            this.button_Connect.TabIndex = 1;
+            this.button_Connect.Text = "Connect";
+            this.button_Connect.UseVisualStyleBackColor = true;
+            this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
+            // 
+            // textBox_Ip
+            // 
+            this.textBox_Ip.Location = new System.Drawing.Point(8, 6);
+            this.textBox_Ip.Name = "textBox_Ip";
+            this.textBox_Ip.Size = new System.Drawing.Size(150, 20);
+            this.textBox_Ip.TabIndex = 0;
+            this.textBox_Ip.Text = "Nintendo 3DS IP";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(672, 174);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button_disconnect
+            // 
+            this.button_disconnect.Location = new System.Drawing.Point(476, 6);
+            this.button_disconnect.Name = "button_disconnect";
+            this.button_disconnect.Size = new System.Drawing.Size(150, 20);
+            this.button_disconnect.TabIndex = 12;
+            this.button_disconnect.Text = "Disconnect";
+            this.button_disconnect.UseVisualStyleBackColor = true;
+            this.button_disconnect.Click += new System.EventHandler(this.button_disconnect_Click);
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 654);
+            this.ClientSize = new System.Drawing.Size(680, 704);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -284,6 +373,14 @@
         private System.Windows.Forms.Button button_Connect;
         private System.Windows.Forms.TextBox textBox_Ip;
         private System.Windows.Forms.Button button_memlayout;
+        private System.Windows.Forms.Button button_hello;
+        private System.Windows.Forms.TextBox textBox_dump_file;
+        private System.Windows.Forms.Button button_dump;
+        private System.Windows.Forms.TextBox textBox_dump_length;
+        private System.Windows.Forms.TextBox textBox_dump_start;
+        public System.Windows.Forms.CheckBox checkBox_debug;
+        public System.Windows.Forms.TextBox txt_memlayout;
+        private System.Windows.Forms.Button button_disconnect;
     }
 }
 

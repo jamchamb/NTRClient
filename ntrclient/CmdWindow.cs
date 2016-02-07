@@ -13,13 +13,13 @@ namespace ntrclient
     public partial class CmdWindow : Form
     {
 		public delegate void LogDelegate(string l);
-		public LogDelegate delAddLog;
+        public LogDelegate delAddLog;
 
 
 
         public CmdWindow()
         {
-			delAddLog = new LogDelegate(Addlog);
+            delAddLog = new LogDelegate(Addlog);
 
             InitializeComponent();
         }
@@ -42,19 +42,22 @@ namespace ntrclient
 		private void txtCmd_TextChanged(object sender, EventArgs e) {
 
 		}
-		void runCmd(String cmd) {
+	    String runCmd(String cmd) {
 			try {
 				Addlog("> " + cmd);
 				object ret = Program.pyEngine.CreateScriptSourceFromString(cmd).Execute(Program.globalScope);
 				if (ret != null) {
 					Addlog(ret.ToString());
+                    return ret.ToString();
 				} else {
 					Addlog("null");
+                    return "";
 				}
 			}
 			catch (Exception ex) {
 				Addlog(ex.Message);
 				Addlog(ex.StackTrace);
+                return "";
 			}
 		}
 		private void txtCmd_KeyDown(object sender, KeyEventArgs e) {
@@ -83,7 +86,7 @@ namespace ntrclient
 		}
 
 		private void CmdWindow_Load(object sender, EventArgs e) {
-            Addlog("NTR debugger by cell9");
+            Addlog("NTR debugger by cell9 - Mod by imthe666st");
 			runCmd("import sys;sys.path.append('.\\python\\Lib')");
 			runCmd("for n in [n for n in dir(nc) if not n.startswith('_')]: globals()[n] = getattr(nc,n)    ");
 			Addlog("Commands available: ");
@@ -130,7 +133,8 @@ namespace ntrclient
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
-            runCmd("Connect(" + textBox_Ip.Text + ", 8000)");
+            textBox_Ip.Text = "192.168.0.11";
+            runCmd("connect('" + textBox_Ip.Text + "', 8000)");
         }
 
         private void button_processes_Click(object sender, EventArgs e)
@@ -140,7 +144,35 @@ namespace ntrclient
 
         private void button_memlayout_Click(object sender, EventArgs e)
         {
-            runCmd("memlayout(pid=" + textBox_pid.Text + ")");
+            // I'll edit this method later.
+            // Don't change this yet! 
+            String memlayout = runCmd("memlayout(pid=0x" + textBox_pid.Text + ")");
+
         }
+
+        private void button_hello_Click(object sender, EventArgs e)
+        {
+            runCmd("sayhello()");
+        }
+
+        private void button_dump_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_disconnect_Click(object sender, EventArgs e)
+        {
+            runCmd("disconnect()");
+        }
+
+        public void setMemregions(String memlayout)
+        {
+            if (!memlayout.Contains("\r\n"))
+            {
+                memlayout = memlayout.Replace("\n", "\r\n");
+            }
+            txt_memlayout.Text = memlayout;
+        }
+        public delegate void setMemregionsCallback(String memlayout);
     }
 }
