@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ntrclient
 {
-    class Memregion
+    public class Memregion
     {
         public int start, end, length;
 

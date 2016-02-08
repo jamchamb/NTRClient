@@ -95,17 +95,16 @@ namespace ntrclient {
 					}
 
 					if (cmd == 0) {
-						if (dataLen != 0) {
-							byte[] dataBuf = new byte[dataLen];
-							readNetworkStream(stream, dataBuf, dataBuf.Length);
-							string logMsg = Encoding.UTF8.GetString(dataBuf);
+                        if (dataLen != 0) {
+                            byte[] dataBuf = new byte[dataLen];
+                            readNetworkStream(stream, dataBuf, dataBuf.Length);
+                            string logMsg = Encoding.UTF8.GetString(dataBuf);
                             // Tinkering even more with the Debugger
 
-                            if (logMsg.StartsWith("valid memregions:"))
+                            if (logMsg.StartsWith("valid memregions:")) { 
                                 // Setting memregions 
-
                                 Program.gCmdWindow.txt_memlayout.Invoke(new CmdWindow.setMemregionsCallback(Program.gCmdWindow.setMemregions), new object[] { logMsg });
-                                
+                            }
                             // END
 							log(logMsg);
 						}

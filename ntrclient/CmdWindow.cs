@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace ntrclient
     {
 		public delegate void LogDelegate(string l);
         public LogDelegate delAddLog;
-
+        public List<Memregion> memregions = new List<Memregion>();
 
 
         public CmdWindow()
@@ -161,7 +162,8 @@ namespace ntrclient
             if (filename.Contains(".")) {
                 filename = filename.Split('.')[0];
             }
-            runCmd("data(0x"+textBox_dump_start.Text+", 0x"+textBox_dump_length.Text+", filename='"+filename+".bin', pid=0x"+textBox_pid.Text+")");
+            Memregion mem = memregions[comboBox_memregions.SelectedIndex];
+            runCmd(String.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3})", mem.start, mem.length, filename, textBox_pid.Text));
         }
 
         private void button_disconnect_Click(object sender, EventArgs e)
@@ -206,6 +208,61 @@ namespace ntrclient
         private void button_clear_memdebug_Click(object sender, EventArgs e)
         {
             textBox_memdebug.Text = "";
+        }
+
+        public void generateMemregions()
+        {
+            String layout = txt_memlayout.Text;
+            Regex regex = new Regex("\r\n");
+            String[] lines = regex.Split(layout);
+
+            memregions.Clear();
+            comboBox_memregions.Items.Clear();
+
+            foreach (String mem in lines)
+            {
+
+                String[] mem_parts = mem.Split(' ');
+                if (mem_parts.Length == 6)
+                {
+                    if (
+                        mem_parts[1] == "-" &&
+                        mem_parts[3] == "," &&
+                        mem_parts[4] == "size:"
+                    ) {
+                        Memregion memregion = new Memregion(mem);
+                        memregions.Add(memregion);
+                        int start = memregion.start;
+                        int end = memregion.end;
+                        int length = memregion.length;
+                        comboBox_memregions.Items.Add(String.Format("{0:X} -> {1:X} [{2:X}]", start, end, length));
+                    }
+                }
+            }
+
+            comboBox_memregions.SelectedIndex = 0;
+        }
+
+        private void button_dummy_memregion2_Click(object sender, EventArgs e)
+        {
+            generateMemregions();
+            foreach (Memregion mem in memregions)
+            {
+                // read all the new values.
+                int start = mem.start;
+                int end = mem.end;
+                int length = mem.length;
+ 
+                String memregion = String.Format("\r\n{0:X} - {1:X} , size: {2:X}", start, end, length);
+                textBox_memdebug.AppendText(memregion);
+
+
+            }
+        }
+
+        private void txt_memlayout_TextChanged(object sender, EventArgs e)
+        {
+            generateMemregions();
         }
     }
 }
