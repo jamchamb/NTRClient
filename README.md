@@ -8,5 +8,9 @@ IronPython: http://ironpython.net/
 GPLV2
 
 # Credits
-NTR Client made by 44670  
+NTR Client made by 44670 / cell9  
 Mod by imthe666st
+
+# Helpful tools
+NTR Debugger Search Tool. "NTR Cheat Tool" by /u/valarnin
+https://www.reddit.com/r/3dshacks/comments/44jtfm/beta_release_for_ntr_cheat_tool_a_new_tool_to/
