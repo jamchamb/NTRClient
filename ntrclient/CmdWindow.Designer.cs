@@ -41,6 +41,7 @@
             this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_disconnect = new System.Windows.Forms.Button();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
             this.txt_memlayout = new System.Windows.Forms.TextBox();
             this.textBox_dump_file = new System.Windows.Forms.TextBox();
@@ -54,12 +55,16 @@
             this.button_Connect = new System.Windows.Forms.Button();
             this.textBox_Ip = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button_disconnect = new System.Windows.Forms.Button();
+            this.textBox_memdebug = new System.Windows.Forms.TextBox();
+            this.button_dummy_memregion = new System.Windows.Forms.Button();
+            this.button_clear_memdebug = new System.Windows.Forms.Button();
+            this.textBox_memregion = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -191,8 +196,18 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(672, 224);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Basic";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button_disconnect
+            // 
+            this.button_disconnect.Location = new System.Drawing.Point(476, 6);
+            this.button_disconnect.Name = "button_disconnect";
+            this.button_disconnect.Size = new System.Drawing.Size(150, 20);
+            this.button_disconnect.TabIndex = 12;
+            this.button_disconnect.Text = "Disconnect";
+            this.button_disconnect.UseVisualStyleBackColor = true;
+            this.button_disconnect.Click += new System.EventHandler(this.button_disconnect_Click);
             // 
             // checkBox_debug
             // 
@@ -305,23 +320,55 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox_memregion);
+            this.tabPage2.Controls.Add(this.button_clear_memdebug);
+            this.tabPage2.Controls.Add(this.button_dummy_memregion);
+            this.tabPage2.Controls.Add(this.textBox_memdebug);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(672, 174);
+            this.tabPage2.Size = new System.Drawing.Size(672, 224);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Memregion test";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button_disconnect
+            // textBox_memdebug
             // 
-            this.button_disconnect.Location = new System.Drawing.Point(476, 6);
-            this.button_disconnect.Name = "button_disconnect";
-            this.button_disconnect.Size = new System.Drawing.Size(150, 20);
-            this.button_disconnect.TabIndex = 12;
-            this.button_disconnect.Text = "Disconnect";
-            this.button_disconnect.UseVisualStyleBackColor = true;
-            this.button_disconnect.Click += new System.EventHandler(this.button_disconnect_Click);
+            this.textBox_memdebug.Location = new System.Drawing.Point(360, 6);
+            this.textBox_memdebug.Multiline = true;
+            this.textBox_memdebug.Name = "textBox_memdebug";
+            this.textBox_memdebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_memdebug.Size = new System.Drawing.Size(306, 210);
+            this.textBox_memdebug.TabIndex = 14;
+            this.textBox_memdebug.Text = "Debug Output ( Testing only! )";
+            // 
+            // button_dummy_memregion
+            // 
+            this.button_dummy_memregion.Location = new System.Drawing.Point(8, 6);
+            this.button_dummy_memregion.Name = "button_dummy_memregion";
+            this.button_dummy_memregion.Size = new System.Drawing.Size(346, 23);
+            this.button_dummy_memregion.TabIndex = 15;
+            this.button_dummy_memregion.Text = "Create dummy memregion";
+            this.button_dummy_memregion.UseVisualStyleBackColor = true;
+            this.button_dummy_memregion.Click += new System.EventHandler(this.button_dummy_memregion_Click);
+            // 
+            // button_clear_memdebug
+            // 
+            this.button_clear_memdebug.Location = new System.Drawing.Point(8, 35);
+            this.button_clear_memdebug.Name = "button_clear_memdebug";
+            this.button_clear_memdebug.Size = new System.Drawing.Size(346, 23);
+            this.button_clear_memdebug.TabIndex = 16;
+            this.button_clear_memdebug.Text = "Clear";
+            this.button_clear_memdebug.UseVisualStyleBackColor = true;
+            this.button_clear_memdebug.Click += new System.EventHandler(this.button_clear_memdebug_Click);
+            // 
+            // textBox_memregion
+            // 
+            this.textBox_memregion.Location = new System.Drawing.Point(8, 64);
+            this.textBox_memregion.Name = "textBox_memregion";
+            this.textBox_memregion.Size = new System.Drawing.Size(346, 20);
+            this.textBox_memregion.TabIndex = 17;
+            this.textBox_memregion.Text = "00100000 - 00847fff , size: 00748000";
             // 
             // CmdWindow
             // 
@@ -348,6 +395,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,6 +430,10 @@
         public System.Windows.Forms.CheckBox checkBox_debug;
         public System.Windows.Forms.TextBox txt_memlayout;
         private System.Windows.Forms.Button button_disconnect;
+        private System.Windows.Forms.Button button_dummy_memregion;
+        public System.Windows.Forms.TextBox textBox_memdebug;
+        private System.Windows.Forms.TextBox textBox_memregion;
+        private System.Windows.Forms.Button button_clear_memdebug;
     }
 }
 

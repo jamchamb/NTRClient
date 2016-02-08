@@ -94,6 +94,7 @@
     <Compile Include="AsmEditWindow.Designer.cs">
       <DependentUpon>AsmEditWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Memregion.cs" />
     <Compile Include="QuickCmdWindow.cs">
       <SubType>Form</SubType>
     </Compile>

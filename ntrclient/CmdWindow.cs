@@ -157,7 +157,11 @@ namespace ntrclient
 
         private void button_dump_Click(object sender, EventArgs e)
         {
-
+            String filename = textBox_dump_file.Text;
+            if (filename.Contains(".")) {
+                filename = filename.Split('.')[0];
+            }
+            runCmd("data(0x"+textBox_dump_start.Text+", 0x"+textBox_dump_length.Text+", filename='"+filename+".bin', pid=0x"+textBox_pid.Text+")");
         }
 
         private void button_disconnect_Click(object sender, EventArgs e)
@@ -174,5 +178,34 @@ namespace ntrclient
             txt_memlayout.Text = memlayout;
         }
         public delegate void setMemregionsCallback(String memlayout);
+
+        private void button_dummy_memregion_Click(object sender, EventArgs e)
+        {
+            // This is debug only
+            // This code will be removed later
+            // This code is horrible and should be removed as soon as possible
+            // I like cakes
+
+
+            // Init memregion
+            Memregion mem = new Memregion(textBox_memregion.Text);
+
+            // read all the new values.
+            int start = mem.start;
+            int end = mem.end;
+            int length = mem.length;
+
+            // Recreate the original string
+            // 00100000 - 00847fff, size: 00748000
+
+            // I know it's not hex yet. 
+            String memregion = String.Format("{0:X} - {1:X} , size: {2:X}", start, end, length);
+            textBox_memdebug.AppendText("\r\n" + memregion);
+        }
+
+        private void button_clear_memdebug_Click(object sender, EventArgs e)
+        {
+            textBox_memdebug.Text = "";
+        }
     }
 }
