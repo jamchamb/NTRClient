@@ -37,8 +37,6 @@ namespace ntrclient
                 start = 0;
                 end = 0;
                 length = 0;
-
-                Program.gCmdWindow.textBox_memdebug.AppendText("\r\n" + e);
             }
         }
     }

@@ -132,7 +132,7 @@ namespace ntrclient {
 		string byteToHex(byte[] datBuf, int type) {
 			string r = "";
 			for (int i = 0; i < datBuf.Length; i++) {
-				r += datBuf[i].ToString("X2") + " ";
+				r += datBuf[i].ToString("X2");
 			}
 			return r;
 		}
@@ -151,11 +151,20 @@ namespace ntrclient {
 				log("dump saved into " + fileName + " successfully");
 				return;
 			}
-			log(byteToHex(dataBuf, 0));
+            String hex = byteToHex(dataBuf, 0);
+            log("Read memory: "+hex);
+
+            // Read Byte, Short and Word
+            int length = dataBuf.Length;
+            if ((length == 1) || (length == 2) || (length == 4))
+            {
+                Program.gCmdWindow.setReadValue(Convert.ToInt32(hex, 16));
+            }
 
 		}
 
-		void handlePacket(UInt32 cmd, UInt32 seq, byte[] dataBuf) {
+		void handlePacket(UInt32 cmd, UInt32 seq, byte[] dataBuf)
+        {
 			if (cmd == 9) {
 				handleReadMem(seq, dataBuf);
 			}

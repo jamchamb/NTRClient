@@ -17,6 +17,30 @@ namespace ntrclient
         public LogDelegate delAddLog;
         public List<Memregion> memregions = new List<Memregion>();
 
+        public int read_value = -1;
+        
+
+        public void setReadValue(int r)
+        {
+            read_value = r;
+        }
+
+        public int readValue(int addr, int size)
+        {
+            int v;
+            if (size < 1)
+                size = 1;
+
+            runCmd(String.Format("read(0x{0:X}, 0x{1:X}, pid=0x{2})", addr, size, textBox_pid.Text));
+            while (read_value == -1)
+            {
+                Task.Delay(25);
+            }
+
+            v = read_value;
+            read_value = -1;
+            return v;
+        }
 
         public CmdWindow()
         {
@@ -181,35 +205,6 @@ namespace ntrclient
         }
         public delegate void setMemregionsCallback(String memlayout);
 
-        private void button_dummy_memregion_Click(object sender, EventArgs e)
-        {
-            // This is debug only
-            // This code will be removed later
-            // This code is horrible and should be removed as soon as possible
-            // I like cakes
-
-
-            // Init memregion
-            Memregion mem = new Memregion(textBox_memregion.Text);
-
-            // read all the new values.
-            int start = mem.start;
-            int end = mem.end;
-            int length = mem.length;
-
-            // Recreate the original string
-            // 00100000 - 00847fff, size: 00748000
-
-            // I know it's not hex yet. 
-            String memregion = String.Format("{0:X} - {1:X} , size: {2:X}", start, end, length);
-            textBox_memdebug.AppendText("\r\n" + memregion);
-        }
-
-        private void button_clear_memdebug_Click(object sender, EventArgs e)
-        {
-            textBox_memdebug.Text = "";
-        }
-
         public void generateMemregions()
         {
             String layout = txt_memlayout.Text;
@@ -242,27 +237,19 @@ namespace ntrclient
 
             comboBox_memregions.SelectedIndex = 0;
         }
-
-        private void button_dummy_memregion2_Click(object sender, EventArgs e)
-        {
-            generateMemregions();
-            foreach (Memregion mem in memregions)
-            {
-                // read all the new values.
-                int start = mem.start;
-                int end = mem.end;
-                int length = mem.length;
- 
-                String memregion = String.Format("\r\n{0:X} - {1:X} , size: {2:X}", start, end, length);
-                textBox_memdebug.AppendText(memregion);
-
-
-            }
-        }
-
+        
         private void txt_memlayout_TextChanged(object sender, EventArgs e)
         {
             generateMemregions();
+        }
+
+        private void button_debug1_Click(object sender, EventArgs e)
+        {
+            int addr = Convert.ToInt32(textBox_debug1.Text, 16);
+            int size = 4;
+            int value = readValue(addr, size);
+            //MessageBox.Show(String.Format("Read value: {0:X}", value));
+            textBox_debug2.Text = String.Format("{0:X}", value);
         }
     }
 }

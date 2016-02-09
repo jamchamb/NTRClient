@@ -74,9 +74,9 @@ namespace ntrclient {
 		public void data(uint addr, uint size = 0x100, int pid = -1, string filename = null) {
 			if (filename == null && size > 1024) {
 				size = 1024;
-			}
-			Program.ntrClient.sendReadMemPacket(addr, size, (uint) pid, filename);
-		}
+            }
+            Program.ntrClient.sendReadMemPacket(addr, size, (uint)pid, filename);
+        }
 
 		public void write(uint addr, byte[] buf, int pid=-1) {
 			Program.ntrClient.sendWriteMemPacket(addr, (uint)pid, buf);
@@ -89,5 +89,10 @@ namespace ntrclient {
 			fs.Close();
 			Program.ntrClient.sendSaveFilePacket(remotePath, buf);
 		}
+
+        public void read(uint addr, uint size = 4, int pid = -1)
+        {
+            data(addr, size, pid, null);
+        }
 	}
 }
