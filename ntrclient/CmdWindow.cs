@@ -134,7 +134,7 @@ namespace ntrclient
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
-            textBox_Ip.Text = "192.168.0.11";
+            //textBox_Ip.Text = "192.168.0.11";
             runCmd("connect('" + textBox_Ip.Text + "', 8000)");
         }
 
