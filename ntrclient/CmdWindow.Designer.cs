@@ -54,15 +54,11 @@
             this.button_Connect = new System.Windows.Forms.Button();
             this.textBox_Ip = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button_debug1 = new System.Windows.Forms.Button();
-            this.textBox_debug1 = new System.Windows.Forms.TextBox();
-            this.textBox_debug2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -312,40 +308,13 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox_debug2);
-            this.tabPage2.Controls.Add(this.textBox_debug1);
-            this.tabPage2.Controls.Add(this.button_debug1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(672, 224);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Memregion test";
+            this.tabPage2.Text = "Dummy Cheat Menu";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button_debug1
-            // 
-            this.button_debug1.Location = new System.Drawing.Point(8, 6);
-            this.button_debug1.Name = "button_debug1";
-            this.button_debug1.Size = new System.Drawing.Size(150, 20);
-            this.button_debug1.TabIndex = 2;
-            this.button_debug1.Text = "Read debug";
-            this.button_debug1.UseVisualStyleBackColor = true;
-            this.button_debug1.Click += new System.EventHandler(this.button_debug1_Click);
-            // 
-            // textBox_debug1
-            // 
-            this.textBox_debug1.Location = new System.Drawing.Point(164, 6);
-            this.textBox_debug1.Name = "textBox_debug1";
-            this.textBox_debug1.Size = new System.Drawing.Size(150, 20);
-            this.textBox_debug1.TabIndex = 3;
-            // 
-            // textBox_debug2
-            // 
-            this.textBox_debug2.Location = new System.Drawing.Point(320, 7);
-            this.textBox_debug2.Name = "textBox_debug2";
-            this.textBox_debug2.Size = new System.Drawing.Size(150, 20);
-            this.textBox_debug2.TabIndex = 4;
             // 
             // CmdWindow
             // 
@@ -372,8 +341,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,9 +373,6 @@
         public System.Windows.Forms.TextBox txt_memlayout;
         private System.Windows.Forms.Button button_disconnect;
         public System.Windows.Forms.ComboBox comboBox_memregions;
-        private System.Windows.Forms.TextBox textBox_debug1;
-        private System.Windows.Forms.Button button_debug1;
-        private System.Windows.Forms.TextBox textBox_debug2;
     }
 }
 

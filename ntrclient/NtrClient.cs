@@ -85,6 +85,9 @@ namespace ntrclient {
                         }
 
                     // END 
+                    
+                    //Program.gCmdWindow.rt_ram();
+
                     if (cmd != 0) {
 						log(String.Format("packet: cmd = {0}, dataLen = {1}", cmd, dataLen));
 					}
@@ -106,7 +109,8 @@ namespace ntrclient {
                                 Program.gCmdWindow.txt_memlayout.Invoke(new CmdWindow.setMemregionsCallback(Program.gCmdWindow.setMemregions), new object[] { logMsg });
                             }
                             // END
-							log(logMsg);
+
+                            log(logMsg);
 						}
 						lock (syncLock) {
 							heartbeatSendable = 1;
@@ -118,6 +122,7 @@ namespace ntrclient {
 						readNetworkStream(stream, dataBuf, dataBuf.Length);
 						handlePacket(cmd, seq, dataBuf);
 					}
+
 				}
 				catch (Exception e) {
 					log(e.Message);

@@ -49,6 +49,7 @@ namespace ntrclient
             InitializeComponent();
         }
 
+        public delegate void delegate_logAppend(String l);
         public void Addlog(string l) {
 			if (!l.Contains("\r\n")) {
 				l = l.Replace("\n", "\r\n");
@@ -56,8 +57,19 @@ namespace ntrclient
             if (!l.EndsWith("\n")) {
                 l += "\r\n";
             }
-            txtLog.AppendText(l);
+
+            // Test for multithreading. This is horrible
+
+            if (txtLog.InvokeRequired)
+            {
+                txtLog.Invoke(new delegate_logAppend(txtLog.AppendText), l);
+            } else
+            {
+                txtLog.AppendText(l);
+            }
         }
+
+
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -243,13 +255,36 @@ namespace ntrclient
             generateMemregions();
         }
 
-        private void button_debug1_Click(object sender, EventArgs e)
+        // Experimental realtime RAM view
+
+        // This code doesn't work.
+        // Feel free to fork this and get this to work.
+        //
+        // Reference:
+        //      NtrClient.cs:89 -> Program.gCmdWindow.rt_ram();
+
+
+        /*
+        delegate void delegate_setRT_RAM(String l);
+        void setRT_RAM(String l)
         {
-            int addr = Convert.ToInt32(textBox_debug1.Text, 16);
-            int size = 4;
-            int value = readValue(addr, size);
-            //MessageBox.Show(String.Format("Read value: {0:X}", value));
-            textBox_debug2.Text = String.Format("{0:X}", value);
+            textBox_rt_ram.Text = l;
         }
+        
+        public void rt_ram()
+        {
+            // Realtime ram stuff
+            if (checkBox_rt.Checked)
+            {
+                // Running
+                int addr = Convert.ToInt32(textBox_rt_addr.Text, 16);
+                int size = 4;
+                int value = readValue(addr, size);
+                String l = String.Format("{0:X}", value);
+                textBox_rt_ram.Invoke(new delegate_setRT_RAM(setRT_RAM), l);
+            }
+        }
+
+        */
     }
 }
