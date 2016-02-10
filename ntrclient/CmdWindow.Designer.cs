@@ -54,11 +54,21 @@
             this.button_Connect = new System.Windows.Forms.Button();
             this.textBox_Ip = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
+            this.button_mk7_coins_read = new System.Windows.Forms.Button();
+            this.button_mk7_coins_write = new System.Windows.Forms.Button();
+            this.textBox_dummy_addr = new System.Windows.Forms.TextBox();
+            this.button_dummy_read = new System.Windows.Forms.Button();
+            this.numericUpDown_dummy_length = new System.Windows.Forms.NumericUpDown();
+            this.textBox_dummy_value = new System.Windows.Forms.TextBox();
+            this.button_dummy_write = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -172,6 +182,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button_dummy_write);
+            this.tabPage1.Controls.Add(this.textBox_dummy_value);
+            this.tabPage1.Controls.Add(this.numericUpDown_dummy_length);
+            this.tabPage1.Controls.Add(this.textBox_dummy_addr);
+            this.tabPage1.Controls.Add(this.button_dummy_read);
             this.tabPage1.Controls.Add(this.comboBox_memregions);
             this.tabPage1.Controls.Add(this.button_disconnect);
             this.tabPage1.Controls.Add(this.checkBox_debug);
@@ -308,13 +323,102 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button_mk7_coins_write);
+            this.tabPage2.Controls.Add(this.button_mk7_coins_read);
+            this.tabPage2.Controls.Add(this.textBox_mk7_coins);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(672, 224);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Dummy Cheat Menu";
+            this.tabPage2.Text = "Mario Kart 7 (US)";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox_mk7_coins
+            // 
+            this.textBox_mk7_coins.Location = new System.Drawing.Point(8, 6);
+            this.textBox_mk7_coins.Name = "textBox_mk7_coins";
+            this.textBox_mk7_coins.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mk7_coins.TabIndex = 3;
+            this.textBox_mk7_coins.Text = "Coins";
+            // 
+            // button_mk7_coins_read
+            // 
+            this.button_mk7_coins_read.Location = new System.Drawing.Point(164, 6);
+            this.button_mk7_coins_read.Name = "button_mk7_coins_read";
+            this.button_mk7_coins_read.Size = new System.Drawing.Size(150, 20);
+            this.button_mk7_coins_read.TabIndex = 4;
+            this.button_mk7_coins_read.Text = "Read";
+            this.button_mk7_coins_read.UseVisualStyleBackColor = true;
+            this.button_mk7_coins_read.Click += new System.EventHandler(this.button_mk7_coins_read_Click);
+            // 
+            // button_mk7_coins_write
+            // 
+            this.button_mk7_coins_write.Location = new System.Drawing.Point(320, 6);
+            this.button_mk7_coins_write.Name = "button_mk7_coins_write";
+            this.button_mk7_coins_write.Size = new System.Drawing.Size(150, 20);
+            this.button_mk7_coins_write.TabIndex = 5;
+            this.button_mk7_coins_write.Text = "Write";
+            this.button_mk7_coins_write.UseVisualStyleBackColor = true;
+            this.button_mk7_coins_write.Click += new System.EventHandler(this.button_mk7_coins_write_Click);
+            // 
+            // textBox_dummy_addr
+            // 
+            this.textBox_dummy_addr.Location = new System.Drawing.Point(320, 84);
+            this.textBox_dummy_addr.Name = "textBox_dummy_addr";
+            this.textBox_dummy_addr.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dummy_addr.TabIndex = 15;
+            this.textBox_dummy_addr.Text = "Addr";
+            // 
+            // button_dummy_read
+            // 
+            this.button_dummy_read.Location = new System.Drawing.Point(476, 83);
+            this.button_dummy_read.Name = "button_dummy_read";
+            this.button_dummy_read.Size = new System.Drawing.Size(150, 20);
+            this.button_dummy_read.TabIndex = 14;
+            this.button_dummy_read.Text = "Read at Addr";
+            this.button_dummy_read.UseVisualStyleBackColor = true;
+            this.button_dummy_read.Click += new System.EventHandler(this.button_dummy_read_Click);
+            // 
+            // numericUpDown_dummy_length
+            // 
+            this.numericUpDown_dummy_length.Location = new System.Drawing.Point(632, 83);
+            this.numericUpDown_dummy_length.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDown_dummy_length.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_dummy_length.Name = "numericUpDown_dummy_length";
+            this.numericUpDown_dummy_length.Size = new System.Drawing.Size(32, 20);
+            this.numericUpDown_dummy_length.TabIndex = 16;
+            this.numericUpDown_dummy_length.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // textBox_dummy_value
+            // 
+            this.textBox_dummy_value.Location = new System.Drawing.Point(320, 110);
+            this.textBox_dummy_value.Name = "textBox_dummy_value";
+            this.textBox_dummy_value.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dummy_value.TabIndex = 17;
+            this.textBox_dummy_value.Text = "Value";
+            // 
+            // button_dummy_write
+            // 
+            this.button_dummy_write.Location = new System.Drawing.Point(476, 109);
+            this.button_dummy_write.Name = "button_dummy_write";
+            this.button_dummy_write.Size = new System.Drawing.Size(150, 20);
+            this.button_dummy_write.TabIndex = 18;
+            this.button_dummy_write.Text = "Write to Addr";
+            this.button_dummy_write.UseVisualStyleBackColor = true;
+            this.button_dummy_write.Click += new System.EventHandler(this.button_dummy_write_Click);
             // 
             // CmdWindow
             // 
@@ -341,6 +445,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,6 +480,14 @@
         public System.Windows.Forms.TextBox txt_memlayout;
         private System.Windows.Forms.Button button_disconnect;
         public System.Windows.Forms.ComboBox comboBox_memregions;
+        private System.Windows.Forms.Button button_mk7_coins_write;
+        private System.Windows.Forms.Button button_mk7_coins_read;
+        private System.Windows.Forms.TextBox textBox_mk7_coins;
+        private System.Windows.Forms.TextBox textBox_dummy_addr;
+        private System.Windows.Forms.Button button_dummy_read;
+        private System.Windows.Forms.Button button_dummy_write;
+        private System.Windows.Forms.TextBox textBox_dummy_value;
+        private System.Windows.Forms.NumericUpDown numericUpDown_dummy_length;
     }
 }
 

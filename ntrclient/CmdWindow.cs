@@ -12,6 +12,7 @@ using System.Windows.Forms;
 namespace ntrclient
 {
     public partial class CmdWindow : Form
+
     {
 		public delegate void LogDelegate(string l);
         public LogDelegate delAddLog;
@@ -22,6 +23,8 @@ namespace ntrclient
 
         public void setReadValue(int r)
         {
+            if (r == -1)
+                r = 0;
             read_value = r;
         }
 
@@ -37,10 +40,42 @@ namespace ntrclient
                 Task.Delay(25);
             }
 
+            // always int32
             v = read_value;
             read_value = -1;
             return v;
         }
+        
+        int getInt(String l)
+        {
+            return Convert.ToInt32(l, 10);
+        }
+
+        String toHex(int v)
+        {
+            return String.Format("{0:X}", v);
+        }
+
+        int fromLE(String hex_le)
+        {
+            int temp = 0;
+            if (hex_le.Length == 4)
+                temp = Convert.ToInt16(hex_le, 16);
+            else
+                temp = Convert.ToInt32(hex_le, 16);
+            return fromLE(temp);
+        }
+
+        int fromLE(int temp)
+        {
+            byte[] bytes = BitConverter.GetBytes(temp);
+
+            Array.Reverse(bytes);
+
+            return BitConverter.ToInt32(bytes, 0);
+        }
+
+        // Actual code
 
         public CmdWindow()
         {
@@ -286,5 +321,64 @@ namespace ntrclient
         }
 
         */
+
+        String generateHexChunk(int value, int length)
+        {
+            String data = "(";
+            byte[] bytes = BitConverter.GetBytes(value);
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                byte b = bytes[i];
+                if (i < length-1)
+                {
+                    data += String.Format("0x{0:X}, ", b);
+                } else
+                {
+                    data += String.Format("0x{0:X}", b);
+                    break;
+                }
+            }
+            return data + ")";
+        }
+
+        String generateWriteString(int addr, int value, int length)
+        {
+            String data = generateHexChunk(value, length);
+
+            return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
+        }
+
+        private void button_dummy_read_Click(object sender, EventArgs e)
+        {
+            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+            int v = fromLE(readValue(addr, (int)numericUpDown_dummy_length.Value));
+            textBox_dummy_value.Text = String.Format("{0}", v);
+        }
+
+        private void button_dummy_write_Click(object sender, EventArgs e)
+        {
+            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+            int v = getInt(textBox_dummy_value.Text);
+            runCmd(generateWriteString(addr, v, (int)numericUpDown_dummy_length.Value));
+        }
+
+        // Mario Kart 7 (US) [1.1] Codes
+
+        // Coins 
+
+        // 1413C540
+        private void button_mk7_coins_read_Click(object sender, EventArgs e)
+        {
+            int addr = 0x1413C540;
+            int v = fromLE(readValue(addr, 4));
+            textBox_mk7_coins.Text = String.Format("{0}", v);
+        }
+
+        private void button_mk7_coins_write_Click(object sender, EventArgs e)
+        {
+            int addr = 0x1413C540;
+            int v = getInt(textBox_mk7_coins.Text);
+            runCmd(generateWriteString(addr, v, 4));
+        }
     }
 }
