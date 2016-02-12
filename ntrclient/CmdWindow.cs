@@ -60,19 +60,26 @@ namespace ntrclient
         {
             int temp = 0;
             if (hex_le.Length == 4)
+            {
                 temp = Convert.ToInt16(hex_le, 16);
+                return fromLE(temp, 2);
+            }
             else
+            {
                 temp = Convert.ToInt32(hex_le, 16);
-            return fromLE(temp);
+                return fromLE(temp, 4);
+            }
         }
 
-        int fromLE(int temp)
+        int fromLE(int temp, int len)
         {
             byte[] bytes = BitConverter.GetBytes(temp);
 
             Array.Reverse(bytes);
-
-            return BitConverter.ToInt32(bytes, 0);
+            if (len == 2)
+                return BitConverter.ToInt16(bytes, 2);
+            else
+                return BitConverter.ToInt32(bytes, 0);
         }
 
         // Actual code
@@ -351,7 +358,7 @@ namespace ntrclient
         private void button_dummy_read_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = fromLE(readValue(addr, (int)numericUpDown_dummy_length.Value));
+            int v = fromLE(readValue(addr, (int)numericUpDown_dummy_length.Value), 4);
             textBox_dummy_value.Text = String.Format("{0}", v);
         }
 
@@ -370,7 +377,7 @@ namespace ntrclient
         private void button_mk7_coins_read_Click(object sender, EventArgs e)
         {
             int addr = 0x1413C540;
-            int v = fromLE(readValue(addr, 4));
+            int v = fromLE(readValue(addr, 4), 4);
             textBox_mk7_coins.Text = String.Format("{0}", v);
         }
 
@@ -379,6 +386,104 @@ namespace ntrclient
             int addr = 0x1413C540;
             int v = getInt(textBox_mk7_coins.Text);
             runCmd(generateWriteString(addr, v, 4));
+        }
+
+        // Animal Crossing (US)
+
+        private void button_aceu_openIds_Click(object sender, EventArgs e)
+        {
+            Browser.openURL("https://docs.google.com/spreadsheets/d/1NlfzvYM-dxsL3c6uP_089t8g5YNcT-AuUJvTE4COjmo/edit#gid=0");
+        }
+
+        private void button_aceu_setSlot1_Click(object sender, EventArgs e)
+        {
+            int addr = 0x15FBEDD0; 
+            int id = fromLE(textBox_aceu_itemid.Text);
+            runCmd(generateWriteString(addr, id, 2));
+
+        }
+
+        private void button_aceu_clear_slot1_Click(object sender, EventArgs e)
+        {
+            int addr = 0x15FBEDD0;
+            int id = fromLE("FE7F");
+            runCmd(generateWriteString(addr, id, 2));
+        }
+
+        private void button_aceu_clear_all_Click(object sender, EventArgs e)
+        {
+            clearInv();
+        }
+
+        // Gen items
+
+        private void genItems(int value, int inv_size)
+        {
+            int addr = 0x15FBEDD0;
+            //int value = fromLE("902E");
+            //int inv_size = 16;
+
+            for (int i = 0; i < inv_size; i++)
+            {
+                int addr_ = addr + i * 4;
+                runCmd(generateWriteString(addr_, value + i, 4));
+            }
+        }
+
+        private void clearInv()
+        {
+            int addr = 0x15FBEDD0;
+            int clear_item = fromLE("FE7F");
+            int inv_size = 16;
+
+            for (int i = 0; i < inv_size; i++)
+            {
+                int addr_ = addr + i * 4;
+                runCmd(generateWriteString(addr_, clear_item, 4));
+            }
+        }
+
+        // Item packs
+
+        private void button_aceu_fossil1_Click(object sender, EventArgs e)
+        {
+            int value = fromLE("902E");
+            genItems(value, 16);
+
+        }
+
+        private void button_aceu_fossil2_Click(object sender, EventArgs e)
+        {
+            int value = fromLE("A02E");
+            genItems(value, 16);
+        }
+
+        private void button_aceu_fossil3_Click(object sender, EventArgs e)
+        {
+
+            int value = fromLE("B02E");
+            genItems(value, 16);
+        }
+
+        private void button_aceu_fossil4_Click(object sender, EventArgs e)
+        {
+
+            int value = fromLE("C02E");
+            genItems(value, 16);
+        }
+
+        private void button_aceu_fossil5_Click(object sender, EventArgs e)
+        {
+
+            int value = fromLE("D02E");
+            genItems(value, 16);
+        }
+
+        private void button_aceu_fossil6_Click(object sender, EventArgs e)
+        {
+
+            int value = fromLE("E02E");
+            genItems(value, 7);
         }
     }
 }
