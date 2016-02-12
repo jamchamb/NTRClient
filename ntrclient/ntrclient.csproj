@@ -95,6 +95,7 @@
       <DependentUpon>AsmEditWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Browser.cs" />
+    <Compile Include="gateshark.cs" />
     <Compile Include="Memregion.cs" />
     <Compile Include="QuickCmdWindow.cs">
       <SubType>Form</SubType>

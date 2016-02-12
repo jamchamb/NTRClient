@@ -56,7 +56,7 @@ namespace ntrclient
             return String.Format("{0:X}", v);
         }
 
-        int fromLE(String hex_le)
+        public static int fromLE(String hex_le)
         {
             int temp = 0;
             if (hex_le.Length == 4)
@@ -71,7 +71,7 @@ namespace ntrclient
             }
         }
 
-        int fromLE(int temp, int len)
+        public static int fromLE(int temp, int len)
         {
             byte[] bytes = BitConverter.GetBytes(temp);
 
@@ -121,7 +121,7 @@ namespace ntrclient
 		private void txtCmd_TextChanged(object sender, EventArgs e) {
 
 		}
-	    String runCmd(String cmd) {
+	    public String runCmd(String cmd) {
 			try {
 				Addlog("> " + cmd);
 				object ret = Program.pyEngine.CreateScriptSourceFromString(cmd).Execute(Program.globalScope);
@@ -329,6 +329,10 @@ namespace ntrclient
 
         */
 
+        // WARNING: This is a mess.. 
+
+        // Generating Hex chunks
+
         String generateHexChunk(int value, int length)
         {
             String data = "(";
@@ -336,10 +340,11 @@ namespace ntrclient
             for (int i = 0; i < bytes.Length; i++)
             {
                 byte b = bytes[i];
-                if (i < length-1)
+                if (i < length - 1)
                 {
                     data += String.Format("0x{0:X}, ", b);
-                } else
+                }
+                else
                 {
                     data += String.Format("0x{0:X}", b);
                     break;
@@ -348,12 +353,48 @@ namespace ntrclient
             return data + ")";
         }
 
-        String generateWriteString(int addr, int value, int length)
+        String generateHexChunk(uint value, int length)
+        {
+            String data = "(";
+            byte[] bytes = BitConverter.GetBytes(value);
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                byte b = bytes[i];
+                if (i < length - 1)
+                {
+                    data += String.Format("0x{0:X}, ", b);
+                }
+                else
+                {
+                    data += String.Format("0x{0:X}", b);
+                    break;
+                }
+            }
+            return data + ")";
+        }
+
+        // gen Write Strings
+
+        public String generateWriteString(int addr, int value, int length)
         {
             String data = generateHexChunk(value, length);
 
             return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
         }
+
+        public String generateWriteString(uint addr, uint value, int length)
+        {
+            String data = generateHexChunk(value, length);
+            return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
+        }
+
+        public String generateWriteString(int addr, uint value, int length)
+        {
+            String data = generateHexChunk(value, length);
+            return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
+        }
+
+        // Other stuff
 
         private void button_dummy_read_Click(object sender, EventArgs e)
         {
@@ -388,7 +429,7 @@ namespace ntrclient
             runCmd(generateWriteString(addr, v, 4));
         }
 
-        // Animal Crossing (US)
+        // Animal Crossing (EU)
 
         private void button_aceu_openIds_Click(object sender, EventArgs e)
         {
@@ -399,7 +440,10 @@ namespace ntrclient
         {
             int addr = 0x15FBEDD0; 
             int id = fromLE(textBox_aceu_itemid.Text);
-            runCmd(generateWriteString(addr, id, 2));
+            if (id > 0xffff) // temporarily fixing an error in fromLE(string)
+                id /= 0x10000;
+            //MessageBox.Show(String.Format("{0:X}", id));
+            runCmd(generateWriteString(addr, id, 4));
 
         }
 
@@ -484,6 +528,32 @@ namespace ntrclient
 
             int value = fromLE("E02E");
             genItems(value, 7);
+        }
+
+        // Debug
+
+        // Gateshark development
+        
+        private void button_gateshark_parse_Click(object sender, EventArgs e)
+        {
+            textBox_gateshark_parsed.Text = String.Empty;
+            gateshark gs = new gateshark(textBox_gateshark.Text);
+            foreach (gateshark_ar gs_ar in gs.getAllCodes())
+            {
+                Int32 cmd = gs_ar.getCMD();
+                Int32 block_a = gs_ar.getBlock_A();
+                UInt32 block_b = gs_ar.getBlock_B();
+                String parsed = String.Format("{0:X} {1:X} {2:X}\r\n", cmd, block_a, block_b);
+                textBox_gateshark_parsed.AppendText(parsed);
+
+            }
+        }
+
+        private void button_gateshark_execute_Click(object sender, EventArgs e)
+        {
+            String code = textBox_gateshark.Text;
+            gateshark gs = new gateshark(code);
+            gs.execute();
         }
     }
 }

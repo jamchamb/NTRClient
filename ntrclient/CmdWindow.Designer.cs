@@ -48,7 +48,6 @@
             this.button_dummy_read = new System.Windows.Forms.Button();
             this.comboBox_memregions = new System.Windows.Forms.ComboBox();
             this.button_disconnect = new System.Windows.Forms.Button();
-            this.checkBox_debug = new System.Windows.Forms.CheckBox();
             this.txt_memlayout = new System.Windows.Forms.TextBox();
             this.textBox_dump_file = new System.Windows.Forms.TextBox();
             this.button_dump = new System.Windows.Forms.Button();
@@ -59,15 +58,15 @@
             this.button_Connect = new System.Windows.Forms.Button();
             this.textBox_Ip = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.button_mk7_coins_write = new System.Windows.Forms.Button();
-            this.button_mk7_coins_read = new System.Windows.Forms.Button();
-            this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button_aceu_fish6 = new System.Windows.Forms.Button();
+            this.button_aceu_fish5 = new System.Windows.Forms.Button();
+            this.button_aceu_fish4 = new System.Windows.Forms.Button();
+            this.button_aceu_fish3 = new System.Windows.Forms.Button();
+            this.button_aceu_fish2 = new System.Windows.Forms.Button();
+            this.button_aceu_fish1 = new System.Windows.Forms.Button();
             this.button_aceu_clear_all = new System.Windows.Forms.Button();
             this.button_aceu_clear_slot1 = new System.Windows.Forms.Button();
             this.button_aceu_fossil6 = new System.Windows.Forms.Button();
@@ -79,13 +78,19 @@
             this.button_aceu_setSlot1 = new System.Windows.Forms.Button();
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
-            this.button_aceu_fish6 = new System.Windows.Forms.Button();
-            this.button_aceu_fish5 = new System.Windows.Forms.Button();
-            this.button_aceu_fish4 = new System.Windows.Forms.Button();
-            this.button_aceu_fish3 = new System.Windows.Forms.Button();
-            this.button_aceu_fish2 = new System.Windows.Forms.Button();
-            this.button_aceu_fish1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button_mk7_coins_write = new System.Windows.Forms.Button();
+            this.button_mk7_coins_read = new System.Windows.Forms.Button();
+            this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button_gateshark_execute = new System.Windows.Forms.Button();
+            this.textBox_gateshark_parsed = new System.Windows.Forms.TextBox();
+            this.textBox_gateshark = new System.Windows.Forms.TextBox();
+            this.button_gateshark_parse = new System.Windows.Forms.Button();
+            this.checkBox_debug = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -93,11 +98,12 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.tabControl3.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -204,6 +210,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 454);
             this.tabControl1.Name = "tabControl1";
@@ -220,7 +227,6 @@
             this.tabPage1.Controls.Add(this.button_dummy_read);
             this.tabPage1.Controls.Add(this.comboBox_memregions);
             this.tabPage1.Controls.Add(this.button_disconnect);
-            this.tabPage1.Controls.Add(this.checkBox_debug);
             this.tabPage1.Controls.Add(this.txt_memlayout);
             this.tabPage1.Controls.Add(this.textBox_dump_file);
             this.tabPage1.Controls.Add(this.button_dump);
@@ -314,16 +320,6 @@
             this.button_disconnect.Text = "Disconnect";
             this.button_disconnect.UseVisualStyleBackColor = true;
             this.button_disconnect.Click += new System.EventHandler(this.button_disconnect_Click);
-            // 
-            // checkBox_debug
-            // 
-            this.checkBox_debug.AutoSize = true;
-            this.checkBox_debug.Location = new System.Drawing.Point(476, 31);
-            this.checkBox_debug.Name = "checkBox_debug";
-            this.checkBox_debug.Size = new System.Drawing.Size(91, 17);
-            this.checkBox_debug.TabIndex = 11;
-            this.checkBox_debug.Text = "Debug output";
-            this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
             // txt_memlayout
             // 
@@ -421,76 +417,6 @@
             this.tabPage4.Text = "EUR";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.tabControl2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(672, 224);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "USA";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(672, 224);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "JPN";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage7);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(3, 3);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(666, 218);
-            this.tabControl2.TabIndex = 0;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.button_mk7_coins_write);
-            this.tabPage7.Controls.Add(this.button_mk7_coins_read);
-            this.tabPage7.Controls.Add(this.textBox_mk7_coins);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(658, 192);
-            this.tabPage7.TabIndex = 0;
-            this.tabPage7.Text = "Mario Kart 7";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // button_mk7_coins_write
-            // 
-            this.button_mk7_coins_write.Location = new System.Drawing.Point(318, 6);
-            this.button_mk7_coins_write.Name = "button_mk7_coins_write";
-            this.button_mk7_coins_write.Size = new System.Drawing.Size(150, 20);
-            this.button_mk7_coins_write.TabIndex = 8;
-            this.button_mk7_coins_write.Text = "Write";
-            this.button_mk7_coins_write.UseVisualStyleBackColor = true;
-            // 
-            // button_mk7_coins_read
-            // 
-            this.button_mk7_coins_read.Location = new System.Drawing.Point(162, 6);
-            this.button_mk7_coins_read.Name = "button_mk7_coins_read";
-            this.button_mk7_coins_read.Size = new System.Drawing.Size(150, 20);
-            this.button_mk7_coins_read.TabIndex = 7;
-            this.button_mk7_coins_read.Text = "Read";
-            this.button_mk7_coins_read.UseVisualStyleBackColor = true;
-            // 
-            // textBox_mk7_coins
-            // 
-            this.textBox_mk7_coins.Location = new System.Drawing.Point(6, 6);
-            this.textBox_mk7_coins.Name = "textBox_mk7_coins";
-            this.textBox_mk7_coins.Size = new System.Drawing.Size(150, 20);
-            this.textBox_mk7_coins.TabIndex = 6;
-            this.textBox_mk7_coins.Text = "Coins";
-            // 
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage2);
@@ -529,103 +455,14 @@
             this.tabPage2.Text = "Animal Crossing";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button_aceu_clear_all
+            // label1
             // 
-            this.button_aceu_clear_all.Location = new System.Drawing.Point(502, 166);
-            this.button_aceu_clear_all.Name = "button_aceu_clear_all";
-            this.button_aceu_clear_all.Size = new System.Drawing.Size(150, 20);
-            this.button_aceu_clear_all.TabIndex = 23;
-            this.button_aceu_clear_all.Text = "Clear Inventory";
-            this.button_aceu_clear_all.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_clear_slot1
-            // 
-            this.button_aceu_clear_slot1.Location = new System.Drawing.Point(316, 5);
-            this.button_aceu_clear_slot1.Name = "button_aceu_clear_slot1";
-            this.button_aceu_clear_slot1.Size = new System.Drawing.Size(150, 20);
-            this.button_aceu_clear_slot1.TabIndex = 22;
-            this.button_aceu_clear_slot1.Text = "Clear Slot 1";
-            this.button_aceu_clear_slot1.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fossil6
-            // 
-            this.button_aceu_fossil6.Location = new System.Drawing.Point(6, 162);
-            this.button_aceu_fossil6.Name = "button_aceu_fossil6";
-            this.button_aceu_fossil6.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fossil6.TabIndex = 21;
-            this.button_aceu_fossil6.Text = "Fossils 6";
-            this.button_aceu_fossil6.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fossil5
-            // 
-            this.button_aceu_fossil5.Location = new System.Drawing.Point(6, 136);
-            this.button_aceu_fossil5.Name = "button_aceu_fossil5";
-            this.button_aceu_fossil5.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fossil5.TabIndex = 20;
-            this.button_aceu_fossil5.Text = "Fossils 5";
-            this.button_aceu_fossil5.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fossil4
-            // 
-            this.button_aceu_fossil4.Location = new System.Drawing.Point(6, 110);
-            this.button_aceu_fossil4.Name = "button_aceu_fossil4";
-            this.button_aceu_fossil4.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fossil4.TabIndex = 19;
-            this.button_aceu_fossil4.Text = "Fossils 4";
-            this.button_aceu_fossil4.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fossil3
-            // 
-            this.button_aceu_fossil3.Location = new System.Drawing.Point(4, 84);
-            this.button_aceu_fossil3.Name = "button_aceu_fossil3";
-            this.button_aceu_fossil3.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fossil3.TabIndex = 18;
-            this.button_aceu_fossil3.Text = "Fossils 3";
-            this.button_aceu_fossil3.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fossil2
-            // 
-            this.button_aceu_fossil2.Location = new System.Drawing.Point(6, 58);
-            this.button_aceu_fossil2.Name = "button_aceu_fossil2";
-            this.button_aceu_fossil2.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fossil2.TabIndex = 17;
-            this.button_aceu_fossil2.Text = "Fossils 2";
-            this.button_aceu_fossil2.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fossil1
-            // 
-            this.button_aceu_fossil1.Location = new System.Drawing.Point(6, 32);
-            this.button_aceu_fossil1.Name = "button_aceu_fossil1";
-            this.button_aceu_fossil1.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fossil1.TabIndex = 16;
-            this.button_aceu_fossil1.Text = "Fossils 1";
-            this.button_aceu_fossil1.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_setSlot1
-            // 
-            this.button_aceu_setSlot1.Location = new System.Drawing.Point(160, 5);
-            this.button_aceu_setSlot1.Name = "button_aceu_setSlot1";
-            this.button_aceu_setSlot1.Size = new System.Drawing.Size(150, 20);
-            this.button_aceu_setSlot1.TabIndex = 15;
-            this.button_aceu_setSlot1.Text = "Overwrite Slot 1";
-            this.button_aceu_setSlot1.UseVisualStyleBackColor = true;
-            // 
-            // textBox_aceu_itemid
-            // 
-            this.textBox_aceu_itemid.Location = new System.Drawing.Point(4, 6);
-            this.textBox_aceu_itemid.Name = "textBox_aceu_itemid";
-            this.textBox_aceu_itemid.Size = new System.Drawing.Size(150, 20);
-            this.textBox_aceu_itemid.TabIndex = 14;
-            this.textBox_aceu_itemid.Text = "Item ID (HEX)";
-            // 
-            // button_aceu_openIds
-            // 
-            this.button_aceu_openIds.Location = new System.Drawing.Point(502, 6);
-            this.button_aceu_openIds.Name = "button_aceu_openIds";
-            this.button_aceu_openIds.Size = new System.Drawing.Size(150, 20);
-            this.button_aceu_openIds.TabIndex = 13;
-            this.button_aceu_openIds.Text = "Item IDs";
-            this.button_aceu_openIds.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(160, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Fish is not yet implemented!";
             // 
             // button_aceu_fish6
             // 
@@ -681,14 +518,249 @@
             this.button_aceu_fish1.Text = "Fish 1";
             this.button_aceu_fish1.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // button_aceu_clear_all
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Fish is not yet implemented!";
+            this.button_aceu_clear_all.Location = new System.Drawing.Point(502, 166);
+            this.button_aceu_clear_all.Name = "button_aceu_clear_all";
+            this.button_aceu_clear_all.Size = new System.Drawing.Size(150, 20);
+            this.button_aceu_clear_all.TabIndex = 23;
+            this.button_aceu_clear_all.Text = "Clear Inventory";
+            this.button_aceu_clear_all.UseVisualStyleBackColor = true;
+            this.button_aceu_clear_all.Click += new System.EventHandler(this.button_aceu_clear_all_Click);
+            // 
+            // button_aceu_clear_slot1
+            // 
+            this.button_aceu_clear_slot1.Location = new System.Drawing.Point(316, 5);
+            this.button_aceu_clear_slot1.Name = "button_aceu_clear_slot1";
+            this.button_aceu_clear_slot1.Size = new System.Drawing.Size(150, 20);
+            this.button_aceu_clear_slot1.TabIndex = 22;
+            this.button_aceu_clear_slot1.Text = "Clear Slot 1";
+            this.button_aceu_clear_slot1.UseVisualStyleBackColor = true;
+            this.button_aceu_clear_slot1.Click += new System.EventHandler(this.button_aceu_clear_slot1_Click);
+            // 
+            // button_aceu_fossil6
+            // 
+            this.button_aceu_fossil6.Location = new System.Drawing.Point(6, 162);
+            this.button_aceu_fossil6.Name = "button_aceu_fossil6";
+            this.button_aceu_fossil6.Size = new System.Drawing.Size(75, 20);
+            this.button_aceu_fossil6.TabIndex = 21;
+            this.button_aceu_fossil6.Text = "Fossils 6";
+            this.button_aceu_fossil6.UseVisualStyleBackColor = true;
+            this.button_aceu_fossil6.Click += new System.EventHandler(this.button_aceu_fossil6_Click);
+            // 
+            // button_aceu_fossil5
+            // 
+            this.button_aceu_fossil5.Location = new System.Drawing.Point(6, 136);
+            this.button_aceu_fossil5.Name = "button_aceu_fossil5";
+            this.button_aceu_fossil5.Size = new System.Drawing.Size(75, 20);
+            this.button_aceu_fossil5.TabIndex = 20;
+            this.button_aceu_fossil5.Text = "Fossils 5";
+            this.button_aceu_fossil5.UseVisualStyleBackColor = true;
+            this.button_aceu_fossil5.Click += new System.EventHandler(this.button_aceu_fossil5_Click);
+            // 
+            // button_aceu_fossil4
+            // 
+            this.button_aceu_fossil4.Location = new System.Drawing.Point(6, 110);
+            this.button_aceu_fossil4.Name = "button_aceu_fossil4";
+            this.button_aceu_fossil4.Size = new System.Drawing.Size(75, 20);
+            this.button_aceu_fossil4.TabIndex = 19;
+            this.button_aceu_fossil4.Text = "Fossils 4";
+            this.button_aceu_fossil4.UseVisualStyleBackColor = true;
+            this.button_aceu_fossil4.Click += new System.EventHandler(this.button_aceu_fossil4_Click);
+            // 
+            // button_aceu_fossil3
+            // 
+            this.button_aceu_fossil3.Location = new System.Drawing.Point(6, 84);
+            this.button_aceu_fossil3.Name = "button_aceu_fossil3";
+            this.button_aceu_fossil3.Size = new System.Drawing.Size(75, 20);
+            this.button_aceu_fossil3.TabIndex = 18;
+            this.button_aceu_fossil3.Text = "Fossils 3";
+            this.button_aceu_fossil3.UseVisualStyleBackColor = true;
+            this.button_aceu_fossil3.Click += new System.EventHandler(this.button_aceu_fossil3_Click);
+            // 
+            // button_aceu_fossil2
+            // 
+            this.button_aceu_fossil2.Location = new System.Drawing.Point(6, 58);
+            this.button_aceu_fossil2.Name = "button_aceu_fossil2";
+            this.button_aceu_fossil2.Size = new System.Drawing.Size(75, 20);
+            this.button_aceu_fossil2.TabIndex = 17;
+            this.button_aceu_fossil2.Text = "Fossils 2";
+            this.button_aceu_fossil2.UseVisualStyleBackColor = true;
+            this.button_aceu_fossil2.Click += new System.EventHandler(this.button_aceu_fossil2_Click);
+            // 
+            // button_aceu_fossil1
+            // 
+            this.button_aceu_fossil1.Location = new System.Drawing.Point(6, 32);
+            this.button_aceu_fossil1.Name = "button_aceu_fossil1";
+            this.button_aceu_fossil1.Size = new System.Drawing.Size(75, 20);
+            this.button_aceu_fossil1.TabIndex = 16;
+            this.button_aceu_fossil1.Text = "Fossils 1";
+            this.button_aceu_fossil1.UseVisualStyleBackColor = true;
+            this.button_aceu_fossil1.Click += new System.EventHandler(this.button_aceu_fossil1_Click);
+            // 
+            // button_aceu_setSlot1
+            // 
+            this.button_aceu_setSlot1.Location = new System.Drawing.Point(160, 5);
+            this.button_aceu_setSlot1.Name = "button_aceu_setSlot1";
+            this.button_aceu_setSlot1.Size = new System.Drawing.Size(150, 20);
+            this.button_aceu_setSlot1.TabIndex = 15;
+            this.button_aceu_setSlot1.Text = "Overwrite Slot 1";
+            this.button_aceu_setSlot1.UseVisualStyleBackColor = true;
+            this.button_aceu_setSlot1.Click += new System.EventHandler(this.button_aceu_setSlot1_Click);
+            // 
+            // textBox_aceu_itemid
+            // 
+            this.textBox_aceu_itemid.Location = new System.Drawing.Point(4, 6);
+            this.textBox_aceu_itemid.Name = "textBox_aceu_itemid";
+            this.textBox_aceu_itemid.Size = new System.Drawing.Size(150, 20);
+            this.textBox_aceu_itemid.TabIndex = 14;
+            this.textBox_aceu_itemid.Text = "Item ID (HEX)";
+            // 
+            // button_aceu_openIds
+            // 
+            this.button_aceu_openIds.Location = new System.Drawing.Point(502, 6);
+            this.button_aceu_openIds.Name = "button_aceu_openIds";
+            this.button_aceu_openIds.Size = new System.Drawing.Size(150, 20);
+            this.button_aceu_openIds.TabIndex = 13;
+            this.button_aceu_openIds.Text = "Item IDs";
+            this.button_aceu_openIds.UseVisualStyleBackColor = true;
+            this.button_aceu_openIds.Click += new System.EventHandler(this.button_aceu_openIds_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.tabControl2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(672, 224);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "USA";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl2.Location = new System.Drawing.Point(3, 3);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(666, 218);
+            this.tabControl2.TabIndex = 0;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.button_mk7_coins_write);
+            this.tabPage7.Controls.Add(this.button_mk7_coins_read);
+            this.tabPage7.Controls.Add(this.textBox_mk7_coins);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(658, 192);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "Mario Kart 7";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button_mk7_coins_write
+            // 
+            this.button_mk7_coins_write.Location = new System.Drawing.Point(318, 6);
+            this.button_mk7_coins_write.Name = "button_mk7_coins_write";
+            this.button_mk7_coins_write.Size = new System.Drawing.Size(150, 20);
+            this.button_mk7_coins_write.TabIndex = 8;
+            this.button_mk7_coins_write.Text = "Write";
+            this.button_mk7_coins_write.UseVisualStyleBackColor = true;
+            this.button_mk7_coins_write.Click += new System.EventHandler(this.button_mk7_coins_write_Click);
+            // 
+            // button_mk7_coins_read
+            // 
+            this.button_mk7_coins_read.Location = new System.Drawing.Point(162, 6);
+            this.button_mk7_coins_read.Name = "button_mk7_coins_read";
+            this.button_mk7_coins_read.Size = new System.Drawing.Size(150, 20);
+            this.button_mk7_coins_read.TabIndex = 7;
+            this.button_mk7_coins_read.Text = "Read";
+            this.button_mk7_coins_read.UseVisualStyleBackColor = true;
+            this.button_mk7_coins_read.Click += new System.EventHandler(this.button_mk7_coins_read_Click);
+            // 
+            // textBox_mk7_coins
+            // 
+            this.textBox_mk7_coins.Location = new System.Drawing.Point(6, 6);
+            this.textBox_mk7_coins.Name = "textBox_mk7_coins";
+            this.textBox_mk7_coins.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mk7_coins.TabIndex = 6;
+            this.textBox_mk7_coins.Text = "Coins";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(672, 224);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "JPN";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button_gateshark_execute);
+            this.tabPage3.Controls.Add(this.textBox_gateshark_parsed);
+            this.tabPage3.Controls.Add(this.textBox_gateshark);
+            this.tabPage3.Controls.Add(this.button_gateshark_parse);
+            this.tabPage3.Controls.Add(this.checkBox_debug);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(672, 224);
+            this.tabPage3.TabIndex = 6;
+            this.tabPage3.Text = "Debug";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button_gateshark_execute
+            // 
+            this.button_gateshark_execute.Location = new System.Drawing.Point(8, 55);
+            this.button_gateshark_execute.Name = "button_gateshark_execute";
+            this.button_gateshark_execute.Size = new System.Drawing.Size(150, 20);
+            this.button_gateshark_execute.TabIndex = 16;
+            this.button_gateshark_execute.Text = "Execute Gateshark";
+            this.button_gateshark_execute.UseVisualStyleBackColor = true;
+            this.button_gateshark_execute.Click += new System.EventHandler(this.button_gateshark_execute_Click);
+            // 
+            // textBox_gateshark_parsed
+            // 
+            this.textBox_gateshark_parsed.Location = new System.Drawing.Point(320, 6);
+            this.textBox_gateshark_parsed.Multiline = true;
+            this.textBox_gateshark_parsed.Name = "textBox_gateshark_parsed";
+            this.textBox_gateshark_parsed.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_gateshark_parsed.Size = new System.Drawing.Size(150, 133);
+            this.textBox_gateshark_parsed.TabIndex = 15;
+            // 
+            // textBox_gateshark
+            // 
+            this.textBox_gateshark.Location = new System.Drawing.Point(164, 6);
+            this.textBox_gateshark.Multiline = true;
+            this.textBox_gateshark.Name = "textBox_gateshark";
+            this.textBox_gateshark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_gateshark.Size = new System.Drawing.Size(150, 133);
+            this.textBox_gateshark.TabIndex = 14;
+            this.textBox_gateshark.Text = "00000000 00000000";
+            // 
+            // button_gateshark_parse
+            // 
+            this.button_gateshark_parse.Location = new System.Drawing.Point(8, 29);
+            this.button_gateshark_parse.Name = "button_gateshark_parse";
+            this.button_gateshark_parse.Size = new System.Drawing.Size(150, 20);
+            this.button_gateshark_parse.TabIndex = 13;
+            this.button_gateshark_parse.Text = "Try gateshark";
+            this.button_gateshark_parse.UseVisualStyleBackColor = true;
+            this.button_gateshark_parse.Click += new System.EventHandler(this.button_gateshark_parse_Click);
+            // 
+            // checkBox_debug
+            // 
+            this.checkBox_debug.AutoSize = true;
+            this.checkBox_debug.Location = new System.Drawing.Point(8, 6);
+            this.checkBox_debug.Name = "checkBox_debug";
+            this.checkBox_debug.Size = new System.Drawing.Size(91, 17);
+            this.checkBox_debug.TabIndex = 12;
+            this.checkBox_debug.Text = "Debug output";
+            this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
             // CmdWindow
             // 
@@ -717,13 +789,15 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
-            this.tabControl3.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -751,7 +825,6 @@
         private System.Windows.Forms.Button button_hello;
         private System.Windows.Forms.TextBox textBox_dump_file;
         private System.Windows.Forms.Button button_dump;
-        public System.Windows.Forms.CheckBox checkBox_debug;
         public System.Windows.Forms.TextBox txt_memlayout;
         private System.Windows.Forms.Button button_disconnect;
         public System.Windows.Forms.ComboBox comboBox_memregions;
@@ -788,6 +861,12 @@
         private System.Windows.Forms.Button button_mk7_coins_read;
         private System.Windows.Forms.TextBox textBox_mk7_coins;
         private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.TextBox textBox_gateshark;
+        private System.Windows.Forms.Button button_gateshark_parse;
+        public System.Windows.Forms.CheckBox checkBox_debug;
+        public System.Windows.Forms.TextBox textBox_gateshark_parsed;
+        private System.Windows.Forms.Button button_gateshark_execute;
     }
 }
 
