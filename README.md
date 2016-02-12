@@ -20,14 +20,15 @@ Mod by imthe666st
 - Disconnect button
 - Dynamic memlayout dump
 - improved some of the stability
+- general cheat support
 
 ## Experimental Features:
 These things might not work yet or are not yet accessable by the GUI
-- Realtime RAM view / editor
+- Realtime RAM view / editor ( temporarily closed #1 )
 
 ## Todo
 These features might be added in the future
-- Cheat support for games
+-   Automatic GateShark converter?
 -   Loading the cheats of a file
 
 # Helpful tools
