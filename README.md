@@ -21,6 +21,7 @@ Mod by imthe666st
 - Dynamic memlayout dump
 - improved some of the stability
 - general cheat support
+- **Gateshark support**
 
 ## Experimental Features:
 These things might not work yet or are not yet accessable by the GUI
@@ -28,7 +29,6 @@ These things might not work yet or are not yet accessable by the GUI
 
 ## Todo
 These features might be added in the future
--   Automatic GateShark converter?
 -   Loading the cheats of a file
 
 # Helpful tools
