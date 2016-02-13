@@ -56,7 +56,7 @@ namespace ntrclient
                 {
                     loop = true;
                     loop_index = index;
-                    loop_count = gs_ar.getBlock_B();
+                    loop_count = gs_ar.getBlock_B()+1;
                 }
                 else if (cmd == 0xD1)
                 {
