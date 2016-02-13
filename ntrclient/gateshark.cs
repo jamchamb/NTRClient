@@ -80,6 +80,10 @@ namespace ntrclient
                 {
                     offset = Convert.ToInt32(gs_ar.getBlock_B());
                 }
+                else if (cmd == 0xDC)
+                {
+                    offset += Convert.ToInt32(gs_ar.getBlock_B());
+                }
                 else if (cmd == 0xDF)
                 {
                     // This doesn't actually exist! It's for testing only!

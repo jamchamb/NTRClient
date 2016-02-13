@@ -95,6 +95,12 @@
       <DependentUpon>AsmEditWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Browser.cs" />
+    <Compile Include="Credits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Credits.Designer.cs">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </Compile>
     <Compile Include="gateshark.cs" />
     <Compile Include="Memregion.cs" />
     <Compile Include="QuickCmdWindow.cs">
@@ -117,6 +123,9 @@
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="AsmEditWindow.resx">
       <DependentUpon>AsmEditWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credits.resx">
+      <DependentUpon>Credits.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuickCmdWindow.resx">
       <DependentUpon>QuickCmdWindow.cs</DependentUpon>

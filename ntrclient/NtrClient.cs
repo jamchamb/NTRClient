@@ -125,8 +125,9 @@ namespace ntrclient {
 
 				}
 				catch (Exception e) {
-					log(e.Message);
-					break;
+                    //log(e.Message);
+                    log("An error occured!");
+                    break;
 				}
 			}
 

@@ -555,5 +555,22 @@ namespace ntrclient
             gateshark gs = new gateshark(code);
             gs.execute();
         }
+
+        private void button_browser_fort42_Click(object sender, EventArgs e)
+        {
+            Browser.openURL("http://www.fort42.com/gateshark");
+        }
+
+        private void moreCreditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Credits c = new Credits();
+            c.Show();
+            c.Focus();
+        }
+
+        private void githubRepositoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Browser.openURL("https://github.com/imthe666st/NTRClient");
+        }
     }
 }

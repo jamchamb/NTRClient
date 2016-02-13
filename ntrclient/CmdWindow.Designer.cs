@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CmdWindow));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.txtCmd = new System.Windows.Forms.TextBox();
@@ -91,6 +92,14 @@
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
+            this.label_gateshark_explanation = new System.Windows.Forms.Label();
+            this.button_browser_fort42 = new System.Windows.Forms.Button();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -173,7 +182,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem});
+            this.ToolStripMenuItem,
+            this.creditsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(680, 24);
@@ -700,6 +710,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button_browser_fort42);
+            this.tabPage3.Controls.Add(this.label_gateshark_explanation);
             this.tabPage3.Controls.Add(this.button_gateshark_execute);
             this.tabPage3.Controls.Add(this.textBox_gateshark_parsed);
             this.tabPage3.Controls.Add(this.textBox_gateshark);
@@ -710,7 +722,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(672, 224);
             this.tabPage3.TabIndex = 6;
-            this.tabPage3.Text = "Debug";
+            this.tabPage3.Text = "Gateshark & Debug";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button_gateshark_execute
@@ -728,8 +740,9 @@
             this.textBox_gateshark_parsed.Location = new System.Drawing.Point(320, 6);
             this.textBox_gateshark_parsed.Multiline = true;
             this.textBox_gateshark_parsed.Name = "textBox_gateshark_parsed";
+            this.textBox_gateshark_parsed.ReadOnly = true;
             this.textBox_gateshark_parsed.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_gateshark_parsed.Size = new System.Drawing.Size(150, 133);
+            this.textBox_gateshark_parsed.Size = new System.Drawing.Size(150, 210);
             this.textBox_gateshark_parsed.TabIndex = 15;
             // 
             // textBox_gateshark
@@ -738,7 +751,7 @@
             this.textBox_gateshark.Multiline = true;
             this.textBox_gateshark.Name = "textBox_gateshark";
             this.textBox_gateshark.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_gateshark.Size = new System.Drawing.Size(150, 133);
+            this.textBox_gateshark.Size = new System.Drawing.Size(150, 210);
             this.textBox_gateshark.TabIndex = 14;
             this.textBox_gateshark.Text = "00000000 00000000";
             // 
@@ -762,6 +775,69 @@
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
+            // label_gateshark_explanation
+            // 
+            this.label_gateshark_explanation.AutoSize = true;
+            this.label_gateshark_explanation.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label_gateshark_explanation.Location = new System.Drawing.Point(475, 3);
+            this.label_gateshark_explanation.Name = "label_gateshark_explanation";
+            this.label_gateshark_explanation.Size = new System.Drawing.Size(194, 117);
+            this.label_gateshark_explanation.TabIndex = 17;
+            this.label_gateshark_explanation.Text = resources.GetString("label_gateshark_explanation.Text");
+            // 
+            // button_browser_fort42
+            // 
+            this.button_browser_fort42.Location = new System.Drawing.Point(476, 196);
+            this.button_browser_fort42.Name = "button_browser_fort42";
+            this.button_browser_fort42.Size = new System.Drawing.Size(186, 20);
+            this.button_browser_fort42.TabIndex = 18;
+            this.button_browser_fort42.Text = "Fort42.com";
+            this.button_browser_fort42.UseVisualStyleBackColor = true;
+            this.button_browser_fort42.Click += new System.EventHandler(this.button_browser_fort42_Click);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.originalByCell9ToolStripMenuItem,
+            this.modByImthe666stToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.moreCreditsToolStripMenuItem,
+            this.githubRepositoryToolStripMenuItem});
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            // 
+            // originalByCell9ToolStripMenuItem
+            // 
+            this.originalByCell9ToolStripMenuItem.Name = "originalByCell9ToolStripMenuItem";
+            this.originalByCell9ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.originalByCell9ToolStripMenuItem.Text = "Original by cell9";
+            // 
+            // modByImthe666stToolStripMenuItem
+            // 
+            this.modByImthe666stToolStripMenuItem.Name = "modByImthe666stToolStripMenuItem";
+            this.modByImthe666stToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.modByImthe666stToolStripMenuItem.Text = "Mod by imthe666st";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
+            // 
+            // moreCreditsToolStripMenuItem
+            // 
+            this.moreCreditsToolStripMenuItem.Name = "moreCreditsToolStripMenuItem";
+            this.moreCreditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.moreCreditsToolStripMenuItem.Text = "More credits";
+            this.moreCreditsToolStripMenuItem.Click += new System.EventHandler(this.moreCreditsToolStripMenuItem_Click);
+            // 
+            // githubRepositoryToolStripMenuItem
+            // 
+            this.githubRepositoryToolStripMenuItem.Name = "githubRepositoryToolStripMenuItem";
+            this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.githubRepositoryToolStripMenuItem.Text = "Github repository";
+            this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.githubRepositoryToolStripMenuItem_Click);
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -770,6 +846,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CmdWindow";
@@ -867,6 +944,14 @@
         public System.Windows.Forms.CheckBox checkBox_debug;
         public System.Windows.Forms.TextBox textBox_gateshark_parsed;
         private System.Windows.Forms.Button button_gateshark_execute;
+        private System.Windows.Forms.Label label_gateshark_explanation;
+        private System.Windows.Forms.Button button_browser_fort42;
+        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem originalByCell9ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modByImthe666stToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem moreCreditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem githubRepositoryToolStripMenuItem;
     }
 }
 

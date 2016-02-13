@@ -117,28 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>227, 17</value>
-  </metadata>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>227, 17</value>
-  </metadata>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>107, 17</value>
-  </metadata>
-  <data name="label_gateshark_explanation.Text" xml:space="preserve">
-    <value>HOW TO USE:
-Get a gateshark code from fort42.com
-Paste gateshark code in the left textbox
-Press "Try gateshark". If everything 
-  works and some numbers and letters
-  are written in the second textbox, 
-  continue. Otherwise that code
-  won't work.
-Press "Execute Gateshark"
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>CREDITS:
+NTR Debugger Client by cell9
+Mod by imthe666st
+
+Supported Gateshark codes:
+0x00, 0x01, 0x02 (partially), 0xB, 0xC, 0xD1, 0xD3, 0xDC
+0xDF ( debug )
+
+Changelog:
+V0.2
+  + Added Gateshark support
+  + Added cheats for MK7 (US) and Animal Crossing (EU)
+  + improved some code
+  + Added this window
+
 </value>
   </data>
 </root>
