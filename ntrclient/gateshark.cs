@@ -33,62 +33,80 @@ namespace ntrclient
             D1000000 00000001
             D3000000 00000000
             
+            
             */
 
         public void execute()
         {
             int index = 0;
             int dummy_count = 0;
+            Boolean gs_if = true;
             do
             {
                 gateshark_ar gs_ar = lines[index];
                 int cmd = gs_ar.getCMD();
-                if ((cmd == 0) || (cmd == 1) || (cmd == 2))
+                if (gs_if)
                 {
-                    gs_ar.execute(offset);
-                }
-                else if (cmd == 0xB)
-                {
-                    offset = CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A(), 4), 4);
-                    //MessageBox.Show(String.Format("SET > O: {0:X}", offset));
-                }
-                else if (cmd == 0xC)
-                {
-                    loop = true;
-                    loop_index = index;
-                    loop_count = gs_ar.getBlock_B()+1;
-                }
-                else if (cmd == 0xD1)
-                {
-                    if (loop)
+
+                    if ((cmd == 0) || (cmd == 1) || (cmd == 2))
                     {
-                        loop_count--;
-                        if (loop_count == 0)
+                        gs_ar.execute(offset);
+                    }
+                    else if (cmd == 0x9)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
+                        Task.Delay(100);
+                        gs_if = (read == gs_ar.getBlock_B());
+                        //MessageBox.Show(String.Format("0x9 READ: {0:X} {1:X}", gs_ar.getBlock_A() + offset, Convert.ToInt32(read)));
+                    }
+                    else if (cmd == 0xB)
+                    {
+                        offset = CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A(), 4), 4);
+                        //MessageBox.Show(String.Format("SET > O: {0:X}", offset));
+                    }
+                    else if (cmd == 0xC)
+                    {
+                        loop = true;
+                        loop_index = index;
+                        loop_count = gs_ar.getBlock_B() + 1;
+                    }
+                    else if (cmd == 0xD1)
+                    {
+                        Task.Delay(100);
+                        if (loop)
                         {
-                            loop = false;
-                            //MessageBox.Show("Stopped the loop");
-                        }
-                        else
-                        {
-                            index = loop_index;
-                            offset += Convert.ToInt32(gs_ar.getBlock_B());
-                            //MessageBox.Show("Continuing loop");
+                            loop_count--;
+                            if (loop_count == 0)
+                            {
+                                loop = false;
+                                //MessageBox.Show("Stopped the loop");
+                            }
+                            else
+                            {
+                                index = loop_index;
+                                offset += Convert.ToInt32(gs_ar.getBlock_B());
+                                //MessageBox.Show("Continuing loop");
+                            }
                         }
                     }
+                    else if (cmd == 0xD3)
+                    {
+                        offset = Convert.ToInt32(gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0xDC)
+                    {
+                        offset += Convert.ToInt32(gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0xDF)
+                    {
+                        // This doesn't actually exist! It's for testing only!
+                        dummy_count++;
+                        MessageBox.Show(String.Format("DUMMY: {0:X}", dummy_count));
+                    }
                 }
-                else if (cmd == 0xD3)
+                else if (cmd == 0xD0)
                 {
-                    offset = Convert.ToInt32(gs_ar.getBlock_B());
-                }
-                else if (cmd == 0xDC)
-                {
-                    offset += Convert.ToInt32(gs_ar.getBlock_B());
-                }
-                else if (cmd == 0xDF)
-                {
-                    // This doesn't actually exist! It's for testing only!
-                    dummy_count++;
-                    MessageBox.Show(String.Format("DUMMY: {0:X}", dummy_count));
+                    gs_if = true;
                 }
                 //MessageBox.Show(String.Format("I: {0} O: {1:X} \r\nL:{2}-{3} LI:{4}", index, offset, loop_count, loop, loop_index));
                 index++;

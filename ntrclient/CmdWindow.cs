@@ -35,11 +35,15 @@ namespace ntrclient
                 size = 1;
 
             runCmd(String.Format("read(0x{0:X}, 0x{1:X}, pid=0x{2})", addr, size, textBox_pid.Text));
-            while (read_value == -1)
+            int retry = 0;
+            while (read_value == -1 && retry < 300000) // Decreases performance, but is now reliable
             {
                 Task.Delay(25);
+                retry++;
             }
-
+            //MessageBox.Show(""+retry);
+            if (read_value == -1)
+                read_value = 0;
             // always int32
             v = read_value;
             read_value = -1;
@@ -399,14 +403,14 @@ namespace ntrclient
         private void button_dummy_read_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = fromLE(readValue(addr, (int)numericUpDown_dummy_length.Value), 4);
-            textBox_dummy_value.Text = String.Format("{0}", v);
+            int v = readValue(addr, (int)numericUpDown_dummy_length.Value);
+            textBox_dummy_value.Text = String.Format("{0:X}", v);
         }
 
         private void button_dummy_write_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = getInt(textBox_dummy_value.Text);
+            int v = fromLE(Convert.ToInt32(textBox_dummy_value.Text, 16), (int)numericUpDown_dummy_length.Value);
             runCmd(generateWriteString(addr, v, (int)numericUpDown_dummy_length.Value));
         }
 
