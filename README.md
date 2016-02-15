@@ -18,5 +18,5 @@ https://www.reddit.com/r/3dshacks/comments/44jtfm/beta_release_for_ntr_cheat_too
 https://github.com/valarnin/NTRRemoteDebugger
 
 # Information about the release(s)  
-This mod won't see any updates and releases anytime soon, since it doesn't seem like there is a read demand for 3ds cheats and stuff.  
+This mod won't see any updates and releases anytime soon, since it doesn't seem like there is any real demand for 3ds cheats and stuff.  
 I'll still keep developing this tool, if you want a release message me on reddit. /u/imthe666st
