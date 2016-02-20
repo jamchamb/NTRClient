@@ -12,27 +12,11 @@ GPLV2
 NTR Client made by 44670 / cell9  
 Mod by imthe666st
 
-# Added features by the mod
-## Already working
-- Easy connect button
-- Easy listprocess button
-- Easy memory layout button
-- Connection test ( hello() )
-- Disconnect button
-- Dynamic memlayout dump
-- improved some of the stability
-- general cheat support
-- **Gateshark support**
-
-## Experimental Features:
-These things might not work yet or are not yet accessable by the GUI
-- Realtime RAM view / editor ( temporarily closed #1 )
-
-## Todo
-These features might be added in the future
--   Loading the cheats of a file
-
 # Helpful tools
 NTR Debugger Search Tool. "NTR Cheat Tool" by /u/valarnin
 https://www.reddit.com/r/3dshacks/comments/44jtfm/beta_release_for_ntr_cheat_tool_a_new_tool_to/
 https://github.com/valarnin/NTRRemoteDebugger
+
+# Information about the release(s)  
+This mod won't see any updates and releases anytime soon, since it doesn't seem like there is any real demand for 3ds cheats and stuff.  
+I'll still keep developing this tool, if you want a release message me on reddit. /u/imthe666st
