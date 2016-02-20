@@ -12,6 +12,7 @@ namespace ntrclient
     {
         List<gateshark_ar> lines = new List<gateshark_ar>();
         Int32 offset;
+        Int32 dxData;
         Boolean loop;
         int loop_index;
         UInt32 loop_count;
@@ -72,7 +73,7 @@ namespace ntrclient
                     }
                     else if (cmd == 0xD1)
                     {
-                        Task.Delay(100);
+                        //Task.Delay(100);
                         if (loop)
                         {
                             loop_count--;
@@ -89,9 +90,49 @@ namespace ntrclient
                             }
                         }
                     }
-                    else if (cmd == 0xD3)
+                    else if (cmd == 0xD3) // Read offset
                     {
                         offset = Convert.ToInt32(gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0xD5) // DxData WRITE
+                    {
+                        dxData = Convert.ToInt32(gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0xD6) // DxData WORD
+                    {
+                        int len = 4;
+                        String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
+                        Program.gCmdWindow.runCmd(cmd_string);
+                        offset += len;
+                    }
+                    else if (cmd == 0xD7) // DxData SHORT
+                    {
+                        int len = 2;
+                        String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
+                        Program.gCmdWindow.runCmd(cmd_string);
+                        offset += len;
+                    }
+                    else if (cmd == 0xD8) // DxData BYTE ( Yes, I know it's the same as 0xD7. NTR has limits.. and this is an annying one. )
+                    {
+                        int len = 2;
+                        String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
+                        Program.gCmdWindow.runCmd(cmd_string);
+                        offset += len;
+                    }
+                    else if (cmd == 0xD9) // DxData READ WORD
+                    {
+                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
+                        dxData = CmdWindow.fromLE(Program.gCmdWindow.readValue(addr, 4), 4);
+                    }
+                    else if (cmd == 0xDA) // DxData READ SHORT
+                    {
+                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
+                        dxData = CmdWindow.fromLE(Program.gCmdWindow.readValue(addr, 2), 2);
+                    }
+                    else if (cmd == 0xDB) // DxData READ BYTE
+                    {
+                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
+                        dxData = Program.gCmdWindow.readValue(addr, 1);
                     }
                     else if (cmd == 0xDC)
                     {
@@ -101,14 +142,19 @@ namespace ntrclient
                     {
                         // This doesn't actually exist! It's for testing only!
                         dummy_count++;
-                        MessageBox.Show(String.Format("DUMMY: {0:X}", dummy_count));
+                        MessageBox.Show(String.Format(
+                            "I: {0} \r\n" +
+                            "O: {1:X} \r\n" +
+                            "LOOP: {2} {3} {4} \r\n" + 
+                            "DX: {5:X} \r\n" +
+                            "DUMMY: {6}"
+                            , index, offset, loop, loop_index, loop_count, dxData, dummy_count));
                     }
                 }
                 else if (cmd == 0xD0)
                 {
                     gs_if = true;
                 }
-                //MessageBox.Show(String.Format("I: {0} O: {1:X} \r\nL:{2}-{3} LI:{4}", index, offset, loop_count, loop, loop_index));
                 index++;
             } while (index < lines.Count);
         }

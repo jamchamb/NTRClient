@@ -19,7 +19,7 @@ namespace ntrclient {
 		private object syncLock = new object();
 		int heartbeatSendable;
 
-
+        // Tux der Lappen.
 
 		public delegate void logHandler(string msg);
 		public event logHandler onLogArrival;
@@ -209,7 +209,8 @@ namespace ntrclient {
 				}
 			}
 			catch (Exception ex) {
-				log(ex.Message);
+                log("Disconnect " + waitPacketThread);
+				//log(ex.Message);
 			}
 			tcp = null;
 		}

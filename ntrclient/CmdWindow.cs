@@ -404,13 +404,21 @@ namespace ntrclient
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
             int v = readValue(addr, (int)numericUpDown_dummy_length.Value);
-            textBox_dummy_value.Text = String.Format("{0:X}", v);
+            textBox_dummy_value_hex.Text = String.Format("{0:X}", v);
+            textBox_dummy_value_dec.Text = String.Format("{0}", fromLE(v, (int)numericUpDown_dummy_length.Value));
         }
 
         private void button_dummy_write_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = fromLE(Convert.ToInt32(textBox_dummy_value.Text, 16), (int)numericUpDown_dummy_length.Value);
+            int v = fromLE(Convert.ToInt32(textBox_dummy_value_hex.Text, 16), (int)numericUpDown_dummy_length.Value);
+            runCmd(generateWriteString(addr, v, (int)numericUpDown_dummy_length.Value));
+        }
+        
+        private void button_dummy_write_dec_Click(object sender, EventArgs e)
+        {
+            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+            int v = Convert.ToInt32(textBox_dummy_value_dec.Text, 10);
             runCmd(generateWriteString(addr, v, (int)numericUpDown_dummy_length.Value));
         }
 

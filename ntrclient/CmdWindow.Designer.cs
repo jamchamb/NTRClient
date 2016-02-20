@@ -40,10 +40,21 @@
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dEVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notIntendedForPublicReleaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button_dummy_write = new System.Windows.Forms.Button();
-            this.textBox_dummy_value = new System.Windows.Forms.TextBox();
+            this.button_dummy_write_dec = new System.Windows.Forms.Button();
+            this.textBox_dummy_value_dec = new System.Windows.Forms.TextBox();
+            this.button_dummy_write_hex = new System.Windows.Forms.Button();
+            this.textBox_dummy_value_hex = new System.Windows.Forms.TextBox();
             this.numericUpDown_dummy_length = new System.Windows.Forms.NumericUpDown();
             this.textBox_dummy_addr = new System.Windows.Forms.TextBox();
             this.button_dummy_read = new System.Windows.Forms.Button();
@@ -87,19 +98,13 @@
             this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button_browser_fort42 = new System.Windows.Forms.Button();
+            this.label_gateshark_explanation = new System.Windows.Forms.Label();
             this.button_gateshark_execute = new System.Windows.Forms.Button();
             this.textBox_gateshark_parsed = new System.Windows.Forms.TextBox();
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
-            this.label_gateshark_explanation = new System.Windows.Forms.Label();
-            this.button_browser_fort42 = new System.Windows.Forms.Button();
-            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -183,7 +188,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem,
-            this.creditsToolStripMenuItem});
+            this.creditsToolStripMenuItem,
+            this.versionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(680, 24);
@@ -214,6 +220,70 @@
             this.asmScratchPadToolStripMenuItem.Text = "Asm ScratchPad";
             this.asmScratchPadToolStripMenuItem.Click += new System.EventHandler(this.asmScratchPadToolStripMenuItem_Click);
             // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.originalByCell9ToolStripMenuItem,
+            this.modByImthe666stToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.moreCreditsToolStripMenuItem,
+            this.githubRepositoryToolStripMenuItem});
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            // 
+            // originalByCell9ToolStripMenuItem
+            // 
+            this.originalByCell9ToolStripMenuItem.Name = "originalByCell9ToolStripMenuItem";
+            this.originalByCell9ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.originalByCell9ToolStripMenuItem.Text = "Original by cell9";
+            // 
+            // modByImthe666stToolStripMenuItem
+            // 
+            this.modByImthe666stToolStripMenuItem.Name = "modByImthe666stToolStripMenuItem";
+            this.modByImthe666stToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.modByImthe666stToolStripMenuItem.Text = "Mod by imthe666st";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
+            // 
+            // moreCreditsToolStripMenuItem
+            // 
+            this.moreCreditsToolStripMenuItem.Name = "moreCreditsToolStripMenuItem";
+            this.moreCreditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.moreCreditsToolStripMenuItem.Text = "More credits";
+            this.moreCreditsToolStripMenuItem.Click += new System.EventHandler(this.moreCreditsToolStripMenuItem_Click);
+            // 
+            // githubRepositoryToolStripMenuItem
+            // 
+            this.githubRepositoryToolStripMenuItem.Name = "githubRepositoryToolStripMenuItem";
+            this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.githubRepositoryToolStripMenuItem.Text = "Github repository";
+            this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.githubRepositoryToolStripMenuItem_Click);
+            // 
+            // versionToolStripMenuItem
+            // 
+            this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dEVToolStripMenuItem,
+            this.notIntendedForPublicReleaseToolStripMenuItem});
+            this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.versionToolStripMenuItem.Text = "Version";
+            // 
+            // dEVToolStripMenuItem
+            // 
+            this.dEVToolStripMenuItem.Name = "dEVToolStripMenuItem";
+            this.dEVToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.dEVToolStripMenuItem.Text = "1.2-DEV";
+            // 
+            // notIntendedForPublicReleaseToolStripMenuItem
+            // 
+            this.notIntendedForPublicReleaseToolStripMenuItem.Name = "notIntendedForPublicReleaseToolStripMenuItem";
+            this.notIntendedForPublicReleaseToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.notIntendedForPublicReleaseToolStripMenuItem.Text = "Not intended for public release";
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -230,8 +300,10 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button_dummy_write);
-            this.tabPage1.Controls.Add(this.textBox_dummy_value);
+            this.tabPage1.Controls.Add(this.button_dummy_write_dec);
+            this.tabPage1.Controls.Add(this.textBox_dummy_value_dec);
+            this.tabPage1.Controls.Add(this.button_dummy_write_hex);
+            this.tabPage1.Controls.Add(this.textBox_dummy_value_hex);
             this.tabPage1.Controls.Add(this.numericUpDown_dummy_length);
             this.tabPage1.Controls.Add(this.textBox_dummy_addr);
             this.tabPage1.Controls.Add(this.button_dummy_read);
@@ -254,23 +326,41 @@
             this.tabPage1.Text = "Basic";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button_dummy_write
+            // button_dummy_write_dec
             // 
-            this.button_dummy_write.Location = new System.Drawing.Point(476, 109);
-            this.button_dummy_write.Name = "button_dummy_write";
-            this.button_dummy_write.Size = new System.Drawing.Size(150, 20);
-            this.button_dummy_write.TabIndex = 18;
-            this.button_dummy_write.Text = "Write to Addr";
-            this.button_dummy_write.UseVisualStyleBackColor = true;
-            this.button_dummy_write.Click += new System.EventHandler(this.button_dummy_write_Click);
+            this.button_dummy_write_dec.Location = new System.Drawing.Point(476, 135);
+            this.button_dummy_write_dec.Name = "button_dummy_write_dec";
+            this.button_dummy_write_dec.Size = new System.Drawing.Size(150, 20);
+            this.button_dummy_write_dec.TabIndex = 20;
+            this.button_dummy_write_dec.Text = "Write to Addr (DEC)";
+            this.button_dummy_write_dec.UseVisualStyleBackColor = true;
+            this.button_dummy_write_dec.Click += new System.EventHandler(this.button_dummy_write_dec_Click);
             // 
-            // textBox_dummy_value
+            // textBox_dummy_value_dec
             // 
-            this.textBox_dummy_value.Location = new System.Drawing.Point(320, 110);
-            this.textBox_dummy_value.Name = "textBox_dummy_value";
-            this.textBox_dummy_value.Size = new System.Drawing.Size(150, 20);
-            this.textBox_dummy_value.TabIndex = 17;
-            this.textBox_dummy_value.Text = "Value";
+            this.textBox_dummy_value_dec.Location = new System.Drawing.Point(320, 136);
+            this.textBox_dummy_value_dec.Name = "textBox_dummy_value_dec";
+            this.textBox_dummy_value_dec.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dummy_value_dec.TabIndex = 19;
+            this.textBox_dummy_value_dec.Text = "Value";
+            // 
+            // button_dummy_write_hex
+            // 
+            this.button_dummy_write_hex.Location = new System.Drawing.Point(476, 109);
+            this.button_dummy_write_hex.Name = "button_dummy_write_hex";
+            this.button_dummy_write_hex.Size = new System.Drawing.Size(150, 20);
+            this.button_dummy_write_hex.TabIndex = 18;
+            this.button_dummy_write_hex.Text = "Write to Addr (HEX)";
+            this.button_dummy_write_hex.UseVisualStyleBackColor = true;
+            this.button_dummy_write_hex.Click += new System.EventHandler(this.button_dummy_write_Click);
+            // 
+            // textBox_dummy_value_hex
+            // 
+            this.textBox_dummy_value_hex.Location = new System.Drawing.Point(320, 110);
+            this.textBox_dummy_value_hex.Name = "textBox_dummy_value_hex";
+            this.textBox_dummy_value_hex.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dummy_value_hex.TabIndex = 17;
+            this.textBox_dummy_value_hex.Text = "Value";
             // 
             // numericUpDown_dummy_length
             // 
@@ -333,6 +423,7 @@
             // 
             // txt_memlayout
             // 
+            this.txt_memlayout.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_memlayout.Location = new System.Drawing.Point(8, 83);
             this.txt_memlayout.Multiline = true;
             this.txt_memlayout.Name = "txt_memlayout";
@@ -725,6 +816,26 @@
             this.tabPage3.Text = "Gateshark & Debug";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button_browser_fort42
+            // 
+            this.button_browser_fort42.Location = new System.Drawing.Point(476, 196);
+            this.button_browser_fort42.Name = "button_browser_fort42";
+            this.button_browser_fort42.Size = new System.Drawing.Size(186, 20);
+            this.button_browser_fort42.TabIndex = 18;
+            this.button_browser_fort42.Text = "Fort42.com";
+            this.button_browser_fort42.UseVisualStyleBackColor = true;
+            this.button_browser_fort42.Click += new System.EventHandler(this.button_browser_fort42_Click);
+            // 
+            // label_gateshark_explanation
+            // 
+            this.label_gateshark_explanation.AutoSize = true;
+            this.label_gateshark_explanation.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label_gateshark_explanation.Location = new System.Drawing.Point(475, 3);
+            this.label_gateshark_explanation.Name = "label_gateshark_explanation";
+            this.label_gateshark_explanation.Size = new System.Drawing.Size(194, 117);
+            this.label_gateshark_explanation.TabIndex = 17;
+            this.label_gateshark_explanation.Text = resources.GetString("label_gateshark_explanation.Text");
+            // 
             // button_gateshark_execute
             // 
             this.button_gateshark_execute.Location = new System.Drawing.Point(8, 55);
@@ -747,6 +858,7 @@
             // 
             // textBox_gateshark
             // 
+            this.textBox_gateshark.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_gateshark.Location = new System.Drawing.Point(164, 6);
             this.textBox_gateshark.Multiline = true;
             this.textBox_gateshark.Name = "textBox_gateshark";
@@ -774,69 +886,6 @@
             this.checkBox_debug.TabIndex = 12;
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
-            // 
-            // label_gateshark_explanation
-            // 
-            this.label_gateshark_explanation.AutoSize = true;
-            this.label_gateshark_explanation.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label_gateshark_explanation.Location = new System.Drawing.Point(475, 3);
-            this.label_gateshark_explanation.Name = "label_gateshark_explanation";
-            this.label_gateshark_explanation.Size = new System.Drawing.Size(194, 117);
-            this.label_gateshark_explanation.TabIndex = 17;
-            this.label_gateshark_explanation.Text = resources.GetString("label_gateshark_explanation.Text");
-            // 
-            // button_browser_fort42
-            // 
-            this.button_browser_fort42.Location = new System.Drawing.Point(476, 196);
-            this.button_browser_fort42.Name = "button_browser_fort42";
-            this.button_browser_fort42.Size = new System.Drawing.Size(186, 20);
-            this.button_browser_fort42.TabIndex = 18;
-            this.button_browser_fort42.Text = "Fort42.com";
-            this.button_browser_fort42.UseVisualStyleBackColor = true;
-            this.button_browser_fort42.Click += new System.EventHandler(this.button_browser_fort42_Click);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.originalByCell9ToolStripMenuItem,
-            this.modByImthe666stToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.moreCreditsToolStripMenuItem,
-            this.githubRepositoryToolStripMenuItem});
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.creditsToolStripMenuItem.Text = "Credits";
-            // 
-            // originalByCell9ToolStripMenuItem
-            // 
-            this.originalByCell9ToolStripMenuItem.Name = "originalByCell9ToolStripMenuItem";
-            this.originalByCell9ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.originalByCell9ToolStripMenuItem.Text = "Original by cell9";
-            // 
-            // modByImthe666stToolStripMenuItem
-            // 
-            this.modByImthe666stToolStripMenuItem.Name = "modByImthe666stToolStripMenuItem";
-            this.modByImthe666stToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.modByImthe666stToolStripMenuItem.Text = "Mod by imthe666st";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
-            // 
-            // moreCreditsToolStripMenuItem
-            // 
-            this.moreCreditsToolStripMenuItem.Name = "moreCreditsToolStripMenuItem";
-            this.moreCreditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.moreCreditsToolStripMenuItem.Text = "More credits";
-            this.moreCreditsToolStripMenuItem.Click += new System.EventHandler(this.moreCreditsToolStripMenuItem_Click);
-            // 
-            // githubRepositoryToolStripMenuItem
-            // 
-            this.githubRepositoryToolStripMenuItem.Name = "githubRepositoryToolStripMenuItem";
-            this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.githubRepositoryToolStripMenuItem.Text = "Github repository";
-            this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.githubRepositoryToolStripMenuItem_Click);
             // 
             // CmdWindow
             // 
@@ -907,8 +956,8 @@
         public System.Windows.Forms.ComboBox comboBox_memregions;
         private System.Windows.Forms.TextBox textBox_dummy_addr;
         private System.Windows.Forms.Button button_dummy_read;
-        private System.Windows.Forms.Button button_dummy_write;
-        private System.Windows.Forms.TextBox textBox_dummy_value;
+        private System.Windows.Forms.Button button_dummy_write_hex;
+        private System.Windows.Forms.TextBox textBox_dummy_value_hex;
         private System.Windows.Forms.NumericUpDown numericUpDown_dummy_length;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabControl tabControl3;
@@ -952,6 +1001,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem moreCreditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem githubRepositoryToolStripMenuItem;
+        private System.Windows.Forms.Button button_dummy_write_dec;
+        private System.Windows.Forms.TextBox textBox_dummy_value_dec;
+        private System.Windows.Forms.ToolStripMenuItem versionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dEVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notIntendedForPublicReleaseToolStripMenuItem;
     }
 }
 
