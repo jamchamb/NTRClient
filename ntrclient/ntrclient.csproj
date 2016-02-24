@@ -88,49 +88,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsmEditWindow.cs">
+    <Compile Include="Program\Window\AsmEditWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AsmEditWindow.Designer.cs">
+    <Compile Include="Program\Window\AsmEditWindow.Designer.cs">
       <DependentUpon>AsmEditWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Browser.cs" />
-    <Compile Include="Credits.cs">
+    <Compile Include="Extra\Browser.cs" />
+    <Compile Include="Program\Window\Credits.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Credits.Designer.cs">
+    <Compile Include="Program\Window\Credits.Designer.cs">
       <DependentUpon>Credits.cs</DependentUpon>
     </Compile>
-    <Compile Include="gateshark.cs" />
-    <Compile Include="Memregion.cs" />
-    <Compile Include="QuickCmdWindow.cs">
+    <Compile Include="Extra\gateshark.cs" />
+    <Compile Include="Program\CS\Memregion.cs" />
+    <Compile Include="Program\Window\QuickCmdWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuickCmdWindow.Designer.cs">
+    <Compile Include="Program\Window\QuickCmdWindow.Designer.cs">
       <DependentUpon>QuickCmdWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="CmdWindow.cs">
+    <Compile Include="Program\Window\CmdWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CmdWindow.Designer.cs">
+    <Compile Include="Program\Window\CmdWindow.Designer.cs">
       <DependentUpon>CmdWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="NtrClient.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Program\CS\NtrClient.cs" />
+    <Compile Include="Program\CS\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptHelper.cs" />
-    <Compile Include="SettingsManager.cs" />
-    <Compile Include="Utility.cs" />
-    <EmbeddedResource Include="AsmEditWindow.resx">
+    <Compile Include="Program\CS\ScriptHelper.cs" />
+    <Compile Include="Program\CS\SettingsManager.cs" />
+    <Compile Include="Program\CS\Utility.cs" />
+    <EmbeddedResource Include="Program\Window\AsmEditWindow.resx">
       <DependentUpon>AsmEditWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Credits.resx">
+    <EmbeddedResource Include="Program\Window\Credits.resx">
       <DependentUpon>Credits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuickCmdWindow.resx">
+    <EmbeddedResource Include="Program\Window\QuickCmdWindow.resx">
       <DependentUpon>QuickCmdWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CmdWindow.resx">
+    <EmbeddedResource Include="Program\Window\CmdWindow.resx">
       <DependentUpon>CmdWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -142,7 +142,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

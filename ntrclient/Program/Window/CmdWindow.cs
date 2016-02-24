@@ -584,5 +584,10 @@ namespace ntrclient
         {
             Browser.openURL("https://github.com/imthe666st/NTRClient");
         }
+
+        private void toggleDebugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabPage_main_debug.Enabled = !tabPage_main_debug.Enabled;
+        }
     }
 }

@@ -124,14 +124,13 @@ Mod by imthe666st
 
 Supported Gateshark codes:
 0x00, 0x01, 0x02 (partially), 0xB, 0xC, 0xD1, 0xD3, 0xDC
+0xD6, 0xD7, 0xD8, 0xD9
 0xDF ( debug )
 
 Changelog:
-V0.2
-  + Added Gateshark support
-  + Added cheats for MK7 (US) and Animal Crossing (EU)
-  + improved some code
-  + Added this window
+V1.2-1
+  + Updated basic things
+  + reorganized
 
 </value>
   </data>
