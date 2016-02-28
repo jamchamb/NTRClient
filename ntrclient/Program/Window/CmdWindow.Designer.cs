@@ -40,6 +40,8 @@
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toggleDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,8 +108,9 @@
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toggleDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -122,6 +125,7 @@
             this.tabPage7.SuspendLayout();
             this.tabPage_main_gateshark.SuspendLayout();
             this.tabPage_main_debug.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -226,6 +230,18 @@
             this.asmScratchPadToolStripMenuItem.Text = "Asm ScratchPad";
             this.asmScratchPadToolStripMenuItem.Click += new System.EventHandler(this.asmScratchPadToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(174, 6);
+            // 
+            // toggleDebugToolStripMenuItem
+            // 
+            this.toggleDebugToolStripMenuItem.Name = "toggleDebugToolStripMenuItem";
+            this.toggleDebugToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.toggleDebugToolStripMenuItem.Text = "Toggle debug";
+            this.toggleDebugToolStripMenuItem.Click += new System.EventHandler(this.toggleDebugToolStripMenuItem_Click);
+            // 
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -281,13 +297,13 @@
             // VersionNumberToolStripMenuItem
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
-            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.VersionNumberToolStripMenuItem.Text = "1.2-1";
             // 
             // VersionExtraToolStripMenuItem
             // 
             this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
-            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.VersionExtraToolStripMenuItem.Text = "Public release";
             // 
             // tabControl_main
@@ -528,6 +544,7 @@
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.tabPage2);
+            this.tabControl3.Controls.Add(this.tabPage1);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
@@ -904,17 +921,35 @@
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
-            // toolStripSeparator2
+            // tabPage1
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(174, 6);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(658, 192);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "MH4U";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // toggleDebugToolStripMenuItem
+            // button1
             // 
-            this.toggleDebugToolStripMenuItem.Name = "toggleDebugToolStripMenuItem";
-            this.toggleDebugToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.toggleDebugToolStripMenuItem.Text = "Toggle debug";
-            this.toggleDebugToolStripMenuItem.Click += new System.EventHandler(this.toggleDebugToolStripMenuItem_Click);
+            this.button1.Location = new System.Drawing.Point(159, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 20);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Change name";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(150, 20);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "Name";
             // 
             // CmdWindow
             // 
@@ -955,6 +990,8 @@
             this.tabPage_main_gateshark.PerformLayout();
             this.tabPage_main_debug.ResumeLayout(false);
             this.tabPage_main_debug.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1040,6 +1077,9 @@
         public System.Windows.Forms.CheckBox checkBox_debug;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toggleDebugToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

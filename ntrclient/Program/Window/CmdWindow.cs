@@ -241,9 +241,6 @@ namespace ntrclient
         private void button_dump_Click(object sender, EventArgs e)
         {
             String filename = textBox_dump_file.Text;
-            if (filename.Contains(".")) {
-                filename = filename.Split('.')[0];
-            }
             Memregion mem = memregions[comboBox_memregions.SelectedIndex];
             runCmd(String.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3})", mem.start, mem.length, filename, textBox_pid.Text));
         }
@@ -588,6 +585,39 @@ namespace ntrclient
         private void toggleDebugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabPage_main_debug.Enabled = !tabPage_main_debug.Enabled;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String wCmd = "";
+            char[] name = textBox1.Text.ToCharArray();
+            for (int i = 0; i < 11; i++)
+            {
+                char c = 'A';
+                if (i < name.Length)
+                {
+                    wCmd += String.Format("ord('{0}'), 0", name[i]);
+                }
+                else
+                {
+                    wCmd += "0, 0";
+                }
+
+                if (i < 10)
+                {
+                    wCmd += ", ";
+                }
+
+            }
+
+            String[] addr =
+            {
+                "0x0836984C", "0x083FF258", "0x089417E8", "0x08941915", "0x08948A50"
+            };
+            foreach (String a in addr)
+            {
+                runCmd(String.Format("write({0}, ({1}), pid=0x{2})", a, wCmd, textBox_pid.Text));
+            }
         }
     }
 }
