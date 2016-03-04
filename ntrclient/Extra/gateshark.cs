@@ -112,9 +112,9 @@ namespace ntrclient
                         Program.gCmdWindow.runCmd(cmd_string);
                         offset += len;
                     }
-                    else if (cmd == 0xD8) // DxData BYTE ( Yes, I know it's the same as 0xD7. NTR has limits.. and this is an annying one. )
+                    else if (cmd == 0xD8) // DxData Byte
                     {
-                        int len = 2;
+                        int len = 1;
                         String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
                         Program.gCmdWindow.runCmd(cmd_string);
                         offset += len;
@@ -236,7 +236,8 @@ namespace ntrclient
             if ((cmd == 0) || (cmd == 1) || (cmd == 2))
             {
                 int len = 4;
-                if ((cmd == 1) || (cmd == 2)) len = 2;
+                if (cmd == 1) len = 2;
+                else if (cmd == 2) len = 1;
                 String cmd_string = Program.gCmdWindow.generateWriteString(block_a+offset, block_b, len);
                 Program.gCmdWindow.runCmd(cmd_string);
             }

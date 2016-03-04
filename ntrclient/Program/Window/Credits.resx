@@ -128,9 +128,10 @@ Supported Gateshark codes:
 0xDF ( debug )
 
 Changelog:
-V1.2-1
-  + Updated basic things
-  + reorganized
+V1.3
+  - Added games:
+    - MH4U (EU)
+  - Fixed the 0x2 gateshark
 
 </value>
   </data>

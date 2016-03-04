@@ -356,6 +356,7 @@ namespace ntrclient
 
         String generateHexChunk(uint value, int length)
         {
+            
             String data = "(";
             byte[] bytes = BitConverter.GetBytes(value);
             for (int i = 0; i < bytes.Length; i++)

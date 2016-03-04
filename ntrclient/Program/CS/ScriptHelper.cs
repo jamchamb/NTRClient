@@ -78,11 +78,18 @@ namespace ntrclient {
             Program.ntrClient.sendReadMemPacket(addr, size, (uint)pid, filename);
         }
 
-		public void write(uint addr, byte[] buf, int pid=-1) {
-			Program.ntrClient.sendWriteMemPacket(addr, (uint)pid, buf);
-		}
+        public void write(uint addr, byte[] buf, int pid = -1)
+        {
+            Program.ntrClient.sendWriteMemPacket(addr, (uint)pid, buf);
+        }
 
-		public void sendfile(String localPath, String remotePath) {
+        public void write(uint addr, byte buf, int pid = -1)
+        {
+            byte[] temp = { buf };
+            Program.ntrClient.sendWriteMemPacket(addr, (uint)pid, temp);
+        }
+
+        public void sendfile(String localPath, String remotePath) {
 			FileStream fs = new FileStream(localPath, FileMode.Open);
 			byte[] buf = new byte[fs.Length];
 			fs.Read(buf, 0, buf.Length);
