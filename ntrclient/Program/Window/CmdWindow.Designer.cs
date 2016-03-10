@@ -53,6 +53,8 @@
             this.VersionExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_main_basic = new System.Windows.Forms.TabPage();
+            this.button_dummy_write_hex_le = new System.Windows.Forms.Button();
+            this.textBox_dummy_value_hex_le = new System.Windows.Forms.TextBox();
             this.button_dummy_write_dec = new System.Windows.Forms.Button();
             this.textBox_dummy_value_dec = new System.Windows.Forms.TextBox();
             this.button_dummy_write_hex = new System.Windows.Forms.Button();
@@ -92,6 +94,9 @@
             this.button_aceu_setSlot1 = new System.Windows.Forms.Button();
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -108,9 +113,6 @@
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -120,12 +122,12 @@
             this.tabPage_main_eu.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage_main_us.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage_main_gateshark.SuspendLayout();
             this.tabPage_main_debug.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -323,6 +325,8 @@
             // 
             // tabPage_main_basic
             // 
+            this.tabPage_main_basic.Controls.Add(this.button_dummy_write_hex_le);
+            this.tabPage_main_basic.Controls.Add(this.textBox_dummy_value_hex_le);
             this.tabPage_main_basic.Controls.Add(this.button_dummy_write_dec);
             this.tabPage_main_basic.Controls.Add(this.textBox_dummy_value_dec);
             this.tabPage_main_basic.Controls.Add(this.button_dummy_write_hex);
@@ -349,9 +353,27 @@
             this.tabPage_main_basic.Text = "Basic";
             this.tabPage_main_basic.UseVisualStyleBackColor = true;
             // 
+            // button_dummy_write_hex_le
+            // 
+            this.button_dummy_write_hex_le.Location = new System.Drawing.Point(476, 135);
+            this.button_dummy_write_hex_le.Name = "button_dummy_write_hex_le";
+            this.button_dummy_write_hex_le.Size = new System.Drawing.Size(150, 20);
+            this.button_dummy_write_hex_le.TabIndex = 22;
+            this.button_dummy_write_hex_le.Text = "Write to Addr (HEX) LE";
+            this.button_dummy_write_hex_le.UseVisualStyleBackColor = true;
+            this.button_dummy_write_hex_le.Click += new System.EventHandler(this.button_dummy_write_hex_le_Click);
+            // 
+            // textBox_dummy_value_hex_le
+            // 
+            this.textBox_dummy_value_hex_le.Location = new System.Drawing.Point(320, 136);
+            this.textBox_dummy_value_hex_le.Name = "textBox_dummy_value_hex_le";
+            this.textBox_dummy_value_hex_le.Size = new System.Drawing.Size(150, 20);
+            this.textBox_dummy_value_hex_le.TabIndex = 21;
+            this.textBox_dummy_value_hex_le.Text = "Value";
+            // 
             // button_dummy_write_dec
             // 
-            this.button_dummy_write_dec.Location = new System.Drawing.Point(476, 135);
+            this.button_dummy_write_dec.Location = new System.Drawing.Point(476, 161);
             this.button_dummy_write_dec.Name = "button_dummy_write_dec";
             this.button_dummy_write_dec.Size = new System.Drawing.Size(150, 20);
             this.button_dummy_write_dec.TabIndex = 20;
@@ -361,7 +383,7 @@
             // 
             // textBox_dummy_value_dec
             // 
-            this.textBox_dummy_value_dec.Location = new System.Drawing.Point(320, 136);
+            this.textBox_dummy_value_dec.Location = new System.Drawing.Point(320, 162);
             this.textBox_dummy_value_dec.Name = "textBox_dummy_value_dec";
             this.textBox_dummy_value_dec.Size = new System.Drawing.Size(150, 20);
             this.textBox_dummy_value_dec.TabIndex = 19;
@@ -446,7 +468,7 @@
             // 
             // txt_memlayout
             // 
-            this.txt_memlayout.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_memlayout.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_memlayout.Location = new System.Drawing.Point(8, 83);
             this.txt_memlayout.Multiline = true;
             this.txt_memlayout.Name = "txt_memlayout";
@@ -751,6 +773,36 @@
             this.button_aceu_openIds.UseVisualStyleBackColor = true;
             this.button_aceu_openIds.Click += new System.EventHandler(this.button_aceu_openIds_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(658, 192);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "MH4U";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(159, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 20);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Change name";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(150, 20);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "Name";
+            // 
             // tabPage_main_us
             // 
             this.tabPage_main_us.Controls.Add(this.tabControl2);
@@ -921,36 +973,6 @@
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(658, 192);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "MH4U";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(159, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 20);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Change name";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Name";
-            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -982,6 +1004,8 @@
             this.tabControl3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tabPage_main_us.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -990,8 +1014,6 @@
             this.tabPage_main_gateshark.PerformLayout();
             this.tabPage_main_debug.ResumeLayout(false);
             this.tabPage_main_debug.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1080,6 +1102,8 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button_dummy_write_hex_le;
+        private System.Windows.Forms.TextBox textBox_dummy_value_hex_le;
     }
 }
 

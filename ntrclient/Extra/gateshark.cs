@@ -14,7 +14,7 @@ namespace ntrclient
         Int32 offset;
         Int32 dxData;
         Boolean loop;
-        int loop_index;
+        Int32 loop_index;
         UInt32 loop_count;
         public gateshark(String code)
         {
@@ -62,7 +62,7 @@ namespace ntrclient
                     }
                     else if (cmd == 0xB)
                     {
-                        offset = CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A(), 4), 4);
+                        offset = CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 4);
                         //MessageBox.Show(String.Format("SET > O: {0:X}", offset));
                     }
                     else if (cmd == 0xC)
@@ -92,7 +92,18 @@ namespace ntrclient
                     }
                     else if (cmd == 0xD3) // Read offset
                     {
-                        offset = Convert.ToInt32(gs_ar.getBlock_B());
+                        // Fix for Issue #8
+                        UInt32 b = gs_ar.getBlock_B();
+                        Int32 b_ = 0;
+                        if (b > Int32.MaxValue)
+                        {
+                            // Offset in negative.
+                            Int32 r = Convert.ToInt32(b % 0x80000000);
+                            b_ = Convert.ToInt32(Int32.MinValue + r); 
+                        } else
+                            b_ = Convert.ToInt32(b);
+
+                        offset = b_;
                     }
                     else if (cmd == 0xD5) // DxData WRITE
                     {
@@ -136,7 +147,20 @@ namespace ntrclient
                     }
                     else if (cmd == 0xDC)
                     {
-                        offset += Convert.ToInt32(gs_ar.getBlock_B());
+                        // Fix for Issue #8
+                        UInt32 b = gs_ar.getBlock_B();
+                        Int32 b_ = 0;
+                        if (b > Int32.MaxValue)
+                        {
+                            // Offset in negative.
+                            Int32 r = Convert.ToInt32(b % 0x80000000);
+                            b_ = Convert.ToInt32(Int32.MinValue + r);
+                        }
+                        else
+                            b_ = Convert.ToInt32(b);
+
+
+                        offset += b_;
                     }
                     else if (cmd == 0xDF)
                     {
@@ -174,13 +198,14 @@ namespace ntrclient
         public gateshark_ar(String ar)
         {
             line = ar;
+            int o = 0;
             String[] blocks = ar.Split(' ');
 
             if (ar.Length != 17)
             {
                 cmd = 0x0f;
                 block_a = 0x0fffffff;
-                block_b = 0xffffffff;
+                block_b = 0x7fffffff;
                 return;
             }
             ar.Replace(" ", String.Empty); // remove blanks
@@ -196,9 +221,8 @@ namespace ntrclient
             5   X = Y
             6   X ~ Y
 
-            B   OFFSET += READ(X)
+            B   OFFSET = READ(X)
             D3  OFFSET = X
-            DC  OFFSET2 ?
             */
 
             if (cmd == 0xD)
@@ -211,6 +235,7 @@ namespace ntrclient
                 block_a = Convert.ToInt32(blocks[0], 16);
                 block_a -= cmd * 0x10000000;
             }
+            
 
             block_b = Convert.ToUInt32(blocks[1], 16);
             

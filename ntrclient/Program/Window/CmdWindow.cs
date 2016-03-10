@@ -31,6 +31,7 @@ namespace ntrclient
         public int readValue(int addr, int size)
         {
             int v;
+            //return 0x12345678;
             if (size < 1)
                 size = 1;
 
@@ -68,6 +69,11 @@ namespace ntrclient
                 temp = Convert.ToInt16(hex_le, 16);
                 return fromLE(temp, 2);
             }
+            else if (hex_le.Length == 2)
+            {
+                temp = Convert.ToInt32(hex_le, 16);
+                return temp;
+            }
             else
             {
                 temp = Convert.ToInt32(hex_le, 16);
@@ -82,6 +88,8 @@ namespace ntrclient
             Array.Reverse(bytes);
             if (len == 2)
                 return BitConverter.ToInt16(bytes, 2);
+            if (len == 1)
+                return bytes[bytes.Length - 1];
             else
                 return BitConverter.ToInt32(bytes, 0);
         }
@@ -403,6 +411,7 @@ namespace ntrclient
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
             int v = readValue(addr, (int)numericUpDown_dummy_length.Value);
             textBox_dummy_value_hex.Text = String.Format("{0:X}", v);
+            textBox_dummy_value_hex_le.Text = String.Format("{0:X}", fromLE(v, (int)numericUpDown_dummy_length.Value));
             textBox_dummy_value_dec.Text = String.Format("{0}", fromLE(v, (int)numericUpDown_dummy_length.Value));
         }
 
@@ -412,7 +421,14 @@ namespace ntrclient
             int v = fromLE(Convert.ToInt32(textBox_dummy_value_hex.Text, 16), (int)numericUpDown_dummy_length.Value);
             runCmd(generateWriteString(addr, v, (int)numericUpDown_dummy_length.Value));
         }
-        
+
+        private void button_dummy_write_hex_le_Click(object sender, EventArgs e)
+        {
+            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+            int v = Convert.ToInt32(textBox_dummy_value_hex_le.Text, 16);
+            runCmd(generateWriteString(addr, v, (int)numericUpDown_dummy_length.Value));
+        }
+
         private void button_dummy_write_dec_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
@@ -611,9 +627,23 @@ namespace ntrclient
 
             }
 
+            /*
+            valid memregions:
+            00100000 - 0111dfff , size: 0101e000
+            08000000 - 0b13efff , size: 0313f000
+            0ffc0000 - 10000fff , size: 00041000
+            10002000 - 10002fff , size: 00001000
+            1e800000 - 1e9fffff , size: 00200000
+            end of memlayout.
+            */
+
             String[] addr =
             {
-                "0x0836984C", "0x083FF258", "0x089417E8", "0x08941915", "0x08948A50"
+                //"0x082839D0", "0x08284AA6"
+                "0x0836984C", "0x083EF258", 
+                "0x083FF258", "0x089417E8",
+                "0x08941915", "0x08948A50"
+
             };
             foreach (String a in addr)
             {
