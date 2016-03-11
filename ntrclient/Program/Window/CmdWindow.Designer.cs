@@ -299,8 +299,8 @@
             // VersionNumberToolStripMenuItem
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
-            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.2-1";
+            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.VersionNumberToolStripMenuItem.Text = "1.2-2";
             // 
             // VersionExtraToolStripMenuItem
             // 

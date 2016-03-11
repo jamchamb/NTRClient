@@ -41,24 +41,60 @@ namespace ntrclient
         {
             int index = 0;
             int dummy_count = 0;
-            Boolean gs_if = true;
+            Boolean gs_if = false;
+            Int32 gs_if_layer = 0;
+            Int32 gs_if_sLayer = 0;
             do
             {
                 gateshark_ar gs_ar = lines[index];
                 int cmd = gs_ar.getCMD();
-                if (gs_if)
+                if (gs_if_layer == 0)
                 {
 
                     if ((cmd == 0) || (cmd == 1) || (cmd == 2))
                     {
                         gs_ar.execute(offset);
                     }
+                    // Conditional codes
+                    else if (cmd == 0x3)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
+                        gs_if = !(read < gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0x4)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
+                        gs_if = !(read > gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0x5)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
+                        gs_if = !(read == gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0x6)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
+                        gs_if = !(read != gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0x7)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
+                        gs_if = !(read < gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0x8)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
+                        gs_if = !(read > gs_ar.getBlock_B());
+                    }
                     else if (cmd == 0x9)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
-                        Task.Delay(100);
-                        gs_if = (read == gs_ar.getBlock_B());
-                        //MessageBox.Show(String.Format("0x9 READ: {0:X} {1:X}", gs_ar.getBlock_A() + offset, Convert.ToInt32(read)));
+                        gs_if = !(read == gs_ar.getBlock_B());
+                    }
+                    else if (cmd == 0xA)
+                    {
+                        UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
+                        gs_if = !(read != gs_ar.getBlock_B());
                     }
                     else if (cmd == 0xB)
                     {
@@ -171,13 +207,26 @@ namespace ntrclient
                             "O: {1:X} \r\n" +
                             "LOOP: {2} {3} {4} \r\n" + 
                             "DX: {5:X} \r\n" +
-                            "DUMMY: {6}"
-                            , index, offset, loop, loop_index, loop_count, dxData, dummy_count));
+                            "DUMMY: {6}\r\n" +
+                            "LAYERS: {7} {8}"
+                            , index, offset, loop, loop_index, loop_count, dxData, dummy_count, gs_if_sLayer, gs_if_layer));
                     }
+                    if (gs_if)
+                    {
+                        gs_if = false;
+                        gs_if_layer += 1;
+                    }
+                }
+                else if (cmd >= 0x3 && cmd <= 0xA)
+                {
+                    gs_if_sLayer += 1;
                 }
                 else if (cmd == 0xD0)
                 {
-                    gs_if = true;
+                    if (gs_if_sLayer > 0)
+                        gs_if_sLayer -= 1;
+                    else if (gs_if_layer > 0)
+                        gs_if_layer -= 1;
                 }
                 index++;
             } while (index < lines.Count);
