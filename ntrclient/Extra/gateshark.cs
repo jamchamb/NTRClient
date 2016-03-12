@@ -126,6 +126,16 @@ namespace ntrclient
                             }
                         }
                     }
+                    else if (cmd == 0xD2) // RESET
+                    {
+                        loop = false;
+                        loop_count = 0;
+                        loop_index = 0;
+
+                        offset = 0;
+                        gs_if_layer = 0;
+                        gs_if_sLayer = 0;
+                    }
                     else if (cmd == 0xD3) // Read offset
                     {
                         // Fix for Issue #8
@@ -141,45 +151,63 @@ namespace ntrclient
 
                         offset = b_;
                     }
+                    else if (cmd == 0xD4)
+                    {
+                        // Fix for Issue #8
+                        UInt32 b = gs_ar.getBlock_B();
+                        Int32 b_ = 0;
+                        if (b > Int32.MaxValue)
+                        {
+                            // Offset in negative.
+                            Int32 r = Convert.ToInt32(b % 0x80000000);
+                            b_ = Convert.ToInt32(Int32.MinValue + r);
+                        }
+                        else
+                            b_ = Convert.ToInt32(b);
+
+
+                        dxData += b_;
+                    }
                     else if (cmd == 0xD5) // DxData WRITE
                     {
                         dxData = Convert.ToInt32(gs_ar.getBlock_B());
                     }
                     else if (cmd == 0xD6) // DxData WORD
                     {
+
+                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
+                        dxData = CmdWindow.fromLE(Program.gCmdWindow.readValue(addr, 4), 4);
+                    }
+                    else if (cmd == 0xD7) // DxData SHORT
+                    {
+                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
+                        dxData = CmdWindow.fromLE(Program.gCmdWindow.readValue(addr, 2), 2);
+                    }
+                    else if (cmd == 0xD8) // DxData Byte
+                    {
+                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
+                        dxData = Program.gCmdWindow.readValue(addr, 1);
+                    }
+                    else if (cmd == 0xD9) // DxData READ WORD
+                    {
                         int len = 4;
                         String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
                         Program.gCmdWindow.runCmd(cmd_string);
                         offset += len;
                     }
-                    else if (cmd == 0xD7) // DxData SHORT
+                    else if (cmd == 0xDA) // DxData READ SHORT
                     {
                         int len = 2;
                         String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
                         Program.gCmdWindow.runCmd(cmd_string);
                         offset += len;
                     }
-                    else if (cmd == 0xD8) // DxData Byte
+                    else if (cmd == 0xDB) // DxData READ BYTE
                     {
                         int len = 1;
                         String cmd_string = Program.gCmdWindow.generateWriteString(Convert.ToInt32(gs_ar.getBlock_B()) + offset, dxData, len);
                         Program.gCmdWindow.runCmd(cmd_string);
                         offset += len;
-                    }
-                    else if (cmd == 0xD9) // DxData READ WORD
-                    {
-                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
-                        dxData = CmdWindow.fromLE(Program.gCmdWindow.readValue(addr, 4), 4);
-                    }
-                    else if (cmd == 0xDA) // DxData READ SHORT
-                    {
-                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
-                        dxData = CmdWindow.fromLE(Program.gCmdWindow.readValue(addr, 2), 2);
-                    }
-                    else if (cmd == 0xDB) // DxData READ BYTE
-                    {
-                        int addr = Convert.ToInt32(gs_ar.getBlock_B()) + offset;
-                        dxData = Program.gCmdWindow.readValue(addr, 1);
                     }
                     else if (cmd == 0xDC)
                     {

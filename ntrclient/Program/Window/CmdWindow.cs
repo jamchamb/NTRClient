@@ -604,10 +604,10 @@ namespace ntrclient
             tabPage_main_debug.Enabled = !tabPage_main_debug.Enabled;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_mh4u_eu_name_Click(object sender, EventArgs e)
         {
             String wCmd = "";
-            char[] name = textBox1.Text.ToCharArray();
+            char[] name = textBox_mh4u_eu_name.Text.ToCharArray();
             for (int i = 0; i < 11; i++)
             {
                 char c = 'A';
@@ -640,7 +640,7 @@ namespace ntrclient
             String[] addr =
             {
                 //"0x082839D0", "0x08284AA6"
-                "0x0836984C", "0x083EF258", 
+                "0x0836984C", "0x083EF258",
                 "0x083FF258", "0x089417E8",
                 "0x08941915", "0x08948A50"
 
@@ -649,6 +649,90 @@ namespace ntrclient
             {
                 runCmd(String.Format("write({0}, ({1}), pid=0x{2})", a, wCmd, textBox_pid.Text));
             }
+        }
+
+        // Testing something for 1.4
+        // Dynamic loading from a file :)
+
+        private void button_mh4u_eu_mon1_kill_Click(object sender, EventArgs e)
+        {
+            String gs_code =
+                "D3000000 081C8170\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000";
+
+            gateshark code = new gateshark(gs_code);
+            code.execute();
+        }
+
+        private void button_mh4u_eu_mon2_kill_Click(object sender, EventArgs e)
+        {
+            String gs_code =
+                "D3000000 081C8174\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000";
+
+            gateshark code = new gateshark(gs_code);
+            code.execute();
+        }
+
+        private void button_mh4u_eu_monb_kill_Click(object sender, EventArgs e)
+        {
+            String gs_code =
+                "D3000000 081C8170\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+
+                "D3000000 081C8174\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000";
+            
+            gateshark code = new gateshark(gs_code);
+            code.execute();
         }
     }
 }

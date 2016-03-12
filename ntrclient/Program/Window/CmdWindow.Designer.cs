@@ -95,8 +95,8 @@
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button_mh4u_eu_name = new System.Windows.Forms.Button();
+            this.textBox_mh4u_eu_name = new System.Windows.Forms.TextBox();
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -113,6 +113,9 @@
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
+            this.button_mh4u_eu_mon1_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_mon2_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_monb_kill = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -300,13 +303,13 @@
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
             this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.2-2";
+            this.VersionNumberToolStripMenuItem.Text = "1.3 - BETA";
             // 
             // VersionExtraToolStripMenuItem
             // 
             this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
-            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.VersionExtraToolStripMenuItem.Text = "Public release";
+            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.VersionExtraToolStripMenuItem.Text = "Prerelease";
             // 
             // tabControl_main
             // 
@@ -775,8 +778,11 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_monb_kill);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_mon2_kill);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_mon1_kill);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_name);
+            this.tabPage1.Controls.Add(this.textBox_mh4u_eu_name);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -785,23 +791,23 @@
             this.tabPage1.Text = "MH4U";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // button_mh4u_eu_name
             // 
-            this.button1.Location = new System.Drawing.Point(159, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 20);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Change name";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_mh4u_eu_name.Location = new System.Drawing.Point(159, 3);
+            this.button_mh4u_eu_name.Name = "button_mh4u_eu_name";
+            this.button_mh4u_eu_name.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_name.TabIndex = 3;
+            this.button_mh4u_eu_name.Text = "Change name";
+            this.button_mh4u_eu_name.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_name.Click += new System.EventHandler(this.button_mh4u_eu_name_Click);
             // 
-            // textBox1
+            // textBox_mh4u_eu_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Name";
+            this.textBox_mh4u_eu_name.Location = new System.Drawing.Point(3, 3);
+            this.textBox_mh4u_eu_name.Name = "textBox_mh4u_eu_name";
+            this.textBox_mh4u_eu_name.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_eu_name.TabIndex = 2;
+            this.textBox_mh4u_eu_name.Text = "Name";
             // 
             // tabPage_main_us
             // 
@@ -973,6 +979,36 @@
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
+            // button_mh4u_eu_mon1_kill
+            // 
+            this.button_mh4u_eu_mon1_kill.Location = new System.Drawing.Point(3, 29);
+            this.button_mh4u_eu_mon1_kill.Name = "button_mh4u_eu_mon1_kill";
+            this.button_mh4u_eu_mon1_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_mon1_kill.TabIndex = 4;
+            this.button_mh4u_eu_mon1_kill.Text = "1 Hit Monster 1";
+            this.button_mh4u_eu_mon1_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_mon1_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon1_kill_Click);
+            // 
+            // button_mh4u_eu_mon2_kill
+            // 
+            this.button_mh4u_eu_mon2_kill.Location = new System.Drawing.Point(3, 55);
+            this.button_mh4u_eu_mon2_kill.Name = "button_mh4u_eu_mon2_kill";
+            this.button_mh4u_eu_mon2_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_mon2_kill.TabIndex = 5;
+            this.button_mh4u_eu_mon2_kill.Text = "1 Hit Monster 2";
+            this.button_mh4u_eu_mon2_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_mon2_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon2_kill_Click);
+            // 
+            // button_mh4u_eu_monb_kill
+            // 
+            this.button_mh4u_eu_monb_kill.Location = new System.Drawing.Point(3, 81);
+            this.button_mh4u_eu_monb_kill.Name = "button_mh4u_eu_monb_kill";
+            this.button_mh4u_eu_monb_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_monb_kill.TabIndex = 6;
+            this.button_mh4u_eu_monb_kill.Text = "1 Hit Both Monsters";
+            this.button_mh4u_eu_monb_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_monb_kill.Click += new System.EventHandler(this.button_mh4u_eu_monb_kill_Click);
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1100,10 +1136,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toggleDebugToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button_mh4u_eu_name;
+        private System.Windows.Forms.TextBox textBox_mh4u_eu_name;
         private System.Windows.Forms.Button button_dummy_write_hex_le;
         private System.Windows.Forms.TextBox textBox_dummy_value_hex_le;
+        private System.Windows.Forms.Button button_mh4u_eu_mon2_kill;
+        private System.Windows.Forms.Button button_mh4u_eu_mon1_kill;
+        private System.Windows.Forms.Button button_mh4u_eu_monb_kill;
     }
 }
 
