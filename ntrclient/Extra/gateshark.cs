@@ -42,18 +42,20 @@ namespace ntrclient
             int index = 0;
             int dummy_count = 0;
             Boolean gs_if = false;
+            Boolean valid = true;
             Int32 gs_if_layer = 0;
             Int32 gs_if_sLayer = 0;
             do
             {
                 gateshark_ar gs_ar = lines[index];
                 int cmd = gs_ar.getCMD();
-                if (gs_if_layer == 0)
+                if (gs_if_layer == 0 && valid)
                 {
 
                     if ((cmd == 0) || (cmd == 1) || (cmd == 2))
                     {
-                        gs_ar.execute(offset);
+                        valid = gs_ar.execute(offset);
+                        
                     }
                     // Conditional codes
                     else if (cmd == 0x3)
@@ -275,7 +277,6 @@ namespace ntrclient
         public gateshark_ar(String ar)
         {
             line = ar;
-            int o = 0;
             String[] blocks = ar.Split(' ');
 
             if (ar.Length != 17)
@@ -333,16 +334,22 @@ namespace ntrclient
             return block_b;
         }
 
-        public void execute(Int32 offset)
+        public bool execute(Int32 offset)
         {
             if ((cmd == 0) || (cmd == 1) || (cmd == 2))
             {
                 int len = 4;
                 if (cmd == 1) len = 2;
                 else if (cmd == 2) len = 1;
-                String cmd_string = Program.gCmdWindow.generateWriteString(block_a+offset, block_b, len);
-                Program.gCmdWindow.runCmd(cmd_string);
+                String cmd_string = "";
+                if (Program.gCmdWindow.isMemValid(block_a + offset))
+                {
+                    cmd_string = Program.gCmdWindow.generateWriteString(block_a + offset, block_b, len);
+                    Program.gCmdWindow.runCmd(cmd_string);
+                    return true;
+                }
             }
+            return false;
         }
     }
 }

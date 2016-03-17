@@ -125,10 +125,10 @@ Mod by imthe666st
 All Gateshark codes are supported
 
 Changelog:
-V1.3
-  - Added new Gateshark codes
-  - All Gateshark codes are now supported
-  - Please report any bugs.
+V1.4
+  - Refractoring the entire CmdWindow Code
+  - Heartbeat codes [HB]
+  - Saving the last IP address used
 
 </value>
   </data>

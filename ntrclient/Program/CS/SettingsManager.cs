@@ -9,6 +9,7 @@ using System.Windows.Forms;
 namespace ntrclient {
 	public class SettingsManager {
 		public string[] quickCmds {set; get;}
+        public string ip_address { set; get; }
 
 		public void init() {
 			if (quickCmds == null ) {
@@ -17,6 +18,10 @@ namespace ntrclient {
 					quickCmds[i] = "";
 				}
 			}
+            if (ip_address == null)
+            {
+                ip_address = "Nintendo 3DS IP";
+            }
 		}
 
 		public static void SaveToXml(string filePath, SettingsManager sourceObj) {

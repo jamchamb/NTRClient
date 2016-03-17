@@ -19,8 +19,6 @@ namespace ntrclient {
 		private object syncLock = new object();
 		int heartbeatSendable;
 
-        // Tux der Lappen.
-
 		public delegate void logHandler(string msg);
 		public event logHandler onLogArrival;
 		UInt32 currentSeq;
@@ -80,9 +78,10 @@ namespace ntrclient {
 
                         if (Program.gCmdWindow.checkBox_debug.Checked)
                         {
-                            log(String.Format("Received MSG: Magic: {0}, SEQ: {1}, Type: {2}, CMD: {3}, LEN: {4}",magic, seq, type, cmd, dataLen));
-                            log("" + ret);
-                        }
+                        //log(String.Format("Received MSG: Magic: {0}, SEQ: {1}, Type: {2}, CMD: {3}, LEN: {4}",magic, seq, type, cmd, dataLen));
+                        //log("" + ret);
+                            //heartbeat();
+                    }
 
                     // END 
                     
@@ -124,7 +123,7 @@ namespace ntrclient {
 					}
 
 				}
-				catch (Exception e) {
+				catch (Exception) {
                     //log(e.Message);
                     log("An error occured!");
                     break;
@@ -208,7 +207,7 @@ namespace ntrclient {
 					}
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception) {
                 log("Disconnect " + waitPacketThread);
 				//log(ex.Message);
 			}
@@ -307,5 +306,18 @@ namespace ntrclient {
 			
 	
         }
-	}
+        /*
+        void heartbeat()
+        {
+            try
+            {
+
+                Program.gCmdWindow.heartbeat();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }*/
+    }
 }

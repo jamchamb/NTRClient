@@ -32,12 +32,17 @@ namespace ntrclient
                 end = Convert.ToInt32(memparts[2], 16);
                 length = Convert.ToInt32(memparts[5], 16);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 start = 0;
                 end = 0;
                 length = 0;
             }
+        }
+
+        public bool contains(int v)
+        {
+            return ((start <= v) && (v <= end));
         }
     }
 }

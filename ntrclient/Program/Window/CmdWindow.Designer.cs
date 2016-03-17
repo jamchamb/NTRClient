@@ -1,4 +1,6 @@
-﻿namespace ntrclient
+﻿using System;
+
+namespace ntrclient
 {
     partial class CmdWindow
     {
@@ -51,6 +53,8 @@
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_main_basic = new System.Windows.Forms.TabPage();
             this.button_dummy_write_hex_le = new System.Windows.Forms.Button();
@@ -95,6 +99,9 @@
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_mh4u_eu_monb_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_mon2_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_mon1_kill = new System.Windows.Forms.Button();
             this.button_mh4u_eu_name = new System.Windows.Forms.Button();
             this.textBox_mh4u_eu_name = new System.Windows.Forms.TextBox();
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
@@ -105,6 +112,7 @@
             this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
             this.tabPage_main_jp = new System.Windows.Forms.TabPage();
             this.tabPage_main_gateshark = new System.Windows.Forms.TabPage();
+            this.button_gateshark_heartbeat = new System.Windows.Forms.Button();
             this.button_browser_fort42 = new System.Windows.Forms.Button();
             this.label_gateshark_explanation = new System.Windows.Forms.Label();
             this.button_gateshark_execute = new System.Windows.Forms.Button();
@@ -112,10 +120,20 @@
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.textBox_cfg_read_dummy = new System.Windows.Forms.TextBox();
+            this.textBox_cfg_set_dummy = new System.Windows.Forms.TextBox();
+            this.button_cfg_read_dummy = new System.Windows.Forms.Button();
+            this.button_cfg_set_dummy = new System.Windows.Forms.Button();
+            this.button_heart_test_inject = new System.Windows.Forms.Button();
+            this.button_heart_test_stop = new System.Windows.Forms.Button();
+            this.button_heart_test_start = new System.Windows.Forms.Button();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
-            this.button_mh4u_eu_mon1_kill = new System.Windows.Forms.Button();
-            this.button_mh4u_eu_mon2_kill = new System.Windows.Forms.Button();
-            this.button_mh4u_eu_monb_kill = new System.Windows.Forms.Button();
+            this.redditThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbaTempThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button_heart_test_toggle = new System.Windows.Forms.Button();
+            this.label_heart_status = new System.Windows.Forms.Label();
+            this.button_mh4u_eu_hb_godmode = new System.Windows.Forms.Button();
+            this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -150,7 +168,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 430);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // txtLog
             // 
@@ -202,7 +219,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem,
             this.creditsToolStripMenuItem,
-            this.versionToolStripMenuItem});
+            this.versionToolStripMenuItem,
+            this.commandsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(680, 24);
@@ -254,7 +272,9 @@
             this.modByImthe666stToolStripMenuItem,
             this.toolStripSeparator1,
             this.moreCreditsToolStripMenuItem,
-            this.githubRepositoryToolStripMenuItem});
+            this.githubRepositoryToolStripMenuItem,
+            this.redditThreadToolStripMenuItem,
+            this.gbaTempThreadToolStripMenuItem});
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
             this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.creditsToolStripMenuItem.Text = "Credits";
@@ -303,13 +323,29 @@
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
             this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.3 - BETA";
+            this.VersionNumberToolStripMenuItem.Text = "1.4";
             // 
             // VersionExtraToolStripMenuItem
             // 
             this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
             this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.VersionExtraToolStripMenuItem.Text = "Prerelease";
+            this.VersionExtraToolStripMenuItem.Text = "Public Release";
+            // 
+            // commandsToolStripMenuItem
+            // 
+            this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearLogToolStripMenuItem,
+            this.clearHeartbeatToolStripMenuItem});
+            this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
+            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.commandsToolStripMenuItem.Text = "Commands";
+            // 
+            // clearLogToolStripMenuItem
+            // 
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
             // 
             // tabControl_main
             // 
@@ -778,6 +814,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_hb_godmode);
             this.tabPage1.Controls.Add(this.button_mh4u_eu_monb_kill);
             this.tabPage1.Controls.Add(this.button_mh4u_eu_mon2_kill);
             this.tabPage1.Controls.Add(this.button_mh4u_eu_mon1_kill);
@@ -790,6 +827,36 @@
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "MH4U";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button_mh4u_eu_monb_kill
+            // 
+            this.button_mh4u_eu_monb_kill.Location = new System.Drawing.Point(3, 81);
+            this.button_mh4u_eu_monb_kill.Name = "button_mh4u_eu_monb_kill";
+            this.button_mh4u_eu_monb_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_monb_kill.TabIndex = 6;
+            this.button_mh4u_eu_monb_kill.Text = "1 Hit Both Monsters";
+            this.button_mh4u_eu_monb_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_monb_kill.Click += new System.EventHandler(this.button_mh4u_eu_monb_kill_Click);
+            // 
+            // button_mh4u_eu_mon2_kill
+            // 
+            this.button_mh4u_eu_mon2_kill.Location = new System.Drawing.Point(3, 55);
+            this.button_mh4u_eu_mon2_kill.Name = "button_mh4u_eu_mon2_kill";
+            this.button_mh4u_eu_mon2_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_mon2_kill.TabIndex = 5;
+            this.button_mh4u_eu_mon2_kill.Text = "1 Hit Monster 2";
+            this.button_mh4u_eu_mon2_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_mon2_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon2_kill_Click);
+            // 
+            // button_mh4u_eu_mon1_kill
+            // 
+            this.button_mh4u_eu_mon1_kill.Location = new System.Drawing.Point(3, 29);
+            this.button_mh4u_eu_mon1_kill.Name = "button_mh4u_eu_mon1_kill";
+            this.button_mh4u_eu_mon1_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_mon1_kill.TabIndex = 4;
+            this.button_mh4u_eu_mon1_kill.Text = "1 Hit Monster 1";
+            this.button_mh4u_eu_mon1_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_mon1_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon1_kill_Click);
             // 
             // button_mh4u_eu_name
             // 
@@ -883,6 +950,7 @@
             // 
             // tabPage_main_gateshark
             // 
+            this.tabPage_main_gateshark.Controls.Add(this.button_gateshark_heartbeat);
             this.tabPage_main_gateshark.Controls.Add(this.button_browser_fort42);
             this.tabPage_main_gateshark.Controls.Add(this.label_gateshark_explanation);
             this.tabPage_main_gateshark.Controls.Add(this.button_gateshark_execute);
@@ -896,6 +964,16 @@
             this.tabPage_main_gateshark.TabIndex = 6;
             this.tabPage_main_gateshark.Text = "Gateshark";
             this.tabPage_main_gateshark.UseVisualStyleBackColor = true;
+            // 
+            // button_gateshark_heartbeat
+            // 
+            this.button_gateshark_heartbeat.Location = new System.Drawing.Point(8, 58);
+            this.button_gateshark_heartbeat.Name = "button_gateshark_heartbeat";
+            this.button_gateshark_heartbeat.Size = new System.Drawing.Size(150, 20);
+            this.button_gateshark_heartbeat.TabIndex = 19;
+            this.button_gateshark_heartbeat.Text = "Set as Heartbeatcode";
+            this.button_gateshark_heartbeat.UseVisualStyleBackColor = true;
+            this.button_gateshark_heartbeat.Click += new System.EventHandler(this.button_gateshark_heartbeat_Click);
             // 
             // button_browser_fort42
             // 
@@ -960,6 +1038,15 @@
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.label_heart_status);
+            this.tabPage_main_debug.Controls.Add(this.button_heart_test_toggle);
+            this.tabPage_main_debug.Controls.Add(this.textBox_cfg_read_dummy);
+            this.tabPage_main_debug.Controls.Add(this.textBox_cfg_set_dummy);
+            this.tabPage_main_debug.Controls.Add(this.button_cfg_read_dummy);
+            this.tabPage_main_debug.Controls.Add(this.button_cfg_set_dummy);
+            this.tabPage_main_debug.Controls.Add(this.button_heart_test_inject);
+            this.tabPage_main_debug.Controls.Add(this.button_heart_test_stop);
+            this.tabPage_main_debug.Controls.Add(this.button_heart_test_start);
             this.tabPage_main_debug.Controls.Add(this.checkBox_debug);
             this.tabPage_main_debug.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_debug.Name = "tabPage_main_debug";
@@ -968,6 +1055,70 @@
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // textBox_cfg_read_dummy
+            // 
+            this.textBox_cfg_read_dummy.Location = new System.Drawing.Point(89, 84);
+            this.textBox_cfg_read_dummy.Name = "textBox_cfg_read_dummy";
+            this.textBox_cfg_read_dummy.Size = new System.Drawing.Size(156, 20);
+            this.textBox_cfg_read_dummy.TabIndex = 20;
+            // 
+            // textBox_cfg_set_dummy
+            // 
+            this.textBox_cfg_set_dummy.Location = new System.Drawing.Point(89, 58);
+            this.textBox_cfg_set_dummy.Name = "textBox_cfg_set_dummy";
+            this.textBox_cfg_set_dummy.Size = new System.Drawing.Size(156, 20);
+            this.textBox_cfg_set_dummy.TabIndex = 19;
+            // 
+            // button_cfg_read_dummy
+            // 
+            this.button_cfg_read_dummy.Location = new System.Drawing.Point(8, 87);
+            this.button_cfg_read_dummy.Name = "button_cfg_read_dummy";
+            this.button_cfg_read_dummy.Size = new System.Drawing.Size(75, 23);
+            this.button_cfg_read_dummy.TabIndex = 18;
+            this.button_cfg_read_dummy.Text = "Config R";
+            this.button_cfg_read_dummy.UseVisualStyleBackColor = true;
+            this.button_cfg_read_dummy.Click += new System.EventHandler(this.button_cfg_read_dummy_Click);
+            // 
+            // button_cfg_set_dummy
+            // 
+            this.button_cfg_set_dummy.Location = new System.Drawing.Point(8, 58);
+            this.button_cfg_set_dummy.Name = "button_cfg_set_dummy";
+            this.button_cfg_set_dummy.Size = new System.Drawing.Size(75, 23);
+            this.button_cfg_set_dummy.TabIndex = 17;
+            this.button_cfg_set_dummy.Text = "Config S";
+            this.button_cfg_set_dummy.UseVisualStyleBackColor = true;
+            this.button_cfg_set_dummy.Click += new System.EventHandler(this.button_cfg_set_dummy_Click);
+            // 
+            // button_heart_test_inject
+            // 
+            this.button_heart_test_inject.Location = new System.Drawing.Point(170, 29);
+            this.button_heart_test_inject.Name = "button_heart_test_inject";
+            this.button_heart_test_inject.Size = new System.Drawing.Size(75, 23);
+            this.button_heart_test_inject.TabIndex = 16;
+            this.button_heart_test_inject.Text = "Inject code";
+            this.button_heart_test_inject.UseVisualStyleBackColor = true;
+            this.button_heart_test_inject.Click += new System.EventHandler(this.button_heart_test_inject_Click);
+            // 
+            // button_heart_test_stop
+            // 
+            this.button_heart_test_stop.Location = new System.Drawing.Point(89, 29);
+            this.button_heart_test_stop.Name = "button_heart_test_stop";
+            this.button_heart_test_stop.Size = new System.Drawing.Size(75, 23);
+            this.button_heart_test_stop.TabIndex = 15;
+            this.button_heart_test_stop.Text = "Stop";
+            this.button_heart_test_stop.UseVisualStyleBackColor = true;
+            this.button_heart_test_stop.Click += new System.EventHandler(this.button_heart_test_stop_Click);
+            // 
+            // button_heart_test_start
+            // 
+            this.button_heart_test_start.Location = new System.Drawing.Point(8, 29);
+            this.button_heart_test_start.Name = "button_heart_test_start";
+            this.button_heart_test_start.Size = new System.Drawing.Size(75, 23);
+            this.button_heart_test_start.TabIndex = 14;
+            this.button_heart_test_start.Text = "Start";
+            this.button_heart_test_start.UseVisualStyleBackColor = true;
+            this.button_heart_test_start.Click += new System.EventHandler(this.button_heart_test_start_Click);
             // 
             // checkBox_debug
             // 
@@ -979,35 +1130,55 @@
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
-            // button_mh4u_eu_mon1_kill
+            // redditThreadToolStripMenuItem
             // 
-            this.button_mh4u_eu_mon1_kill.Location = new System.Drawing.Point(3, 29);
-            this.button_mh4u_eu_mon1_kill.Name = "button_mh4u_eu_mon1_kill";
-            this.button_mh4u_eu_mon1_kill.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_mon1_kill.TabIndex = 4;
-            this.button_mh4u_eu_mon1_kill.Text = "1 Hit Monster 1";
-            this.button_mh4u_eu_mon1_kill.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_mon1_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon1_kill_Click);
+            this.redditThreadToolStripMenuItem.Name = "redditThreadToolStripMenuItem";
+            this.redditThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.redditThreadToolStripMenuItem.Text = "Reddit Thread";
+            this.redditThreadToolStripMenuItem.Click += new System.EventHandler(this.redditThreadToolStripMenuItem_Click);
             // 
-            // button_mh4u_eu_mon2_kill
+            // gbaTempThreadToolStripMenuItem
             // 
-            this.button_mh4u_eu_mon2_kill.Location = new System.Drawing.Point(3, 55);
-            this.button_mh4u_eu_mon2_kill.Name = "button_mh4u_eu_mon2_kill";
-            this.button_mh4u_eu_mon2_kill.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_mon2_kill.TabIndex = 5;
-            this.button_mh4u_eu_mon2_kill.Text = "1 Hit Monster 2";
-            this.button_mh4u_eu_mon2_kill.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_mon2_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon2_kill_Click);
+            this.gbaTempThreadToolStripMenuItem.Name = "gbaTempThreadToolStripMenuItem";
+            this.gbaTempThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.gbaTempThreadToolStripMenuItem.Text = "gbaTemp Thread";
+            this.gbaTempThreadToolStripMenuItem.Click += new System.EventHandler(this.gbaTempThreadToolStripMenuItem_Click);
             // 
-            // button_mh4u_eu_monb_kill
+            // button_heart_test_toggle
             // 
-            this.button_mh4u_eu_monb_kill.Location = new System.Drawing.Point(3, 81);
-            this.button_mh4u_eu_monb_kill.Name = "button_mh4u_eu_monb_kill";
-            this.button_mh4u_eu_monb_kill.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_monb_kill.TabIndex = 6;
-            this.button_mh4u_eu_monb_kill.Text = "1 Hit Both Monsters";
-            this.button_mh4u_eu_monb_kill.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_monb_kill.Click += new System.EventHandler(this.button_mh4u_eu_monb_kill_Click);
+            this.button_heart_test_toggle.Location = new System.Drawing.Point(251, 29);
+            this.button_heart_test_toggle.Name = "button_heart_test_toggle";
+            this.button_heart_test_toggle.Size = new System.Drawing.Size(75, 23);
+            this.button_heart_test_toggle.TabIndex = 21;
+            this.button_heart_test_toggle.Text = "Toggle HB";
+            this.button_heart_test_toggle.UseVisualStyleBackColor = true;
+            this.button_heart_test_toggle.Click += new System.EventHandler(this.button_heart_test_toggle_Click);
+            // 
+            // label_heart_status
+            // 
+            this.label_heart_status.AutoSize = true;
+            this.label_heart_status.Location = new System.Drawing.Point(332, 34);
+            this.label_heart_status.Name = "label_heart_status";
+            this.label_heart_status.Size = new System.Drawing.Size(131, 13);
+            this.label_heart_status.TabIndex = 22;
+            this.label_heart_status.Text = "Heartbeat status: Running";
+            // 
+            // button_mh4u_eu_hb_godmode
+            // 
+            this.button_mh4u_eu_hb_godmode.Location = new System.Drawing.Point(502, 3);
+            this.button_mh4u_eu_hb_godmode.Name = "button_mh4u_eu_hb_godmode";
+            this.button_mh4u_eu_hb_godmode.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_eu_hb_godmode.TabIndex = 7;
+            this.button_mh4u_eu_hb_godmode.Text = "[HB] Health / Stamina";
+            this.button_mh4u_eu_hb_godmode.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_hb_godmode.Click += new System.EventHandler(this.button_mh4u_eu_hb_godmode_Click);
+            // 
+            // clearHeartbeatToolStripMenuItem
+            // 
+            this.clearHeartbeatToolStripMenuItem.Name = "clearHeartbeatToolStripMenuItem";
+            this.clearHeartbeatToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
+            this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
             // 
             // CmdWindow
             // 
@@ -1143,6 +1314,22 @@
         private System.Windows.Forms.Button button_mh4u_eu_mon2_kill;
         private System.Windows.Forms.Button button_mh4u_eu_mon1_kill;
         private System.Windows.Forms.Button button_mh4u_eu_monb_kill;
+        private System.Windows.Forms.Button button_heart_test_inject;
+        private System.Windows.Forms.Button button_heart_test_stop;
+        private System.Windows.Forms.Button button_heart_test_start;
+        private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
+        private System.Windows.Forms.Button button_gateshark_heartbeat;
+        private System.Windows.Forms.TextBox textBox_cfg_read_dummy;
+        private System.Windows.Forms.TextBox textBox_cfg_set_dummy;
+        private System.Windows.Forms.Button button_cfg_read_dummy;
+        private System.Windows.Forms.Button button_cfg_set_dummy;
+        private System.Windows.Forms.ToolStripMenuItem redditThreadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gbaTempThreadToolStripMenuItem;
+        private System.Windows.Forms.Label label_heart_status;
+        private System.Windows.Forms.Button button_heart_test_toggle;
+        private System.Windows.Forms.Button button_mh4u_eu_hb_godmode;
+        private System.Windows.Forms.ToolStripMenuItem clearHeartbeatToolStripMenuItem;
     }
 }
 
