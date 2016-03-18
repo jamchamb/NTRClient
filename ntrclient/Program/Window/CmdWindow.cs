@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,6 +58,9 @@ namespace ntrclient
             // Start Heartbeat
             hbc = new Heartbeat_controller();
             hbc.start();
+
+            // Start Octo
+            Octo.init();
         }
 
         private void CmdWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -294,14 +292,23 @@ namespace ntrclient
         public static int fromLE(int temp, int len)
         {
             byte[] bytes = BitConverter.GetBytes(temp);
+            short le = 0;
+            int ret = 0;
 
             Array.Reverse(bytes);
             if (len == 2)
-                return BitConverter.ToInt16(bytes, 2);
+            {
+                le = BitConverter.ToInt16(bytes, 2);
+                if (le >= 0) return le;
+                ret = le + 0x10000;
+                //MessageBox.Show(String.Format("LE: {0:X}", ret));
+                return ret;
+
+            }
             if (len == 1)
                 return bytes[bytes.Length - 1];
-            else
-                return BitConverter.ToInt32(bytes, 0);
+            
+            return BitConverter.ToInt32(bytes, 0);
         }
 
         public void resetLog()
@@ -662,6 +669,33 @@ namespace ntrclient
             textBox_cfg_read_dummy.Text = Program.sm.ip_address;
         }
 
+        // Little Endian test | Issue #11
+
+        private void button_debug_conv_hex_Click(object sender, EventArgs e)
+        {
+            int v = Convert.ToInt32(textBox_debug_conv_hex.Text, 16);
+
+            textBox_debug_conv_hex_le.Text = String.Format("{0:X}", fromLE(v, (int)numericUpDown_debug_hextest.Value));
+            textBox_debug_conv_dec.Text = String.Format("{0}", v);
+        }
+
+        private void button_debug_conv_hex_le_Click(object sender, EventArgs e)
+        {
+            int v = fromLE(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16), (int)numericUpDown_debug_hextest.Value);
+
+            textBox_debug_conv_hex.Text = String.Format("{0:X}", v);
+            textBox_debug_conv_dec.Text = String.Format("{0}", v);
+        }
+
+        private void button_debug_conv_dec_Click(object sender, EventArgs e)
+        {
+            int v = Convert.ToInt32(textBox_debug_conv_dec.Text, 10);
+
+            textBox_debug_conv_hex.Text = String.Format("{0:X}", v);
+            textBox_debug_conv_hex_le.Text = String.Format("{0:X}", fromLE(v, (int)numericUpDown_debug_hextest.Value));
+
+        }
+
         //________________________________________________________________
 
         // Starting with the Cheats section! 
@@ -921,6 +955,12 @@ namespace ntrclient
                     "10001194 00003200\r\n" +
                     "D2000000 00000000"
                 );
+        }
+
+        private async void button_update_Click(object sender, EventArgs e)
+        {
+            if (await Octo.isUpdate()) MessageBox.Show("A new version has been released!");
+            else MessageBox.Show("No new release found!");
         }
     }
 }

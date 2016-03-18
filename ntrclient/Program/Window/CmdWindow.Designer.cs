@@ -50,11 +50,14 @@ namespace ntrclient
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redditThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbaTempThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_main_basic = new System.Windows.Forms.TabPage();
             this.button_dummy_write_hex_le = new System.Windows.Forms.Button();
@@ -99,6 +102,7 @@ namespace ntrclient
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_mh4u_eu_hb_godmode = new System.Windows.Forms.Button();
             this.button_mh4u_eu_monb_kill = new System.Windows.Forms.Button();
             this.button_mh4u_eu_mon2_kill = new System.Windows.Forms.Button();
             this.button_mh4u_eu_mon1_kill = new System.Windows.Forms.Button();
@@ -120,6 +124,16 @@ namespace ntrclient
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.button_update = new System.Windows.Forms.Button();
+            this.numericUpDown_debug_hextest = new System.Windows.Forms.NumericUpDown();
+            this.textBox_debug_conv_dec = new System.Windows.Forms.TextBox();
+            this.button_debug_conv_dec = new System.Windows.Forms.Button();
+            this.textBox_debug_conv_hex_le = new System.Windows.Forms.TextBox();
+            this.button_debug_conv_hex_le = new System.Windows.Forms.Button();
+            this.textBox_debug_conv_hex = new System.Windows.Forms.TextBox();
+            this.button_debug_conv_hex = new System.Windows.Forms.Button();
+            this.label_heart_status = new System.Windows.Forms.Label();
+            this.button_heart_test_toggle = new System.Windows.Forms.Button();
             this.textBox_cfg_read_dummy = new System.Windows.Forms.TextBox();
             this.textBox_cfg_set_dummy = new System.Windows.Forms.TextBox();
             this.button_cfg_read_dummy = new System.Windows.Forms.Button();
@@ -128,12 +142,6 @@ namespace ntrclient
             this.button_heart_test_stop = new System.Windows.Forms.Button();
             this.button_heart_test_start = new System.Windows.Forms.Button();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
-            this.redditThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gbaTempThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button_heart_test_toggle = new System.Windows.Forms.Button();
-            this.label_heart_status = new System.Windows.Forms.Label();
-            this.button_mh4u_eu_hb_godmode = new System.Windows.Forms.Button();
-            this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -149,6 +157,7 @@ namespace ntrclient
             this.tabPage7.SuspendLayout();
             this.tabPage_main_gateshark.SuspendLayout();
             this.tabPage_main_debug.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -310,6 +319,20 @@ namespace ntrclient
             this.githubRepositoryToolStripMenuItem.Text = "Github repository";
             this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.githubRepositoryToolStripMenuItem_Click);
             // 
+            // redditThreadToolStripMenuItem
+            // 
+            this.redditThreadToolStripMenuItem.Name = "redditThreadToolStripMenuItem";
+            this.redditThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.redditThreadToolStripMenuItem.Text = "Reddit Thread";
+            this.redditThreadToolStripMenuItem.Click += new System.EventHandler(this.redditThreadToolStripMenuItem_Click);
+            // 
+            // gbaTempThreadToolStripMenuItem
+            // 
+            this.gbaTempThreadToolStripMenuItem.Name = "gbaTempThreadToolStripMenuItem";
+            this.gbaTempThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.gbaTempThreadToolStripMenuItem.Text = "gbaTemp Thread";
+            this.gbaTempThreadToolStripMenuItem.Click += new System.EventHandler(this.gbaTempThreadToolStripMenuItem_Click);
+            // 
             // versionToolStripMenuItem
             // 
             this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -322,13 +345,13 @@ namespace ntrclient
             // VersionNumberToolStripMenuItem
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
-            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.VersionNumberToolStripMenuItem.Text = "1.4";
             // 
             // VersionExtraToolStripMenuItem
             // 
             this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
-            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.VersionExtraToolStripMenuItem.Text = "Public Release";
             // 
             // commandsToolStripMenuItem
@@ -343,9 +366,16 @@ namespace ntrclient
             // clearLogToolStripMenuItem
             // 
             this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.clearLogToolStripMenuItem.Text = "Clear log";
             this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
+            // 
+            // clearHeartbeatToolStripMenuItem
+            // 
+            this.clearHeartbeatToolStripMenuItem.Name = "clearHeartbeatToolStripMenuItem";
+            this.clearHeartbeatToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
+            this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
             // 
             // tabControl_main
             // 
@@ -828,6 +858,16 @@ namespace ntrclient
             this.tabPage1.Text = "MH4U";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button_mh4u_eu_hb_godmode
+            // 
+            this.button_mh4u_eu_hb_godmode.Location = new System.Drawing.Point(502, 3);
+            this.button_mh4u_eu_hb_godmode.Name = "button_mh4u_eu_hb_godmode";
+            this.button_mh4u_eu_hb_godmode.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_eu_hb_godmode.TabIndex = 7;
+            this.button_mh4u_eu_hb_godmode.Text = "[HB] Health / Stamina";
+            this.button_mh4u_eu_hb_godmode.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_hb_godmode.Click += new System.EventHandler(this.button_mh4u_eu_hb_godmode_Click);
+            // 
             // button_mh4u_eu_monb_kill
             // 
             this.button_mh4u_eu_monb_kill.Location = new System.Drawing.Point(3, 81);
@@ -1038,6 +1078,14 @@ namespace ntrclient
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.button_update);
+            this.tabPage_main_debug.Controls.Add(this.numericUpDown_debug_hextest);
+            this.tabPage_main_debug.Controls.Add(this.textBox_debug_conv_dec);
+            this.tabPage_main_debug.Controls.Add(this.button_debug_conv_dec);
+            this.tabPage_main_debug.Controls.Add(this.textBox_debug_conv_hex_le);
+            this.tabPage_main_debug.Controls.Add(this.button_debug_conv_hex_le);
+            this.tabPage_main_debug.Controls.Add(this.textBox_debug_conv_hex);
+            this.tabPage_main_debug.Controls.Add(this.button_debug_conv_hex);
             this.tabPage_main_debug.Controls.Add(this.label_heart_status);
             this.tabPage_main_debug.Controls.Add(this.button_heart_test_toggle);
             this.tabPage_main_debug.Controls.Add(this.textBox_cfg_read_dummy);
@@ -1055,6 +1103,108 @@ namespace ntrclient
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // button_update
+            // 
+            this.button_update.Location = new System.Drawing.Point(170, 3);
+            this.button_update.Name = "button_update";
+            this.button_update.Size = new System.Drawing.Size(156, 23);
+            this.button_update.TabIndex = 30;
+            this.button_update.Text = "Check for update";
+            this.button_update.UseVisualStyleBackColor = true;
+            this.button_update.Click += new System.EventHandler(this.button_update_Click);
+            // 
+            // numericUpDown_debug_hextest
+            // 
+            this.numericUpDown_debug_hextest.Location = new System.Drawing.Point(251, 110);
+            this.numericUpDown_debug_hextest.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDown_debug_hextest.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_debug_hextest.Name = "numericUpDown_debug_hextest";
+            this.numericUpDown_debug_hextest.Size = new System.Drawing.Size(75, 20);
+            this.numericUpDown_debug_hextest.TabIndex = 29;
+            this.numericUpDown_debug_hextest.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // textBox_debug_conv_dec
+            // 
+            this.textBox_debug_conv_dec.Location = new System.Drawing.Point(89, 162);
+            this.textBox_debug_conv_dec.Name = "textBox_debug_conv_dec";
+            this.textBox_debug_conv_dec.Size = new System.Drawing.Size(156, 20);
+            this.textBox_debug_conv_dec.TabIndex = 28;
+            // 
+            // button_debug_conv_dec
+            // 
+            this.button_debug_conv_dec.Location = new System.Drawing.Point(8, 162);
+            this.button_debug_conv_dec.Name = "button_debug_conv_dec";
+            this.button_debug_conv_dec.Size = new System.Drawing.Size(75, 23);
+            this.button_debug_conv_dec.TabIndex = 27;
+            this.button_debug_conv_dec.Text = "DEC";
+            this.button_debug_conv_dec.UseVisualStyleBackColor = true;
+            this.button_debug_conv_dec.Click += new System.EventHandler(this.button_debug_conv_dec_Click);
+            // 
+            // textBox_debug_conv_hex_le
+            // 
+            this.textBox_debug_conv_hex_le.Location = new System.Drawing.Point(89, 136);
+            this.textBox_debug_conv_hex_le.Name = "textBox_debug_conv_hex_le";
+            this.textBox_debug_conv_hex_le.Size = new System.Drawing.Size(156, 20);
+            this.textBox_debug_conv_hex_le.TabIndex = 26;
+            // 
+            // button_debug_conv_hex_le
+            // 
+            this.button_debug_conv_hex_le.Location = new System.Drawing.Point(8, 139);
+            this.button_debug_conv_hex_le.Name = "button_debug_conv_hex_le";
+            this.button_debug_conv_hex_le.Size = new System.Drawing.Size(75, 23);
+            this.button_debug_conv_hex_le.TabIndex = 25;
+            this.button_debug_conv_hex_le.Text = "HEX LE";
+            this.button_debug_conv_hex_le.UseVisualStyleBackColor = true;
+            this.button_debug_conv_hex_le.Click += new System.EventHandler(this.button_debug_conv_hex_le_Click);
+            // 
+            // textBox_debug_conv_hex
+            // 
+            this.textBox_debug_conv_hex.Location = new System.Drawing.Point(89, 110);
+            this.textBox_debug_conv_hex.Name = "textBox_debug_conv_hex";
+            this.textBox_debug_conv_hex.Size = new System.Drawing.Size(156, 20);
+            this.textBox_debug_conv_hex.TabIndex = 24;
+            // 
+            // button_debug_conv_hex
+            // 
+            this.button_debug_conv_hex.Location = new System.Drawing.Point(8, 113);
+            this.button_debug_conv_hex.Name = "button_debug_conv_hex";
+            this.button_debug_conv_hex.Size = new System.Drawing.Size(75, 23);
+            this.button_debug_conv_hex.TabIndex = 23;
+            this.button_debug_conv_hex.Text = "HEX";
+            this.button_debug_conv_hex.UseVisualStyleBackColor = true;
+            this.button_debug_conv_hex.Click += new System.EventHandler(this.button_debug_conv_hex_Click);
+            // 
+            // label_heart_status
+            // 
+            this.label_heart_status.AutoSize = true;
+            this.label_heart_status.Location = new System.Drawing.Point(332, 34);
+            this.label_heart_status.Name = "label_heart_status";
+            this.label_heart_status.Size = new System.Drawing.Size(131, 13);
+            this.label_heart_status.TabIndex = 22;
+            this.label_heart_status.Text = "Heartbeat status: Running";
+            // 
+            // button_heart_test_toggle
+            // 
+            this.button_heart_test_toggle.Location = new System.Drawing.Point(251, 29);
+            this.button_heart_test_toggle.Name = "button_heart_test_toggle";
+            this.button_heart_test_toggle.Size = new System.Drawing.Size(75, 23);
+            this.button_heart_test_toggle.TabIndex = 21;
+            this.button_heart_test_toggle.Text = "Toggle HB";
+            this.button_heart_test_toggle.UseVisualStyleBackColor = true;
+            this.button_heart_test_toggle.Click += new System.EventHandler(this.button_heart_test_toggle_Click);
             // 
             // textBox_cfg_read_dummy
             // 
@@ -1130,56 +1280,6 @@ namespace ntrclient
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
-            // redditThreadToolStripMenuItem
-            // 
-            this.redditThreadToolStripMenuItem.Name = "redditThreadToolStripMenuItem";
-            this.redditThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.redditThreadToolStripMenuItem.Text = "Reddit Thread";
-            this.redditThreadToolStripMenuItem.Click += new System.EventHandler(this.redditThreadToolStripMenuItem_Click);
-            // 
-            // gbaTempThreadToolStripMenuItem
-            // 
-            this.gbaTempThreadToolStripMenuItem.Name = "gbaTempThreadToolStripMenuItem";
-            this.gbaTempThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.gbaTempThreadToolStripMenuItem.Text = "gbaTemp Thread";
-            this.gbaTempThreadToolStripMenuItem.Click += new System.EventHandler(this.gbaTempThreadToolStripMenuItem_Click);
-            // 
-            // button_heart_test_toggle
-            // 
-            this.button_heart_test_toggle.Location = new System.Drawing.Point(251, 29);
-            this.button_heart_test_toggle.Name = "button_heart_test_toggle";
-            this.button_heart_test_toggle.Size = new System.Drawing.Size(75, 23);
-            this.button_heart_test_toggle.TabIndex = 21;
-            this.button_heart_test_toggle.Text = "Toggle HB";
-            this.button_heart_test_toggle.UseVisualStyleBackColor = true;
-            this.button_heart_test_toggle.Click += new System.EventHandler(this.button_heart_test_toggle_Click);
-            // 
-            // label_heart_status
-            // 
-            this.label_heart_status.AutoSize = true;
-            this.label_heart_status.Location = new System.Drawing.Point(332, 34);
-            this.label_heart_status.Name = "label_heart_status";
-            this.label_heart_status.Size = new System.Drawing.Size(131, 13);
-            this.label_heart_status.TabIndex = 22;
-            this.label_heart_status.Text = "Heartbeat status: Running";
-            // 
-            // button_mh4u_eu_hb_godmode
-            // 
-            this.button_mh4u_eu_hb_godmode.Location = new System.Drawing.Point(502, 3);
-            this.button_mh4u_eu_hb_godmode.Name = "button_mh4u_eu_hb_godmode";
-            this.button_mh4u_eu_hb_godmode.Size = new System.Drawing.Size(150, 23);
-            this.button_mh4u_eu_hb_godmode.TabIndex = 7;
-            this.button_mh4u_eu_hb_godmode.Text = "[HB] Health / Stamina";
-            this.button_mh4u_eu_hb_godmode.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_hb_godmode.Click += new System.EventHandler(this.button_mh4u_eu_hb_godmode_Click);
-            // 
-            // clearHeartbeatToolStripMenuItem
-            // 
-            this.clearHeartbeatToolStripMenuItem.Name = "clearHeartbeatToolStripMenuItem";
-            this.clearHeartbeatToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
-            this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
-            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1221,6 +1321,7 @@ namespace ntrclient
             this.tabPage_main_gateshark.PerformLayout();
             this.tabPage_main_debug.ResumeLayout(false);
             this.tabPage_main_debug.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1330,6 +1431,14 @@ namespace ntrclient
         private System.Windows.Forms.Button button_heart_test_toggle;
         private System.Windows.Forms.Button button_mh4u_eu_hb_godmode;
         private System.Windows.Forms.ToolStripMenuItem clearHeartbeatToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox_debug_conv_dec;
+        private System.Windows.Forms.Button button_debug_conv_dec;
+        private System.Windows.Forms.TextBox textBox_debug_conv_hex_le;
+        private System.Windows.Forms.Button button_debug_conv_hex_le;
+        private System.Windows.Forms.TextBox textBox_debug_conv_hex;
+        private System.Windows.Forms.Button button_debug_conv_hex;
+        private System.Windows.Forms.NumericUpDown numericUpDown_debug_hextest;
+        private System.Windows.Forms.Button button_update;
     }
 }
 
