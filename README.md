@@ -4,6 +4,7 @@ Reddit Link: https://www.reddit.com/r/3dshacks/comments/45iz4o/ntr_improved_ntr_
 
 # Dependencies
 IronPython: http://ironpython.net/
+Octokit.net: https://github.com/octokit/octokit.net
 
 # License
 GPLV2
