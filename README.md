@@ -3,7 +3,7 @@ the NTR Debugger.
 Reddit Link: https://www.reddit.com/r/3dshacks/comments/45iz4o/ntr_improved_ntr_debugger_client_with_gateshark/
 
 # Dependencies
-IronPython: http://ironpython.net/
+IronPython: http://ironpython.net/  
 Octokit.net: https://github.com/octokit/octokit.net
 
 # License
