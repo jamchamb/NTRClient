@@ -105,7 +105,10 @@ namespace ntrclient {
 
                             if (logMsg.StartsWith("valid memregions:")) { 
                                 // Setting memregions 
-                                Program.gCmdWindow.txt_memlayout.Invoke(new CmdWindow.setMemregionsCallback(Program.gCmdWindow.setMemregions), new object[] { logMsg });
+                                Program.gCmdWindow.textBox_memlayout.Invoke(new CmdWindow.setMemregionsCallback(Program.gCmdWindow.setMemregions), new object[] { logMsg });
+                            } else if (logMsg.StartsWith("pid: "))
+                            {
+                                Program.gCmdWindow.textBox_processes.Invoke(new CmdWindow.setProcessesCallback(Program.gCmdWindow.setProcesses), new object[] { logMsg });
                             }
                             // END
 
@@ -123,9 +126,10 @@ namespace ntrclient {
 					}
 
 				}
-				catch (Exception) {
-                    //log(e.Message);
-                    log("An error occured!");
+				catch (Exception e) {
+                    log(e.Message);
+                    log(e.StackTrace);
+                    //log("An error occured!");
                     break;
 				}
 			}

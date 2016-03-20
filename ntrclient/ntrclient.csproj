@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Program\CS\GitHub\Octo.cs" />
     <Compile Include="Program\CS\Heartbeat.cs" />
+    <Compile Include="Program\CS\NTRProcess.cs" />
     <Compile Include="Program\Window\AsmEditWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -129,7 +129,10 @@ V1.4
   - Refractoring the entire CmdWindow Code
   - Heartbeat codes [HB]
   - Saving the last IP address used
-
+  - Reworked the Basic tab
+  - Made process PIDs more user-friendly
+  - Moved the debug memregion / processes textbox to a new tab
+  - Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience™
 </value>
   </data>
 </root>

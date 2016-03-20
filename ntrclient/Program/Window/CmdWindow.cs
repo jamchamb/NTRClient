@@ -24,6 +24,8 @@ namespace ntrclient
             }
             toolStripStatusLabel1.Text = text;
         }
+
+        bool lookedForUpdate = false;
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
@@ -39,10 +41,34 @@ namespace ntrclient
                         label_heart_status.Text = "Heartbeat status: OFFLINE";
                 } else
                     label_heart_status.Text = "Heartbeat status: OFFLINE";
+
+                // Update check
+                if (lookedForUpdate == false)
+                {
+                    lookForUpdate();
+                }
             }
             catch (Exception)
             {
             }
+        }
+
+        bool updateAvailable = false;
+        private async void lookForUpdate()
+        {
+            lookedForUpdate = true;
+            if (await Octo.isUpdate())
+            {
+                MessageBox.Show("A new version has been released!");
+                checkingUpdateToolStripMenuItem.Text = "Update available!";
+                updateAvailable = true;
+            }
+            else {
+                //MessageBox.Show("No new release found!");
+                updateAvailable = false;
+                checkingUpdateToolStripMenuItem.Text = "No new Update!";
+            }
+
         }
 
         private void CmdWindow_Load(object sender, EventArgs e)
@@ -99,8 +125,6 @@ namespace ntrclient
                 l += "\r\n";
             }
 
-            // Test for multithreading. This is horrible
-
             if (txtLog.InvokeRequired)
             {
                 txtLog.Invoke(new delegate_logAppend(txtLog.AppendText), l);
@@ -136,13 +160,13 @@ namespace ntrclient
             {
                 memlayout = memlayout.Replace("\n", "\r\n");
             }
-            txt_memlayout.Text = memlayout;
+            textBox_memlayout.Text = memlayout;
         }
         public delegate void setMemregionsCallback(String memlayout);
 
         public void generateMemregions()
         {
-            String layout = txt_memlayout.Text;
+            String layout = textBox_memlayout.Text;
             Regex regex = new Regex("\r\n");
             String[] lines = regex.Split(layout);
 
@@ -173,8 +197,190 @@ namespace ntrclient
 
             comboBox_memregions.SelectedIndex = 0;
         }
+        
+        private void textBox_memlayout_TextChanged(object sender, EventArgs e)
+        {
+            generateMemregions();
+        }
 
         // END of Memregions
+
+        //________________________________________________________________
+
+        // Processes
+        
+        public List<NTRProcess> processes = new List<NTRProcess>();
+
+        public void setProcesses(String p)
+        {
+            if (!p.Contains("\r\n"))
+            {
+                p = p.Replace("\n", "\r\n");
+            }
+            textBox_processes.Text = p;
+        }
+        public delegate void setProcessesCallback(String p);
+        
+        private void textBox_processes_TextChanged(object sender, EventArgs e)
+        {
+            generateProcesses();
+        }
+
+        private void generateProcesses()
+        {
+            String layout = textBox_processes.Text;
+            Regex regex = new Regex("\r\n");
+            String[] lines = regex.Split(layout);
+            
+
+            processes.Clear();
+            comboBox_processes.Items.Clear();
+
+            foreach (String p in lines)
+            {
+                String[] pParts = p.Split(' ');
+                //MessageBox.Show(p);
+                if (pParts.Length >= 8)
+                {
+                    int len = pParts.Length;
+                    if (
+                        pParts[0] == "pid:" &&
+                        pParts[2] == "pname:" &&
+                        pParts[len-4] == "tid:" &&
+                        pParts[len-2] == "kpobj:"
+                    )
+                    {
+                        NTRProcess np = new NTRProcess(p);
+                        processes.Add(np);
+                        Int32 pid = np.pid;
+                        String name = np.name;
+                        comboBox_processes.Items.Add(String.Format("{0} | {1:X} : {2}", checkSystem(name) ? "SYSTEM" : "GAME  ", pid, name));
+                    } 
+                }
+                comboBox_processes.SelectedIndex = 0;
+            }
+        }
+
+        private static bool checkSystem(String n)
+        {
+            String[] sys =
+            {
+                "fs",
+                "loader",
+                "pm",
+                "sm",
+                "pxi",
+                "ns",
+                "ptm",
+                "cfg",
+                "gpio",
+                "i2c",
+                "mcu",
+                "pdn",
+                "spi",
+                "ps",
+                "ps",
+                "ErrDisp",
+                "menu",
+                "hid",
+                "codec",
+                "dsp",
+                "am",
+                "gsp",
+                "qtm",
+                "camera",
+                "csnd",
+                "mic",
+                "ir",
+                "nwm",
+                "socket",
+                "http",
+                "ssl",
+                "cecd",
+                "friends",
+                "ac",
+                "boss",
+                "act",
+                "news",
+                "ndm",
+                "nim",
+                "dlp",
+                "ro",
+                "nfc",
+                "swkbd"
+            };
+
+            foreach (String sysTitle in sys)
+            {
+                if (sysTitle == n) return true;
+            }
+
+            return false;
+        }
+
+
+        public delegate object delComboBox_item(ComboBox c);
+        public object getComboItem(ComboBox c)
+        {
+            return c.SelectedItem;
+        }
+
+        public delegate object delComboBox_index(ComboBox c);
+        public object getComboIndex(ComboBox c)
+        {
+            return c.SelectedIndex;
+        }
+
+        /*
+        
+            if (txtLog.InvokeRequired)
+            {
+                txtLog.Invoke(new delegate_logAppend(txtLog.AppendText), l);
+            }
+            else
+            {
+                txtLog.AppendText(l);
+            }
+
+        */
+
+        public int getPID()
+        {
+            // string selectedText = this.ComboBox.GetItemText(this.ComboBox.SelectedItem);
+            if (comboBox_processes.InvokeRequired)
+            {
+                var o = comboBox_processes.Invoke(new delComboBox_item(getComboItem), comboBox_processes);
+                if (o != null)
+                {
+                    String s = o.ToString();
+                    String[] s_ = s.Split(' ');
+                    int len = s_.Length;
+
+                    int pid = Convert.ToInt32(s_[len - 3], 16);
+
+                    return pid;
+                }
+                else return 0x7FFFFFFF;
+
+            } else
+            {
+                if (getComboItem(comboBox_processes) != null)
+                {
+                    String s = this.comboBox_processes.SelectedItem.ToString();
+                    //String s = comboBox_processes.SelectedText;
+                    String[] s_ = s.Split(' ');
+                    int len = s_.Length;
+
+                    int pid = Convert.ToInt32(s_[len - 3], 16);
+
+                    return pid;
+                }
+                else return 0x7FFFFFFF;
+            }
+            return 0x7FFFFFFF;
+        }
+
+        // END of Processes
 
         //________________________________________________________________
 
@@ -196,7 +402,7 @@ namespace ntrclient
             if (size < 1)
                 size = 1;
 
-            runCmd(String.Format("read(0x{0:X}, 0x{1:X}, pid=0x{2})", addr, size, textBox_pid.Text));
+            runCmd(String.Format("read(0x{0:X}, 0x{1:X}, pid=0x{2:X})", addr, size, getPID()));
             int retry = 0;
             while (read_value == -1 && retry < 300000)
             {
@@ -371,19 +577,19 @@ namespace ntrclient
         {
             String data = generateHexChunk(value, length);
 
-            return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
+            return String.Format("write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, getPID());
         }
 
         public String generateWriteString(uint addr, uint value, int length)
         {
             String data = generateHexChunk(value, length);
-            return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
+            return String.Format("write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, getPID());
         }
 
         public String generateWriteString(int addr, uint value, int length)
         {
             String data = generateHexChunk(value, length);
-            return String.Format("write(0x{0:X}, {1}, pid=0x{2})", addr, data, textBox_pid.Text);
+            return String.Format("write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, getPID());
         }
 
         // END of Utilities
@@ -476,6 +682,11 @@ namespace ntrclient
         {
             Browser.openURL("http://gbatemp.net/threads/modified-ntr-client-with-gateshark-support.418294/");
         }
+        
+        private void checkingUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Browser.openURL("https://github.com/imthe666st/NTRClient/releases");
+        }
 
         // END of ToolStrip
 
@@ -499,7 +710,7 @@ namespace ntrclient
         {
             // I'll edit this method later.
             // Don't change this yet! 
-            String memlayout = runCmd("memlayout(pid=0x" + textBox_pid.Text + ")");
+            String memlayout = runCmd(String.Format("memlayout(pid=0x{0:X})", getPID()));
 
         }
 
@@ -512,17 +723,12 @@ namespace ntrclient
         {
             String filename = textBox_dump_file.Text;
             Memregion mem = memregions[comboBox_memregions.SelectedIndex];
-            runCmd(String.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3})", mem.start, mem.length, filename, textBox_pid.Text));
+            runCmd(String.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.start, mem.length, filename, getPID()));
         }
 
         private void button_disconnect_Click(object sender, EventArgs e)
         {
             runCmd("disconnect()");
-        }
-
-        private void txt_memlayout_TextChanged(object sender, EventArgs e)
-        {
-            generateMemregions();
         }
 
         private void button_dummy_read_Click(object sender, EventArgs e)
@@ -696,6 +902,24 @@ namespace ntrclient
 
         }
 
+        // Update tests
+
+        private void button_update_Click(object sender, EventArgs e)
+        {
+            lookForUpdate();
+        }
+
+        private void button_pTest_Click(object sender, EventArgs e)
+        {
+            String p = "pid: 0x00000008, pname:     gpio, tid: 0004013000001b02, kpobj: fff76fb0";
+            NTRProcess np = new NTRProcess(p);
+        }
+
+        private async void button_debug_rTime_Click(object sender, EventArgs e)
+        {
+            textBox_rTime.Text = "" + await Octo.getLastUpdate();
+        }
+
         //________________________________________________________________
 
         // Starting with the Cheats section! 
@@ -854,7 +1078,7 @@ namespace ntrclient
             };
             foreach (String a in addr)
             {
-                runCmd(String.Format("write({0}, ({1}), pid=0x{2})", a, wCmd, textBox_pid.Text));
+                runCmd(String.Format("write({0}, ({1}), pid=0x{2:X})", a, wCmd, getPID()));
             }
         }
 
@@ -955,12 +1179,6 @@ namespace ntrclient
                     "10001194 00003200\r\n" +
                     "D2000000 00000000"
                 );
-        }
-
-        private async void button_update_Click(object sender, EventArgs e)
-        {
-            if (await Octo.isUpdate()) MessageBox.Show("A new version has been released!");
-            else MessageBox.Show("No new release found!");
         }
     }
 }

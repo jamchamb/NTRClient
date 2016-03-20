@@ -55,11 +55,14 @@ namespace ntrclient
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.VersionExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.checkingUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_main_basic = new System.Windows.Forms.TabPage();
+            this.comboBox_processes = new System.Windows.Forms.ComboBox();
             this.button_dummy_write_hex_le = new System.Windows.Forms.Button();
             this.textBox_dummy_value_hex_le = new System.Windows.Forms.TextBox();
             this.button_dummy_write_dec = new System.Windows.Forms.Button();
@@ -71,13 +74,11 @@ namespace ntrclient
             this.button_dummy_read = new System.Windows.Forms.Button();
             this.comboBox_memregions = new System.Windows.Forms.ComboBox();
             this.button_disconnect = new System.Windows.Forms.Button();
-            this.txt_memlayout = new System.Windows.Forms.TextBox();
             this.textBox_dump_file = new System.Windows.Forms.TextBox();
             this.button_dump = new System.Windows.Forms.Button();
             this.button_hello = new System.Windows.Forms.Button();
             this.button_memlayout = new System.Windows.Forms.Button();
             this.button_processes = new System.Windows.Forms.Button();
-            this.textBox_pid = new System.Windows.Forms.TextBox();
             this.button_Connect = new System.Windows.Forms.Button();
             this.textBox_Ip = new System.Windows.Forms.TextBox();
             this.tabPage_main_eu = new System.Windows.Forms.TabPage();
@@ -124,6 +125,7 @@ namespace ntrclient
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.button_pTest = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
             this.numericUpDown_debug_hextest = new System.Windows.Forms.NumericUpDown();
             this.textBox_debug_conv_dec = new System.Windows.Forms.TextBox();
@@ -142,6 +144,11 @@ namespace ntrclient
             this.button_heart_test_stop = new System.Windows.Forms.Button();
             this.button_heart_test_start = new System.Windows.Forms.Button();
             this.checkBox_debug = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox_processes = new System.Windows.Forms.TextBox();
+            this.textBox_memlayout = new System.Windows.Forms.TextBox();
+            this.textBox_rTime = new System.Windows.Forms.TextBox();
+            this.button_debug_rTime = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -158,6 +165,7 @@ namespace ntrclient
             this.tabPage_main_gateshark.SuspendLayout();
             this.tabPage_main_debug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -337,7 +345,9 @@ namespace ntrclient
             // 
             this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.VersionNumberToolStripMenuItem,
-            this.VersionExtraToolStripMenuItem});
+            this.VersionExtraToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.checkingUpdateToolStripMenuItem});
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
             this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.versionToolStripMenuItem.Text = "Version";
@@ -345,14 +355,26 @@ namespace ntrclient
             // VersionNumberToolStripMenuItem
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
-            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.VersionNumberToolStripMenuItem.Text = "1.4";
             // 
             // VersionExtraToolStripMenuItem
             // 
             this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
-            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.VersionExtraToolStripMenuItem.Text = "Public Release";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(170, 6);
+            // 
+            // checkingUpdateToolStripMenuItem
+            // 
+            this.checkingUpdateToolStripMenuItem.Name = "checkingUpdateToolStripMenuItem";
+            this.checkingUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkingUpdateToolStripMenuItem.Text = "Checking update...";
+            this.checkingUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkingUpdateToolStripMenuItem_Click);
             // 
             // commandsToolStripMenuItem
             // 
@@ -385,6 +407,7 @@ namespace ntrclient
             this.tabControl_main.Controls.Add(this.tabPage_main_jp);
             this.tabControl_main.Controls.Add(this.tabPage_main_gateshark);
             this.tabControl_main.Controls.Add(this.tabPage_main_debug);
+            this.tabControl_main.Controls.Add(this.tabPage3);
             this.tabControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_main.Location = new System.Drawing.Point(0, 454);
             this.tabControl_main.Name = "tabControl_main";
@@ -394,6 +417,7 @@ namespace ntrclient
             // 
             // tabPage_main_basic
             // 
+            this.tabPage_main_basic.Controls.Add(this.comboBox_processes);
             this.tabPage_main_basic.Controls.Add(this.button_dummy_write_hex_le);
             this.tabPage_main_basic.Controls.Add(this.textBox_dummy_value_hex_le);
             this.tabPage_main_basic.Controls.Add(this.button_dummy_write_dec);
@@ -405,13 +429,11 @@ namespace ntrclient
             this.tabPage_main_basic.Controls.Add(this.button_dummy_read);
             this.tabPage_main_basic.Controls.Add(this.comboBox_memregions);
             this.tabPage_main_basic.Controls.Add(this.button_disconnect);
-            this.tabPage_main_basic.Controls.Add(this.txt_memlayout);
             this.tabPage_main_basic.Controls.Add(this.textBox_dump_file);
             this.tabPage_main_basic.Controls.Add(this.button_dump);
             this.tabPage_main_basic.Controls.Add(this.button_hello);
             this.tabPage_main_basic.Controls.Add(this.button_memlayout);
             this.tabPage_main_basic.Controls.Add(this.button_processes);
-            this.tabPage_main_basic.Controls.Add(this.textBox_pid);
             this.tabPage_main_basic.Controls.Add(this.button_Connect);
             this.tabPage_main_basic.Controls.Add(this.textBox_Ip);
             this.tabPage_main_basic.Location = new System.Drawing.Point(4, 22);
@@ -422,9 +444,19 @@ namespace ntrclient
             this.tabPage_main_basic.Text = "Basic";
             this.tabPage_main_basic.UseVisualStyleBackColor = true;
             // 
+            // comboBox_processes
+            // 
+            this.comboBox_processes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_processes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_processes.FormattingEnabled = true;
+            this.comboBox_processes.Location = new System.Drawing.Point(8, 32);
+            this.comboBox_processes.Name = "comboBox_processes";
+            this.comboBox_processes.Size = new System.Drawing.Size(306, 21);
+            this.comboBox_processes.TabIndex = 23;
+            // 
             // button_dummy_write_hex_le
             // 
-            this.button_dummy_write_hex_le.Location = new System.Drawing.Point(476, 135);
+            this.button_dummy_write_hex_le.Location = new System.Drawing.Point(164, 137);
             this.button_dummy_write_hex_le.Name = "button_dummy_write_hex_le";
             this.button_dummy_write_hex_le.Size = new System.Drawing.Size(150, 20);
             this.button_dummy_write_hex_le.TabIndex = 22;
@@ -434,7 +466,7 @@ namespace ntrclient
             // 
             // textBox_dummy_value_hex_le
             // 
-            this.textBox_dummy_value_hex_le.Location = new System.Drawing.Point(320, 136);
+            this.textBox_dummy_value_hex_le.Location = new System.Drawing.Point(8, 138);
             this.textBox_dummy_value_hex_le.Name = "textBox_dummy_value_hex_le";
             this.textBox_dummy_value_hex_le.Size = new System.Drawing.Size(150, 20);
             this.textBox_dummy_value_hex_le.TabIndex = 21;
@@ -442,7 +474,7 @@ namespace ntrclient
             // 
             // button_dummy_write_dec
             // 
-            this.button_dummy_write_dec.Location = new System.Drawing.Point(476, 161);
+            this.button_dummy_write_dec.Location = new System.Drawing.Point(164, 163);
             this.button_dummy_write_dec.Name = "button_dummy_write_dec";
             this.button_dummy_write_dec.Size = new System.Drawing.Size(150, 20);
             this.button_dummy_write_dec.TabIndex = 20;
@@ -452,7 +484,7 @@ namespace ntrclient
             // 
             // textBox_dummy_value_dec
             // 
-            this.textBox_dummy_value_dec.Location = new System.Drawing.Point(320, 162);
+            this.textBox_dummy_value_dec.Location = new System.Drawing.Point(8, 164);
             this.textBox_dummy_value_dec.Name = "textBox_dummy_value_dec";
             this.textBox_dummy_value_dec.Size = new System.Drawing.Size(150, 20);
             this.textBox_dummy_value_dec.TabIndex = 19;
@@ -460,7 +492,7 @@ namespace ntrclient
             // 
             // button_dummy_write_hex
             // 
-            this.button_dummy_write_hex.Location = new System.Drawing.Point(476, 109);
+            this.button_dummy_write_hex.Location = new System.Drawing.Point(164, 111);
             this.button_dummy_write_hex.Name = "button_dummy_write_hex";
             this.button_dummy_write_hex.Size = new System.Drawing.Size(150, 20);
             this.button_dummy_write_hex.TabIndex = 18;
@@ -470,7 +502,7 @@ namespace ntrclient
             // 
             // textBox_dummy_value_hex
             // 
-            this.textBox_dummy_value_hex.Location = new System.Drawing.Point(320, 110);
+            this.textBox_dummy_value_hex.Location = new System.Drawing.Point(8, 112);
             this.textBox_dummy_value_hex.Name = "textBox_dummy_value_hex";
             this.textBox_dummy_value_hex.Size = new System.Drawing.Size(150, 20);
             this.textBox_dummy_value_hex.TabIndex = 17;
@@ -478,7 +510,7 @@ namespace ntrclient
             // 
             // numericUpDown_dummy_length
             // 
-            this.numericUpDown_dummy_length.Location = new System.Drawing.Point(632, 83);
+            this.numericUpDown_dummy_length.Location = new System.Drawing.Point(320, 85);
             this.numericUpDown_dummy_length.Maximum = new decimal(new int[] {
             4,
             0,
@@ -490,7 +522,7 @@ namespace ntrclient
             0,
             0});
             this.numericUpDown_dummy_length.Name = "numericUpDown_dummy_length";
-            this.numericUpDown_dummy_length.Size = new System.Drawing.Size(32, 20);
+            this.numericUpDown_dummy_length.Size = new System.Drawing.Size(150, 20);
             this.numericUpDown_dummy_length.TabIndex = 16;
             this.numericUpDown_dummy_length.Value = new decimal(new int[] {
             4,
@@ -500,7 +532,7 @@ namespace ntrclient
             // 
             // textBox_dummy_addr
             // 
-            this.textBox_dummy_addr.Location = new System.Drawing.Point(320, 84);
+            this.textBox_dummy_addr.Location = new System.Drawing.Point(8, 86);
             this.textBox_dummy_addr.Name = "textBox_dummy_addr";
             this.textBox_dummy_addr.Size = new System.Drawing.Size(150, 20);
             this.textBox_dummy_addr.TabIndex = 15;
@@ -508,7 +540,7 @@ namespace ntrclient
             // 
             // button_dummy_read
             // 
-            this.button_dummy_read.Location = new System.Drawing.Point(476, 83);
+            this.button_dummy_read.Location = new System.Drawing.Point(164, 85);
             this.button_dummy_read.Name = "button_dummy_read";
             this.button_dummy_read.Size = new System.Drawing.Size(150, 20);
             this.button_dummy_read.TabIndex = 14;
@@ -519,6 +551,7 @@ namespace ntrclient
             // comboBox_memregions
             // 
             this.comboBox_memregions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_memregions.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_memregions.FormattingEnabled = true;
             this.comboBox_memregions.Location = new System.Drawing.Point(8, 58);
             this.comboBox_memregions.Name = "comboBox_memregions";
@@ -534,18 +567,6 @@ namespace ntrclient
             this.button_disconnect.Text = "Disconnect";
             this.button_disconnect.UseVisualStyleBackColor = true;
             this.button_disconnect.Click += new System.EventHandler(this.button_disconnect_Click);
-            // 
-            // txt_memlayout
-            // 
-            this.txt_memlayout.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_memlayout.Location = new System.Drawing.Point(8, 83);
-            this.txt_memlayout.Multiline = true;
-            this.txt_memlayout.Name = "txt_memlayout";
-            this.txt_memlayout.ReadOnly = true;
-            this.txt_memlayout.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_memlayout.Size = new System.Drawing.Size(306, 133);
-            this.txt_memlayout.TabIndex = 10;
-            this.txt_memlayout.TextChanged += new System.EventHandler(this.txt_memlayout_TextChanged);
             // 
             // textBox_dump_file
             // 
@@ -577,7 +598,7 @@ namespace ntrclient
             // 
             // button_memlayout
             // 
-            this.button_memlayout.Location = new System.Drawing.Point(320, 31);
+            this.button_memlayout.Location = new System.Drawing.Point(476, 31);
             this.button_memlayout.Name = "button_memlayout";
             this.button_memlayout.Size = new System.Drawing.Size(150, 20);
             this.button_memlayout.TabIndex = 4;
@@ -587,21 +608,13 @@ namespace ntrclient
             // 
             // button_processes
             // 
-            this.button_processes.Location = new System.Drawing.Point(164, 31);
+            this.button_processes.Location = new System.Drawing.Point(320, 31);
             this.button_processes.Name = "button_processes";
             this.button_processes.Size = new System.Drawing.Size(150, 20);
             this.button_processes.TabIndex = 3;
             this.button_processes.Text = "List processes";
             this.button_processes.UseVisualStyleBackColor = true;
             this.button_processes.Click += new System.EventHandler(this.button_processes_Click);
-            // 
-            // textBox_pid
-            // 
-            this.textBox_pid.Location = new System.Drawing.Point(8, 32);
-            this.textBox_pid.Name = "textBox_pid";
-            this.textBox_pid.Size = new System.Drawing.Size(150, 20);
-            this.textBox_pid.TabIndex = 2;
-            this.textBox_pid.Text = "Process PID";
             // 
             // button_Connect
             // 
@@ -1078,6 +1091,9 @@ namespace ntrclient
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.button_debug_rTime);
+            this.tabPage_main_debug.Controls.Add(this.textBox_rTime);
+            this.tabPage_main_debug.Controls.Add(this.button_pTest);
             this.tabPage_main_debug.Controls.Add(this.button_update);
             this.tabPage_main_debug.Controls.Add(this.numericUpDown_debug_hextest);
             this.tabPage_main_debug.Controls.Add(this.textBox_debug_conv_dec);
@@ -1103,6 +1119,16 @@ namespace ntrclient
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // button_pTest
+            // 
+            this.button_pTest.Location = new System.Drawing.Point(8, 188);
+            this.button_pTest.Name = "button_pTest";
+            this.button_pTest.Size = new System.Drawing.Size(237, 23);
+            this.button_pTest.TabIndex = 31;
+            this.button_pTest.Text = "Processes Test";
+            this.button_pTest.UseVisualStyleBackColor = true;
+            this.button_pTest.Click += new System.EventHandler(this.button_pTest_Click);
             // 
             // button_update
             // 
@@ -1280,6 +1306,59 @@ namespace ntrclient
             this.checkBox_debug.Text = "Debug output";
             this.checkBox_debug.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBox_processes);
+            this.tabPage3.Controls.Add(this.textBox_memlayout);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(672, 224);
+            this.tabPage3.TabIndex = 8;
+            this.tabPage3.Text = "Data";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox_processes
+            // 
+            this.textBox_processes.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_processes.Location = new System.Drawing.Point(6, 33);
+            this.textBox_processes.Multiline = true;
+            this.textBox_processes.Name = "textBox_processes";
+            this.textBox_processes.ReadOnly = true;
+            this.textBox_processes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_processes.Size = new System.Drawing.Size(306, 185);
+            this.textBox_processes.TabIndex = 12;
+            this.textBox_processes.TextChanged += new System.EventHandler(this.textBox_processes_TextChanged);
+            // 
+            // textBox_memlayout
+            // 
+            this.textBox_memlayout.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_memlayout.Location = new System.Drawing.Point(358, 33);
+            this.textBox_memlayout.Multiline = true;
+            this.textBox_memlayout.Name = "textBox_memlayout";
+            this.textBox_memlayout.ReadOnly = true;
+            this.textBox_memlayout.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_memlayout.Size = new System.Drawing.Size(306, 185);
+            this.textBox_memlayout.TabIndex = 11;
+            this.textBox_memlayout.TextChanged += new System.EventHandler(this.textBox_memlayout_TextChanged);
+            // 
+            // textBox_rTime
+            // 
+            this.textBox_rTime.Location = new System.Drawing.Point(416, 3);
+            this.textBox_rTime.Name = "textBox_rTime";
+            this.textBox_rTime.Size = new System.Drawing.Size(156, 20);
+            this.textBox_rTime.TabIndex = 32;
+            // 
+            // button_debug_rTime
+            // 
+            this.button_debug_rTime.Location = new System.Drawing.Point(335, 3);
+            this.button_debug_rTime.Name = "button_debug_rTime";
+            this.button_debug_rTime.Size = new System.Drawing.Size(75, 23);
+            this.button_debug_rTime.TabIndex = 33;
+            this.button_debug_rTime.Text = "rTime";
+            this.button_debug_rTime.UseVisualStyleBackColor = true;
+            this.button_debug_rTime.Click += new System.EventHandler(this.button_debug_rTime_Click);
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1322,6 +1401,8 @@ namespace ntrclient
             this.tabPage_main_debug.ResumeLayout(false);
             this.tabPage_main_debug.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1342,14 +1423,12 @@ namespace ntrclient
         private System.Windows.Forms.TabControl tabControl_main;
         private System.Windows.Forms.TabPage tabPage_main_basic;
         private System.Windows.Forms.Button button_processes;
-        private System.Windows.Forms.TextBox textBox_pid;
         private System.Windows.Forms.Button button_Connect;
         private System.Windows.Forms.TextBox textBox_Ip;
         private System.Windows.Forms.Button button_memlayout;
         private System.Windows.Forms.Button button_hello;
         private System.Windows.Forms.TextBox textBox_dump_file;
         private System.Windows.Forms.Button button_dump;
-        public System.Windows.Forms.TextBox txt_memlayout;
         private System.Windows.Forms.Button button_disconnect;
         public System.Windows.Forms.ComboBox comboBox_memregions;
         private System.Windows.Forms.TextBox textBox_dummy_addr;
@@ -1439,6 +1518,15 @@ namespace ntrclient
         private System.Windows.Forms.Button button_debug_conv_hex;
         private System.Windows.Forms.NumericUpDown numericUpDown_debug_hextest;
         private System.Windows.Forms.Button button_update;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem checkingUpdateToolStripMenuItem;
+        public System.Windows.Forms.ComboBox comboBox_processes;
+        private System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.TextBox textBox_processes;
+        public System.Windows.Forms.TextBox textBox_memlayout;
+        private System.Windows.Forms.Button button_pTest;
+        private System.Windows.Forms.Button button_debug_rTime;
+        private System.Windows.Forms.TextBox textBox_rTime;
     }
 }
 

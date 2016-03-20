@@ -14,7 +14,7 @@ namespace ntrclient
         public static IRepositoriesClient rep;
 
         public static Release lastRelease;    
-        public static Int64 lastReleaseTime = 635933889870000000 - 1;
+        public static Int64 lastReleaseTime = 635939849360000000 + 1;
 
         public static void init()
         {
@@ -28,6 +28,14 @@ namespace ntrclient
             lastRelease = lastReleases[0];
 
             return lastRelease.CreatedAt.UtcTicks > lastReleaseTime;
+        }
+
+        public async static Task<Int64> getLastUpdate()
+        {
+
+            var lastReleases = await rep.Release.GetAll("imthe666st", "ntrclient");
+            lastRelease = lastReleases[0];
+            return lastRelease.CreatedAt.UtcTicks;
         }
     }
 }
