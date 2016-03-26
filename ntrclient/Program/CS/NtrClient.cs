@@ -73,19 +73,7 @@ namespace ntrclient {
 					}
 					t += 4;
 					UInt32 dataLen = BitConverter.ToUInt32(buf, t);
-
-                    // Tinkering with NTR Debugger
-
-                        if (Program.gCmdWindow.checkBox_debug.Checked)
-                        {
-                        //log(String.Format("Received MSG: Magic: {0}, SEQ: {1}, Type: {2}, CMD: {3}, LEN: {4}",magic, seq, type, cmd, dataLen));
-                        //log("" + ret);
-                            //heartbeat();
-                    }
-
-                    // END 
                     
-                    //Program.gCmdWindow.rt_ram();
 
                     if (cmd != 0) {
 						log(String.Format("packet: cmd = {0}, dataLen = {1}", cmd, dataLen));
@@ -109,6 +97,10 @@ namespace ntrclient {
                             } else if (logMsg.StartsWith("pid: "))
                             {
                                 Program.gCmdWindow.textBox_processes.Invoke(new CmdWindow.setProcessesCallback(Program.gCmdWindow.setProcesses), new object[] { logMsg });
+                            } else if (logMsg.StartsWith("patching smdh") || logMsg.StartsWith("rtRecvSocket failed: "))
+                            {
+                                Program.gCmdWindow.runProcessesCmd();
+                                
                             }
                             // END
 

@@ -241,7 +241,7 @@ namespace ntrclient
                             "LAYERS: {7} {8}"
                             , index, offset, loop, loop_index, loop_count, dxData, dummy_count, gs_if_sLayer, gs_if_layer));
                     }
-                    if (gs_if)
+                    if (!gs_if)
                     {
                         gs_if = false;
                         gs_if_layer += 1;

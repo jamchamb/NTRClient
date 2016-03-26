@@ -14,7 +14,7 @@ namespace ntrclient
         public static IRepositoriesClient rep;
 
         public static Release lastRelease;    
-        public static Int64 lastReleaseTime = 635939849360000000 + 1;
+        public static Int64 lastReleaseTime = 635940336300000000 + 1;
 
         public static void init()
         {

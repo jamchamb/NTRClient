@@ -77,12 +77,18 @@ namespace ntrclient
             this.textBox_dump_file = new System.Windows.Forms.TextBox();
             this.button_dump = new System.Windows.Forms.Button();
             this.button_hello = new System.Windows.Forms.Button();
-            this.button_memlayout = new System.Windows.Forms.Button();
             this.button_processes = new System.Windows.Forms.Button();
             this.button_Connect = new System.Windows.Forms.Button();
             this.textBox_Ip = new System.Windows.Forms.TextBox();
             this.tabPage_main_eu = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_mh4u_eu_hb_godmode = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_monb_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_mon2_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_mon1_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_eu_name = new System.Windows.Forms.Button();
+            this.textBox_mh4u_eu_name = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.button_aceu_fish6 = new System.Windows.Forms.Button();
@@ -102,13 +108,6 @@ namespace ntrclient
             this.button_aceu_setSlot1 = new System.Windows.Forms.Button();
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button_mh4u_eu_hb_godmode = new System.Windows.Forms.Button();
-            this.button_mh4u_eu_monb_kill = new System.Windows.Forms.Button();
-            this.button_mh4u_eu_mon2_kill = new System.Windows.Forms.Button();
-            this.button_mh4u_eu_mon1_kill = new System.Windows.Forms.Button();
-            this.button_mh4u_eu_name = new System.Windows.Forms.Button();
-            this.textBox_mh4u_eu_name = new System.Windows.Forms.TextBox();
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -125,6 +124,8 @@ namespace ntrclient
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.button_debug_rTime = new System.Windows.Forms.Button();
+            this.textBox_rTime = new System.Windows.Forms.TextBox();
             this.button_pTest = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
             this.numericUpDown_debug_hextest = new System.Windows.Forms.NumericUpDown();
@@ -147,8 +148,6 @@ namespace ntrclient
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox_processes = new System.Windows.Forms.TextBox();
             this.textBox_memlayout = new System.Windows.Forms.TextBox();
-            this.textBox_rTime = new System.Windows.Forms.TextBox();
-            this.button_debug_rTime = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -157,8 +156,8 @@ namespace ntrclient
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).BeginInit();
             this.tabPage_main_eu.SuspendLayout();
             this.tabControl3.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage_main_us.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -356,7 +355,7 @@ namespace ntrclient
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
             this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.4";
+            this.VersionNumberToolStripMenuItem.Text = "1.4-1";
             // 
             // VersionExtraToolStripMenuItem
             // 
@@ -432,7 +431,6 @@ namespace ntrclient
             this.tabPage_main_basic.Controls.Add(this.textBox_dump_file);
             this.tabPage_main_basic.Controls.Add(this.button_dump);
             this.tabPage_main_basic.Controls.Add(this.button_hello);
-            this.tabPage_main_basic.Controls.Add(this.button_memlayout);
             this.tabPage_main_basic.Controls.Add(this.button_processes);
             this.tabPage_main_basic.Controls.Add(this.button_Connect);
             this.tabPage_main_basic.Controls.Add(this.textBox_Ip);
@@ -453,6 +451,7 @@ namespace ntrclient
             this.comboBox_processes.Name = "comboBox_processes";
             this.comboBox_processes.Size = new System.Drawing.Size(306, 21);
             this.comboBox_processes.TabIndex = 23;
+            this.comboBox_processes.SelectedIndexChanged += new System.EventHandler(this.comboBox_processes_SelectedIndexChanged);
             // 
             // button_dummy_write_hex_le
             // 
@@ -596,16 +595,6 @@ namespace ntrclient
             this.button_hello.UseVisualStyleBackColor = true;
             this.button_hello.Click += new System.EventHandler(this.button_hello_Click);
             // 
-            // button_memlayout
-            // 
-            this.button_memlayout.Location = new System.Drawing.Point(476, 31);
-            this.button_memlayout.Name = "button_memlayout";
-            this.button_memlayout.Size = new System.Drawing.Size(150, 20);
-            this.button_memlayout.TabIndex = 4;
-            this.button_memlayout.Text = "Memlayout";
-            this.button_memlayout.UseVisualStyleBackColor = true;
-            this.button_memlayout.Click += new System.EventHandler(this.button_memlayout_Click);
-            // 
             // button_processes
             // 
             this.button_processes.Location = new System.Drawing.Point(320, 31);
@@ -647,14 +636,88 @@ namespace ntrclient
             // 
             // tabControl3
             // 
-            this.tabControl3.Controls.Add(this.tabPage2);
             this.tabControl3.Controls.Add(this.tabPage1);
+            this.tabControl3.Controls.Add(this.tabPage2);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(666, 218);
             this.tabControl3.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_hb_godmode);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_monb_kill);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_mon2_kill);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_mon1_kill);
+            this.tabPage1.Controls.Add(this.button_mh4u_eu_name);
+            this.tabPage1.Controls.Add(this.textBox_mh4u_eu_name);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(658, 192);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "MH4U";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button_mh4u_eu_hb_godmode
+            // 
+            this.button_mh4u_eu_hb_godmode.Location = new System.Drawing.Point(502, 3);
+            this.button_mh4u_eu_hb_godmode.Name = "button_mh4u_eu_hb_godmode";
+            this.button_mh4u_eu_hb_godmode.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_eu_hb_godmode.TabIndex = 7;
+            this.button_mh4u_eu_hb_godmode.Text = "[HB] Health / Stamina";
+            this.button_mh4u_eu_hb_godmode.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_hb_godmode.Click += new System.EventHandler(this.button_mh4u_eu_hb_godmode_Click);
+            // 
+            // button_mh4u_eu_monb_kill
+            // 
+            this.button_mh4u_eu_monb_kill.Location = new System.Drawing.Point(3, 81);
+            this.button_mh4u_eu_monb_kill.Name = "button_mh4u_eu_monb_kill";
+            this.button_mh4u_eu_monb_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_monb_kill.TabIndex = 6;
+            this.button_mh4u_eu_monb_kill.Text = "1 Hit Both Monsters";
+            this.button_mh4u_eu_monb_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_monb_kill.Click += new System.EventHandler(this.button_mh4u_eu_monb_kill_Click);
+            // 
+            // button_mh4u_eu_mon2_kill
+            // 
+            this.button_mh4u_eu_mon2_kill.Location = new System.Drawing.Point(3, 55);
+            this.button_mh4u_eu_mon2_kill.Name = "button_mh4u_eu_mon2_kill";
+            this.button_mh4u_eu_mon2_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_mon2_kill.TabIndex = 5;
+            this.button_mh4u_eu_mon2_kill.Text = "1 Hit Monster 2";
+            this.button_mh4u_eu_mon2_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_mon2_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon2_kill_Click);
+            // 
+            // button_mh4u_eu_mon1_kill
+            // 
+            this.button_mh4u_eu_mon1_kill.Location = new System.Drawing.Point(3, 29);
+            this.button_mh4u_eu_mon1_kill.Name = "button_mh4u_eu_mon1_kill";
+            this.button_mh4u_eu_mon1_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_mon1_kill.TabIndex = 4;
+            this.button_mh4u_eu_mon1_kill.Text = "1 Hit Monster 1";
+            this.button_mh4u_eu_mon1_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_mon1_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon1_kill_Click);
+            // 
+            // button_mh4u_eu_name
+            // 
+            this.button_mh4u_eu_name.Location = new System.Drawing.Point(159, 3);
+            this.button_mh4u_eu_name.Name = "button_mh4u_eu_name";
+            this.button_mh4u_eu_name.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_eu_name.TabIndex = 3;
+            this.button_mh4u_eu_name.Text = "Change name";
+            this.button_mh4u_eu_name.UseVisualStyleBackColor = true;
+            this.button_mh4u_eu_name.Click += new System.EventHandler(this.button_mh4u_eu_name_Click);
+            // 
+            // textBox_mh4u_eu_name
+            // 
+            this.textBox_mh4u_eu_name.Location = new System.Drawing.Point(3, 3);
+            this.textBox_mh4u_eu_name.Name = "textBox_mh4u_eu_name";
+            this.textBox_mh4u_eu_name.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_eu_name.TabIndex = 2;
+            this.textBox_mh4u_eu_name.Text = "Name";
             // 
             // tabPage2
             // 
@@ -855,80 +918,6 @@ namespace ntrclient
             this.button_aceu_openIds.UseVisualStyleBackColor = true;
             this.button_aceu_openIds.Click += new System.EventHandler(this.button_aceu_openIds_Click);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.button_mh4u_eu_hb_godmode);
-            this.tabPage1.Controls.Add(this.button_mh4u_eu_monb_kill);
-            this.tabPage1.Controls.Add(this.button_mh4u_eu_mon2_kill);
-            this.tabPage1.Controls.Add(this.button_mh4u_eu_mon1_kill);
-            this.tabPage1.Controls.Add(this.button_mh4u_eu_name);
-            this.tabPage1.Controls.Add(this.textBox_mh4u_eu_name);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(658, 192);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "MH4U";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // button_mh4u_eu_hb_godmode
-            // 
-            this.button_mh4u_eu_hb_godmode.Location = new System.Drawing.Point(502, 3);
-            this.button_mh4u_eu_hb_godmode.Name = "button_mh4u_eu_hb_godmode";
-            this.button_mh4u_eu_hb_godmode.Size = new System.Drawing.Size(150, 23);
-            this.button_mh4u_eu_hb_godmode.TabIndex = 7;
-            this.button_mh4u_eu_hb_godmode.Text = "[HB] Health / Stamina";
-            this.button_mh4u_eu_hb_godmode.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_hb_godmode.Click += new System.EventHandler(this.button_mh4u_eu_hb_godmode_Click);
-            // 
-            // button_mh4u_eu_monb_kill
-            // 
-            this.button_mh4u_eu_monb_kill.Location = new System.Drawing.Point(3, 81);
-            this.button_mh4u_eu_monb_kill.Name = "button_mh4u_eu_monb_kill";
-            this.button_mh4u_eu_monb_kill.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_monb_kill.TabIndex = 6;
-            this.button_mh4u_eu_monb_kill.Text = "1 Hit Both Monsters";
-            this.button_mh4u_eu_monb_kill.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_monb_kill.Click += new System.EventHandler(this.button_mh4u_eu_monb_kill_Click);
-            // 
-            // button_mh4u_eu_mon2_kill
-            // 
-            this.button_mh4u_eu_mon2_kill.Location = new System.Drawing.Point(3, 55);
-            this.button_mh4u_eu_mon2_kill.Name = "button_mh4u_eu_mon2_kill";
-            this.button_mh4u_eu_mon2_kill.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_mon2_kill.TabIndex = 5;
-            this.button_mh4u_eu_mon2_kill.Text = "1 Hit Monster 2";
-            this.button_mh4u_eu_mon2_kill.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_mon2_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon2_kill_Click);
-            // 
-            // button_mh4u_eu_mon1_kill
-            // 
-            this.button_mh4u_eu_mon1_kill.Location = new System.Drawing.Point(3, 29);
-            this.button_mh4u_eu_mon1_kill.Name = "button_mh4u_eu_mon1_kill";
-            this.button_mh4u_eu_mon1_kill.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_mon1_kill.TabIndex = 4;
-            this.button_mh4u_eu_mon1_kill.Text = "1 Hit Monster 1";
-            this.button_mh4u_eu_mon1_kill.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_mon1_kill.Click += new System.EventHandler(this.button_mh4u_eu_mon1_kill_Click);
-            // 
-            // button_mh4u_eu_name
-            // 
-            this.button_mh4u_eu_name.Location = new System.Drawing.Point(159, 3);
-            this.button_mh4u_eu_name.Name = "button_mh4u_eu_name";
-            this.button_mh4u_eu_name.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_eu_name.TabIndex = 3;
-            this.button_mh4u_eu_name.Text = "Change name";
-            this.button_mh4u_eu_name.UseVisualStyleBackColor = true;
-            this.button_mh4u_eu_name.Click += new System.EventHandler(this.button_mh4u_eu_name_Click);
-            // 
-            // textBox_mh4u_eu_name
-            // 
-            this.textBox_mh4u_eu_name.Location = new System.Drawing.Point(3, 3);
-            this.textBox_mh4u_eu_name.Name = "textBox_mh4u_eu_name";
-            this.textBox_mh4u_eu_name.Size = new System.Drawing.Size(150, 20);
-            this.textBox_mh4u_eu_name.TabIndex = 2;
-            this.textBox_mh4u_eu_name.Text = "Name";
-            // 
             // tabPage_main_us
             // 
             this.tabPage_main_us.Controls.Add(this.tabControl2);
@@ -1119,6 +1108,23 @@ namespace ntrclient
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // button_debug_rTime
+            // 
+            this.button_debug_rTime.Location = new System.Drawing.Point(335, 3);
+            this.button_debug_rTime.Name = "button_debug_rTime";
+            this.button_debug_rTime.Size = new System.Drawing.Size(75, 23);
+            this.button_debug_rTime.TabIndex = 33;
+            this.button_debug_rTime.Text = "rTime";
+            this.button_debug_rTime.UseVisualStyleBackColor = true;
+            this.button_debug_rTime.Click += new System.EventHandler(this.button_debug_rTime_Click);
+            // 
+            // textBox_rTime
+            // 
+            this.textBox_rTime.Location = new System.Drawing.Point(416, 3);
+            this.textBox_rTime.Name = "textBox_rTime";
+            this.textBox_rTime.Size = new System.Drawing.Size(156, 20);
+            this.textBox_rTime.TabIndex = 32;
             // 
             // button_pTest
             // 
@@ -1321,43 +1327,26 @@ namespace ntrclient
             // textBox_processes
             // 
             this.textBox_processes.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_processes.Location = new System.Drawing.Point(6, 33);
+            this.textBox_processes.Location = new System.Drawing.Point(6, 6);
             this.textBox_processes.Multiline = true;
             this.textBox_processes.Name = "textBox_processes";
             this.textBox_processes.ReadOnly = true;
             this.textBox_processes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_processes.Size = new System.Drawing.Size(306, 185);
+            this.textBox_processes.Size = new System.Drawing.Size(306, 212);
             this.textBox_processes.TabIndex = 12;
             this.textBox_processes.TextChanged += new System.EventHandler(this.textBox_processes_TextChanged);
             // 
             // textBox_memlayout
             // 
             this.textBox_memlayout.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_memlayout.Location = new System.Drawing.Point(358, 33);
+            this.textBox_memlayout.Location = new System.Drawing.Point(358, 6);
             this.textBox_memlayout.Multiline = true;
             this.textBox_memlayout.Name = "textBox_memlayout";
             this.textBox_memlayout.ReadOnly = true;
             this.textBox_memlayout.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_memlayout.Size = new System.Drawing.Size(306, 185);
+            this.textBox_memlayout.Size = new System.Drawing.Size(306, 212);
             this.textBox_memlayout.TabIndex = 11;
             this.textBox_memlayout.TextChanged += new System.EventHandler(this.textBox_memlayout_TextChanged);
-            // 
-            // textBox_rTime
-            // 
-            this.textBox_rTime.Location = new System.Drawing.Point(416, 3);
-            this.textBox_rTime.Name = "textBox_rTime";
-            this.textBox_rTime.Size = new System.Drawing.Size(156, 20);
-            this.textBox_rTime.TabIndex = 32;
-            // 
-            // button_debug_rTime
-            // 
-            this.button_debug_rTime.Location = new System.Drawing.Point(335, 3);
-            this.button_debug_rTime.Name = "button_debug_rTime";
-            this.button_debug_rTime.Size = new System.Drawing.Size(75, 23);
-            this.button_debug_rTime.TabIndex = 33;
-            this.button_debug_rTime.Text = "rTime";
-            this.button_debug_rTime.UseVisualStyleBackColor = true;
-            this.button_debug_rTime.Click += new System.EventHandler(this.button_debug_rTime_Click);
             // 
             // CmdWindow
             // 
@@ -1388,10 +1377,10 @@ namespace ntrclient
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).EndInit();
             this.tabPage_main_eu.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage_main_us.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -1425,7 +1414,6 @@ namespace ntrclient
         private System.Windows.Forms.Button button_processes;
         private System.Windows.Forms.Button button_Connect;
         private System.Windows.Forms.TextBox textBox_Ip;
-        private System.Windows.Forms.Button button_memlayout;
         private System.Windows.Forms.Button button_hello;
         private System.Windows.Forms.TextBox textBox_dump_file;
         private System.Windows.Forms.Button button_dump;

@@ -254,14 +254,24 @@ namespace ntrclient
                         processes.Add(np);
                         Int32 pid = np.pid;
                         String name = np.name;
-                        comboBox_processes.Items.Add(String.Format("{0} | {1:X} : {2}", checkSystem(name) ? "SYSTEM" : "GAME  ", pid, name));
+                        comboBox_processes.Items.Add(String.Format("{0} | {1:X} : {2}", fillString(checkSystem(name), 6), pid, name));
                     } 
                 }
                 comboBox_processes.SelectedIndex = 0;
             }
         }
 
-        private static bool checkSystem(String n)
+        private static String fillString(String n, int len)
+        {
+            int ls = len - n.Length;
+            if (ls <= 0) return n;
+            for (int i = 0; i < ls; i++)
+            {
+                n += " ";
+            } return n;           
+        }
+
+        private static String checkSystem(String n)
         {
             String[] sys =
             {
@@ -312,10 +322,10 @@ namespace ntrclient
 
             foreach (String sysTitle in sys)
             {
-                if (sysTitle == n) return true;
+                if (sysTitle == n) return "System";
             }
 
-            return false;
+            return "Game";
         }
 
 
@@ -464,6 +474,16 @@ namespace ntrclient
         //________________________________________________________________
 
         // Utilities
+
+        public void runMemlayoutCmd()
+        {
+            runCmd(String.Format("memlayout(pid=0x{0:X})", getPID()));
+        }
+
+        public void runProcessesCmd()
+        {
+            runCmd("listprocess()");
+        }
 
         int getInt(String l)
         {
@@ -705,13 +725,9 @@ namespace ntrclient
         {
             runCmd("listprocess()");
         }
-
-        private void button_memlayout_Click(object sender, EventArgs e)
+        private void comboBox_processes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // I'll edit this method later.
-            // Don't change this yet! 
-            String memlayout = runCmd(String.Format("memlayout(pid=0x{0:X})", getPID()));
-
+            runMemlayoutCmd();
         }
 
         private void button_hello_Click(object sender, EventArgs e)
@@ -1180,5 +1196,8 @@ namespace ntrclient
                     "D2000000 00000000"
                 );
         }
+
+        // New stuff.. Need to add this to a category.
+
     }
 }
