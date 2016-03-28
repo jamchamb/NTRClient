@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -1179,6 +1181,59 @@ namespace ntrclient
                     "10001194 00003200\r\n" +
                     "D2000000 00000000"
                 );
+        }
+
+        private void button_dump_all_Click2(object sender, EventArgs e)
+        {
+            String filename = textBox_dump_file.Text;
+            Memregion mem = memregions[memregions.Count - 1];
+            runCmd(String.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", 0, mem.start + mem.length, filename, getPID()));
+        }
+
+        private void button_dump_all_Click(object sender, EventArgs e)
+        {
+            String filename = textBox_dump_file.Text;
+
+            int memPos = 0;
+            int fileSuffix = 0;
+
+            foreach (Memregion mem in memregions)
+            {
+                if (mem.start > memPos)
+                {
+                    File.WriteAllBytes(filename + fileSuffix.ToString(), new byte[mem.start - memPos]);
+                    fileSuffix++;
+
+                }
+                runCmd(String.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.start, mem.length, filename + fileSuffix.ToString(), getPID()));
+                while (!File.Exists(filename + fileSuffix.ToString()))
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                }
+                memPos = mem.start + mem.length;
+                fileSuffix++;
+            }
+
+            string destFileName = filename;
+            using (Stream destStream = File.OpenWrite(destFileName))
+            {
+                for (int i = 0; i < fileSuffix; i++)
+                {
+
+                    using (Stream srcStream = File.OpenRead(filename + i.ToString()))
+                    {
+                        srcStream.CopyTo(destStream);
+                    }
+
+                }
+            }
+
+            for (int i = 0; i < fileSuffix; i++)
+            {
+                File.Delete(filename + i.ToString());
+            }
+
+
         }
     }
 }

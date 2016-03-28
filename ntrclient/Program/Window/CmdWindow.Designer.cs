@@ -125,6 +125,8 @@ namespace ntrclient
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.button_debug_rTime = new System.Windows.Forms.Button();
+            this.textBox_rTime = new System.Windows.Forms.TextBox();
             this.button_pTest = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
             this.numericUpDown_debug_hextest = new System.Windows.Forms.NumericUpDown();
@@ -147,8 +149,7 @@ namespace ntrclient
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox_processes = new System.Windows.Forms.TextBox();
             this.textBox_memlayout = new System.Windows.Forms.TextBox();
-            this.textBox_rTime = new System.Windows.Forms.TextBox();
-            this.button_debug_rTime = new System.Windows.Forms.Button();
+            this.button_dump_all = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -252,7 +253,7 @@ namespace ntrclient
             this.toolStripSeparator2,
             this.toggleDebugToolStripMenuItem});
             this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.ToolStripMenuItem.Text = "Tools";
             this.ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -349,7 +350,7 @@ namespace ntrclient
             this.toolStripSeparator3,
             this.checkingUpdateToolStripMenuItem});
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             // 
             // VersionNumberToolStripMenuItem
@@ -417,6 +418,7 @@ namespace ntrclient
             // 
             // tabPage_main_basic
             // 
+            this.tabPage_main_basic.Controls.Add(this.button_dump_all);
             this.tabPage_main_basic.Controls.Add(this.comboBox_processes);
             this.tabPage_main_basic.Controls.Add(this.button_dummy_write_hex_le);
             this.tabPage_main_basic.Controls.Add(this.textBox_dummy_value_hex_le);
@@ -1120,6 +1122,23 @@ namespace ntrclient
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
             // 
+            // button_debug_rTime
+            // 
+            this.button_debug_rTime.Location = new System.Drawing.Point(335, 3);
+            this.button_debug_rTime.Name = "button_debug_rTime";
+            this.button_debug_rTime.Size = new System.Drawing.Size(75, 23);
+            this.button_debug_rTime.TabIndex = 33;
+            this.button_debug_rTime.Text = "rTime";
+            this.button_debug_rTime.UseVisualStyleBackColor = true;
+            this.button_debug_rTime.Click += new System.EventHandler(this.button_debug_rTime_Click);
+            // 
+            // textBox_rTime
+            // 
+            this.textBox_rTime.Location = new System.Drawing.Point(416, 3);
+            this.textBox_rTime.Name = "textBox_rTime";
+            this.textBox_rTime.Size = new System.Drawing.Size(156, 20);
+            this.textBox_rTime.TabIndex = 32;
+            // 
             // button_pTest
             // 
             this.button_pTest.Location = new System.Drawing.Point(8, 188);
@@ -1342,22 +1361,15 @@ namespace ntrclient
             this.textBox_memlayout.TabIndex = 11;
             this.textBox_memlayout.TextChanged += new System.EventHandler(this.textBox_memlayout_TextChanged);
             // 
-            // textBox_rTime
+            // button_dump_all
             // 
-            this.textBox_rTime.Location = new System.Drawing.Point(416, 3);
-            this.textBox_rTime.Name = "textBox_rTime";
-            this.textBox_rTime.Size = new System.Drawing.Size(156, 20);
-            this.textBox_rTime.TabIndex = 32;
-            // 
-            // button_debug_rTime
-            // 
-            this.button_debug_rTime.Location = new System.Drawing.Point(335, 3);
-            this.button_debug_rTime.Name = "button_debug_rTime";
-            this.button_debug_rTime.Size = new System.Drawing.Size(75, 23);
-            this.button_debug_rTime.TabIndex = 33;
-            this.button_debug_rTime.Text = "rTime";
-            this.button_debug_rTime.UseVisualStyleBackColor = true;
-            this.button_debug_rTime.Click += new System.EventHandler(this.button_debug_rTime_Click);
+            this.button_dump_all.Location = new System.Drawing.Point(476, 86);
+            this.button_dump_all.Name = "button_dump_all";
+            this.button_dump_all.Size = new System.Drawing.Size(150, 20);
+            this.button_dump_all.TabIndex = 24;
+            this.button_dump_all.Text = "Dump all memory";
+            this.button_dump_all.UseVisualStyleBackColor = true;
+            this.button_dump_all.Click += new System.EventHandler(this.button_dump_all_Click);
             // 
             // CmdWindow
             // 
@@ -1527,6 +1539,7 @@ namespace ntrclient
         private System.Windows.Forms.Button button_pTest;
         private System.Windows.Forms.Button button_debug_rTime;
         private System.Windows.Forms.TextBox textBox_rTime;
+        private System.Windows.Forms.Button button_dump_all;
     }
 }
 
