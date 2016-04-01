@@ -408,6 +408,7 @@ namespace ntrclient
 
         public int readValue(int addr, int size)
         {
+            Addlog("Started readValue(int, int)");
             int v;
             if (size < 1)
                 size = 1;
@@ -634,6 +635,9 @@ namespace ntrclient
 
         }
 
+
+        int[] keys = { 38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13};
+        int k_pos = 0;
         private void CmdWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control)
@@ -644,6 +648,18 @@ namespace ntrclient
                     runCmd(Program.sm.quickCmds[t - 48]);
                     e.SuppressKeyPress = true;
 
+                } else if (t == keys[k_pos])
+                {
+                    k_pos++;
+                    label_kpos.Text = String.Format("KPOS: {0}", k_pos);
+                    if (k_pos == keys.Length)
+                    {
+                        MessageBox.Show("This is an easteregg");
+                        k_pos = 0;
+                    }
+                } else
+                {
+                    k_pos = 0;
                 }
             }
 
@@ -802,12 +818,18 @@ namespace ntrclient
         {
             String code = textBox_gateshark.Text;
             gateshark gs = new gateshark(code);
+            Addlog("Executing code...");
             gs.execute();
         }
         private void button_gateshark_heartbeat_Click(object sender, EventArgs e)
         {
             if (hbc != null)
+            {
+                Addlog("Set code as HB-Code");
                 hbc.setCode(textBox_gateshark.Text);
+            }
+            else
+                Addlog("Unable to set code as HB-Code");
         }
 
         private void button_browser_fort42_Click(object sender, EventArgs e)
@@ -1195,6 +1217,11 @@ namespace ntrclient
                     "10001194 00003200\r\n" +
                     "D2000000 00000000"
                 );
+        }
+
+        private void button_toolstrip_debug_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz1234567890";
         }
 
         // New stuff.. Need to add this to a category.

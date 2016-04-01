@@ -35,31 +35,6 @@ namespace ntrclient
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.txtCmd = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toggleDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.redditThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gbaTempThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.VersionNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.VersionExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.checkingUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_main_basic = new System.Windows.Forms.TabPage();
             this.comboBox_processes = new System.Windows.Forms.ComboBox();
@@ -90,13 +65,6 @@ namespace ntrclient
             this.button_mh4u_eu_name = new System.Windows.Forms.Button();
             this.textBox_mh4u_eu_name = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button_aceu_fish6 = new System.Windows.Forms.Button();
-            this.button_aceu_fish5 = new System.Windows.Forms.Button();
-            this.button_aceu_fish4 = new System.Windows.Forms.Button();
-            this.button_aceu_fish3 = new System.Windows.Forms.Button();
-            this.button_aceu_fish2 = new System.Windows.Forms.Button();
-            this.button_aceu_fish1 = new System.Windows.Forms.Button();
             this.button_aceu_clear_all = new System.Windows.Forms.Button();
             this.button_aceu_clear_slot1 = new System.Windows.Forms.Button();
             this.button_aceu_fossil6 = new System.Windows.Forms.Button();
@@ -124,6 +92,7 @@ namespace ntrclient
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.button_toolstrip_debug = new System.Windows.Forms.Button();
             this.button_debug_rTime = new System.Windows.Forms.Button();
             this.textBox_rTime = new System.Windows.Forms.TextBox();
             this.button_pTest = new System.Windows.Forms.Button();
@@ -148,9 +117,33 @@ namespace ntrclient
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox_processes = new System.Windows.Forms.TextBox();
             this.textBox_memlayout = new System.Windows.Forms.TextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asmScratchPadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toggleDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redditThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbaTempThreadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.checkingUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label_kpos = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_dummy_length)).BeginInit();
@@ -165,6 +158,8 @@ namespace ntrclient
             this.tabPage_main_debug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -173,16 +168,17 @@ namespace ntrclient
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.txtLog, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtCmd, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Controls.Add(this.tabControl_main, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 430);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 678);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtLog
@@ -194,209 +190,16 @@ namespace ntrclient
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(674, 370);
-            this.txtLog.TabIndex = 0;
+            this.txtLog.Size = new System.Drawing.Size(684, 361);
+            this.txtLog.TabIndex = 8;
             // 
             // txtCmd
             // 
-            this.txtCmd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCmd.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCmd.Location = new System.Drawing.Point(3, 379);
+            this.txtCmd.Location = new System.Drawing.Point(3, 370);
             this.txtCmd.Name = "txtCmd";
-            this.txtCmd.Size = new System.Drawing.Size(674, 26);
-            this.txtCmd.TabIndex = 1;
-            this.txtCmd.TextChanged += new System.EventHandler(this.txtCmd_TextChanged);
-            this.txtCmd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCmd_KeyDown);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 408);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(680, 22);
-            this.statusStrip1.TabIndex = 2;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem,
-            this.creditsToolStripMenuItem,
-            this.versionToolStripMenuItem,
-            this.commandsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(680, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // ToolStripMenuItem
-            // 
-            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CommandToolStripMenuItem,
-            this.asmScratchPadToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.toggleDebugToolStripMenuItem});
-            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.ToolStripMenuItem.Text = "Tools";
-            this.ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-            // 
-            // CommandToolStripMenuItem
-            // 
-            this.CommandToolStripMenuItem.Name = "CommandToolStripMenuItem";
-            this.CommandToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.CommandToolStripMenuItem.Text = "Hotkey Commands";
-            this.CommandToolStripMenuItem.Click += new System.EventHandler(this.CommandToolStripMenuItem_Click);
-            // 
-            // asmScratchPadToolStripMenuItem
-            // 
-            this.asmScratchPadToolStripMenuItem.Name = "asmScratchPadToolStripMenuItem";
-            this.asmScratchPadToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.asmScratchPadToolStripMenuItem.Text = "Asm ScratchPad";
-            this.asmScratchPadToolStripMenuItem.Click += new System.EventHandler(this.asmScratchPadToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(174, 6);
-            // 
-            // toggleDebugToolStripMenuItem
-            // 
-            this.toggleDebugToolStripMenuItem.Name = "toggleDebugToolStripMenuItem";
-            this.toggleDebugToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.toggleDebugToolStripMenuItem.Text = "Toggle debug";
-            this.toggleDebugToolStripMenuItem.Click += new System.EventHandler(this.toggleDebugToolStripMenuItem_Click);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.originalByCell9ToolStripMenuItem,
-            this.modByImthe666stToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.moreCreditsToolStripMenuItem,
-            this.githubRepositoryToolStripMenuItem,
-            this.redditThreadToolStripMenuItem,
-            this.gbaTempThreadToolStripMenuItem});
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.creditsToolStripMenuItem.Text = "Credits";
-            // 
-            // originalByCell9ToolStripMenuItem
-            // 
-            this.originalByCell9ToolStripMenuItem.Name = "originalByCell9ToolStripMenuItem";
-            this.originalByCell9ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.originalByCell9ToolStripMenuItem.Text = "Original by cell9";
-            // 
-            // modByImthe666stToolStripMenuItem
-            // 
-            this.modByImthe666stToolStripMenuItem.Name = "modByImthe666stToolStripMenuItem";
-            this.modByImthe666stToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.modByImthe666stToolStripMenuItem.Text = "Mod by imthe666st";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
-            // 
-            // moreCreditsToolStripMenuItem
-            // 
-            this.moreCreditsToolStripMenuItem.Name = "moreCreditsToolStripMenuItem";
-            this.moreCreditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.moreCreditsToolStripMenuItem.Text = "More credits";
-            this.moreCreditsToolStripMenuItem.Click += new System.EventHandler(this.moreCreditsToolStripMenuItem_Click);
-            // 
-            // githubRepositoryToolStripMenuItem
-            // 
-            this.githubRepositoryToolStripMenuItem.Name = "githubRepositoryToolStripMenuItem";
-            this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.githubRepositoryToolStripMenuItem.Text = "Github repository";
-            this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.githubRepositoryToolStripMenuItem_Click);
-            // 
-            // redditThreadToolStripMenuItem
-            // 
-            this.redditThreadToolStripMenuItem.Name = "redditThreadToolStripMenuItem";
-            this.redditThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.redditThreadToolStripMenuItem.Text = "Reddit Thread";
-            this.redditThreadToolStripMenuItem.Click += new System.EventHandler(this.redditThreadToolStripMenuItem_Click);
-            // 
-            // gbaTempThreadToolStripMenuItem
-            // 
-            this.gbaTempThreadToolStripMenuItem.Name = "gbaTempThreadToolStripMenuItem";
-            this.gbaTempThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.gbaTempThreadToolStripMenuItem.Text = "gbaTemp Thread";
-            this.gbaTempThreadToolStripMenuItem.Click += new System.EventHandler(this.gbaTempThreadToolStripMenuItem_Click);
-            // 
-            // versionToolStripMenuItem
-            // 
-            this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.VersionNumberToolStripMenuItem,
-            this.VersionExtraToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.checkingUpdateToolStripMenuItem});
-            this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.versionToolStripMenuItem.Text = "Version";
-            // 
-            // VersionNumberToolStripMenuItem
-            // 
-            this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
-            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.4-1";
-            // 
-            // VersionExtraToolStripMenuItem
-            // 
-            this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
-            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.VersionExtraToolStripMenuItem.Text = "Public Release";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(170, 6);
-            // 
-            // checkingUpdateToolStripMenuItem
-            // 
-            this.checkingUpdateToolStripMenuItem.Name = "checkingUpdateToolStripMenuItem";
-            this.checkingUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.checkingUpdateToolStripMenuItem.Text = "Checking update...";
-            this.checkingUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkingUpdateToolStripMenuItem_Click);
-            // 
-            // commandsToolStripMenuItem
-            // 
-            this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearLogToolStripMenuItem,
-            this.clearHeartbeatToolStripMenuItem});
-            this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
-            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.commandsToolStripMenuItem.Text = "Commands";
-            // 
-            // clearLogToolStripMenuItem
-            // 
-            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
-            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.clearLogToolStripMenuItem.Text = "Clear log";
-            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
-            // 
-            // clearHeartbeatToolStripMenuItem
-            // 
-            this.clearHeartbeatToolStripMenuItem.Name = "clearHeartbeatToolStripMenuItem";
-            this.clearHeartbeatToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
-            this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
+            this.txtCmd.Size = new System.Drawing.Size(676, 26);
+            this.txtCmd.TabIndex = 12;
             // 
             // tabControl_main
             // 
@@ -408,11 +211,12 @@ namespace ntrclient
             this.tabControl_main.Controls.Add(this.tabPage_main_debug);
             this.tabControl_main.Controls.Add(this.tabPage3);
             this.tabControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_main.Location = new System.Drawing.Point(0, 454);
+            this.tabControl_main.Location = new System.Drawing.Point(3, 402);
             this.tabControl_main.Name = "tabControl_main";
             this.tabControl_main.SelectedIndex = 0;
-            this.tabControl_main.Size = new System.Drawing.Size(680, 250);
-            this.tabControl_main.TabIndex = 2;
+            this.tabControl_main.Size = new System.Drawing.Size(684, 247);
+            this.tabControl_main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl_main.TabIndex = 13;
             // 
             // tabPage_main_basic
             // 
@@ -437,7 +241,7 @@ namespace ntrclient
             this.tabPage_main_basic.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_basic.Name = "tabPage_main_basic";
             this.tabPage_main_basic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_basic.Size = new System.Drawing.Size(672, 224);
+            this.tabPage_main_basic.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_basic.TabIndex = 0;
             this.tabPage_main_basic.Text = "Basic";
             this.tabPage_main_basic.UseVisualStyleBackColor = true;
@@ -629,7 +433,7 @@ namespace ntrclient
             this.tabPage_main_eu.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_eu.Name = "tabPage_main_eu";
             this.tabPage_main_eu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_eu.Size = new System.Drawing.Size(672, 224);
+            this.tabPage_main_eu.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_eu.TabIndex = 3;
             this.tabPage_main_eu.Text = "EUR";
             this.tabPage_main_eu.UseVisualStyleBackColor = true;
@@ -642,7 +446,7 @@ namespace ntrclient
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(666, 218);
+            this.tabControl3.Size = new System.Drawing.Size(670, 215);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage1
@@ -656,7 +460,7 @@ namespace ntrclient
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(658, 192);
+            this.tabPage1.Size = new System.Drawing.Size(662, 189);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "MH4U";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -721,13 +525,6 @@ namespace ntrclient
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.button_aceu_fish6);
-            this.tabPage2.Controls.Add(this.button_aceu_fish5);
-            this.tabPage2.Controls.Add(this.button_aceu_fish4);
-            this.tabPage2.Controls.Add(this.button_aceu_fish3);
-            this.tabPage2.Controls.Add(this.button_aceu_fish2);
-            this.tabPage2.Controls.Add(this.button_aceu_fish1);
             this.tabPage2.Controls.Add(this.button_aceu_clear_all);
             this.tabPage2.Controls.Add(this.button_aceu_clear_slot1);
             this.tabPage2.Controls.Add(this.button_aceu_fossil6);
@@ -742,73 +539,10 @@ namespace ntrclient
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(658, 192);
+            this.tabPage2.Size = new System.Drawing.Size(662, 189);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Animal Crossing";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Fish is not yet implemented!";
-            // 
-            // button_aceu_fish6
-            // 
-            this.button_aceu_fish6.Location = new System.Drawing.Point(79, 162);
-            this.button_aceu_fish6.Name = "button_aceu_fish6";
-            this.button_aceu_fish6.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fish6.TabIndex = 29;
-            this.button_aceu_fish6.Text = "Fish 6";
-            this.button_aceu_fish6.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fish5
-            // 
-            this.button_aceu_fish5.Location = new System.Drawing.Point(79, 136);
-            this.button_aceu_fish5.Name = "button_aceu_fish5";
-            this.button_aceu_fish5.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fish5.TabIndex = 28;
-            this.button_aceu_fish5.Text = "Fish 5";
-            this.button_aceu_fish5.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fish4
-            // 
-            this.button_aceu_fish4.Location = new System.Drawing.Point(79, 110);
-            this.button_aceu_fish4.Name = "button_aceu_fish4";
-            this.button_aceu_fish4.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fish4.TabIndex = 27;
-            this.button_aceu_fish4.Text = "Fish 4";
-            this.button_aceu_fish4.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fish3
-            // 
-            this.button_aceu_fish3.Location = new System.Drawing.Point(77, 84);
-            this.button_aceu_fish3.Name = "button_aceu_fish3";
-            this.button_aceu_fish3.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fish3.TabIndex = 26;
-            this.button_aceu_fish3.Text = "Fish 3";
-            this.button_aceu_fish3.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fish2
-            // 
-            this.button_aceu_fish2.Location = new System.Drawing.Point(79, 58);
-            this.button_aceu_fish2.Name = "button_aceu_fish2";
-            this.button_aceu_fish2.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fish2.TabIndex = 25;
-            this.button_aceu_fish2.Text = "Fish 2";
-            this.button_aceu_fish2.UseVisualStyleBackColor = true;
-            // 
-            // button_aceu_fish1
-            // 
-            this.button_aceu_fish1.Location = new System.Drawing.Point(79, 32);
-            this.button_aceu_fish1.Name = "button_aceu_fish1";
-            this.button_aceu_fish1.Size = new System.Drawing.Size(75, 20);
-            this.button_aceu_fish1.TabIndex = 24;
-            this.button_aceu_fish1.Text = "Fish 1";
-            this.button_aceu_fish1.UseVisualStyleBackColor = true;
             // 
             // button_aceu_clear_all
             // 
@@ -924,7 +658,7 @@ namespace ntrclient
             this.tabPage_main_us.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_us.Name = "tabPage_main_us";
             this.tabPage_main_us.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_us.Size = new System.Drawing.Size(672, 224);
+            this.tabPage_main_us.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_us.TabIndex = 4;
             this.tabPage_main_us.Text = "USA";
             this.tabPage_main_us.UseVisualStyleBackColor = true;
@@ -936,7 +670,7 @@ namespace ntrclient
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(666, 218);
+            this.tabControl2.Size = new System.Drawing.Size(670, 215);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage7
@@ -947,7 +681,7 @@ namespace ntrclient
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(658, 192);
+            this.tabPage7.Size = new System.Drawing.Size(662, 189);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Mario Kart 7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -985,7 +719,7 @@ namespace ntrclient
             this.tabPage_main_jp.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_jp.Name = "tabPage_main_jp";
             this.tabPage_main_jp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_jp.Size = new System.Drawing.Size(672, 224);
+            this.tabPage_main_jp.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_jp.TabIndex = 5;
             this.tabPage_main_jp.Text = "JPN";
             this.tabPage_main_jp.UseVisualStyleBackColor = true;
@@ -1002,7 +736,7 @@ namespace ntrclient
             this.tabPage_main_gateshark.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_gateshark.Name = "tabPage_main_gateshark";
             this.tabPage_main_gateshark.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_gateshark.Size = new System.Drawing.Size(672, 224);
+            this.tabPage_main_gateshark.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_gateshark.TabIndex = 6;
             this.tabPage_main_gateshark.Text = "Gateshark";
             this.tabPage_main_gateshark.UseVisualStyleBackColor = true;
@@ -1031,7 +765,7 @@ namespace ntrclient
             // 
             this.label_gateshark_explanation.AutoSize = true;
             this.label_gateshark_explanation.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label_gateshark_explanation.Location = new System.Drawing.Point(475, 3);
+            this.label_gateshark_explanation.Location = new System.Drawing.Point(479, 3);
             this.label_gateshark_explanation.Name = "label_gateshark_explanation";
             this.label_gateshark_explanation.Size = new System.Drawing.Size(194, 117);
             this.label_gateshark_explanation.TabIndex = 17;
@@ -1080,6 +814,8 @@ namespace ntrclient
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.label_kpos);
+            this.tabPage_main_debug.Controls.Add(this.button_toolstrip_debug);
             this.tabPage_main_debug.Controls.Add(this.button_debug_rTime);
             this.tabPage_main_debug.Controls.Add(this.textBox_rTime);
             this.tabPage_main_debug.Controls.Add(this.button_pTest);
@@ -1104,10 +840,20 @@ namespace ntrclient
             this.tabPage_main_debug.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_debug.Name = "tabPage_main_debug";
             this.tabPage_main_debug.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_debug.Size = new System.Drawing.Size(672, 224);
+            this.tabPage_main_debug.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // button_toolstrip_debug
+            // 
+            this.button_toolstrip_debug.Location = new System.Drawing.Point(251, 58);
+            this.button_toolstrip_debug.Name = "button_toolstrip_debug";
+            this.button_toolstrip_debug.Size = new System.Drawing.Size(75, 23);
+            this.button_toolstrip_debug.TabIndex = 34;
+            this.button_toolstrip_debug.Text = "Status";
+            this.button_toolstrip_debug.UseVisualStyleBackColor = true;
+            this.button_toolstrip_debug.Click += new System.EventHandler(this.button_toolstrip_debug_Click);
             // 
             // button_debug_rTime
             // 
@@ -1128,7 +874,7 @@ namespace ntrclient
             // 
             // button_pTest
             // 
-            this.button_pTest.Location = new System.Drawing.Point(8, 188);
+            this.button_pTest.Location = new System.Drawing.Point(251, 134);
             this.button_pTest.Name = "button_pTest";
             this.button_pTest.Size = new System.Drawing.Size(237, 23);
             this.button_pTest.TabIndex = 31;
@@ -1319,7 +1065,7 @@ namespace ntrclient
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(672, 224);
+            this.tabPage3.Size = new System.Drawing.Size(676, 221);
             this.tabPage3.TabIndex = 8;
             this.tabPage3.Text = "Data";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1348,17 +1094,218 @@ namespace ntrclient
             this.textBox_memlayout.TabIndex = 11;
             this.textBox_memlayout.TextChanged += new System.EventHandler(this.textBox_memlayout_TextChanged);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 653);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(690, 25);
+            this.toolStrip1.TabIndex = 34;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(86, 22);
+            this.toolStripStatusLabel1.Text = "toolStripLabel1";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem,
+            this.creditsToolStripMenuItem,
+            this.versionToolStripMenuItem,
+            this.commandsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(690, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ToolStripMenuItem
+            // 
+            this.ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CommandToolStripMenuItem,
+            this.asmScratchPadToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.toggleDebugToolStripMenuItem});
+            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ToolStripMenuItem.Text = "Tools";
+            this.ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
+            // 
+            // CommandToolStripMenuItem
+            // 
+            this.CommandToolStripMenuItem.Name = "CommandToolStripMenuItem";
+            this.CommandToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.CommandToolStripMenuItem.Text = "Hotkey Commands";
+            this.CommandToolStripMenuItem.Click += new System.EventHandler(this.CommandToolStripMenuItem_Click);
+            // 
+            // asmScratchPadToolStripMenuItem
+            // 
+            this.asmScratchPadToolStripMenuItem.Name = "asmScratchPadToolStripMenuItem";
+            this.asmScratchPadToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.asmScratchPadToolStripMenuItem.Text = "Asm ScratchPad";
+            this.asmScratchPadToolStripMenuItem.Click += new System.EventHandler(this.asmScratchPadToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(174, 6);
+            // 
+            // toggleDebugToolStripMenuItem
+            // 
+            this.toggleDebugToolStripMenuItem.Name = "toggleDebugToolStripMenuItem";
+            this.toggleDebugToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.toggleDebugToolStripMenuItem.Text = "Toggle debug";
+            this.toggleDebugToolStripMenuItem.Click += new System.EventHandler(this.toggleDebugToolStripMenuItem_Click);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.originalByCell9ToolStripMenuItem,
+            this.modByImthe666stToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.moreCreditsToolStripMenuItem,
+            this.githubRepositoryToolStripMenuItem,
+            this.redditThreadToolStripMenuItem,
+            this.gbaTempThreadToolStripMenuItem});
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            // 
+            // originalByCell9ToolStripMenuItem
+            // 
+            this.originalByCell9ToolStripMenuItem.Name = "originalByCell9ToolStripMenuItem";
+            this.originalByCell9ToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.originalByCell9ToolStripMenuItem.Text = "Original by cell9";
+            // 
+            // modByImthe666stToolStripMenuItem
+            // 
+            this.modByImthe666stToolStripMenuItem.Name = "modByImthe666stToolStripMenuItem";
+            this.modByImthe666stToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.modByImthe666stToolStripMenuItem.Text = "Mod by imthe666st";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
+            // 
+            // moreCreditsToolStripMenuItem
+            // 
+            this.moreCreditsToolStripMenuItem.Name = "moreCreditsToolStripMenuItem";
+            this.moreCreditsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.moreCreditsToolStripMenuItem.Text = "More credits";
+            this.moreCreditsToolStripMenuItem.Click += new System.EventHandler(this.moreCreditsToolStripMenuItem_Click);
+            // 
+            // githubRepositoryToolStripMenuItem
+            // 
+            this.githubRepositoryToolStripMenuItem.Name = "githubRepositoryToolStripMenuItem";
+            this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.githubRepositoryToolStripMenuItem.Text = "Github repository";
+            this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.githubRepositoryToolStripMenuItem_Click);
+            // 
+            // redditThreadToolStripMenuItem
+            // 
+            this.redditThreadToolStripMenuItem.Name = "redditThreadToolStripMenuItem";
+            this.redditThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.redditThreadToolStripMenuItem.Text = "Reddit Thread";
+            this.redditThreadToolStripMenuItem.Click += new System.EventHandler(this.redditThreadToolStripMenuItem_Click);
+            // 
+            // gbaTempThreadToolStripMenuItem
+            // 
+            this.gbaTempThreadToolStripMenuItem.Name = "gbaTempThreadToolStripMenuItem";
+            this.gbaTempThreadToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.gbaTempThreadToolStripMenuItem.Text = "gbaTemp Thread";
+            this.gbaTempThreadToolStripMenuItem.Click += new System.EventHandler(this.gbaTempThreadToolStripMenuItem_Click);
+            // 
+            // versionToolStripMenuItem
+            // 
+            this.versionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.VersionNumberToolStripMenuItem,
+            this.VersionExtraToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.checkingUpdateToolStripMenuItem});
+            this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.versionToolStripMenuItem.Text = "Version";
+            // 
+            // VersionNumberToolStripMenuItem
+            // 
+            this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
+            this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.VersionNumberToolStripMenuItem.Text = "1.4-2";
+            // 
+            // VersionExtraToolStripMenuItem
+            // 
+            this.VersionExtraToolStripMenuItem.Name = "VersionExtraToolStripMenuItem";
+            this.VersionExtraToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.VersionExtraToolStripMenuItem.Text = "Public Release";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(170, 6);
+            // 
+            // checkingUpdateToolStripMenuItem
+            // 
+            this.checkingUpdateToolStripMenuItem.Name = "checkingUpdateToolStripMenuItem";
+            this.checkingUpdateToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkingUpdateToolStripMenuItem.Text = "Checking update...";
+            this.checkingUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkingUpdateToolStripMenuItem_Click);
+            // 
+            // commandsToolStripMenuItem
+            // 
+            this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearLogToolStripMenuItem,
+            this.clearHeartbeatToolStripMenuItem});
+            this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
+            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.commandsToolStripMenuItem.Text = "Commands";
+            // 
+            // clearLogToolStripMenuItem
+            // 
+            this.clearLogToolStripMenuItem.Name = "clearLogToolStripMenuItem";
+            this.clearLogToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.clearLogToolStripMenuItem.Text = "Clear log";
+            this.clearLogToolStripMenuItem.Click += new System.EventHandler(this.clearLogToolStripMenuItem_Click);
+            // 
+            // clearHeartbeatToolStripMenuItem
+            // 
+            this.clearHeartbeatToolStripMenuItem.Name = "clearHeartbeatToolStripMenuItem";
+            this.clearHeartbeatToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
+            this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
+            // 
+            // label_kpos
+            // 
+            this.label_kpos.AutoSize = true;
+            this.label_kpos.Location = new System.Drawing.Point(578, 6);
+            this.label_kpos.Name = "label_kpos";
+            this.label_kpos.Size = new System.Drawing.Size(48, 13);
+            this.label_kpos.TabIndex = 35;
+            this.label_kpos.Text = "KPOS: 0";
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 704);
-            this.Controls.Add(this.tabControl_main);
+            this.ClientSize = new System.Drawing.Size(690, 702);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(700, 734);
+            this.MinimumSize = new System.Drawing.Size(700, 734);
             this.Name = "CmdWindow";
             this.Text = "NTR Debugger";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CmdWindow_FormClosed);
@@ -1367,10 +1314,6 @@ namespace ntrclient
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.CmdWindow_PreviewKeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabControl_main.ResumeLayout(false);
             this.tabPage_main_basic.ResumeLayout(false);
             this.tabPage_main_basic.PerformLayout();
@@ -1392,6 +1335,10 @@ namespace ntrclient
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1400,40 +1347,61 @@ namespace ntrclient
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox txtLog;
-        private System.Windows.Forms.TextBox txtCmd;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem CommandToolStripMenuItem;
-		private System.Windows.Forms.StatusStrip statusStrip1;
-		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem asmScratchPadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem originalByCell9ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modByImthe666stToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem moreCreditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem githubRepositoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VersionNumberToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VersionExtraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toggleDebugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem redditThreadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gbaTempThreadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearHeartbeatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem checkingUpdateToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.TextBox txtCmd;
         private System.Windows.Forms.TabControl tabControl_main;
         private System.Windows.Forms.TabPage tabPage_main_basic;
-        private System.Windows.Forms.Button button_processes;
-        private System.Windows.Forms.Button button_Connect;
-        private System.Windows.Forms.TextBox textBox_Ip;
-        private System.Windows.Forms.Button button_hello;
-        private System.Windows.Forms.TextBox textBox_dump_file;
-        private System.Windows.Forms.Button button_dump;
-        private System.Windows.Forms.Button button_disconnect;
-        public System.Windows.Forms.ComboBox comboBox_memregions;
-        private System.Windows.Forms.TextBox textBox_dummy_addr;
-        private System.Windows.Forms.Button button_dummy_read;
+        public System.Windows.Forms.ComboBox comboBox_processes;
+        private System.Windows.Forms.Button button_dummy_write_hex_le;
+        private System.Windows.Forms.TextBox textBox_dummy_value_hex_le;
+        private System.Windows.Forms.Button button_dummy_write_dec;
+        private System.Windows.Forms.TextBox textBox_dummy_value_dec;
         private System.Windows.Forms.Button button_dummy_write_hex;
         private System.Windows.Forms.TextBox textBox_dummy_value_hex;
         private System.Windows.Forms.NumericUpDown numericUpDown_dummy_length;
+        private System.Windows.Forms.TextBox textBox_dummy_addr;
+        private System.Windows.Forms.Button button_dummy_read;
+        public System.Windows.Forms.ComboBox comboBox_memregions;
+        private System.Windows.Forms.Button button_disconnect;
+        private System.Windows.Forms.TextBox textBox_dump_file;
+        private System.Windows.Forms.Button button_dump;
+        private System.Windows.Forms.Button button_hello;
+        private System.Windows.Forms.Button button_processes;
+        private System.Windows.Forms.Button button_Connect;
+        private System.Windows.Forms.TextBox textBox_Ip;
         private System.Windows.Forms.TabPage tabPage_main_eu;
         private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button button_mh4u_eu_hb_godmode;
+        private System.Windows.Forms.Button button_mh4u_eu_monb_kill;
+        private System.Windows.Forms.Button button_mh4u_eu_mon2_kill;
+        private System.Windows.Forms.Button button_mh4u_eu_mon1_kill;
+        private System.Windows.Forms.Button button_mh4u_eu_name;
+        private System.Windows.Forms.TextBox textBox_mh4u_eu_name;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button_aceu_fish6;
-        private System.Windows.Forms.Button button_aceu_fish5;
-        private System.Windows.Forms.Button button_aceu_fish4;
-        private System.Windows.Forms.Button button_aceu_fish3;
-        private System.Windows.Forms.Button button_aceu_fish2;
-        private System.Windows.Forms.Button button_aceu_fish1;
         private System.Windows.Forms.Button button_aceu_clear_all;
         private System.Windows.Forms.Button button_aceu_clear_slot1;
         private System.Windows.Forms.Button button_aceu_fossil6;
@@ -1453,68 +1421,42 @@ namespace ntrclient
         private System.Windows.Forms.TextBox textBox_mk7_coins;
         private System.Windows.Forms.TabPage tabPage_main_jp;
         private System.Windows.Forms.TabPage tabPage_main_gateshark;
+        private System.Windows.Forms.Button button_gateshark_heartbeat;
+        private System.Windows.Forms.Button button_browser_fort42;
+        private System.Windows.Forms.Label label_gateshark_explanation;
+        private System.Windows.Forms.Button button_gateshark_execute;
+        public System.Windows.Forms.TextBox textBox_gateshark_parsed;
         public System.Windows.Forms.TextBox textBox_gateshark;
         private System.Windows.Forms.Button button_gateshark_parse;
-        public System.Windows.Forms.TextBox textBox_gateshark_parsed;
-        private System.Windows.Forms.Button button_gateshark_execute;
-        private System.Windows.Forms.Label label_gateshark_explanation;
-        private System.Windows.Forms.Button button_browser_fort42;
-        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem originalByCell9ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modByImthe666stToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem moreCreditsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem githubRepositoryToolStripMenuItem;
-        private System.Windows.Forms.Button button_dummy_write_dec;
-        private System.Windows.Forms.TextBox textBox_dummy_value_dec;
-        private System.Windows.Forms.ToolStripMenuItem versionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem VersionNumberToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem VersionExtraToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage_main_debug;
-        public System.Windows.Forms.CheckBox checkBox_debug;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem toggleDebugToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button_mh4u_eu_name;
-        private System.Windows.Forms.TextBox textBox_mh4u_eu_name;
-        private System.Windows.Forms.Button button_dummy_write_hex_le;
-        private System.Windows.Forms.TextBox textBox_dummy_value_hex_le;
-        private System.Windows.Forms.Button button_mh4u_eu_mon2_kill;
-        private System.Windows.Forms.Button button_mh4u_eu_mon1_kill;
-        private System.Windows.Forms.Button button_mh4u_eu_monb_kill;
-        private System.Windows.Forms.Button button_heart_test_inject;
-        private System.Windows.Forms.Button button_heart_test_stop;
-        private System.Windows.Forms.Button button_heart_test_start;
-        private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearLogToolStripMenuItem;
-        private System.Windows.Forms.Button button_gateshark_heartbeat;
-        private System.Windows.Forms.TextBox textBox_cfg_read_dummy;
-        private System.Windows.Forms.TextBox textBox_cfg_set_dummy;
-        private System.Windows.Forms.Button button_cfg_read_dummy;
-        private System.Windows.Forms.Button button_cfg_set_dummy;
-        private System.Windows.Forms.ToolStripMenuItem redditThreadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gbaTempThreadToolStripMenuItem;
-        private System.Windows.Forms.Label label_heart_status;
-        private System.Windows.Forms.Button button_heart_test_toggle;
-        private System.Windows.Forms.Button button_mh4u_eu_hb_godmode;
-        private System.Windows.Forms.ToolStripMenuItem clearHeartbeatToolStripMenuItem;
+        private System.Windows.Forms.Button button_debug_rTime;
+        private System.Windows.Forms.TextBox textBox_rTime;
+        private System.Windows.Forms.Button button_pTest;
+        private System.Windows.Forms.Button button_update;
+        private System.Windows.Forms.NumericUpDown numericUpDown_debug_hextest;
         private System.Windows.Forms.TextBox textBox_debug_conv_dec;
         private System.Windows.Forms.Button button_debug_conv_dec;
         private System.Windows.Forms.TextBox textBox_debug_conv_hex_le;
         private System.Windows.Forms.Button button_debug_conv_hex_le;
         private System.Windows.Forms.TextBox textBox_debug_conv_hex;
         private System.Windows.Forms.Button button_debug_conv_hex;
-        private System.Windows.Forms.NumericUpDown numericUpDown_debug_hextest;
-        private System.Windows.Forms.Button button_update;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem checkingUpdateToolStripMenuItem;
-        public System.Windows.Forms.ComboBox comboBox_processes;
+        private System.Windows.Forms.Label label_heart_status;
+        private System.Windows.Forms.Button button_heart_test_toggle;
+        private System.Windows.Forms.TextBox textBox_cfg_read_dummy;
+        private System.Windows.Forms.TextBox textBox_cfg_set_dummy;
+        private System.Windows.Forms.Button button_cfg_read_dummy;
+        private System.Windows.Forms.Button button_cfg_set_dummy;
+        private System.Windows.Forms.Button button_heart_test_inject;
+        private System.Windows.Forms.Button button_heart_test_stop;
+        private System.Windows.Forms.Button button_heart_test_start;
+        public System.Windows.Forms.CheckBox checkBox_debug;
         private System.Windows.Forms.TabPage tabPage3;
         public System.Windows.Forms.TextBox textBox_processes;
         public System.Windows.Forms.TextBox textBox_memlayout;
-        private System.Windows.Forms.Button button_pTest;
-        private System.Windows.Forms.Button button_debug_rTime;
-        private System.Windows.Forms.TextBox textBox_rTime;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button button_toolstrip_debug;
+        private System.Windows.Forms.Label label_kpos;
     }
 }
 

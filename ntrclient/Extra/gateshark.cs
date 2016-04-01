@@ -25,23 +25,17 @@ namespace ntrclient
 
             }
         }
-            /*
 
-            [TEST]
-            D3000000 10000000
-            C0000000 00000003
-            DF000000 00000000
-            D1000000 00000001
-            D3000000 00000000
-            
-            
-            */
+        static void addlog(String n)
+        {
+            Program.gCmdWindow.Addlog(n);
+        }
 
         public void execute()
         {
             int index = 0;
             int dummy_count = 0;
-            Boolean gs_if = false;
+            Boolean gs_if = true;
             Boolean valid = true;
             Int32 gs_if_layer = 0;
             Int32 gs_if_sLayer = 0;
@@ -49,6 +43,8 @@ namespace ntrclient
             {
                 gateshark_ar gs_ar = lines[index];
                 int cmd = gs_ar.getCMD();
+
+                addlog(String.Format("GS | {0:X} {1:X} {2:X} -> [{3}, {4}, {5}, {6:X}]", cmd, gs_ar.getBlock_A(), gs_ar.getBlock_B(), valid, gs_if_layer, gs_if_sLayer, offset));
                 if (gs_if_layer == 0 && valid)
                 {
 
@@ -61,42 +57,42 @@ namespace ntrclient
                     else if (cmd == 0x3)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
-                        gs_if = !(read < gs_ar.getBlock_B());
+                        gs_if = (read < gs_ar.getBlock_B());
                     }
                     else if (cmd == 0x4)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
-                        gs_if = !(read > gs_ar.getBlock_B());
+                        gs_if = (read > gs_ar.getBlock_B());
                     }
                     else if (cmd == 0x5)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
-                        gs_if = !(read == gs_ar.getBlock_B());
+                        gs_if = (read == gs_ar.getBlock_B());
                     }
                     else if (cmd == 0x6)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 4), 0));
-                        gs_if = !(read != gs_ar.getBlock_B());
+                        gs_if = (read != gs_ar.getBlock_B());
                     }
                     else if (cmd == 0x7)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
-                        gs_if = !(read < gs_ar.getBlock_B());
+                        gs_if = (read < gs_ar.getBlock_B());
                     }
                     else if (cmd == 0x8)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
-                        gs_if = !(read > gs_ar.getBlock_B());
+                        gs_if = (read > gs_ar.getBlock_B());
                     }
                     else if (cmd == 0x9)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
-                        gs_if = !(read == gs_ar.getBlock_B());
+                        gs_if = (read == gs_ar.getBlock_B());
                     }
                     else if (cmd == 0xA)
                     {
                         UInt32 read = Convert.ToUInt32(CmdWindow.fromLE(Program.gCmdWindow.readValue(gs_ar.getBlock_A() + offset, 2), 2));
-                        gs_if = !(read != gs_ar.getBlock_B());
+                        gs_if = (read != gs_ar.getBlock_B());
                     }
                     else if (cmd == 0xB)
                     {
@@ -241,9 +237,10 @@ namespace ntrclient
                             "LAYERS: {7} {8}"
                             , index, offset, loop, loop_index, loop_count, dxData, dummy_count, gs_if_sLayer, gs_if_layer));
                     }
+
                     if (!gs_if)
                     {
-                        gs_if = false;
+                        gs_if = true;
                         gs_if_layer += 1;
                     }
                 }
@@ -257,6 +254,15 @@ namespace ntrclient
                         gs_if_sLayer -= 1;
                     else if (gs_if_layer > 0)
                         gs_if_layer -= 1;
+                } else if (cmd == 0xD2)
+                {
+                    loop = false;
+                    loop_count = 0;
+                    loop_index = 0;
+
+                    offset = 0;
+                    gs_if_layer = 0;
+                    gs_if_sLayer = 0;
                 }
                 index++;
             } while (index < lines.Count);
