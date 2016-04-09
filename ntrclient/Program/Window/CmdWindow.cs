@@ -59,14 +59,22 @@ namespace ntrclient
             lookedForUpdate = true;
             if (await Octo.isUpdate())
             {
-                MessageBox.Show("A new version has been released!");
+                String n_version = Octo.getLastVersionName();
+                String n_body = Octo.getLastVersionBody();
+                MessageBox.Show(
+                    "A new Update has been released!\r\n" +
+                    n_version + "\r\n\r\n" +
+                    n_body    
+                );
                 checkingUpdateToolStripMenuItem.Text = "Update available!";
                 updateAvailable = true;
+                Program.dc.Addlog("Found a new Update - "+ n_version);
             }
             else {
                 //MessageBox.Show("No new release found!");
                 updateAvailable = false;
                 checkingUpdateToolStripMenuItem.Text = "No new Update!";
+                Program.dc.Addlog("No Update found");
             }
 
         }
@@ -958,6 +966,18 @@ namespace ntrclient
             textBox_rTime.Text = "" + await Octo.getLastUpdate();
         }
 
+        private void button_toolstrip_debug_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz1234567890";
+        }
+
+        private void button_btn_input_Click(object sender, EventArgs e)
+        {   // b5 for lstick left/right
+            int w = readValue(0x0010C0B5, 1);
+            int h = readValue(0x0010C0B7, 1);
+            label_btn_input.Text = String.Format("{0} - {1}", w, h);
+        }
+
         //________________________________________________________________
 
         // Starting with the Cheats section! 
@@ -1219,9 +1239,147 @@ namespace ntrclient
                 );
         }
 
-        private void button_toolstrip_debug_Click(object sender, EventArgs e)
+        // MH4U US
+        // -0x410
+
+        private void button_mh4u_us_name_Click(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz1234567890";
+
+            String wCmd = "";
+            char[] name = textBox_mh4u_us_name.Text.ToCharArray();
+            for (int i = 0; i < 11; i++)
+            {
+                if (i < name.Length)
+                {
+                    wCmd += String.Format("ord('{0}'), 0", name[i]);
+                }
+                else
+                {
+                    wCmd += "0, 0";
+                }
+
+                if (i < 10)
+                {
+                    wCmd += ", ";
+                }
+
+            }
+
+            String[] addr =
+            {
+                //"0x082839D0", "0x08284AA6"
+                "0836993C", "08283558", 
+                "0828457A", "0828513A",
+                "0831F87C", "0833F930",
+                "083693DC", "083EED38"
+
+            };
+            foreach (String a in addr)
+            {
+                runCmd(String.Format("write(0x{0}, ({1}), pid=0x{2:X})", a, wCmd, getPID()));
+            }
+        }
+
+        private void button_mh4u_us_mon1_kill_Click(object sender, EventArgs e)
+        {
+            String gs_code =
+                "D3000000 081C7D00\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000";
+
+            gateshark code = new gateshark(gs_code);
+            code.execute();
+        }
+
+        private void button_mh4u_us_mon2_kill_Click(object sender, EventArgs e)
+        {
+            String gs_code =
+                "D3000000 081C7D04\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000";
+
+            gateshark code = new gateshark(gs_code);
+            code.execute();
+        }
+
+        private void button_mh4u_us_hb_godmode_Click(object sender, EventArgs e)
+        {
+            if (hbc != null)
+                hbc.setCode(
+                    "481C7CD0 08800000\r\n" +
+                    "381C7CD0 08D00000\r\n" +
+                    "B81C7CD0 00000000\r\n" +
+                    "00001184 32003200\r\n" +
+                    "10001188 00003200\r\n" +
+                    "0000118C 44610000\r\n" +
+                    "00001190 44610000\r\n" +
+                    "10001194 00003200\r\n" +
+                    "D2000000 00000000"
+                );
+        }
+
+        private void button_mh4u_us_monb_kill_Click(object sender, EventArgs e)
+        {
+
+            String gs_code =
+                "D3000000 081C7D00\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D3000000 081C7D04\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 00000E28\r\n" +
+                "40000000 08000000\r\n" +
+                "30000000 0B13EFFF\r\n" +
+                "B0000000 00000000\r\n" +
+                "DC000000 000003E8\r\n" +
+                "10000000 00000001\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000\r\n" +
+                "D0000000 00000000";
+
+            gateshark code = new gateshark(gs_code);
+            code.execute();
+        }
+
+        private void openConsoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.dc.Show();
         }
 
         // New stuff.. Need to add this to a category.

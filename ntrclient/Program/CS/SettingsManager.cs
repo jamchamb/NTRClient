@@ -10,6 +10,7 @@ namespace ntrclient {
 	public class SettingsManager {
 		public string[] quickCmds {set; get;}
         public string ip_address { set; get; }
+        public int gs_used { set; get; }
 
 		public void init() {
 			if (quickCmds == null ) {
@@ -21,6 +22,10 @@ namespace ntrclient {
             if (ip_address == null)
             {
                 ip_address = "Nintendo 3DS IP";
+            }
+            if (gs_used < 0)
+            {
+                gs_used = 0;
             }
 		}
 
@@ -48,7 +53,11 @@ namespace ntrclient {
 				}
 			}
 			catch (Exception ex) {
-				MessageBox.Show(ex.Message);
+				MessageBox.Show(
+                    "Ignore this message if you just \r\n" +
+                    "Downloaded or Updated this tool...\r\n\r\n" + 
+                    ex.Message
+                );
 			}
 			return new SettingsManager();
 		}

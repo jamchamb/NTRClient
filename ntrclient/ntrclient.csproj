@@ -112,6 +112,12 @@
     </Compile>
     <Compile Include="Extra\gateshark.cs" />
     <Compile Include="Program\CS\Memregion.cs" />
+    <Compile Include="Program\Window\DebugConsole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program\Window\DebugConsole.Designer.cs">
+      <DependentUpon>DebugConsole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program\Window\QuickCmdWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Program\Window\Credits.resx">
       <DependentUpon>Credits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Program\Window\DebugConsole.resx">
+      <DependentUpon>DebugConsole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Program\Window\QuickCmdWindow.resx">
       <DependentUpon>QuickCmdWindow.cs</DependentUpon>

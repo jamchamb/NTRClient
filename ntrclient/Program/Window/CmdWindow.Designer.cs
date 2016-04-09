@@ -78,6 +78,13 @@ namespace ntrclient
             this.button_aceu_openIds = new System.Windows.Forms.Button();
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button_mh4u_us_hb_godmode = new System.Windows.Forms.Button();
+            this.button_mh4u_us_monb_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_us_mon2_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_us_mon1_kill = new System.Windows.Forms.Button();
+            this.button_mh4u_us_name = new System.Windows.Forms.Button();
+            this.textBox_mh4u_us_name = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button_mk7_coins_write = new System.Windows.Forms.Button();
             this.button_mk7_coins_read = new System.Windows.Forms.Button();
@@ -92,6 +99,9 @@ namespace ntrclient
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.label_btn_input = new System.Windows.Forms.Label();
+            this.button_btn_input = new System.Windows.Forms.Button();
+            this.label_kpos = new System.Windows.Forms.Label();
             this.button_toolstrip_debug = new System.Windows.Forms.Button();
             this.button_debug_rTime = new System.Windows.Forms.Button();
             this.textBox_rTime = new System.Windows.Forms.TextBox();
@@ -142,7 +152,8 @@ namespace ntrclient
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label_kpos = new System.Windows.Forms.Label();
+            this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -153,6 +164,7 @@ namespace ntrclient
             this.tabPage2.SuspendLayout();
             this.tabPage_main_us.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage_main_gateshark.SuspendLayout();
             this.tabPage_main_debug.SuspendLayout();
@@ -200,6 +212,7 @@ namespace ntrclient
             this.txtCmd.Name = "txtCmd";
             this.txtCmd.Size = new System.Drawing.Size(676, 26);
             this.txtCmd.TabIndex = 12;
+            this.txtCmd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCmd_KeyDown);
             // 
             // tabControl_main
             // 
@@ -665,6 +678,7 @@ namespace ntrclient
             // 
             // tabControl2
             // 
+            this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
@@ -672,6 +686,80 @@ namespace ntrclient
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(670, 215);
             this.tabControl2.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button_mh4u_us_hb_godmode);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_monb_kill);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_mon2_kill);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_mon1_kill);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_name);
+            this.tabPage4.Controls.Add(this.textBox_mh4u_us_name);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(662, 189);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "MH4U";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button_mh4u_us_hb_godmode
+            // 
+            this.button_mh4u_us_hb_godmode.Location = new System.Drawing.Point(502, 3);
+            this.button_mh4u_us_hb_godmode.Name = "button_mh4u_us_hb_godmode";
+            this.button_mh4u_us_hb_godmode.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_hb_godmode.TabIndex = 13;
+            this.button_mh4u_us_hb_godmode.Text = "[HB] Health / Stamina";
+            this.button_mh4u_us_hb_godmode.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_hb_godmode.Click += new System.EventHandler(this.button_mh4u_us_hb_godmode_Click);
+            // 
+            // button_mh4u_us_monb_kill
+            // 
+            this.button_mh4u_us_monb_kill.Location = new System.Drawing.Point(3, 81);
+            this.button_mh4u_us_monb_kill.Name = "button_mh4u_us_monb_kill";
+            this.button_mh4u_us_monb_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_monb_kill.TabIndex = 12;
+            this.button_mh4u_us_monb_kill.Text = "1 Hit Both Monsters";
+            this.button_mh4u_us_monb_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_monb_kill.Click += new System.EventHandler(this.button_mh4u_us_monb_kill_Click);
+            // 
+            // button_mh4u_us_mon2_kill
+            // 
+            this.button_mh4u_us_mon2_kill.Location = new System.Drawing.Point(3, 55);
+            this.button_mh4u_us_mon2_kill.Name = "button_mh4u_us_mon2_kill";
+            this.button_mh4u_us_mon2_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_mon2_kill.TabIndex = 11;
+            this.button_mh4u_us_mon2_kill.Text = "1 Hit Monster 2";
+            this.button_mh4u_us_mon2_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_mon2_kill.Click += new System.EventHandler(this.button_mh4u_us_mon2_kill_Click);
+            // 
+            // button_mh4u_us_mon1_kill
+            // 
+            this.button_mh4u_us_mon1_kill.Location = new System.Drawing.Point(3, 29);
+            this.button_mh4u_us_mon1_kill.Name = "button_mh4u_us_mon1_kill";
+            this.button_mh4u_us_mon1_kill.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_mon1_kill.TabIndex = 10;
+            this.button_mh4u_us_mon1_kill.Text = "1 Hit Monster 1";
+            this.button_mh4u_us_mon1_kill.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_mon1_kill.Click += new System.EventHandler(this.button_mh4u_us_mon1_kill_Click);
+            // 
+            // button_mh4u_us_name
+            // 
+            this.button_mh4u_us_name.Location = new System.Drawing.Point(159, 3);
+            this.button_mh4u_us_name.Name = "button_mh4u_us_name";
+            this.button_mh4u_us_name.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_name.TabIndex = 9;
+            this.button_mh4u_us_name.Text = "Change name";
+            this.button_mh4u_us_name.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_name.Click += new System.EventHandler(this.button_mh4u_us_name_Click);
+            // 
+            // textBox_mh4u_us_name
+            // 
+            this.textBox_mh4u_us_name.Location = new System.Drawing.Point(3, 3);
+            this.textBox_mh4u_us_name.Name = "textBox_mh4u_us_name";
+            this.textBox_mh4u_us_name.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_us_name.TabIndex = 8;
+            this.textBox_mh4u_us_name.Text = "Name";
             // 
             // tabPage7
             // 
@@ -814,6 +902,8 @@ namespace ntrclient
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.label_btn_input);
+            this.tabPage_main_debug.Controls.Add(this.button_btn_input);
             this.tabPage_main_debug.Controls.Add(this.label_kpos);
             this.tabPage_main_debug.Controls.Add(this.button_toolstrip_debug);
             this.tabPage_main_debug.Controls.Add(this.button_debug_rTime);
@@ -844,6 +934,34 @@ namespace ntrclient
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // label_btn_input
+            // 
+            this.label_btn_input.AutoSize = true;
+            this.label_btn_input.Location = new System.Drawing.Point(413, 63);
+            this.label_btn_input.Name = "label_btn_input";
+            this.label_btn_input.Size = new System.Drawing.Size(86, 13);
+            this.label_btn_input.TabIndex = 37;
+            this.label_btn_input.Text = "NO INPUT YET!";
+            // 
+            // button_btn_input
+            // 
+            this.button_btn_input.Location = new System.Drawing.Point(332, 58);
+            this.button_btn_input.Name = "button_btn_input";
+            this.button_btn_input.Size = new System.Drawing.Size(75, 23);
+            this.button_btn_input.TabIndex = 36;
+            this.button_btn_input.Text = "Read Button";
+            this.button_btn_input.UseVisualStyleBackColor = true;
+            this.button_btn_input.Click += new System.EventHandler(this.button_btn_input_Click);
+            // 
+            // label_kpos
+            // 
+            this.label_kpos.AutoSize = true;
+            this.label_kpos.Location = new System.Drawing.Point(578, 6);
+            this.label_kpos.Name = "label_kpos";
+            this.label_kpos.Size = new System.Drawing.Size(48, 13);
+            this.label_kpos.TabIndex = 35;
+            this.label_kpos.Text = "KPOS: 0";
             // 
             // button_toolstrip_debug
             // 
@@ -1266,7 +1384,9 @@ namespace ntrclient
             // 
             this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearLogToolStripMenuItem,
-            this.clearHeartbeatToolStripMenuItem});
+            this.clearHeartbeatToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.openConsoleToolStripMenuItem});
             this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
             this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.commandsToolStripMenuItem.Text = "Commands";
@@ -1285,14 +1405,17 @@ namespace ntrclient
             this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
             this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
             // 
-            // label_kpos
+            // openConsoleToolStripMenuItem
             // 
-            this.label_kpos.AutoSize = true;
-            this.label_kpos.Location = new System.Drawing.Point(578, 6);
-            this.label_kpos.Name = "label_kpos";
-            this.label_kpos.Size = new System.Drawing.Size(48, 13);
-            this.label_kpos.TabIndex = 35;
-            this.label_kpos.Text = "KPOS: 0";
+            this.openConsoleToolStripMenuItem.Name = "openConsoleToolStripMenuItem";
+            this.openConsoleToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.openConsoleToolStripMenuItem.Text = "Open Console";
+            this.openConsoleToolStripMenuItem.Click += new System.EventHandler(this.openConsoleToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
             // 
             // CmdWindow
             // 
@@ -1326,6 +1449,8 @@ namespace ntrclient
             this.tabPage2.PerformLayout();
             this.tabPage_main_us.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             this.tabPage_main_gateshark.ResumeLayout(false);
@@ -1457,6 +1582,17 @@ namespace ntrclient
         private System.Windows.Forms.ToolStripLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button button_toolstrip_debug;
         private System.Windows.Forms.Label label_kpos;
+        private System.Windows.Forms.Label label_btn_input;
+        private System.Windows.Forms.Button button_btn_input;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button_mh4u_us_hb_godmode;
+        private System.Windows.Forms.Button button_mh4u_us_monb_kill;
+        private System.Windows.Forms.Button button_mh4u_us_mon2_kill;
+        private System.Windows.Forms.Button button_mh4u_us_mon1_kill;
+        private System.Windows.Forms.Button button_mh4u_us_name;
+        private System.Windows.Forms.TextBox textBox_mh4u_us_name;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem openConsoleToolStripMenuItem;
     }
 }
 

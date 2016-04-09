@@ -19,6 +19,7 @@ namespace ntrclient
 		public static ScriptScope globalScope;
 		public static CmdWindow gCmdWindow;
 		public static SettingsManager sm;
+        public static DebugConsole dc;
 
 		public static void loadConfig() {
 			sm = SettingsManager.LoadFromXml("ntrconfig.xml");
@@ -46,7 +47,8 @@ namespace ntrclient
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-			gCmdWindow = new CmdWindow();
+            gCmdWindow = new CmdWindow();
+            dc = new DebugConsole();
             Application.Run(gCmdWindow);
         }
     }

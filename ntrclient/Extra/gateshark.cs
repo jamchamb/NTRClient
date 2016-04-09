@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ntrclient
 {
-    class gateshark
+    public class gateshark
     {
         List<gateshark_ar> lines = new List<gateshark_ar>();
         Int32 offset;
@@ -44,12 +44,15 @@ namespace ntrclient
                 gateshark_ar gs_ar = lines[index];
                 int cmd = gs_ar.getCMD();
 
-                addlog(String.Format("GS | {0:X} {1:X} {2:X} -> [{3}, {4}, {5}, {6:X}]", cmd, gs_ar.getBlock_A(), gs_ar.getBlock_B(), valid, gs_if_layer, gs_if_sLayer, offset));
+                if (cmd != 0xff)
+                    addlog(String.Format("GS | {0:X} {1:X} {2:X} -> [{3}, {4}, {5}, {6:X}]", cmd, gs_ar.getBlock_A(), gs_ar.getBlock_B(), valid, gs_if_layer, gs_if_sLayer, offset));
+                    
                 if (gs_if_layer == 0 && valid)
                 {
 
                     if ((cmd == 0) || (cmd == 1) || (cmd == 2))
                     {
+                        Program.sm.gs_used += 1;
                         valid = gs_ar.execute(offset);
                         
                     }
@@ -274,7 +277,7 @@ namespace ntrclient
         }
     }
 
-    class gateshark_ar
+    public class gateshark_ar
     {
         String line;
         Int32 cmd;
@@ -287,7 +290,7 @@ namespace ntrclient
 
             if (ar.Length != 17)
             {
-                cmd = 0x0f;
+                cmd = 0xff;
                 block_a = 0x0fffffff;
                 block_b = 0x7fffffff;
                 return;

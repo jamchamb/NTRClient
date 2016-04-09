@@ -19,7 +19,7 @@ namespace ntrclient
             while (!shouldStop)
             {
                 // WORKING
-                if (gs_code != null)
+                if (gs_code != null && enabled)
                 {
                     gs_code.execute();
                     Console.WriteLine("Executing code");
@@ -30,7 +30,7 @@ namespace ntrclient
             // Stopped working
             // Cleaning
 
-            Console.WriteLine("Cleaning Thread");
+            //Console.WriteLine("Cleaning Thread");
 
             // Finished
         }
@@ -38,20 +38,20 @@ namespace ntrclient
         public void requestStop()
         {
             shouldStop = true;
-            Console.WriteLine("Requesting stop");
+            //Console.WriteLine("Requesting stop");
         }
 
         public void setCode(String s)
         {
             gs_code = new gateshark(s);
 
-            Console.WriteLine("Set code by String");
+            //Console.WriteLine("Set code by String");
         }
 
         public void setCode(gateshark s)
         {
             gs_code = s;
-            Console.WriteLine("Set code by instance");
+            //Console.WriteLine("Set code by instance");
         }
 
         public bool toggle()

@@ -37,5 +37,21 @@ namespace ntrclient
             lastRelease = lastReleases[0];
             return lastRelease.CreatedAt.UtcTicks;
         }
+
+        public static String getLastVersionName()
+        {
+            if (lastRelease != null)
+                return lastRelease.Name;
+            else
+                return "ERROR";
+        }
+
+        public static String getLastVersionBody()
+        {
+            if (lastRelease != null)
+                return lastRelease.Body;
+            else
+                return "ERROR";
+        }
     }
 }
