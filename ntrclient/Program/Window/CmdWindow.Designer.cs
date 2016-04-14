@@ -89,6 +89,7 @@ namespace ntrclient
             this.button_mk7_coins_write = new System.Windows.Forms.Button();
             this.button_mk7_coins_read = new System.Windows.Forms.Button();
             this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage_main_jp = new System.Windows.Forms.TabPage();
             this.tabPage_main_gateshark = new System.Windows.Forms.TabPage();
             this.button_gateshark_heartbeat = new System.Windows.Forms.Button();
@@ -152,8 +153,10 @@ namespace ntrclient
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.button_remoteplay = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -680,6 +683,7 @@ namespace ntrclient
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Name = "tabControl2";
@@ -802,6 +806,16 @@ namespace ntrclient
             this.textBox_mk7_coins.TabIndex = 6;
             this.textBox_mk7_coins.Text = "Coins";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(662, 189);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "P&DZ + SMB";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // tabPage_main_jp
             // 
             this.tabPage_main_jp.Location = new System.Drawing.Point(4, 22);
@@ -902,6 +916,7 @@ namespace ntrclient
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.button_remoteplay);
             this.tabPage_main_debug.Controls.Add(this.label_btn_input);
             this.tabPage_main_debug.Controls.Add(this.button_btn_input);
             this.tabPage_main_debug.Controls.Add(this.label_kpos);
@@ -1360,7 +1375,7 @@ namespace ntrclient
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
             this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.4-2";
+            this.VersionNumberToolStripMenuItem.Text = "1.5";
             // 
             // VersionExtraToolStripMenuItem
             // 
@@ -1405,6 +1420,11 @@ namespace ntrclient
             this.clearHeartbeatToolStripMenuItem.Text = "Clear Heartbeat";
             this.clearHeartbeatToolStripMenuItem.Click += new System.EventHandler(this.clearHeartbeatToolStripMenuItem_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
+            // 
             // openConsoleToolStripMenuItem
             // 
             this.openConsoleToolStripMenuItem.Name = "openConsoleToolStripMenuItem";
@@ -1412,10 +1432,20 @@ namespace ntrclient
             this.openConsoleToolStripMenuItem.Text = "Open Console";
             this.openConsoleToolStripMenuItem.Click += new System.EventHandler(this.openConsoleToolStripMenuItem_Click);
             // 
-            // toolStripSeparator4
+            // timer2
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
+            this.timer2.Interval = 10000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // button_remoteplay
+            // 
+            this.button_remoteplay.Location = new System.Drawing.Point(581, 192);
+            this.button_remoteplay.Name = "button_remoteplay";
+            this.button_remoteplay.Size = new System.Drawing.Size(75, 23);
+            this.button_remoteplay.TabIndex = 38;
+            this.button_remoteplay.Text = "Remoteplay";
+            this.button_remoteplay.UseVisualStyleBackColor = true;
+            this.button_remoteplay.Click += new System.EventHandler(this.button_remoteplay_Click);
             // 
             // CmdWindow
             // 
@@ -1593,6 +1623,9 @@ namespace ntrclient
         private System.Windows.Forms.TextBox textBox_mh4u_us_name;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem openConsoleToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage5;
+        public System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button button_remoteplay;
     }
 }
 

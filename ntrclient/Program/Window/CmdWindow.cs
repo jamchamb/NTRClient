@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Octokit;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -53,12 +54,20 @@ namespace ntrclient
             }
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            runCmd("disconnect()");
+            timer2.Enabled = false;
+        }
+
         bool updateAvailable = false;
         private async void lookForUpdate()
         {
             lookedForUpdate = true;
-            if (await Octo.isUpdate())
+            Release upd = await Octo.getLastUpdate();
+            if (upd.TagName != "V1.5-Pre2" && !upd.Prerelease && !upd.Draft)
             {
+
                 String n_version = Octo.getLastVersionName();
                 String n_body = Octo.getLastVersionBody();
                 MessageBox.Show(
@@ -428,7 +437,7 @@ namespace ntrclient
                 Task.Delay(25);
                 retry++;
             }
-            if (retry > 300000)
+            if (retry >= 300000)
                 Addlog("[READ ERROR] COULDN'T READ FAST ENOUGH!");
             if (read_value == -1)
                 read_value = 0;
@@ -462,7 +471,6 @@ namespace ntrclient
             catch (Exception ex)
             {
                 Addlog(ex.Message);
-                Addlog(ex.StackTrace);
                 return "";
             }
         }
@@ -732,6 +740,11 @@ namespace ntrclient
             Browser.openURL("https://github.com/imthe666st/NTRClient/releases");
         }
 
+        private void openConsoleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.dc.Show();
+        }
+
         // END of ToolStrip
 
         //________________________________________________________________
@@ -961,9 +974,9 @@ namespace ntrclient
             NTRProcess np = new NTRProcess(p);
         }
 
-        private async void button_debug_rTime_Click(object sender, EventArgs e)
+        private void button_debug_rTime_Click(object sender, EventArgs e)
         {
-            textBox_rTime.Text = "" + await Octo.getLastUpdate();
+            textBox_rTime.Text = Octo.getLastVersionName();
         }
 
         private void button_toolstrip_debug_Click(object sender, EventArgs e)
@@ -1377,9 +1390,9 @@ namespace ntrclient
             code.execute();
         }
 
-        private void openConsoleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void button_remoteplay_Click(object sender, EventArgs e)
         {
-            Program.dc.Show();
+            runCmd("remoteplay()");
         }
 
         // New stuff.. Need to add this to a category.

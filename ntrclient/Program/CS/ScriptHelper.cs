@@ -101,5 +101,17 @@ namespace ntrclient {
         {
             data(addr, size, pid, null);
         }
+
+        public void remoteplay()
+        {
+            Program.ntrClient.sendEmptyPacket(901);
+            Program.ntrClient.log("Disconnecting in 10 seconds to improve performance");
+            Program.gCmdWindow.timer2.Enabled = true;
+        }
+
+        public void debug()
+        {
+            Program.dc.Show();
+        }
 	}
 }
