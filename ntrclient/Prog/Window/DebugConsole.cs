@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ntrclient.Prog.CS;
+using ntrclient.Prog.CS.GitHub;
 
-namespace ntrclient
+namespace ntrclient.Prog.Window
 {
     public partial class DebugConsole : Form
     {
@@ -19,18 +14,19 @@ namespace ntrclient
 
         private void button_send_Click(object sender, EventArgs e)
         {
-            executeCommand(textBox_cmd.Text);
+            ExecuteCommand(textBox_cmd.Text);
         }
 
         private void textBox_cmd_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                executeCommand(textBox_cmd.Text);
+                ExecuteCommand(textBox_cmd.Text);
             }
         }
 
-        public delegate void delegate_logAppend(String l);
+        public delegate void DelegateLogAppend(string l);
+
         public void Addlog(string l)
         {
             l = "> " + l;
@@ -45,7 +41,7 @@ namespace ntrclient
 
             if (textBox_log.InvokeRequired)
             {
-                textBox_log.Invoke(new delegate_logAppend(textBox_log.AppendText), l);
+                textBox_log.Invoke(new DelegateLogAppend(textBox_log.AppendText), l);
             }
             else
             {
@@ -53,21 +49,24 @@ namespace ntrclient
             }
         }
 
-        public void executeCommand(String n)
+        public void ExecuteCommand(string n)
         {
             Addlog(n);
             textBox_cmd.Clear();
-            String[] args = n.Split(' ');
-            String cmd = args[0];
+            string[] args = n.Split(' ');
+            string cmd = args[0];
 
             if (cmd == "close")
             {
                 Hide();
-            } else if (cmd == "gs_use") {
+            }
+            else if (cmd == "gs_use")
+            {
                 if (args.Length == 1)
                 {
-                    Addlog(String.Format("GS_USE: {0}", Program.sm.gs_used));
-                } else if (args.Length >= 3)
+                    Addlog(string.Format("GS_USE: {0}", Program.Sm.GsUsed));
+                }
+                else if (args.Length >= 3)
                 {
                     try
                     {
@@ -75,39 +74,42 @@ namespace ntrclient
 
                         if (args[1] == "set")
                         {
-                            Program.sm.gs_used = a;
-                            Addlog(String.Format("GS_USE: {0}", Program.sm.gs_used));
-                        } else if (args[1] == "add")
+                            Program.Sm.GsUsed = a;
+                            Addlog(string.Format("GS_USE: {0}", Program.Sm.GsUsed));
+                        }
+                        else if (args[1] == "add")
                         {
-                            Program.sm.gs_used += a;
-                            if (Program.sm.gs_used < 0)
+                            Program.Sm.GsUsed += a;
+                            if (Program.Sm.GsUsed < 0)
                             {
-                                Program.sm.gs_used = 0;
+                                Program.Sm.GsUsed = 0;
                             }
-                            Addlog(String.Format("GS_USE: {0}", Program.sm.gs_used));
-                        } else
+                            Addlog(string.Format("GS_USE: {0}", Program.Sm.GsUsed));
+                        }
+                        else
                         {
                             Addlog("USAGE: gs_use <cmd> <amount>");
                         }
                     }
                     catch (Exception)
                     {
-                        Addlog("USAGE: gs_use "+args[1]+" <amount>");
+                        Addlog("USAGE: gs_use " + args[1] + " <amount>");
                     }
-                } else
+                }
+                else
                 {
                     Addlog("USAGE: gs_use <cmd> <amount>");
                 }
-            } else if (cmd == "update")
+            }
+            else if (cmd == "update")
             {
-
-                String n_version = Octo.getLastVersionName();
-                String n_body = Octo.getLastVersionBody();
+                string nVersion = Octo.GetLastVersionName();
+                string nBody = Octo.GetLastVersionBody();
                 MessageBox.Show(
-                    "A new Update has been released!\r\n" +
-                    n_version + "\r\n\r\n" +
-                    n_body
-                );
+                    @"A new Update has been released!\r\n" +
+                    nVersion + @"\r\n\r\n" +
+                    nBody
+                    );
             }
         }
 

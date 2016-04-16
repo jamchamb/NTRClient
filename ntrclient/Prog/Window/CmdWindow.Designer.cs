@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ntrclient
+﻿namespace ntrclient.Prog.Window
 {
     partial class CmdWindow
     {

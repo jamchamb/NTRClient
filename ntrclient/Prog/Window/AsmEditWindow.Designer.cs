@@ -1,4 +1,4 @@
-﻿namespace ntrclient
+﻿namespace ntrclient.Prog.Window
 {
     partial class AsmEditWindow
     {
