@@ -58,7 +58,7 @@ namespace ntrclient.Prog.Window
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            RunCmd("disconnect()");
+            RunCmd("Disconnect()");
             timer2.Enabled = false;
         }
 
@@ -427,7 +427,7 @@ namespace ntrclient.Prog.Window
             if (size < 1)
                 size = 1;
 
-            RunCmd(string.Format("read(0x{0:X}, 0x{1:X}, pid=0x{2:X})", addr, size, GetPid()));
+            RunCmd(string.Format("Read(0x{0:X}, 0x{1:X}, pid=0x{2:X})", addr, size, GetPid()));
             int retry = 0;
             while (ReadValue == -1 && retry < 300000)
             {
@@ -485,12 +485,12 @@ namespace ntrclient.Prog.Window
 
         public void RunMemlayoutCmd()
         {
-            RunCmd(string.Format("memlayout(pid=0x{0:X})", GetPid()));
+            RunCmd(string.Format("Memlayout(pid=0x{0:X})", GetPid()));
         }
 
         public void RunProcessesCmd()
         {
-            RunCmd("listprocess()");
+            RunCmd("Listprocess()");
         }
 
         private static int GetInt(string l)
@@ -734,13 +734,13 @@ namespace ntrclient.Prog.Window
         private void button_Connect_Click(object sender, EventArgs e)
         {
             //textBox_Ip.Text = "192.168.0.11";
-            RunCmd("connect('" + textBox_Ip.Text + "', 8000)");
+            RunCmd("Connect('" + textBox_Ip.Text + "', 8000)");
             Program.Sm.IpAddress = textBox_Ip.Text;
         }
 
         private void button_processes_Click(object sender, EventArgs e)
         {
-            RunCmd("listprocess()");
+            RunCmd("Listprocess()");
         }
 
         private void comboBox_processes_SelectedIndexChanged(object sender, EventArgs e)
@@ -750,20 +750,20 @@ namespace ntrclient.Prog.Window
 
         private void button_hello_Click(object sender, EventArgs e)
         {
-            RunCmd("sayhello()");
+            RunCmd("Sayhello()");
         }
 
         private void button_dump_Click(object sender, EventArgs e)
         {
             string filename = textBox_dump_file.Text;
             Memregion mem = Memregions[comboBox_memregions.SelectedIndex];
-            RunCmd(string.Format("data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length, filename,
+            RunCmd(string.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length, filename,
                 GetPid()));
         }
 
         private void button_disconnect_Click(object sender, EventArgs e)
         {
-            RunCmd("disconnect()");
+            RunCmd("Disconnect()");
         }
 
         private void button_dummy_read_Click(object sender, EventArgs e)
@@ -1119,7 +1119,7 @@ namespace ntrclient.Prog.Window
             };
             foreach (string a in addr)
             {
-                RunCmd(string.Format("write({0}, ({1}), pid=0x{2:X})", a, wCmd, GetPid()));
+                RunCmd(string.Format("Write({0}, ({1}), pid=0x{2:X})", a, wCmd, GetPid()));
             }
         }
 
@@ -1254,7 +1254,7 @@ namespace ntrclient.Prog.Window
             };
             foreach (string a in addr)
             {
-                RunCmd(string.Format("write(0x{0}, ({1}), pid=0x{2:X})", a, wCmd, GetPid()));
+                RunCmd(string.Format("Write(0x{0}, ({1}), pid=0x{2:X})", a, wCmd, GetPid()));
             }
         }
 
@@ -1355,7 +1355,7 @@ namespace ntrclient.Prog.Window
 
         private void button_remoteplay_Click(object sender, EventArgs e)
         {
-            RunCmd("remoteplay()");
+            RunCmd("Remoteplay()");
         }
 
         // New stuff.. Need to add this to a category.
