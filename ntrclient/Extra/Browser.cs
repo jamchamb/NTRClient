@@ -1,42 +1,36 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
-namespace ntrclient
+namespace ntrclient.Extra
 {
-    class Browser
+    public class Browser
     {
         private static string GetStandardBrowserPath()
         {
             string browserPath = string.Empty;
-            RegistryKey browserKey = null;
 
             try
             {
                 //Read default browser path from Win XP registry key
-                browserKey = Registry.ClassesRoot.OpenSubKey(@"HTTP\shell\open\command", false);
+                RegistryKey browserKey = Registry.ClassesRoot.OpenSubKey(@"HTTP\shell\open\command", false) ??
+                                 Registry.CurrentUser.OpenSubKey(
+                                     @"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http", false);
 
                 //If browser path wasn't found, try Win Vista (and newer) registry key
-                if (browserKey == null)
-                {
-                    browserKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http", false); ;
-                }
 
                 //If browser path was found, clean it
                 if (browserKey != null)
                 {
                     //Remove quotation marks
-                    browserPath = (browserKey.GetValue(null) as string).ToLower().Replace("\"", "");
+                    browserPath = (browserKey.GetValue(null) as string)?.ToLower().Replace("\"", "");
 
                     //Cut off optional parameters
-                    if (!browserPath.EndsWith("exe"))
+                    if (browserPath != null && !browserPath.EndsWith("exe"))
                     {
-                        browserPath = browserPath.Substring(0, browserPath.LastIndexOf(".exe") + 4);
+                        browserPath = browserPath.Substring(0,
+                            browserPath.LastIndexOf(".exe", StringComparison.Ordinal) + 4);
                     }
 
                     //Close registry key
@@ -52,20 +46,19 @@ namespace ntrclient
             return browserPath;
         }
 
-        public static void openURL(String url)
+        public static void OpenUrl(string url)
         {
-
             string browserPath = GetStandardBrowserPath();
             if (string.IsNullOrEmpty(browserPath))
             {
-                MessageBox.Show("No default browser found!");
+                MessageBox.Show(@"No default browser found!");
             }
             else
             {
                 Process.Start(browserPath, url);
             }
         }
-        //string url = "http://google.de";
 
+        //string url = "http://google.de";
     }
 }
