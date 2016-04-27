@@ -68,7 +68,7 @@ namespace ntrclient.Prog.Window
         {
             _lookedForUpdate = true;
             Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != "V1.5-Pre2" && !upd.Prerelease && !upd.Draft)
+            if (upd.TagName != "V1.5-2" && !upd.Prerelease && !upd.Draft)
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
