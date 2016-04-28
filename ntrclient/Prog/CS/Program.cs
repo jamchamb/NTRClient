@@ -17,13 +17,13 @@ namespace ntrclient.Prog.CS
 		public static SettingsManager Sm;
         public static DebugConsole Dc;
 
-		public static void LoadConfig()
+        public static void LoadConfig()
         {
 			Sm = SettingsManager.LoadFromXml("ntrconfig.xml");
 			Sm.Init();
 		}
 
-		public static void SaveConfig()
+        public static void SaveConfig()
         {
 			SettingsManager.SaveToXml("ntrconfig.xml", Sm);
 		}
@@ -32,7 +32,7 @@ namespace ntrclient.Prog.CS
         /// The main entry point for the application
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             PyEngine = Python.CreateEngine();
             NtrClient = new NtrClient();

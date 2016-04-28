@@ -107,7 +107,7 @@ namespace ntrclient.Prog.Window
                 string nBody = Octo.GetLastVersionBody();
                 MessageBox.Show(
                     @"A new Update has been released!" + Environment.NewLine +
-                    nVersion + Environment.NewLine +
+                    nVersion + Environment.NewLine + Environment.NewLine +
                     nBody
                     );
             }
