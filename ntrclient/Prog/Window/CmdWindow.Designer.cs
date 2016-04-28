@@ -98,6 +98,11 @@
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.label_ntr_viewer_args = new System.Windows.Forms.Label();
+            this.textBox_ntr_viewer_args = new System.Windows.Forms.TextBox();
+            this.button_ntr_viewer = new System.Windows.Forms.Button();
+            this.button_wifi_fix = new System.Windows.Forms.Button();
+            this.button_remoteplay = new System.Windows.Forms.Button();
             this.label_btn_input = new System.Windows.Forms.Label();
             this.button_btn_input = new System.Windows.Forms.Button();
             this.label_kpos = new System.Windows.Forms.Label();
@@ -153,8 +158,8 @@
             this.clearHeartbeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.button_remoteplay = new System.Windows.Forms.Button();
+            this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
+            this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -191,13 +196,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 678);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 677);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtLog
             // 
             this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLog.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLog.Location = new System.Drawing.Point(3, 3);
             this.txtLog.MaxLength = 32767000;
             this.txtLog.Multiline = true;
@@ -914,6 +919,10 @@
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.label_ntr_viewer_args);
+            this.tabPage_main_debug.Controls.Add(this.textBox_ntr_viewer_args);
+            this.tabPage_main_debug.Controls.Add(this.button_ntr_viewer);
+            this.tabPage_main_debug.Controls.Add(this.button_wifi_fix);
             this.tabPage_main_debug.Controls.Add(this.button_remoteplay);
             this.tabPage_main_debug.Controls.Add(this.label_btn_input);
             this.tabPage_main_debug.Controls.Add(this.button_btn_input);
@@ -947,6 +956,52 @@
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // label_ntr_viewer_args
+            // 
+            this.label_ntr_viewer_args.AutoSize = true;
+            this.label_ntr_viewer_args.Location = new System.Drawing.Point(438, 178);
+            this.label_ntr_viewer_args.Name = "label_ntr_viewer_args";
+            this.label_ntr_viewer_args.Size = new System.Drawing.Size(118, 13);
+            this.label_ntr_viewer_args.TabIndex = 42;
+            this.label_ntr_viewer_args.Text = "NTR Viewer Arguments";
+            // 
+            // textBox_ntr_viewer_args
+            // 
+            this.textBox_ntr_viewer_args.Location = new System.Drawing.Point(441, 194);
+            this.textBox_ntr_viewer_args.Name = "textBox_ntr_viewer_args";
+            this.textBox_ntr_viewer_args.Size = new System.Drawing.Size(134, 20);
+            this.textBox_ntr_viewer_args.TabIndex = 41;
+            // 
+            // button_ntr_viewer
+            // 
+            this.button_ntr_viewer.Location = new System.Drawing.Point(335, 192);
+            this.button_ntr_viewer.Name = "button_ntr_viewer";
+            this.button_ntr_viewer.Size = new System.Drawing.Size(100, 23);
+            this.button_ntr_viewer.TabIndex = 40;
+            this.button_ntr_viewer.Text = "Start NTR Viewer";
+            this.button_ntr_viewer.UseVisualStyleBackColor = true;
+            this.button_ntr_viewer.Click += new System.EventHandler(this.button_ntr_viewer_Click);
+            // 
+            // button_wifi_fix
+            // 
+            this.button_wifi_fix.Location = new System.Drawing.Point(581, 163);
+            this.button_wifi_fix.Name = "button_wifi_fix";
+            this.button_wifi_fix.Size = new System.Drawing.Size(75, 23);
+            this.button_wifi_fix.TabIndex = 39;
+            this.button_wifi_fix.Text = "Wifi Fix";
+            this.button_wifi_fix.UseVisualStyleBackColor = true;
+            this.button_wifi_fix.Click += new System.EventHandler(this.button_wifi_fix_Click);
+            // 
+            // button_remoteplay
+            // 
+            this.button_remoteplay.Location = new System.Drawing.Point(581, 192);
+            this.button_remoteplay.Name = "button_remoteplay";
+            this.button_remoteplay.Size = new System.Drawing.Size(75, 23);
+            this.button_remoteplay.TabIndex = 38;
+            this.button_remoteplay.Text = "Remoteplay";
+            this.button_remoteplay.UseVisualStyleBackColor = true;
+            this.button_remoteplay.Click += new System.EventHandler(this.button_remoteplay_Click);
             // 
             // label_btn_input
             // 
@@ -1230,7 +1285,7 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 653);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 652);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(690, 25);
             this.toolStrip1.TabIndex = 34;
@@ -1430,26 +1485,20 @@
             this.openConsoleToolStripMenuItem.Text = "Open Console";
             this.openConsoleToolStripMenuItem.Click += new System.EventHandler(this.openConsoleToolStripMenuItem_Click);
             // 
-            // timer2
+            // disconnectTimer
             // 
-            this.timer2.Interval = 10000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.disconnectTimer.Interval = 10000;
+            this.disconnectTimer.Tick += new System.EventHandler(this.disconnectTimer_Tick);
             // 
-            // button_remoteplay
+            // ntrViewerWorker
             // 
-            this.button_remoteplay.Location = new System.Drawing.Point(581, 192);
-            this.button_remoteplay.Name = "button_remoteplay";
-            this.button_remoteplay.Size = new System.Drawing.Size(75, 23);
-            this.button_remoteplay.TabIndex = 38;
-            this.button_remoteplay.Text = "Remoteplay";
-            this.button_remoteplay.UseVisualStyleBackColor = true;
-            this.button_remoteplay.Click += new System.EventHandler(this.button_remoteplay_Click);
+            this.ntrViewerWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ntrViewerWorker_DoWork);
             // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 702);
+            this.ClientSize = new System.Drawing.Size(690, 701);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -1458,6 +1507,7 @@
             this.MaximumSize = new System.Drawing.Size(700, 734);
             this.MinimumSize = new System.Drawing.Size(700, 734);
             this.Name = "CmdWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NTR Debugger";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CmdWindow_FormClosed);
             this.Load += new System.EventHandler(this.CmdWindow_Load);
@@ -1622,8 +1672,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem openConsoleToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage5;
-        public System.Windows.Forms.Timer timer2;
+        public System.Windows.Forms.Timer disconnectTimer;
         private System.Windows.Forms.Button button_remoteplay;
+        private System.Windows.Forms.Button button_wifi_fix;
+        private System.Windows.Forms.Button button_ntr_viewer;
+        private System.Windows.Forms.Label label_ntr_viewer_args;
+        private System.Windows.Forms.TextBox textBox_ntr_viewer_args;
+        private System.ComponentModel.BackgroundWorker ntrViewerWorker;
     }
 }
 

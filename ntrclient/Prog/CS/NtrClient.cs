@@ -32,21 +32,32 @@ namespace ntrclient.Prog.CS
         {
             int index = 0;
             bool useProgress = length > 100000;
-            do
+            
+           
+            try
             {
-                if (useProgress)
+                do
                 {
-                    Progress = (int) ((double) index/length*100);
-                }
-                int len = stream.Read(buf, index, length - index);
-                if (len == 0)
-                {
-                    return 0;
-                }
-                index += len;
-            } while (index < length);
-            Progress = -1;
-            return length;
+                    if (useProgress)
+                    {
+                        Progress = (int)((double)index / length * 100);
+                    }
+                    int len = stream.Read(buf, index, length - index);
+                    if (len == 0)
+                    {
+                        return 0;
+                    }
+                    index += len;
+                } while (index < length);
+                Progress = -1;
+                return length;
+
+            }
+            catch (Exception e)
+            {
+                Log("Connection timed out " + e.Message);
+                return 0;
+            }
         }
 
         private void PacketRecvThreadStart()
@@ -181,7 +192,7 @@ namespace ntrclient.Prog.CS
             }
         }
 
-        void HandlePacket(uint cmd, uint seq, byte[] dataBuf)
+        private void HandlePacket(uint cmd, uint seq, byte[] dataBuf)
         {
             if (cmd == 9)
             {
@@ -194,7 +205,6 @@ namespace ntrclient.Prog.CS
             Host = serverHost;
             Port = serverPort;
         }
-
 
         public void ConnectToServer()
         {
@@ -299,16 +309,28 @@ namespace ntrclient.Prog.CS
             SendPacket(0, 4, null, 0);
         }
 
-        public void SendEmptyPacket(uint cmd, uint arg0 = 0, uint arg1 = 0, uint arg2 = 0)
+        public void SendEmptyPacket(uint cmd, uint arg0 = 0, uint arg1 = 0, uint arg2 = 0, uint arg3 = 0, uint arg4 = 0)
         {
             uint[] args = new uint[16];
 
             args[0] = arg0;
             args[1] = arg1;
             args[2] = arg2;
+            args[3] = arg3;
+            args[4] = arg4;
             SendPacket(0, cmd, args, 0);
         }
 
+        public void SendRemoteplayPacket(uint priorityMode = 0, uint priorityFactor = 5, uint quality = 90, uint qosValue = 100)
+        {
+            uint[] args = new uint[16];
+
+            args[0] = priorityFactor + 0x100 * (priorityMode % 2 - 1);
+            args[1] = quality;
+            args[2] = qosValue * 0x10000;
+
+            SendPacket(0, 901, args, 0);
+        }
 
         public void SendSaveFilePacket(string fileName, byte[] fileData)
         {
@@ -331,19 +353,5 @@ namespace ntrclient.Prog.CS
                 MessageBox.Show(ex.Message);
             }
         }
-
-        /*
-        void heartbeat()
-        {
-            try
-            {
-
-                Program.gCmdWindow.heartbeat();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }*/
     }
 }
