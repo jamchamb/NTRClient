@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -56,10 +59,10 @@ namespace ntrclient.Prog.Window
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void disconnectTimer_Tick(object sender, EventArgs e)
         {
             RunCmd("Disconnect()");
-            timer2.Enabled = false;
+            disconnectTimer.Enabled = false;
         }
 
         public bool UpdateAvailable { get; private set; }
@@ -68,7 +71,7 @@ namespace ntrclient.Prog.Window
         {
             _lookedForUpdate = true;
             Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != "V1.5-1" && !upd.Prerelease && !upd.Draft)
+            if (upd.TagName != "V1.5-2" && !upd.Prerelease && !upd.Draft)
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
@@ -434,9 +437,9 @@ namespace ntrclient.Prog.Window
                     Addlog(ret.ToString());
                     return ret.ToString();
                 }
-                Addlog("null");
-                return "";
-            }
+                    Addlog("null");
+                    return "";
+                }
             catch (Exception ex)
             {
                 Addlog(ex.Message);
@@ -520,7 +523,7 @@ namespace ntrclient.Prog.Window
         {
             txtLog.Text = "";
 
-            Addlog("NTR debugger by cell9 - Mod by imthe666st");
+            Addlog("NTR debugger by cell9 - Mod by imthe666st - project cleanup by Shadowtrance");
             RunCmd("import sys;sys.path.append('.\\python\\Lib')");
             RunCmd("for n in [n for n in dir(nc) if not n.startswith('_')]: globals()[n] = getattr(nc,n)    ");
             Addlog("Commands available: ");
@@ -592,7 +595,7 @@ namespace ntrclient.Prog.Window
 
         public void startAutoDisconnect()
         {
-            timer2.Enabled = true;
+            disconnectTimer.Enabled = true;
         }
 
         // END of Utilities
@@ -1333,6 +1336,41 @@ namespace ntrclient.Prog.Window
         private void button_remoteplay_Click(object sender, EventArgs e)
         {
             RunCmd("Remoteplay()");
+        }
+
+        private void button_wifi_fix_Click(object sender, EventArgs e)
+        {
+            RunCmd("Write(0x0105AE4, (0x70, 0x47), pid=0x1a)");
+        }
+
+        private void button_ntr_viewer_Click(object sender, EventArgs e)
+        {
+            ntrViewerWorker.RunWorkerAsync();
+        }
+
+        private void ntrViewerWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (File.Exists(Directory.GetCurrentDirectory() + "/" + "NTRViewer" + "/" + "NTRViewer.exe"))
+            {
+                using (Process ntrViewer = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = Directory.GetCurrentDirectory() + "/" + "NTRViewer" + "/" + "NTRViewer.exe",
+                        Arguments = textBox_ntr_viewer_args.Text
+                    }
+                })
+                {
+                    ntrViewer.Start();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    @"NTRViewer not found." + Environment.NewLine +
+                    @"Place the NTRViewer folder in this folder and try again...",
+                    @"NTRViewer Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // New stuff.. Need to add this to a category.

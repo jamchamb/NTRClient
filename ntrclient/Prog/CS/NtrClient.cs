@@ -35,23 +35,23 @@ namespace ntrclient.Prog.CS
             
             try
             {
-                do
+            do
+            {
+                if (useProgress)
                 {
-                    if (useProgress)
-                    {
                         Progress = (int)((double)index / length * 100);
-                    }
-                    int len = stream.Read(buf, index, length - index);
-                    if (len == 0)
-                    {
-                        return 0;
-                    }
-                    index += len;
-                } while (index < length);
-                Progress = -1;
-                return length;
+                }
+                int len = stream.Read(buf, index, length - index);
+                if (len == 0)
+                {
+                    return 0;
+                }
+                index += len;
+            } while (index < length);
+            Progress = -1;
+            return length;
 
-            }
+        }
             catch (Exception e)
             {
                 Log("Connection timed out");
@@ -191,7 +191,7 @@ namespace ntrclient.Prog.CS
             }
         }
 
-        void HandlePacket(uint cmd, uint seq, byte[] dataBuf)
+        private void HandlePacket(uint cmd, uint seq, byte[] dataBuf)
         {
             if (cmd == 9)
             {
@@ -204,7 +204,6 @@ namespace ntrclient.Prog.CS
             Host = serverHost;
             Port = serverPort;
         }
-
 
         public void ConnectToServer()
         {
@@ -327,6 +326,7 @@ namespace ntrclient.Prog.CS
                 num1 = 0U;
             uint num2 = (qosValue * 0x20000);
             Program.NtrClient.SendEmptyPacket(901U, num1 << 8 | priorityFactor, quality, num2);
+        
         }
 
         public void SendSaveFilePacket(string fileName, byte[] fileData)

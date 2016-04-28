@@ -121,6 +121,7 @@
     <value>CREDITS:
 NTR Debugger Client by cell9
 Mod by imthe666st
+Project cleanup by Shadowtrance
 
 All Gateshark codes are supported
 
@@ -132,7 +133,6 @@ V1.4
   - Reworked the Basic tab
   - Made process PIDs more user-friendly
   - Moved the debug memregion / processes textbox to a new tab
-  - Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience™
-</value>
+  - Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience™</value>
   </data>
 </root>
