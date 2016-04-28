@@ -599,19 +599,19 @@ namespace ntrclient.Prog.Window
         {
             string data = GenerateHexChunk(value, length);
 
-            return string.Format("write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
+            return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
         public string GenerateWriteString(uint addr, uint value, int length)
         {
             string data = GenerateHexChunk(value, length);
-            return string.Format("write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
+            return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
         public string GenerateWriteString(int addr, uint value, int length)
         {
             string data = GenerateHexChunk(value, length);
-            return string.Format("write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
+            return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
         // END of Utilities
