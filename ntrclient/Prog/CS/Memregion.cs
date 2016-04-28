@@ -8,7 +8,6 @@ namespace ntrclient.Prog.CS
 
         public Memregion(string mem)
         {
-
             /**
                 0 = start
                 1 = -

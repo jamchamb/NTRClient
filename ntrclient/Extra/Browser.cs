@@ -58,7 +58,5 @@ namespace ntrclient.Extra
                 Process.Start(browserPath, url);
             }
         }
-
-        //string url = "http://google.de";
     }
 }

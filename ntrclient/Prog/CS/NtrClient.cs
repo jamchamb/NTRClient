@@ -33,7 +33,6 @@ namespace ntrclient.Prog.CS
             int index = 0;
             bool useProgress = length > 100000;
             
-           
             try
             {
                 do
@@ -235,7 +234,6 @@ namespace ntrclient.Prog.CS
             catch (Exception)
             {
                 Log("Disconnect " + waitPacketThread);
-                //log(ex.Message);
             }
             Tcp = null;
         }

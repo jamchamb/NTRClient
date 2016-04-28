@@ -60,47 +60,46 @@ namespace ntrclient.Extra
                     else if (cmd == 0x3)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read < gsAr.getBlock_B());
+                        gsIf = read < gsAr.getBlock_B();
                     }
                     else if (cmd == 0x4)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read > gsAr.getBlock_B());
+                        gsIf = read > gsAr.getBlock_B();
                     }
                     else if (cmd == 0x5)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read == gsAr.getBlock_B());
+                        gsIf = read == gsAr.getBlock_B();
                     }
                     else if (cmd == 0x6)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read != gsAr.getBlock_B());
+                        gsIf = read != gsAr.getBlock_B();
                     }
                     else if (cmd == 0x7)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read < gsAr.getBlock_B());
+                        gsIf = read < gsAr.getBlock_B();
                     }
                     else if (cmd == 0x8)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read > gsAr.getBlock_B());
+                        gsIf = read > gsAr.getBlock_B();
                     }
                     else if (cmd == 0x9)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read == gsAr.getBlock_B());
+                        gsIf = read == gsAr.getBlock_B();
                     }
                     else if (cmd == 0xA)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read != gsAr.getBlock_B());
+                        gsIf = read != gsAr.getBlock_B();
                     }
                     else if (cmd == 0xB)
                     {
                         _offset = CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 4);
-                        //MessageBox.Show(String.Format("SET > O: {0:X}", offset));
                     }
                     else if (cmd == 0xC)
                     {
@@ -110,20 +109,17 @@ namespace ntrclient.Extra
                     }
                     else if (cmd == 0xD1)
                     {
-                        //Task.Delay(100);
                         if (_loop)
                         {
                             _loopCount--;
                             if (_loopCount == 0)
                             {
                                 _loop = false;
-                                //MessageBox.Show("Stopped the loop");
                             }
                             else
                             {
                                 index = _loopIndex;
                                 _offset += Convert.ToInt32(gsAr.getBlock_B());
-                                //MessageBox.Show("Continuing loop");
                             }
                         }
                     }
@@ -305,7 +301,7 @@ namespace ntrclient.Extra
             1   Write   Short
             2   Write   Byte
 
-            3   X > Y   
+            3   X > Y
             4   X < Y
             5   X = Y
             6   X ~ Y
