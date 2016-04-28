@@ -98,6 +98,7 @@
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.button_remoteplay = new System.Windows.Forms.Button();
             this.label_btn_input = new System.Windows.Forms.Label();
             this.button_btn_input = new System.Windows.Forms.Button();
             this.label_kpos = new System.Windows.Forms.Label();
@@ -154,7 +155,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.button_remoteplay = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -948,6 +948,16 @@
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
             // 
+            // button_remoteplay
+            // 
+            this.button_remoteplay.Location = new System.Drawing.Point(581, 192);
+            this.button_remoteplay.Name = "button_remoteplay";
+            this.button_remoteplay.Size = new System.Drawing.Size(75, 23);
+            this.button_remoteplay.TabIndex = 38;
+            this.button_remoteplay.Text = "Remoteplay";
+            this.button_remoteplay.UseVisualStyleBackColor = true;
+            this.button_remoteplay.Click += new System.EventHandler(this.button_remoteplay_Click);
+            // 
             // label_btn_input
             // 
             this.label_btn_input.AutoSize = true;
@@ -1373,7 +1383,7 @@
             // 
             this.VersionNumberToolStripMenuItem.Name = "VersionNumberToolStripMenuItem";
             this.VersionNumberToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.VersionNumberToolStripMenuItem.Text = "1.5";
+            this.VersionNumberToolStripMenuItem.Text = "1.5-1";
             // 
             // VersionExtraToolStripMenuItem
             // 
@@ -1434,16 +1444,6 @@
             // 
             this.timer2.Interval = 10000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // button_remoteplay
-            // 
-            this.button_remoteplay.Location = new System.Drawing.Point(581, 192);
-            this.button_remoteplay.Name = "button_remoteplay";
-            this.button_remoteplay.Size = new System.Drawing.Size(75, 23);
-            this.button_remoteplay.TabIndex = 38;
-            this.button_remoteplay.Text = "Remoteplay";
-            this.button_remoteplay.UseVisualStyleBackColor = true;
-            this.button_remoteplay.Click += new System.EventHandler(this.button_remoteplay_Click);
             // 
             // CmdWindow
             // 

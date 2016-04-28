@@ -324,13 +324,11 @@ namespace ntrclient.Prog.CS
 
         public void SendRemoteplayPacket(uint priorityMode = 0, uint priorityFactor = 5, uint quality = 90, uint qosValue = 100)
         {
-            uint[] args = new uint[16];
-
-            args[0] = priorityFactor + 0x100 * (priorityMode % 2 - 1);
-            args[1] = quality;
-            args[2] = qosValue * 0x10000;
-
-            SendPacket(0, 901, args, 0);
+            uint num1 = 1U;
+            if ((int)priorityMode == 0)
+                num1 = 0U;
+            uint num2 = (qosValue * 0x20000);
+            Program.NtrClient.SendEmptyPacket(901U, num1 << 8 | priorityFactor, quality, num2);
         }
 
         public void SendSaveFilePacket(string fileName, byte[] fileData)

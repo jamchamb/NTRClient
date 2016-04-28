@@ -68,13 +68,13 @@ namespace ntrclient.Prog.Window
         {
             _lookedForUpdate = true;
             Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != "V1.5-2" && !upd.Prerelease && !upd.Draft)
+            if (upd.TagName != "V1.5-1" && !upd.Prerelease && !upd.Draft)
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
                 MessageBox.Show(
-                    @"A new Update has been released!\r\n" +
-                    nVersion + @"\r\n\r\n" +
+                    "A new Update has been released!\r\n\r\n" +
+                    nVersion + "\r\n" +
                     nBody
                     );
                 checkingUpdateToolStripMenuItem.Text = @"Update available!";
@@ -612,6 +612,11 @@ namespace ntrclient.Prog.Window
         {
             string data = GenerateHexChunk(value, length);
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
+        }
+
+        public void startAutoDisconnect()
+        {
+            timer2.Enabled = true;
         }
 
         // END of Utilities

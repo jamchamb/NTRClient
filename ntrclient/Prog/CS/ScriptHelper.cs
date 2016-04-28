@@ -121,7 +121,7 @@ namespace ntrclient.Prog.CS
         {
             Program.NtrClient.SendRemoteplayPacket(priorityMode, priorityFactor, quality, qosValue);
             Program.NtrClient.Log("Disconnecting in 10 seconds to improve performance");
-            Program.GCmdWindow.timer2.Enabled = true;
+            Program.GCmdWindow.startAutoDisconnect();
         }
 
         public void Debug()
