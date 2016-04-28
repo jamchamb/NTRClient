@@ -9,18 +9,6 @@ namespace ntrclient.Prog.CS
         public Memregion(string mem)
         {
 
-            /**
-                0 = start
-                1 = -
-                2 = end
-                3 = ,
-                4 = size:
-                5 = length
-
-                1, 3, 4 as checks?
-
-            **/
-
             string[] memparts = mem.Split(' ');
             try
             {

@@ -24,31 +24,22 @@ namespace ntrclient.Prog.CS
 
                 Thread.Sleep(4000);
             }
-            // Stopped working
-            // Cleaning
-
-            //Console.WriteLine("Cleaning Thread");
-
-            // Finished
         }
 
         public void RequestStop()
         {
             ShouldStop = true;
-            //Console.WriteLine("Requesting stop");
         }
 
         public void SetCode(string s)
         {
             GsCode = new Gateshark(s);
-
-            //Console.WriteLine("Set code by String");
+            
         }
 
         public void SetCode(Gateshark s)
         {
             GsCode = s;
-            //Console.WriteLine("Set code by instance");
         }
 
         public bool Toggle()

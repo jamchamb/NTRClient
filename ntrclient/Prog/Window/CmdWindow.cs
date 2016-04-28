@@ -72,11 +72,7 @@ namespace ntrclient.Prog.Window
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
-                MessageBox.Show(
-                    @"A new Update has been released!" + Environment.NewLine +
-                    nVersion + Environment.NewLine +
-                    nBody
-                    );
+                MessageBox.Show(@"A new Update has been released! " + nVersion + Environment.NewLine + nBody);
                 checkingUpdateToolStripMenuItem.Text = @"Update available!";
                 UpdateAvailable = true;
                 Program.Dc.Addlog("Found a new Update - " + nVersion);
@@ -253,7 +249,6 @@ namespace ntrclient.Prog.Window
             foreach (string p in lines)
             {
                 string[] pParts = p.Split(' ');
-                //MessageBox.Show(p);
                 if (pParts.Length >= 8)
                 {
                     int len = pParts.Length;
@@ -359,22 +354,8 @@ namespace ntrclient.Prog.Window
             return c.SelectedIndex;
         }
 
-        /*
-        
-            if (txtLog.InvokeRequired)
-            {
-                txtLog.Invoke(new delegate_logAppend(txtLog.AppendText), l);
-            }
-            else
-            {
-                txtLog.AppendText(l);
-            }
-
-        */
-
         public int GetPid()
         {
-            // string selectedText = this.ComboBox.GetItemText(this.ComboBox.SelectedItem);
             if (comboBox_processes.InvokeRequired)
             {
                 var o = comboBox_processes.Invoke(new DelComboBoxItem(GetComboItem), comboBox_processes);
@@ -393,7 +374,6 @@ namespace ntrclient.Prog.Window
             if (GetComboItem(comboBox_processes) != null)
             {
                 string s = comboBox_processes.SelectedItem.ToString();
-                //String s = comboBox_processes.SelectedText;
                 string[] ss = s.Split(' ');
                 int len = ss.Length;
 
@@ -454,11 +434,8 @@ namespace ntrclient.Prog.Window
                     Addlog(ret.ToString());
                     return ret.ToString();
                 }
-                else
-                {
-                    Addlog("null");
-                    return "";
-                }
+                Addlog("null");
+                return "";
             }
             catch (Exception ex)
             {
@@ -531,7 +508,6 @@ namespace ntrclient.Prog.Window
                 var le = BitConverter.ToInt16(bytes, 2);
                 if (le >= 0) return le;
                 var ret = le + 0x10000;
-                //MessageBox.Show(String.Format("LE: {0:X}", ret));
                 return ret;
             }
             if (len == 1)
@@ -738,7 +714,6 @@ namespace ntrclient.Prog.Window
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
-            //textBox_Ip.Text = "192.168.0.11";
             RunCmd("Connect('" + textBox_Ip.Text + "', 8000)");
             Program.Sm.IpAddress = textBox_Ip.Text;
         }
@@ -1006,9 +981,8 @@ namespace ntrclient.Prog.Window
         {
             const int addr = 0x15FBEDD0;
             int id = FromLe(textBox_aceu_itemid.Text);
-            if (id > 0xffff) // temporarily fixing an error in fromLE(string)
+            if (id > 0xffff) 
                 id /= 0x10000;
-            //MessageBox.Show(String.Format("{0:X}", id));
             RunCmd(GenerateWriteString(addr, id, 4));
         }
 
@@ -1029,8 +1003,6 @@ namespace ntrclient.Prog.Window
         private void GenItems(int value, int invSize)
         {
             const int addr = 0x15FBEDD0;
-            //int value = fromLE("902E");
-            //int inv_size = 16;
 
             for (int i = 0; i < invSize; i++)
             {

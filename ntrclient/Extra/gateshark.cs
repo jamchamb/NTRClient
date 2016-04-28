@@ -46,7 +46,7 @@ namespace ntrclient.Extra
 
                 if (cmd != 0xff)
                     Addlog(string.Format("GS | {0:X} {1:X} {2:X} -> [{3}, {4}, {5}, {6:X}]", cmd, gsAr.getBlock_A(), gsAr.getBlock_B(), valid, gsIfLayer, gsIfSLayer, _offset));
-                    
+
                 if (gsIfLayer == 0 && valid)
                 {
 
@@ -54,53 +54,52 @@ namespace ntrclient.Extra
                     {
                         Program.Sm.GsUsed += 1;
                         valid = gsAr.Execute(_offset);
-                        
+
                     }
                     // Conditional codes
                     else if (cmd == 0x3)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read < gsAr.getBlock_B());
+                        gsIf = read < gsAr.getBlock_B();
                     }
                     else if (cmd == 0x4)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read > gsAr.getBlock_B());
+                        gsIf = read > gsAr.getBlock_B();
                     }
                     else if (cmd == 0x5)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read == gsAr.getBlock_B());
+                        gsIf = read == gsAr.getBlock_B();
                     }
                     else if (cmd == 0x6)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
-                        gsIf = (read != gsAr.getBlock_B());
+                        gsIf = read != gsAr.getBlock_B();
                     }
                     else if (cmd == 0x7)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read < gsAr.getBlock_B());
+                        gsIf = read < gsAr.getBlock_B();
                     }
                     else if (cmd == 0x8)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read > gsAr.getBlock_B());
+                        gsIf = read > gsAr.getBlock_B();
                     }
                     else if (cmd == 0x9)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read == gsAr.getBlock_B());
+                        gsIf = read == gsAr.getBlock_B();
                     }
                     else if (cmd == 0xA)
                     {
                         uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 2), 2));
-                        gsIf = (read != gsAr.getBlock_B());
+                        gsIf = read != gsAr.getBlock_B();
                     }
                     else if (cmd == 0xB)
                     {
                         _offset = CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 4);
-                        //MessageBox.Show(String.Format("SET > O: {0:X}", offset));
                     }
                     else if (cmd == 0xC)
                     {
@@ -110,20 +109,17 @@ namespace ntrclient.Extra
                     }
                     else if (cmd == 0xD1)
                     {
-                        //Task.Delay(100);
                         if (_loop)
                         {
                             _loopCount--;
                             if (_loopCount == 0)
                             {
                                 _loop = false;
-                                //MessageBox.Show("Stopped the loop");
                             }
                             else
                             {
                                 index = _loopIndex;
                                 _offset += Convert.ToInt32(gsAr.getBlock_B());
-                                //MessageBox.Show("Continuing loop");
                             }
                         }
                     }
@@ -146,8 +142,9 @@ namespace ntrclient.Extra
                         {
                             // Offset in negative.
                             int r = Convert.ToInt32(b % 0x80000000);
-                            bb = Convert.ToInt32(int.MinValue + r); 
-                        } else
+                            bb = Convert.ToInt32(int.MinValue + r);
+                        }
+                        else
                             bb = Convert.ToInt32(b);
 
                         _offset = bb;
@@ -234,7 +231,7 @@ namespace ntrclient.Extra
                         MessageBox.Show(string.Format(
                             "I: {0} \r\n" +
                             "O: {1:X} \r\n" +
-                            "LOOP: {2} {3} {4} \r\n" + 
+                            "LOOP: {2} {3} {4} \r\n" +
                             "DX: {5:X} \r\n" +
                             "DUMMY: {6}\r\n" +
                             "LAYERS: {7} {8}"
@@ -257,7 +254,8 @@ namespace ntrclient.Extra
                         gsIfSLayer -= 1;
                     else if (gsIfLayer > 0)
                         gsIfLayer -= 1;
-                } else if (cmd == 0xD2)
+                }
+                else if (cmd == 0xD2)
                 {
                     _loop = false;
                     _loopCount = 0;
@@ -305,7 +303,7 @@ namespace ntrclient.Extra
             1   Write   Short
             2   Write   Byte
 
-            3   X > Y   
+            3   X > Y
             4   X < Y
             5   X = Y
             6   X ~ Y
@@ -319,15 +317,16 @@ namespace ntrclient.Extra
                 _cmd = 0xD0;
                 _cmd += Convert.ToInt32(ar[1].ToString(), 16); // DX codes
                 _blockA = 0x0;
-            } else
+            }
+            else
             {
                 _blockA = Convert.ToInt32(blocks[0], 16);
                 _blockA -= _cmd * 0x10000000;
             }
-            
+
 
             _blockB = Convert.ToUInt32(blocks[1], 16);
-            
+
         }
 
         public int GetCmd()

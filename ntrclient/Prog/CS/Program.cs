@@ -17,17 +17,19 @@ namespace ntrclient.Prog.CS
 		public static SettingsManager Sm;
         public static DebugConsole Dc;
 
-		public static void LoadConfig() {
+		public static void LoadConfig()
+        {
 			Sm = SettingsManager.LoadFromXml("ntrconfig.xml");
 			Sm.Init();
 		}
 
-		public static void SaveConfig() {
+		public static void SaveConfig()
+        {
 			SettingsManager.SaveToXml("ntrconfig.xml", Sm);
 		}
 
         /// <summary>
-        /// 应用程序的主入口点。
+        /// The main entry point for the application
         /// </summary>
         [STAThread]
         static void Main()

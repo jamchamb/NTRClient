@@ -61,8 +61,8 @@ namespace ntrclient.Prog.CS
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    @"Ignore this message if you just \r\n" +
-                    @"Downloaded or Updated this tool...\r\n\r\n" +
+                    @"Ignore this message if you just " + Environment.NewLine +
+                    @"Downloaded or Updated this tool..." + Environment.NewLine + Environment.NewLine +
                     ex.Message
                     );
             }
