@@ -11,6 +11,7 @@ using ntrclient.Extra;
 using ntrclient.Prog.CS;
 using ntrclient.Prog.CS.GitHub;
 using Octokit;
+using System.Threading;
 
 namespace ntrclient.Prog.Window
 {
@@ -71,7 +72,7 @@ namespace ntrclient.Prog.Window
         {
             _lookedForUpdate = true;
             Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != "V1.5-1" && !upd.Prerelease && !upd.Draft)
+            if (upd.TagName != "V1.5-1" && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
@@ -834,6 +835,61 @@ namespace ntrclient.Prog.Window
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
             uint v = Convert.ToUInt32(textBox_dummy_value_dec.Text, 10);
             RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
+        }
+
+        // 
+
+        private void button_dump_all_Click2(object sender, EventArgs e)
+        {
+            String filename = textBox_dump_file.Text;
+            Memregion mem = Memregions[Memregions.Count - 1];
+            RunCmd(String.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", 0, mem.Start + mem.Length, filename, GetPid()));
+        }
+
+        private void button_dump_all_Click(object sender, EventArgs e)
+        {
+            String filename = textBox_dump_file.Text;
+
+            uint memPos = 0;
+            int fileSuffix = 0;
+
+            foreach (Memregion mem in Memregions)
+            {
+                if (mem.Start > memPos)
+                {
+                    File.WriteAllBytes(filename + fileSuffix.ToString(), new byte[mem.Start - memPos]);
+                    fileSuffix++;
+
+                }
+                RunCmd(String.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length, filename + fileSuffix.ToString(), GetPid()));
+                while (!File.Exists(filename + fileSuffix.ToString()))
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                }
+                memPos = mem.Start + mem.Length;
+                fileSuffix++;
+            }
+
+            string destFileName = filename;
+            using (Stream destStream = File.OpenWrite(destFileName))
+            {
+                for (int i = 0; i < fileSuffix; i++)
+                {
+
+                    using (Stream srcStream = File.OpenRead(filename + i.ToString()))
+                    {
+                        srcStream.CopyTo(destStream);
+                    }
+
+                }
+            }
+
+            for (int i = 0; i < fileSuffix; i++)
+            {
+                File.Delete(filename + i.ToString());
+            }
+
+
         }
 
         // END of Basic

@@ -35,6 +35,7 @@
             this.txtCmd = new System.Windows.Forms.TextBox();
             this.tabControl_main = new System.Windows.Forms.TabControl();
             this.tabPage_main_basic = new System.Windows.Forms.TabPage();
+            this.button_dump_all = new System.Windows.Forms.Button();
             this.comboBox_processes = new System.Windows.Forms.ComboBox();
             this.button_dummy_write_hex_le = new System.Windows.Forms.Button();
             this.textBox_dummy_value_hex_le = new System.Windows.Forms.TextBox();
@@ -160,6 +161,7 @@
             this.openConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -176,8 +178,8 @@
             this.tabPage_main_debug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -196,7 +198,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 677);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 678);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtLog
@@ -239,6 +241,7 @@
             // 
             // tabPage_main_basic
             // 
+            this.tabPage_main_basic.Controls.Add(this.button_dump_all);
             this.tabPage_main_basic.Controls.Add(this.comboBox_processes);
             this.tabPage_main_basic.Controls.Add(this.button_dummy_write_hex_le);
             this.tabPage_main_basic.Controls.Add(this.textBox_dummy_value_hex_le);
@@ -264,6 +267,16 @@
             this.tabPage_main_basic.TabIndex = 0;
             this.tabPage_main_basic.Text = "Basic";
             this.tabPage_main_basic.UseVisualStyleBackColor = true;
+            // 
+            // button_dump_all
+            // 
+            this.button_dump_all.Location = new System.Drawing.Point(476, 86);
+            this.button_dump_all.Name = "button_dump_all";
+            this.button_dump_all.Size = new System.Drawing.Size(150, 20);
+            this.button_dump_all.TabIndex = 24;
+            this.button_dump_all.Text = "Dump all memory";
+            this.button_dump_all.UseVisualStyleBackColor = true;
+            this.button_dump_all.Click += new System.EventHandler(this.button_dump_all_Click);
             // 
             // comboBox_processes
             // 
@@ -1283,9 +1296,7 @@
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 652);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 653);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(690, 25);
             this.toolStrip1.TabIndex = 34;
@@ -1294,7 +1305,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(86, 22);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(86, 20);
             this.toolStripStatusLabel1.Text = "toolStripLabel1";
             // 
             // timer1
@@ -1494,11 +1505,20 @@
             // 
             this.ntrViewerWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ntrViewerWorker_DoWork);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 408);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(680, 22);
+            this.statusStrip1.TabIndex = 2;
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 701);
+            this.ClientSize = new System.Drawing.Size(690, 702);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -1538,10 +1558,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1679,6 +1699,8 @@
         private System.Windows.Forms.Label label_ntr_viewer_args;
         private System.Windows.Forms.TextBox textBox_ntr_viewer_args;
         private System.ComponentModel.BackgroundWorker ntrViewerWorker;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Button button_dump_all;
     }
 }
 

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Octokit;
+using System;
+using System.Windows.Forms;
 
 namespace ntrclient.Prog.CS.GitHub
 {
@@ -19,9 +21,15 @@ namespace ntrclient.Prog.CS.GitHub
 
         public static async Task<Release> GetLastUpdate()
         {
-            IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("imthe666st", "ntrclient");
-            LastRelease = lastReleases[0];
-            return LastRelease;
+            try {
+                IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("imthe666st", "ntrclient");
+                LastRelease = lastReleases[0];
+                return LastRelease;
+            } catch ( Exception e )
+            {
+                MessageBox.Show("An error occured trying to look for updates!");
+                return null;
+            }
         }
 
         public static string GetLastVersionName()
