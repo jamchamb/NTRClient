@@ -187,7 +187,7 @@ namespace ntrclient.Prog.CS
             int length = dataBuf.Length;
             if ((length == 1) || (length == 2) || (length == 4))
             {
-                Program.GCmdWindow.SetReadValue(Convert.ToInt32(hex, 16));
+                Program.GCmdWindow.SetReadValue(Convert.ToUInt32(hex, 16));
             }
         }
 

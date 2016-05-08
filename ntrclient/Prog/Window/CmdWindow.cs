@@ -71,7 +71,7 @@ namespace ntrclient.Prog.Window
         {
             _lookedForUpdate = true;
             Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != "V1.5-2" && !upd.Prerelease && !upd.Draft)
+            if (upd.TagName != "V1.5-1" && !upd.Prerelease && !upd.Draft)
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
@@ -160,7 +160,7 @@ namespace ntrclient.Prog.Window
 
         public List<Memregion> Memregions = new List<Memregion>();
 
-        public bool IsMemValid(int v)
+        public bool IsMemValid(uint v)
         {
             Memregion[] mems = Memregions.ToArray();
             return mems.Any(m => m.Contains(v));
@@ -199,9 +199,9 @@ namespace ntrclient.Prog.Window
                     {
                         Memregion memregion = new Memregion(mem);
                         Memregions.Add(memregion);
-                        int start = memregion.Start;
-                        int end = memregion.End;
-                        int length = memregion.Length;
+                        uint start = memregion.Start;
+                        uint end = memregion.End;
+                        uint length = memregion.Length;
                         comboBox_memregions.Items.Add(string.Format("{0:X} -> {1:X} [{2:X}]", start, end, length));
                     }
                 }
@@ -393,18 +393,16 @@ namespace ntrclient.Prog.Window
 
         // Handle Commands
 
-        public int ReadValue = -1;
+        public uint ReadValue = 0xdeadbeef;
 
 
-        public void SetReadValue(int r)
+        public void SetReadValue(uint r)
         {
-            if (r == -1)
-                r = 0;
             ReadValue = r;
         }
 
         // ReSharper disable once InconsistentNaming
-        public int readValue(int addr, int size)
+        public uint readValue(uint addr, uint size)
         {
             Addlog("Started readValue(int, int)");
             if (size < 1)
@@ -412,17 +410,17 @@ namespace ntrclient.Prog.Window
 
             RunCmd(string.Format("Read(0x{0:X}, 0x{1:X}, pid=0x{2:X})", addr, size, GetPid()));
             int retry = 0;
-            while (ReadValue == -1 && retry < 300000)
+            while (ReadValue == 0 && retry < 300000)
             {
                 Task.Delay(25);
                 retry++;
             }
-            if (retry >= 300000)
-                Addlog("[READ ERROR] COULDN'T READ FAST ENOUGH!");
-            if (ReadValue == -1)
-                ReadValue = 0;
-            var v = ReadValue;
-            ReadValue = -1;
+            //if (retry >= 300000)
+            //    Addlog("[READ ERROR] COULDN'T READ FAST ENOUGH!");
+            //if (ReadValue == 0xdeadbeef)
+            //    ReadValue = 0;
+            uint v = ReadValue;
+            ReadValue = 0;
             return v;
         }
 
@@ -484,39 +482,57 @@ namespace ntrclient.Prog.Window
             return string.Format("{0:X}", v);
         }
 
-        public static int FromLe(string hexLe)
+        public static uint FromLe(string hexLe)
         {
-            int temp;
+            uint temp;
             if (hexLe.Length == 4)
             {
-                temp = Convert.ToInt16(hexLe, 16);
+                temp = Convert.ToUInt16(hexLe, 16);
                 return FromLe(temp, 2);
             }
             if (hexLe.Length == 2)
             {
-                temp = Convert.ToInt32(hexLe, 16);
+                temp = Convert.ToUInt32(hexLe, 16);
                 return temp;
             }
-            temp = Convert.ToInt32(hexLe, 16);
+            temp = Convert.ToUInt32(hexLe, 16);
             return FromLe(temp, 4);
         }
 
-        public static int FromLe(int temp, int len)
+        public static uint FromLe(int temp, int len)
         {
             byte[] bytes = BitConverter.GetBytes(temp);
 
             Array.Reverse(bytes);
             if (len == 2)
             {
-                var le = BitConverter.ToInt16(bytes, 2);
+                uint le = BitConverter.ToUInt16(bytes, 2);
                 if (le >= 0) return le;
-                var ret = le + 0x10000;
+                uint ret = le + 0x10000;
                 return ret;
             }
             if (len == 1)
                 return bytes[bytes.Length - 1];
 
-            return BitConverter.ToInt32(bytes, 0);
+            return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        public static uint FromLe(uint temp, int len)
+        {
+            byte[] bytes = BitConverter.GetBytes(temp);
+
+            Array.Reverse(bytes);
+            if (len == 2)
+            {
+                uint le = BitConverter.ToUInt16(bytes, 2);
+                if (le >= 0) return le;
+                uint ret = le + 0x10000;
+                return ret;
+            }
+            if (len == 1)
+                return bytes[bytes.Length - 1];
+
+            return BitConverter.ToUInt32(bytes, 0);
         }
 
         public void ResetLog()
@@ -531,6 +547,27 @@ namespace ntrclient.Prog.Window
         }
 
         // Generating Hex chunks
+
+
+        public string GenerateHexChunk(uint value, uint length)
+        {
+            string data = "(";
+            byte[] bytes = BitConverter.GetBytes(value);
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                byte b = bytes[i];
+                if (i < length - 1)
+                {
+                    data += string.Format("0x{0:X}, ", b);
+                }
+                else
+                {
+                    data += string.Format("0x{0:X}", b);
+                    break;
+                }
+            }
+            return data + ")";
+        }
 
         public static string GenerateHexChunk(int value, int length)
         {
@@ -572,22 +609,42 @@ namespace ntrclient.Prog.Window
             return data + ")";
         }
 
+        public string GenerateHexChunk(int value, uint length)
+        {
+            string data = "(";
+            byte[] bytes = BitConverter.GetBytes(value);
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                byte b = bytes[i];
+                if (i < length - 1)
+                {
+                    data += string.Format("0x{0:X}, ", b);
+                }
+                else
+                {
+                    data += string.Format("0x{0:X}", b);
+                    break;
+                }
+            }
+            return data + ")";
+        }
+
         // gen Write Strings
 
-        public string GenerateWriteString(int addr, int value, int length)
+        public string GenerateWriteString(int addr, int value, uint length)
         {
             string data = GenerateHexChunk(value, length);
 
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
-        public string GenerateWriteString(uint addr, uint value, int length)
+        public string GenerateWriteString(uint addr, uint value, uint length)
         {
             string data = GenerateHexChunk(value, length);
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
-        public string GenerateWriteString(int addr, uint value, int length)
+        public string GenerateWriteString(int addr, uint value, uint length)
         {
             string data = GenerateHexChunk(value, length);
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
@@ -751,8 +808,8 @@ namespace ntrclient.Prog.Window
 
         private void button_dummy_read_Click(object sender, EventArgs e)
         {
-            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = readValue(addr, (int) numericUpDown_dummy_length.Value);
+            uint addr = Convert.ToUInt32(textBox_dummy_addr.Text, 16);
+            uint v = readValue(addr, (uint) numericUpDown_dummy_length.Value);
             textBox_dummy_value_hex.Text = string.Format("{0:X}", v);
             textBox_dummy_value_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_dummy_length.Value));
             textBox_dummy_value_dec.Text = string.Format("{0}", FromLe(v, (int) numericUpDown_dummy_length.Value));
@@ -761,22 +818,22 @@ namespace ntrclient.Prog.Window
         private void button_dummy_write_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = FromLe(Convert.ToInt32(textBox_dummy_value_hex.Text, 16), (int) numericUpDown_dummy_length.Value);
-            RunCmd(GenerateWriteString(addr, v, (int) numericUpDown_dummy_length.Value));
+            uint v = FromLe(Convert.ToUInt32(textBox_dummy_value_hex.Text, 16), (int) numericUpDown_dummy_length.Value);
+            RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
         }
 
         private void button_dummy_write_hex_le_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = Convert.ToInt32(textBox_dummy_value_hex_le.Text, 16);
-            RunCmd(GenerateWriteString(addr, v, (int) numericUpDown_dummy_length.Value));
+            uint v = Convert.ToUInt32(textBox_dummy_value_hex_le.Text, 16);
+            RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
         }
 
         private void button_dummy_write_dec_Click(object sender, EventArgs e)
         {
             int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            int v = Convert.ToInt32(textBox_dummy_value_dec.Text, 10);
-            RunCmd(GenerateWriteString(addr, v, (int) numericUpDown_dummy_length.Value));
+            uint v = Convert.ToUInt32(textBox_dummy_value_dec.Text, 10);
+            RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
         }
 
         // END of Basic
@@ -791,8 +848,8 @@ namespace ntrclient.Prog.Window
             Gateshark gs = new Gateshark(textBox_gateshark.Text);
             foreach (GatesharkAr gsAr in gs.GetAllCodes())
             {
-                int cmd = gsAr.GetCmd();
-                int blockA = gsAr.getBlock_A();
+                uint cmd = gsAr.GetCmd();
+                uint blockA = gsAr.getBlock_A();
                 uint blockB = gsAr.getBlock_B();
                 string parsed = string.Format("{0:X} {1:X} {2:X}\r\n", cmd, blockA, blockB);
                 textBox_gateshark_parsed.AppendText(parsed);
@@ -905,7 +962,7 @@ namespace ntrclient.Prog.Window
 
         private void button_debug_conv_hex_le_Click(object sender, EventArgs e)
         {
-            int v = FromLe(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16), (int) numericUpDown_debug_hextest.Value);
+            uint v = FromLe(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16), (int) numericUpDown_debug_hextest.Value);
 
             textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
             textBox_debug_conv_dec.Text = string.Format("{0}", v);
@@ -946,8 +1003,8 @@ namespace ntrclient.Prog.Window
         private void button_btn_input_Click(object sender, EventArgs e)
         {
             // b5 for lstick left/right
-            int w = readValue(0x0010C0B5, 1);
-            int h = readValue(0x0010C0B7, 1);
+            uint w = readValue(0x0010C0B5, 1);
+            uint h = readValue(0x0010C0B7, 1);
             label_btn_input.Text = string.Format("{0} - {1}", w, h);
         }
 
@@ -959,7 +1016,7 @@ namespace ntrclient.Prog.Window
         private void button_mk7_coins_read_Click(object sender, EventArgs e)
         {
             const int addr = 0x1413C540;
-            int v = FromLe(readValue(addr, 4), 4);
+            uint v = FromLe(readValue(addr, 4), 4);
             textBox_mk7_coins.Text = string.Format("{0}", v);
         }
 
@@ -983,7 +1040,7 @@ namespace ntrclient.Prog.Window
         private void button_aceu_setSlot1_Click(object sender, EventArgs e)
         {
             const int addr = 0x15FBEDD0;
-            int id = FromLe(textBox_aceu_itemid.Text);
+            uint id = FromLe(textBox_aceu_itemid.Text);
             if (id > 0xffff) 
                 id /= 0x10000;
             RunCmd(GenerateWriteString(addr, id, 4));
@@ -992,7 +1049,7 @@ namespace ntrclient.Prog.Window
         private void button_aceu_clear_slot1_Click(object sender, EventArgs e)
         {
             const int addr = 0x15FBEDD0;
-            int id = FromLe("FE7F");
+            uint id = FromLe("FE7F");
             RunCmd(GenerateWriteString(addr, id, 2));
         }
 
@@ -1003,13 +1060,13 @@ namespace ntrclient.Prog.Window
 
         // Gen items
 
-        private void GenItems(int value, int invSize)
+        private void GenItems(uint value, int invSize)
         {
-            const int addr = 0x15FBEDD0;
+            const uint addr = 0x15FBEDD0;
 
-            for (int i = 0; i < invSize; i++)
+            for (uint i = 0; i < invSize; i++)
             {
-                int addrr = addr + i*4;
+                uint addrr = addr + i*4;
                 RunCmd(GenerateWriteString(addrr, value + i, 4));
             }
         }
@@ -1017,7 +1074,7 @@ namespace ntrclient.Prog.Window
         private void ClearInv()
         {
             const int addr = 0x15FBEDD0;
-            int clearItem = FromLe("FE7F");
+            uint clearItem = FromLe("FE7F");
             const int invSize = 16;
 
             for (int i = 0; i < invSize; i++)
@@ -1031,37 +1088,37 @@ namespace ntrclient.Prog.Window
 
         private void button_aceu_fossil1_Click(object sender, EventArgs e)
         {
-            int value = FromLe("902E");
+            uint value = FromLe("902E");
             GenItems(value, 16);
         }
 
         private void button_aceu_fossil2_Click(object sender, EventArgs e)
         {
-            int value = FromLe("A02E");
+            uint value = FromLe("A02E");
             GenItems(value, 16);
         }
 
         private void button_aceu_fossil3_Click(object sender, EventArgs e)
         {
-            int value = FromLe("B02E");
+            uint value = FromLe("B02E");
             GenItems(value, 16);
         }
 
         private void button_aceu_fossil4_Click(object sender, EventArgs e)
         {
-            int value = FromLe("C02E");
+            uint value = FromLe("C02E");
             GenItems(value, 16);
         }
 
         private void button_aceu_fossil5_Click(object sender, EventArgs e)
         {
-            int value = FromLe("D02E");
+            uint value = FromLe("D02E");
             GenItems(value, 16);
         }
 
         private void button_aceu_fossil6_Click(object sender, EventArgs e)
         {
-            int value = FromLe("E02E");
+            uint value = FromLe("E02E");
             GenItems(value, 7);
         }
 
@@ -1226,10 +1283,6 @@ namespace ntrclient.Prog.Window
 
             string[] addr =
             {
-                //"0x082839D0", "0x08284AA6"
-                "0836993C", "08283558",
-                "0828457A", "0828513A",
-                "0831F87C", "0833F930",
                 "083693DC", "083EED38"
             };
             foreach (string a in addr)

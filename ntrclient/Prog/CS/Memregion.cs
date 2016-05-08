@@ -4,7 +4,7 @@ namespace ntrclient.Prog.CS
 {
     public class Memregion
     {
-        public int Start, End, Length;
+        public uint Start, End, Length;
 
         public Memregion(string mem)
         {
@@ -12,9 +12,9 @@ namespace ntrclient.Prog.CS
             string[] memparts = mem.Split(' ');
             try
             {
-                Start = Convert.ToInt32(memparts[0], 16);
-                End = Convert.ToInt32(memparts[2], 16);
-                Length = Convert.ToInt32(memparts[5], 16);
+                Start = Convert.ToUInt32(memparts[0], 16);
+                End = Convert.ToUInt32(memparts[2], 16);
+                Length = Convert.ToUInt32(memparts[5], 16);
             }
             catch (Exception)
             {
@@ -24,7 +24,7 @@ namespace ntrclient.Prog.CS
             }
         }
 
-        public bool Contains(int v)
+        public bool Contains(uint v)
         {
             return ((Start <= v) && (v <= End));
         }

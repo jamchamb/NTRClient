@@ -10,8 +10,8 @@ namespace ntrclient.Extra
     public class Gateshark
     {
         private readonly List<GatesharkAr> _lines = new List<GatesharkAr>();
-        private int _offset;
-        private int _dxData;
+        private uint _offset;
+        private uint _dxData;
         private bool _loop;
         private int _loopIndex;
         private uint _loopCount;
@@ -42,7 +42,7 @@ namespace ntrclient.Extra
             do
             {
                 GatesharkAr gsAr = _lines[index];
-                int cmd = gsAr.GetCmd();
+                uint cmd = gsAr.GetCmd();
 
                 if (cmd != 0xff)
                     Addlog(string.Format("GS | {0:X} {1:X} {2:X} -> [{3}, {4}, {5}, {6:X}]", cmd, gsAr.getBlock_A(), gsAr.getBlock_B(), valid, gsIfLayer, gsIfSLayer, _offset));
@@ -64,7 +64,10 @@ namespace ntrclient.Extra
                     }
                     else if (cmd == 0x4)
                     {
-                        uint read = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4), 0));
+                        UInt32 r1 = Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4);
+                        UInt32 r2 = CmdWindow.FromLe(r1, 0);
+                        
+                        uint read = Convert.ToUInt32(r2);
                         gsIf = read > gsAr.getBlock_B();
                     }
                     else if (cmd == 0x5)
@@ -119,7 +122,7 @@ namespace ntrclient.Extra
                             else
                             {
                                 index = _loopIndex;
-                                _offset += Convert.ToInt32(gsAr.getBlock_B());
+                                _offset += Convert.ToUInt32(gsAr.getBlock_B());
                             }
                         }
                     }
@@ -136,74 +139,63 @@ namespace ntrclient.Extra
                     else if (cmd == 0xD3) // Read offset
                     {
                         // Fix for Issue #8
-                        uint b = gsAr.getBlock_B();
-                        int bb;
-                        if (b > int.MaxValue)
-                        {
-                            // Offset in negative.
-                            int r = Convert.ToInt32(b % 0x80000000);
-                            bb = Convert.ToInt32(int.MinValue + r);
-                        }
-                        else
-                            bb = Convert.ToInt32(b);
-
-                        _offset = bb;
+                        _offset = gsAr.getBlock_B();
                     }
                     else if (cmd == 0xD4)
                     {
                         // Fix for Issue #8
                         uint b = gsAr.getBlock_B();
-                        int bb;
-                        if (b > int.MaxValue)
-                        {
-                            // Offset in negative.
-                            int r = Convert.ToInt32(b % 0x80000000);
-                            bb = Convert.ToInt32(int.MinValue + r);
-                        }
-                        else
-                            bb = Convert.ToInt32(b);
+                        //int bb;
+                        //if (b > int.MaxValue)
+                        //{
+                        //    // Offset in negative.
+                        //    int r = Convert.ToInt32(b % 0x80000000);
+                        //    bb = Convert.ToInt32(int.MinValue + r);
+                        //}
+                        //else
+                        //    bb = Convert.ToInt32(b);
 
 
-                        _dxData += bb;
+                        _dxData += b;
                     }
                     else if (cmd == 0xD5) // DxData WRITE
                     {
-                        _dxData = Convert.ToInt32(gsAr.getBlock_B());
+                        _dxData = gsAr.getBlock_B();
                     }
                     else if (cmd == 0xD6) // DxData WORD
                     {
 
-                        int addr = Convert.ToInt32(gsAr.getBlock_B()) + _offset;
+                        uint addr = gsAr.getBlock_B() + _offset;
                         _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 4), 4);
                     }
                     else if (cmd == 0xD7) // DxData SHORT
                     {
-                        int addr = Convert.ToInt32(gsAr.getBlock_B()) + _offset;
+                        uint addr = gsAr.getBlock_B() + _offset;
                         _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 2), 2);
                     }
                     else if (cmd == 0xD8) // DxData Byte
                     {
-                        int addr = Convert.ToInt32(gsAr.getBlock_B()) + _offset;
+                        uint addr = gsAr.getBlock_B() + _offset;
                         _dxData = Program.GCmdWindow.readValue(addr, 1);
                     }
                     else if (cmd == 0xD9) // DxData READ WORD
                     {
-                        int len = 4;
-                        string cmdString = Program.GCmdWindow.GenerateWriteString(Convert.ToInt32(gsAr.getBlock_B()) + _offset, _dxData, len);
+                        uint len = 4;
+                        string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
                         Program.GCmdWindow.RunCmd(cmdString);
                         _offset += len;
                     }
                     else if (cmd == 0xDA) // DxData READ SHORT
                     {
-                        int len = 2;
-                        string cmdString = Program.GCmdWindow.GenerateWriteString(Convert.ToInt32(gsAr.getBlock_B()) + _offset, _dxData, len);
+                        uint len = 2;
+                        string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
                         Program.GCmdWindow.RunCmd(cmdString);
                         _offset += len;
                     }
                     else if (cmd == 0xDB) // DxData READ BYTE
                     {
-                        int len = 1;
-                        string cmdString = Program.GCmdWindow.GenerateWriteString(Convert.ToInt32(gsAr.getBlock_B()) + _offset, _dxData, len);
+                        uint len = 1;
+                        string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
                         Program.GCmdWindow.RunCmd(cmdString);
                         _offset += len;
                     }
@@ -211,18 +203,18 @@ namespace ntrclient.Extra
                     {
                         // Fix for Issue #8
                         uint b = gsAr.getBlock_B();
-                        int bb;
-                        if (b > int.MaxValue)
-                        {
-                            // Offset in negative.
-                            int r = Convert.ToInt32(b % 0x80000000);
-                            bb = Convert.ToInt32(int.MinValue + r);
-                        }
-                        else
-                            bb = Convert.ToInt32(b);
+                        //int bb;
+                        //if (b > int.MaxValue)
+                        //{
+                        //    // Offset in negative.
+                        //    int r = Convert.ToInt32(b % 0x80000000);
+                        //    bb = Convert.ToInt32(int.MinValue + r);
+                        //}
+                        //else
+                        //    bb = Convert.ToInt32(b);
 
 
-                        _offset += bb;
+                        _offset += b;
                     }
                     else if (cmd == 0xDF)
                     {
@@ -278,8 +270,8 @@ namespace ntrclient.Extra
     public class GatesharkAr
     {
         public string Line { get; }
-        private readonly int _cmd;
-        private readonly int _blockA;
+        private readonly uint _cmd;
+        private readonly uint _blockA;
         private readonly uint _blockB;
         public string Replace { get; }
 
@@ -296,7 +288,7 @@ namespace ntrclient.Extra
                 return;
             }
             Replace = ar.Replace(" ", string.Empty);
-            _cmd = Convert.ToInt32(ar[0].ToString(), 16);
+            _cmd = Convert.ToUInt32(ar[0].ToString(), 16);
             /*
 
             0   Write   Word
@@ -315,12 +307,12 @@ namespace ntrclient.Extra
             if (_cmd == 0xD)
             {
                 _cmd = 0xD0;
-                _cmd += Convert.ToInt32(ar[1].ToString(), 16); // DX codes
+                _cmd += Convert.ToUInt32(ar[1].ToString(), 16); // DX codes
                 _blockA = 0x0;
             }
             else
             {
-                _blockA = Convert.ToInt32(blocks[0], 16);
+                _blockA = Convert.ToUInt32(blocks[0], 16);
                 _blockA -= _cmd * 0x10000000;
             }
 
@@ -329,12 +321,12 @@ namespace ntrclient.Extra
 
         }
 
-        public int GetCmd()
+        public uint GetCmd()
         {
             return _cmd;
         }
 
-        public int getBlock_A()
+        public uint getBlock_A()
         {
             return _blockA;
         }
@@ -344,11 +336,11 @@ namespace ntrclient.Extra
             return _blockB;
         }
 
-        public bool Execute(int offset)
+        public bool Execute(uint offset)
         {
             if ((_cmd == 0) || (_cmd == 1) || (_cmd == 2))
             {
-                int len = 4;
+                uint len = 4;
                 if (_cmd == 1) len = 2;
                 else if (_cmd == 2) len = 1;
                 if (Program.GCmdWindow.IsMemValid(_blockA + offset))
