@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ntrclient.Extra;
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -8,6 +9,8 @@ namespace ntrclient.Prog.CS
     {
         public static int RunCommandAndGetOutput(string exeFile, string args, ref string output)
         {
+            try
+            { 
             if (output == null) throw new ArgumentNullException(nameof(output));
             Process proc = new Process
             {
@@ -22,9 +25,7 @@ namespace ntrclient.Prog.CS
                 }
             };
 
-
-            try
-            {
+            
                 proc.Start();
                 proc.WaitForExit();
                 var processOutput = proc.StandardError.ReadToEnd();
@@ -37,6 +38,7 @@ namespace ntrclient.Prog.CS
             catch (Exception e)
             {
                 output = e.Message;
+                //BugReporter br = new BugReporter(e, "Run CMD exception", false);
                 return -1;
             }
         }

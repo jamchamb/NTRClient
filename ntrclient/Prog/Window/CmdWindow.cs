@@ -17,6 +17,10 @@ namespace ntrclient.Prog.Window
 {
     public partial class CmdWindow : Form
     {
+
+        private String version = @"V1.5-1";
+        private String release = @"Public Version";
+
         //________________________________________________________________
         // System
 
@@ -54,9 +58,10 @@ namespace ntrclient.Prog.Window
                     LookForUpdate();
                 }
             }
-            catch (Exception)
+            catch (Exception e_)
             {
-                // ignored
+                BugReporter br = new BugReporter(e_, "Timer exception");
+                
             }
         }
 
@@ -72,7 +77,7 @@ namespace ntrclient.Prog.Window
         {
             _lookedForUpdate = true;
             Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != "V1.5-1" && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
+            if (upd.TagName != version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
             {
                 string nVersion = Octo.GetLastVersionName();
                 string nBody = Octo.GetLastVersionBody();
@@ -93,6 +98,17 @@ namespace ntrclient.Prog.Window
         private void CmdWindow_Load(object sender, EventArgs e)
         {
             ResetLog();
+
+            this.VersionNumberToolStripMenuItem.Text = version;
+            this.VersionExtraToolStripMenuItem.Text = release;
+
+            // Remove all errorreports. 
+            DirectoryInfo di = new DirectoryInfo("bugreports");
+
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
 
             textBox_Ip.Text = Program.Sm.IpAddress;
             if (Program.Sm.IpAddress != "Nintendo 3DS IP")
@@ -151,6 +167,11 @@ namespace ntrclient.Prog.Window
             {
                 txtLog.AppendText(l);
             }
+        }
+
+        public String GetLog()
+        {
+            return txtLog.Text;
         }
 
         // END of Logging
@@ -275,7 +296,7 @@ namespace ntrclient.Prog.Window
             }
         }
 
-        private static string FillString(string n, int len)
+        public string FillString(string n, int len)
         {
             int ls = len - n.Length;
             if (ls <= 0) return n;
@@ -286,7 +307,7 @@ namespace ntrclient.Prog.Window
             return n;
         }
 
-        private static string CheckSystem(string n)
+        public string CheckSystem(string n)
         {
             string[] sys =
             {
@@ -442,6 +463,7 @@ namespace ntrclient.Prog.Window
             catch (Exception ex)
             {
                 Addlog(ex.Message);
+                BugReporter br = new BugReporter(ex, "Command execution exception", false);
                 return "";
             }
         }
@@ -818,33 +840,51 @@ namespace ntrclient.Prog.Window
 
         private void button_dummy_write_Click(object sender, EventArgs e)
         {
-            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            uint v = FromLe(Convert.ToUInt32(textBox_dummy_value_hex.Text, 16), (int) numericUpDown_dummy_length.Value);
-            RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
+            try
+            {
+                int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+                uint v = FromLe(Convert.ToUInt32(textBox_dummy_value_hex.Text, 16), (int)numericUpDown_dummy_length.Value);
+                RunCmd(GenerateWriteString(addr, v, (uint)numericUpDown_dummy_length.Value));
+            } catch ( Exception ex)
+            {
+                BugReporter br = new BugReporter(ex, @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
+            }
         }
 
         private void button_dummy_write_hex_le_Click(object sender, EventArgs e)
         {
-            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            uint v = Convert.ToUInt32(textBox_dummy_value_hex_le.Text, 16);
-            RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
+            try
+            {
+                int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+                uint v = Convert.ToUInt32(textBox_dummy_value_hex_le.Text, 16);
+                RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
+            } catch ( Exception ex)
+            {
+                BugReporter br = new BugReporter(ex, @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
+            }
         }
 
         private void button_dummy_write_dec_Click(object sender, EventArgs e)
         {
-            int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-            uint v = Convert.ToUInt32(textBox_dummy_value_dec.Text, 10);
-            RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
+            try
+            {
+                int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
+                uint v = Convert.ToUInt32(textBox_dummy_value_dec.Text, 10);
+                RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
+            } catch ( Exception ex)
+            {
+                BugReporter br = new BugReporter(ex, @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
+            }
         }
 
         // 
 
-        private void button_dump_all_Click2(object sender, EventArgs e)
-        {
-            String filename = textBox_dump_file.Text;
-            Memregion mem = Memregions[Memregions.Count - 1];
-            RunCmd(String.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", 0, mem.Start + mem.Length, filename, GetPid()));
-        }
+        //private void button_dump_all_Click2(object sender, EventArgs e)
+        //{
+        //    String filename = textBox_dump_file.Text;
+        //    Memregion mem = Memregions[Memregions.Count - 1];
+        //    RunCmd(String.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", 0, mem.Start + mem.Length, filename, GetPid()));
+        //}
 
         private void button_dump_all_Click(object sender, EventArgs e)
         {
@@ -1010,26 +1050,44 @@ namespace ntrclient.Prog.Window
 
         private void button_debug_conv_hex_Click(object sender, EventArgs e)
         {
-            int v = Convert.ToInt32(textBox_debug_conv_hex.Text, 16);
+            try
+            {
+                int v = Convert.ToInt32(textBox_debug_conv_hex.Text, 16);
 
-            textBox_debug_conv_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_debug_hextest.Value));
-            textBox_debug_conv_dec.Text = string.Format("{0}", v);
+                textBox_debug_conv_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_debug_hextest.Value));
+                textBox_debug_conv_dec.Text = string.Format("{0}", v);
+            } catch ( Exception ex )
+            {
+                BugReporter br = new BugReporter(ex, "Debug Convert HEX Exception");
+            }
         }
 
         private void button_debug_conv_hex_le_Click(object sender, EventArgs e)
         {
-            uint v = FromLe(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16), (int) numericUpDown_debug_hextest.Value);
+            try
+            {
+                uint v = FromLe(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16), (int) numericUpDown_debug_hextest.Value);
 
-            textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
-            textBox_debug_conv_dec.Text = string.Format("{0}", v);
-        }
+                textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
+                textBox_debug_conv_dec.Text = string.Format("{0}", v);
+            } catch ( Exception ex )
+            {
+                BugReporter br = new BugReporter(ex, "Debug Convert HEXLE Exception");
+    }
+}
 
         private void button_debug_conv_dec_Click(object sender, EventArgs e)
         {
-            int v = Convert.ToInt32(textBox_debug_conv_dec.Text, 10);
+            try
+            {
+                int v = Convert.ToInt32(textBox_debug_conv_dec.Text, 10);
 
-            textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
-            textBox_debug_conv_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_debug_hextest.Value));
+                textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
+                textBox_debug_conv_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_debug_hextest.Value));
+            } catch ( Exception ex )
+            {
+                BugReporter br = new BugReporter(ex, "Debug Convert DEC Exception");
+            }
         }
 
         // Update tests

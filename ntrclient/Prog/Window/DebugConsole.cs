@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ntrclient.Prog.CS;
 using ntrclient.Prog.CS.GitHub;
+using ntrclient.Extra;
 
 namespace ntrclient.Prog.Window
 {
@@ -110,6 +111,11 @@ namespace ntrclient.Prog.Window
                     nVersion + Environment.NewLine + Environment.NewLine +
                     nBody
                     );
+            }
+            else if (cmd == "error")
+            {
+                Addlog("Generating error file");
+                BugReporter br = new BugReporter(new Exception("User generated exception"), "User generated exception");
             }
         }
 

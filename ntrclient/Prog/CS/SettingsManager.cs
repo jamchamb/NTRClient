@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ntrclient.Extra;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -43,7 +44,7 @@ namespace ntrclient.Prog.CS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                BugReporter br = new BugReporter(ex, "XML save exception", true);
             }
         }
 
@@ -65,6 +66,7 @@ namespace ntrclient.Prog.CS
                     @"Downloaded or Updated this tool..." + Environment.NewLine + Environment.NewLine +
                     ex.Message
                     );
+                BugReporter br = new BugReporter(ex, "XML Load exception", false);
             }
             return new SettingsManager();
         }

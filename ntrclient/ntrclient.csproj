@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extra\BugReporter.cs" />
     <Compile Include="Prog\CS\GitHub\Octo.cs" />
     <Compile Include="Prog\CS\Heartbeat.cs" />
     <Compile Include="Prog\CS\NTRProcess.cs" />

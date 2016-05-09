@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using ntrclient.Prog.Window;
+using ntrclient.Extra;
 
 namespace ntrclient.Prog.CS
 {
@@ -52,7 +53,7 @@ namespace ntrclient.Prog.CS
             return length;
 
         }
-            catch (Exception e)
+            catch (Exception)
             {
                 Log("Connection timed out");
                 return 0;
@@ -148,6 +149,7 @@ namespace ntrclient.Prog.CS
                 {
                     Log(e.Message);
                     Log(e.StackTrace);
+                    BugReporter br = new BugReporter(e, "Packet receiver exception", true);
                     //log("An error occured!");
                     break;
                 }
@@ -347,7 +349,8 @@ namespace ntrclient.Prog.CS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+
+                BugReporter br = new BugReporter(ex, "Logging exception");
             }
         }
 

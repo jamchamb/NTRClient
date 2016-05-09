@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Octokit;
 using System;
 using System.Windows.Forms;
+using ntrclient.Extra;
 
 namespace ntrclient.Prog.CS.GitHub
 {
@@ -28,6 +29,7 @@ namespace ntrclient.Prog.CS.GitHub
             } catch ( Exception e )
             {
                 MessageBox.Show("An error occured trying to look for updates!");
+                BugReporter br = new BugReporter(e, "Updater exception", false);
                 return null;
             }
         }
