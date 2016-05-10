@@ -162,6 +162,11 @@
             this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.button_mh4u_us_defense = new System.Windows.Forms.Button();
+            this.button_mh4u_us_attack = new System.Windows.Forms.Button();
+            this.button_mh4u_us_exefs = new System.Windows.Forms.Button();
+            this.textbox_mh4u_us_attack = new System.Windows.Forms.TextBox();
+            this.textBox_mh4u_us_defense = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -709,6 +714,11 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.textBox_mh4u_us_defense);
+            this.tabPage4.Controls.Add(this.textbox_mh4u_us_attack);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_exefs);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_attack);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_defense);
             this.tabPage4.Controls.Add(this.button_mh4u_us_hb_godmode);
             this.tabPage4.Controls.Add(this.button_mh4u_us_monb_kill);
             this.tabPage4.Controls.Add(this.button_mh4u_us_mon2_kill);
@@ -1514,6 +1524,52 @@
             this.statusStrip1.Size = new System.Drawing.Size(680, 22);
             this.statusStrip1.TabIndex = 2;
             // 
+            // button_mh4u_us_defense
+            // 
+            this.button_mh4u_us_defense.Location = new System.Drawing.Point(502, 90);
+            this.button_mh4u_us_defense.Name = "button_mh4u_us_defense";
+            this.button_mh4u_us_defense.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_defense.TabIndex = 14;
+            this.button_mh4u_us_defense.Text = "Defense";
+            this.button_mh4u_us_defense.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_defense.Click += new System.EventHandler(this.button_mh4u_us_defense_Click);
+            // 
+            // button_mh4u_us_attack
+            // 
+            this.button_mh4u_us_attack.Location = new System.Drawing.Point(502, 61);
+            this.button_mh4u_us_attack.Name = "button_mh4u_us_attack";
+            this.button_mh4u_us_attack.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_attack.TabIndex = 15;
+            this.button_mh4u_us_attack.Text = "Attack";
+            this.button_mh4u_us_attack.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_attack.Click += new System.EventHandler(this.button_mh4u_us_attack_Click);
+            // 
+            // button_mh4u_us_exefs
+            // 
+            this.button_mh4u_us_exefs.Location = new System.Drawing.Point(502, 32);
+            this.button_mh4u_us_exefs.Name = "button_mh4u_us_exefs";
+            this.button_mh4u_us_exefs.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_exefs.TabIndex = 16;
+            this.button_mh4u_us_exefs.Text = "Patch Exefs";
+            this.button_mh4u_us_exefs.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_exefs.Click += new System.EventHandler(this.button_mh4u_us_exefs_Click);
+            // 
+            // textbox_mh4u_us_attack
+            // 
+            this.textbox_mh4u_us_attack.Location = new System.Drawing.Point(346, 61);
+            this.textbox_mh4u_us_attack.Name = "textbox_mh4u_us_attack";
+            this.textbox_mh4u_us_attack.Size = new System.Drawing.Size(150, 20);
+            this.textbox_mh4u_us_attack.TabIndex = 17;
+            this.textbox_mh4u_us_attack.Text = "1";
+            // 
+            // textBox_mh4u_us_defense
+            // 
+            this.textBox_mh4u_us_defense.Location = new System.Drawing.Point(346, 93);
+            this.textBox_mh4u_us_defense.Name = "textBox_mh4u_us_defense";
+            this.textBox_mh4u_us_defense.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_us_defense.TabIndex = 18;
+            this.textBox_mh4u_us_defense.Text = "1";
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1701,6 +1757,11 @@
         private System.ComponentModel.BackgroundWorker ntrViewerWorker;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Button button_dump_all;
+        private System.Windows.Forms.TextBox textBox_mh4u_us_defense;
+        private System.Windows.Forms.TextBox textbox_mh4u_us_attack;
+        private System.Windows.Forms.Button button_mh4u_us_exefs;
+        private System.Windows.Forms.Button button_mh4u_us_attack;
+        private System.Windows.Forms.Button button_mh4u_us_defense;
     }
 }
 

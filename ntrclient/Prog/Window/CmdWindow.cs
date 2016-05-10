@@ -1540,6 +1540,50 @@ namespace ntrclient.Prog.Window
             }
         }
 
+        private void button_mh4u_us_exefs_Click(object sender, EventArgs e)
+        {
+            Gateshark gs = new Gateshark(
+                "D3000000 00000000" + Environment.NewLine +
+                "00DEC800 E92D4006" + Environment.NewLine +
+                "00DEC804 EBD431C2" + Environment.NewLine +
+                "00DEC808 E3A01001" + Environment.NewLine + // Defense
+                "00DEC80C E0201091" + Environment.NewLine +
+                "00DEC810 E2400001" + Environment.NewLine +
+                "00DEC814 E3A02C7D" + Environment.NewLine +
+                "00DEC818 E2422001" + Environment.NewLine +
+                "00DEC81C E1500002" + Environment.NewLine +
+                "00DEC820 A1A00002" + Environment.NewLine +
+                "00DEC824 E8BD8006" + Environment.NewLine +
+                "00AF8044 EB0BD1ED" + Environment.NewLine +
+                "00B1EEA0 EB0B3656" + Environment.NewLine +
+                "D3000000 00000000" + Environment.NewLine +
+                "00DEC7C0 E92D4006" + Environment.NewLine +
+                "00DEC7C4 EBD431D2" + Environment.NewLine +
+                "00DEC7C8 E3A01001" + Environment.NewLine + // Attack
+                "00DEC7CC E0000190" + Environment.NewLine +
+                "00DEC7D0 E3A02C7D" + Environment.NewLine +
+                "00DEC7D4 E1500002" + Environment.NewLine +
+                "00DEC7D8 A1A00002" + Environment.NewLine +
+                "00DEC7DC E8BD8006" + Environment.NewLine +
+                "00AF8B60 EB0BCF16" + Environment.NewLine +
+                "00B1EA78 EB0B3750" + Environment.NewLine +
+                "00B6B328 E1D109B6" + Environment.NewLine + // Sharpness
+                "00B964E8 E3A00001"                         // Autotracker
+            );
+
+            gs.Execute();
+        }
+
+        private void button_mh4u_us_attack_Click(object sender, EventArgs e)
+        {
+            RunCmd(GenerateWriteString(0x00DEC7C8, (uint) (0xE3A01000 + GetInt(textbox_mh4u_us_attack.Text)), 4));
+        }
+
+        private void button_mh4u_us_defense_Click(object sender, EventArgs e)
+        {
+            RunCmd(GenerateWriteString(0x00DEC808, (uint)(0xE3A01000 + GetInt(textbox_mh4u_us_attack.Text)), 4));
+        }
+
         // New stuff.. Need to add this to a category.
     }
 }
