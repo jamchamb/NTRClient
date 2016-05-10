@@ -1382,7 +1382,7 @@ namespace ntrclient.Prog.Window
             {
                 if (i < name.Length)
                 {
-                    wCmd += string.Format("ord('{0}'), 0", name[i]);
+                    wCmd += string.Format("ord('{0}') % 0x100, int(ord('{0}') / 0x100)", name[i]);
                 }
                 else
                 {
@@ -1581,7 +1581,39 @@ namespace ntrclient.Prog.Window
 
         private void button_mh4u_us_defense_Click(object sender, EventArgs e)
         {
-            RunCmd(GenerateWriteString(0x00DEC808, (uint)(0xE3A01000 + GetInt(textbox_mh4u_us_attack.Text)), 4));
+            RunCmd(GenerateWriteString(0x00DEC808, (uint)(0xE3A01000 + GetInt(textBox_mh4u_us_defense.Text)), 4));
+        }
+
+        private int mh4uNameIndex = 0;
+        private void button_mh4u_us_nameforce_Click(object sender, EventArgs e)
+        {
+            string wCmd = "";
+            for (int i = 0; i < 11; i++)
+            {
+                wCmd += string.Format("{0} % 0x100, int({0} / 0x100)", mh4uNameIndex);
+                mh4uNameIndex++;
+
+                if (i < 10)
+                {
+                    wCmd += ", ";
+                }
+            }
+
+            string[] addr =
+            {
+                "083693DC", "083EED38"
+            };
+            foreach (string a in addr)
+            {
+                RunCmd(string.Format("Write(0x{0}, ({1}), pid=0x{2:X})", a, wCmd, GetPid()));
+            }
+            label1.Text = "INDEX: " + mh4uNameIndex;
+        }
+
+        private void button_mh4u_us_nameindexset_Click(object sender, EventArgs e)
+        {
+            mh4uNameIndex = GetInt(textBox_mh4u_us_nameindex.Text);
+            label1.Text = @"INDEX: " + mh4uNameIndex;
         }
 
         // New stuff.. Need to add this to a category.

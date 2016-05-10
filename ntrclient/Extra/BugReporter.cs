@@ -36,18 +36,21 @@ namespace ntrclient.Extra
             log += @"Additional Information: " + additionalInformation + Environment.NewLine;
             log += @"Version of NTR: " + NtrVersion + Environment.NewLine + Environment.NewLine;
             log += @"------------------------------" + Environment.NewLine + Environment.NewLine;
-            log += @"Exception stacktrace: " + Environment.NewLine + e.ToString();
+            log += @"Exception stacktrace: " + Environment.NewLine + e.ToString() + Environment.NewLine;
             log += @"------------------------------" + Environment.NewLine + Environment.NewLine;
-            log += Program.GCmdWindow.GetLog() + Environment.NewLine + Environment.NewLine;
-            log += @"------------------------------" + Environment.NewLine + Environment.NewLine;
-            log += @"System information: [PROCESSES]" + Environment.NewLine;
-            foreach (NtrProcess process in Program.GCmdWindow.Processes)
+            if (Program.GCmdWindow != null)
             {
-                log += string.Format("{0} | {1:X} : {2} [{3:X}]", Program.GCmdWindow.FillString(Program.GCmdWindow.CheckSystem(process.Name), 6), process.Pid, process.Name, process.Tid) + Environment.NewLine;
+                log += Program.GCmdWindow?.GetLog() ?? @"No log" + Environment.NewLine + Environment.NewLine;
+                log += @"------------------------------" + Environment.NewLine + Environment.NewLine;
+                log += @"System information: [PROCESSES]" + Environment.NewLine;
+                foreach (NtrProcess process in Program.GCmdWindow.Processes)
+                {
+                    log += string.Format("{0} | {1:X} : {2} [{3:X}]", Program.GCmdWindow.FillString(Program.GCmdWindow.CheckSystem(process.Name), 6), process.Pid, process.Name, process.Tid) + Environment.NewLine;
+                }
+                log += Environment.NewLine + @"------------------------------" + Environment.NewLine + Environment.NewLine;
+                log += @"Current process: " + Program.GCmdWindow.comboBox_processes.Text + Environment.NewLine + Environment.NewLine;
+                log += @"------------------------------" + Environment.NewLine + Environment.NewLine;
             }
-            log += Environment.NewLine + @"------------------------------" + Environment.NewLine + Environment.NewLine;
-            log += @"Current process: " + Program.GCmdWindow.comboBox_processes.Text + Environment.NewLine + Environment.NewLine;
-            log += @"------------------------------" + Environment.NewLine + Environment.NewLine;
 
             log += @"This is the end of the bugreport. ^_^";
 

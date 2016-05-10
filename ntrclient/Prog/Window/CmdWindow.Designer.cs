@@ -167,6 +167,10 @@
             this.button_mh4u_us_exefs = new System.Windows.Forms.Button();
             this.textbox_mh4u_us_attack = new System.Windows.Forms.TextBox();
             this.textBox_mh4u_us_defense = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button_mh4u_us_nameforce = new System.Windows.Forms.Button();
+            this.textBox_mh4u_us_nameindex = new System.Windows.Forms.TextBox();
+            this.button_mh4u_us_nameindexset = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -714,6 +718,10 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button_mh4u_us_nameindexset);
+            this.tabPage4.Controls.Add(this.textBox_mh4u_us_nameindex);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_nameforce);
+            this.tabPage4.Controls.Add(this.label1);
             this.tabPage4.Controls.Add(this.textBox_mh4u_us_defense);
             this.tabPage4.Controls.Add(this.textbox_mh4u_us_attack);
             this.tabPage4.Controls.Add(this.button_mh4u_us_exefs);
@@ -1570,6 +1578,43 @@
             this.textBox_mh4u_us_defense.TabIndex = 18;
             this.textBox_mh4u_us_defense.Text = "1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(162, 167);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "INDEX: 0";
+            // 
+            // button_mh4u_us_nameforce
+            // 
+            this.button_mh4u_us_nameforce.Location = new System.Drawing.Point(6, 163);
+            this.button_mh4u_us_nameforce.Name = "button_mh4u_us_nameforce";
+            this.button_mh4u_us_nameforce.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_nameforce.TabIndex = 20;
+            this.button_mh4u_us_nameforce.Text = "Name bruteforce";
+            this.button_mh4u_us_nameforce.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_nameforce.Click += new System.EventHandler(this.button_mh4u_us_nameforce_Click);
+            // 
+            // textBox_mh4u_us_nameindex
+            // 
+            this.textBox_mh4u_us_nameindex.Location = new System.Drawing.Point(6, 137);
+            this.textBox_mh4u_us_nameindex.Name = "textBox_mh4u_us_nameindex";
+            this.textBox_mh4u_us_nameindex.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_us_nameindex.TabIndex = 21;
+            this.textBox_mh4u_us_nameindex.Text = "1";
+            // 
+            // button_mh4u_us_nameindexset
+            // 
+            this.button_mh4u_us_nameindexset.Location = new System.Drawing.Point(162, 136);
+            this.button_mh4u_us_nameindexset.Name = "button_mh4u_us_nameindexset";
+            this.button_mh4u_us_nameindexset.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_nameindexset.TabIndex = 22;
+            this.button_mh4u_us_nameindexset.Text = "Name bruteforce";
+            this.button_mh4u_us_nameindexset.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_nameindexset.Click += new System.EventHandler(this.button_mh4u_us_nameindexset_Click);
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1762,6 +1807,10 @@
         private System.Windows.Forms.Button button_mh4u_us_exefs;
         private System.Windows.Forms.Button button_mh4u_us_attack;
         private System.Windows.Forms.Button button_mh4u_us_defense;
+        private System.Windows.Forms.Button button_mh4u_us_nameforce;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_mh4u_us_nameindexset;
+        private System.Windows.Forms.TextBox textBox_mh4u_us_nameindex;
     }
 }
 

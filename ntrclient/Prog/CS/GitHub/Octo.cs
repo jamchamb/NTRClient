@@ -26,8 +26,15 @@ namespace ntrclient.Prog.CS.GitHub
                 IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("imthe666st", "ntrclient");
                 LastRelease = lastReleases[0];
                 return LastRelease;
+            //} catch ( TaskCanceledException e)
+            //{
+                
             } catch ( Exception e )
             {
+                if (e == new TaskCanceledException())
+                {
+                    
+                }
                 MessageBox.Show("An error occured trying to look for updates!");
                 BugReporter br = new BugReporter(e, "Updater exception", false);
                 return null;
