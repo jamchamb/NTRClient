@@ -18,7 +18,7 @@ namespace ntrclient.Prog.Window
     public partial class CmdWindow : Form
     {
 
-        private String version = @"V1.6";
+        private String version = @"V1.6-1";
         private String release = @"Public Version";
 
         //________________________________________________________________
