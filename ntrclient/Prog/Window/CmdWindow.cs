@@ -18,7 +18,7 @@ namespace ntrclient.Prog.Window
     public partial class CmdWindow : Form
     {
 
-        private String version = @"V1.5-1";
+        private String version = @"V1.6";
         private String release = @"Public Version";
 
         //________________________________________________________________
@@ -432,7 +432,7 @@ namespace ntrclient.Prog.Window
 
             RunCmd(string.Format("Read(0x{0:X}, 0x{1:X}, pid=0x{2:X})", addr, size, GetPid()));
             int retry = 0;
-            while (ReadValue == 0 && retry < 300000)
+            while (ReadValue == 0xdeadbeef && retry < 300000)
             {
                 Task.Delay(25);
                 retry++;
@@ -442,7 +442,7 @@ namespace ntrclient.Prog.Window
             //if (ReadValue == 0xdeadbeef)
             //    ReadValue = 0;
             uint v = ReadValue;
-            ReadValue = 0;
+            ReadValue = 0xdeadbeef;
             return v;
         }
 
