@@ -324,7 +324,7 @@ namespace ntrclient.Prog.CS
         public void SendRemoteplayPacket(uint priorityMode = 0, uint priorityFactor = 5, uint quality = 90, uint qosValue = 100)
         {
             uint num1 = 1U;
-            if ((int)priorityMode == 0)
+            if ((int)priorityMode == 1)
                 num1 = 0U;
             uint num2 = (qosValue * 0x20000);
             Program.NtrClient.SendEmptyPacket(901U, num1 << 8 | priorityFactor, quality, num2);

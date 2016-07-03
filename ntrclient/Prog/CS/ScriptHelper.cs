@@ -117,7 +117,7 @@ namespace ntrclient.Prog.CS
             Data(addr, size, pid);
         }
 
-        public void Remoteplay(uint priorityMode = 1, uint priorityFactor = 5, uint quality = 75, uint qosValue = 100)
+        public void Remoteplay(uint priorityMode = 0, uint priorityFactor = 5, uint quality = 90, uint qosValue = 100)
         {
             Program.NtrClient.SendRemoteplayPacket(priorityMode, priorityFactor, quality, qosValue);
             if (Program.GCmdWindow.checkBox_disconnect.Checked)
