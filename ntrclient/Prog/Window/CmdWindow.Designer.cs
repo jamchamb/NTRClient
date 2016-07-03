@@ -144,8 +144,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox_processes = new System.Windows.Forms.TextBox();
             this.textBox_memlayout = new System.Windows.Forms.TextBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -175,6 +173,7 @@
             this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -191,7 +190,6 @@
             this.tabPage_main_debug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -203,7 +201,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtLog, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtCmd, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tabControl_main, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.progressBar1, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -942,7 +940,6 @@
             this.comboBox_mk7_us_item.Name = "comboBox_mk7_us_item";
             this.comboBox_mk7_us_item.Size = new System.Drawing.Size(150, 21);
             this.comboBox_mk7_us_item.TabIndex = 9;
-            this.comboBox_mk7_us_item.SelectedIndex = 0;
             // 
             // button_mk7_coins_write
             // 
@@ -1456,23 +1453,6 @@
             this.textBox_memlayout.TabIndex = 11;
             this.textBox_memlayout.TextChanged += new System.EventHandler(this.textBox_memlayout_TextChanged);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 653);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(690, 25);
-            this.toolStrip1.TabIndex = 34;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(86, 22);
-            this.toolStripLabel1.Text = "toolStripLabel1";
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
@@ -1685,6 +1665,14 @@
             this.statusStrip1.Size = new System.Drawing.Size(680, 22);
             this.statusStrip1.TabIndex = 2;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.Location = new System.Drawing.Point(3, 655);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(684, 20);
+            this.progressBar1.TabIndex = 14;
+            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1729,8 +1717,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1849,7 +1835,6 @@
         private System.Windows.Forms.TabPage tabPage3;
         public System.Windows.Forms.TextBox textBox_processes;
         public System.Windows.Forms.TextBox textBox_memlayout;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button button_toolstrip_debug;
         private System.Windows.Forms.Label label_kpos;
@@ -1883,10 +1868,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_mh4u_us_nameindexset;
         private System.Windows.Forms.TextBox textBox_mh4u_us_nameindex;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         public System.Windows.Forms.CheckBox checkBox_disconnect;
         private System.Windows.Forms.Button button_mk7_us_item;
         private System.Windows.Forms.ComboBox comboBox_mk7_us_item;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

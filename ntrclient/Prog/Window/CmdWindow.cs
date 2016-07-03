@@ -29,9 +29,11 @@ namespace ntrclient.Prog.Window
             string text = "";
             if (Program.NtrClient.Progress != -1)
             {
-                text = string.Format("{0}%", Program.NtrClient.Progress);
+                progressBar1.Value = Program.NtrClient.Progress;
+            } else
+            {
+                progressBar1.Value = 0;
             }
-            toolStripStatusLabel1.Text = text;
         }
 
         private bool _lookedForUpdate;
@@ -104,8 +106,7 @@ namespace ntrclient.Prog.Window
         private void CmdWindow_Load(object sender, EventArgs e)
         {
             ResetLog();
-
-            this.toolStripLabel1.Text = String.Empty;
+            
             this.VersionNumberToolStripMenuItem.Text = version;
             this.VersionExtraToolStripMenuItem.Text = release;
 

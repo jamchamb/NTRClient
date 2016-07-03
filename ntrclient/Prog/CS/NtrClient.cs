@@ -27,12 +27,12 @@ namespace ntrclient.Prog.CS
         private uint _currentSeq;
         private uint _lastReadMemSeq;
         private string _lastReadMemFileName;
-        public volatile int Progress = -1;
+        public int Progress = -1;
 
         private int ReadNetworkStream(Stream stream, byte[] buf, int length)
         {
             int index = 0;
-            bool useProgress = length > 100000;
+            bool useProgress = length > 1000;
             
             try
             {
@@ -40,7 +40,7 @@ namespace ntrclient.Prog.CS
             {
                 if (useProgress)
                 {
-                        Progress = (int)((double)index / length * 100);
+                    this.Progress = (int)((double)index / length * 100);
                 }
                 int len = stream.Read(buf, index, length - index);
                 if (len == 0)
@@ -123,9 +123,10 @@ namespace ntrclient.Prog.CS
                             {
                                 Program.GCmdWindow.RunProcessesCmd();
                             }
-                            else
+                            else if(logMsg.StartsWith("pid: "))
                             {
-                                Program.GCmdWindow.textBox_processes.Invoke(new CmdWindow.SetProcessesCallback(Program.GCmdWindow.SetProcesses), logMsg);
+                                Program.GCmdWindow.textBox_processes.Invoke(
+                                    new CmdWindow.SetProcessesCallback(Program.GCmdWindow.SetProcesses), logMsg);
                             }
                             // END
 
