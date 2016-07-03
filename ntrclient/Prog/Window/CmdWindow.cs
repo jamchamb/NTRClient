@@ -18,7 +18,7 @@ namespace ntrclient.Prog.Window
     public partial class CmdWindow : Form
     {
 
-        private String version = @"V1.6-1";
+        private String version = @"V1.7";
         private String release = @"Public Version";
 
         //________________________________________________________________
@@ -76,22 +76,28 @@ namespace ntrclient.Prog.Window
         private async void LookForUpdate()
         {
             _lookedForUpdate = true;
-            Release upd = await Octo.GetLastUpdate();
-            if (upd.TagName != version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
+            if (Program.Sm.EnableUpdate)
             {
-                string nVersion = Octo.GetLastVersionName();
-                string nBody = Octo.GetLastVersionBody();
-                MessageBox.Show(@"A new Update has been released! " + nVersion + Environment.NewLine + nBody);
-                checkingUpdateToolStripMenuItem.Text = @"Update available!";
-                UpdateAvailable = true;
-                Program.Dc.Addlog("Found a new Update - " + nVersion);
-            }
-            else
+                Release upd = await Octo.GetLastUpdate();
+                if (upd.TagName != version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
+                {
+                    string nVersion = Octo.GetLastVersionName();
+                    string nBody = Octo.GetLastVersionBody();
+                    MessageBox.Show(@"A new Update has been released! " + nVersion + Environment.NewLine + nBody);
+                    checkingUpdateToolStripMenuItem.Text = @"Update available!";
+                    UpdateAvailable = true;
+                    Program.Dc.Addlog("Found a new Update - " + nVersion);
+                }
+                else
+                {
+                    //MessageBox.Show("No new release found!");
+                    UpdateAvailable = false;
+                    checkingUpdateToolStripMenuItem.Text = @"No new Update!";
+                    Program.Dc.Addlog("No Update found");
+                }
+            } else
             {
-                //MessageBox.Show("No new release found!");
-                UpdateAvailable = false;
-                checkingUpdateToolStripMenuItem.Text = @"No new Update!";
-                Program.Dc.Addlog("No Update found");
+                checkingUpdateToolStripMenuItem.Text = @"Autoupdater disabled";
             }
         }
 
@@ -99,6 +105,7 @@ namespace ntrclient.Prog.Window
         {
             ResetLog();
 
+            this.toolStripLabel1.Text = String.Empty;
             this.VersionNumberToolStripMenuItem.Text = version;
             this.VersionExtraToolStripMenuItem.Text = release;
 
@@ -668,6 +675,12 @@ namespace ntrclient.Prog.Window
         }
 
         public string GenerateWriteString(int addr, uint value, uint length)
+        {
+            string data = GenerateHexChunk(value, length);
+            return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
+        }
+
+        public string GenerateWriteString(uint addr, int value, uint length)
         {
             string data = GenerateHexChunk(value, length);
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
@@ -1397,7 +1410,7 @@ namespace ntrclient.Prog.Window
 
             string[] addr =
             {
-                "083693DC", "083EED38"
+                "0109E348", "083693DC", "083EED38", "08948F40"
             };
             foreach (string a in addr)
             {
@@ -1614,6 +1627,23 @@ namespace ntrclient.Prog.Window
         {
             mh4uNameIndex = GetInt(textBox_mh4u_us_nameindex.Text);
             label1.Text = @"INDEX: " + mh4uNameIndex;
+        }
+
+        private void button_mk7_us_item_Click(object sender, EventArgs e)
+        {
+            uint v1 = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(0x147909D4, 2), 2));
+            if (v1 == 0x0001)
+            {
+                uint v2 = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(0x1778244C, 4), 4));
+                if (v2 > 0)
+                {
+                    v2 = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(v2 + 0x1BEC, 4), 4));
+                    RunCmd(GenerateWriteString(v2 + 0x3C, 0xFFFFFFFF, 4));
+                    RunCmd(GenerateWriteString(v2 + 0xA8, 0x203, 2));
+                    RunCmd(GenerateWriteString(v2 + 0xC8, comboBox_mk7_us_item.SelectedIndex, 2));
+
+                }
+            }
         }
 
         // New stuff.. Need to add this to a category.

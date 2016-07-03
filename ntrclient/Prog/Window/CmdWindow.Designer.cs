@@ -78,6 +78,15 @@
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button_mh4u_us_nameindexset = new System.Windows.Forms.Button();
+            this.textBox_mh4u_us_nameindex = new System.Windows.Forms.TextBox();
+            this.button_mh4u_us_nameforce = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_mh4u_us_defense = new System.Windows.Forms.TextBox();
+            this.textbox_mh4u_us_attack = new System.Windows.Forms.TextBox();
+            this.button_mh4u_us_exefs = new System.Windows.Forms.Button();
+            this.button_mh4u_us_attack = new System.Windows.Forms.Button();
+            this.button_mh4u_us_defense = new System.Windows.Forms.Button();
             this.button_mh4u_us_hb_godmode = new System.Windows.Forms.Button();
             this.button_mh4u_us_monb_kill = new System.Windows.Forms.Button();
             this.button_mh4u_us_mon2_kill = new System.Windows.Forms.Button();
@@ -85,6 +94,8 @@
             this.button_mh4u_us_name = new System.Windows.Forms.Button();
             this.textBox_mh4u_us_name = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button_mk7_us_item = new System.Windows.Forms.Button();
+            this.comboBox_mk7_us_item = new System.Windows.Forms.ComboBox();
             this.button_mk7_coins_write = new System.Windows.Forms.Button();
             this.button_mk7_coins_read = new System.Windows.Forms.Button();
             this.textBox_mk7_coins = new System.Windows.Forms.TextBox();
@@ -99,6 +110,7 @@
             this.textBox_gateshark = new System.Windows.Forms.TextBox();
             this.button_gateshark_parse = new System.Windows.Forms.Button();
             this.tabPage_main_debug = new System.Windows.Forms.TabPage();
+            this.checkBox_disconnect = new System.Windows.Forms.CheckBox();
             this.label_ntr_viewer_args = new System.Windows.Forms.Label();
             this.textBox_ntr_viewer_args = new System.Windows.Forms.TextBox();
             this.button_ntr_viewer = new System.Windows.Forms.Button();
@@ -133,6 +145,7 @@
             this.textBox_processes = new System.Windows.Forms.TextBox();
             this.textBox_memlayout = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -162,15 +175,6 @@
             this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.button_mh4u_us_defense = new System.Windows.Forms.Button();
-            this.button_mh4u_us_attack = new System.Windows.Forms.Button();
-            this.button_mh4u_us_exefs = new System.Windows.Forms.Button();
-            this.textbox_mh4u_us_attack = new System.Windows.Forms.TextBox();
-            this.textBox_mh4u_us_defense = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button_mh4u_us_nameforce = new System.Windows.Forms.Button();
-            this.textBox_mh4u_us_nameindex = new System.Windows.Forms.TextBox();
-            this.button_mh4u_us_nameindexset = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -187,6 +191,7 @@
             this.tabPage_main_debug.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -741,6 +746,89 @@
             this.tabPage4.Text = "MH4U";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // button_mh4u_us_nameindexset
+            // 
+            this.button_mh4u_us_nameindexset.Location = new System.Drawing.Point(162, 136);
+            this.button_mh4u_us_nameindexset.Name = "button_mh4u_us_nameindexset";
+            this.button_mh4u_us_nameindexset.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_nameindexset.TabIndex = 22;
+            this.button_mh4u_us_nameindexset.Text = "Name bruteforce";
+            this.button_mh4u_us_nameindexset.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_nameindexset.Click += new System.EventHandler(this.button_mh4u_us_nameindexset_Click);
+            // 
+            // textBox_mh4u_us_nameindex
+            // 
+            this.textBox_mh4u_us_nameindex.Location = new System.Drawing.Point(6, 137);
+            this.textBox_mh4u_us_nameindex.Name = "textBox_mh4u_us_nameindex";
+            this.textBox_mh4u_us_nameindex.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_us_nameindex.TabIndex = 21;
+            this.textBox_mh4u_us_nameindex.Text = "1";
+            // 
+            // button_mh4u_us_nameforce
+            // 
+            this.button_mh4u_us_nameforce.Location = new System.Drawing.Point(6, 163);
+            this.button_mh4u_us_nameforce.Name = "button_mh4u_us_nameforce";
+            this.button_mh4u_us_nameforce.Size = new System.Drawing.Size(150, 20);
+            this.button_mh4u_us_nameforce.TabIndex = 20;
+            this.button_mh4u_us_nameforce.Text = "Name bruteforce";
+            this.button_mh4u_us_nameforce.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_nameforce.Click += new System.EventHandler(this.button_mh4u_us_nameforce_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(162, 167);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "INDEX: 0";
+            // 
+            // textBox_mh4u_us_defense
+            // 
+            this.textBox_mh4u_us_defense.Location = new System.Drawing.Point(346, 93);
+            this.textBox_mh4u_us_defense.Name = "textBox_mh4u_us_defense";
+            this.textBox_mh4u_us_defense.Size = new System.Drawing.Size(150, 20);
+            this.textBox_mh4u_us_defense.TabIndex = 18;
+            this.textBox_mh4u_us_defense.Text = "1";
+            // 
+            // textbox_mh4u_us_attack
+            // 
+            this.textbox_mh4u_us_attack.Location = new System.Drawing.Point(346, 61);
+            this.textbox_mh4u_us_attack.Name = "textbox_mh4u_us_attack";
+            this.textbox_mh4u_us_attack.Size = new System.Drawing.Size(150, 20);
+            this.textbox_mh4u_us_attack.TabIndex = 17;
+            this.textbox_mh4u_us_attack.Text = "1";
+            // 
+            // button_mh4u_us_exefs
+            // 
+            this.button_mh4u_us_exefs.Location = new System.Drawing.Point(502, 32);
+            this.button_mh4u_us_exefs.Name = "button_mh4u_us_exefs";
+            this.button_mh4u_us_exefs.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_exefs.TabIndex = 16;
+            this.button_mh4u_us_exefs.Text = "Patch Exefs";
+            this.button_mh4u_us_exefs.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_exefs.Click += new System.EventHandler(this.button_mh4u_us_exefs_Click);
+            // 
+            // button_mh4u_us_attack
+            // 
+            this.button_mh4u_us_attack.Location = new System.Drawing.Point(502, 61);
+            this.button_mh4u_us_attack.Name = "button_mh4u_us_attack";
+            this.button_mh4u_us_attack.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_attack.TabIndex = 15;
+            this.button_mh4u_us_attack.Text = "Attack";
+            this.button_mh4u_us_attack.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_attack.Click += new System.EventHandler(this.button_mh4u_us_attack_Click);
+            // 
+            // button_mh4u_us_defense
+            // 
+            this.button_mh4u_us_defense.Location = new System.Drawing.Point(502, 90);
+            this.button_mh4u_us_defense.Name = "button_mh4u_us_defense";
+            this.button_mh4u_us_defense.Size = new System.Drawing.Size(150, 23);
+            this.button_mh4u_us_defense.TabIndex = 14;
+            this.button_mh4u_us_defense.Text = "Defense";
+            this.button_mh4u_us_defense.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_defense.Click += new System.EventHandler(this.button_mh4u_us_defense_Click);
+            // 
             // button_mh4u_us_hb_godmode
             // 
             this.button_mh4u_us_hb_godmode.Location = new System.Drawing.Point(502, 3);
@@ -801,6 +889,8 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.button_mk7_us_item);
+            this.tabPage7.Controls.Add(this.comboBox_mk7_us_item);
             this.tabPage7.Controls.Add(this.button_mk7_coins_write);
             this.tabPage7.Controls.Add(this.button_mk7_coins_read);
             this.tabPage7.Controls.Add(this.textBox_mk7_coins);
@@ -811,6 +901,48 @@
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Mario Kart 7";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button_mk7_us_item
+            // 
+            this.button_mk7_us_item.Location = new System.Drawing.Point(162, 33);
+            this.button_mk7_us_item.Name = "button_mk7_us_item";
+            this.button_mk7_us_item.Size = new System.Drawing.Size(150, 20);
+            this.button_mk7_us_item.TabIndex = 10;
+            this.button_mk7_us_item.Text = "Go!";
+            this.button_mk7_us_item.UseVisualStyleBackColor = true;
+            this.button_mk7_us_item.Click += new System.EventHandler(this.button_mk7_us_item_Click);
+            // 
+            // comboBox_mk7_us_item
+            // 
+            this.comboBox_mk7_us_item.FormattingEnabled = true;
+            this.comboBox_mk7_us_item.Items.AddRange(new object[] {
+            "Banana",
+            "Green Shell",
+            "Red Shell",
+            "Mushroom",
+            "Bob-Omb",
+            "Blooper",
+            "Blue Shell",
+            "Tripple Mushroom",
+            "Star",
+            "Bullet Bill",
+            "Lightning",
+            "Golden Mushroom",
+            "Fire Flower",
+            "Tanooki Tail",
+            "Lucky Number 7",
+            "??? [0x0F]",
+            "??? [0x10]",
+            "Tripple Banana",
+            "Tripple Green Shell",
+            "Tripple Red Shell",
+            "Item Box Icon",
+            "Checkered Flag"});
+            this.comboBox_mk7_us_item.Location = new System.Drawing.Point(6, 32);
+            this.comboBox_mk7_us_item.Name = "comboBox_mk7_us_item";
+            this.comboBox_mk7_us_item.Size = new System.Drawing.Size(150, 21);
+            this.comboBox_mk7_us_item.TabIndex = 9;
+            this.comboBox_mk7_us_item.SelectedIndex = 0;
             // 
             // button_mk7_coins_write
             // 
@@ -950,6 +1082,7 @@
             // 
             // tabPage_main_debug
             // 
+            this.tabPage_main_debug.Controls.Add(this.checkBox_disconnect);
             this.tabPage_main_debug.Controls.Add(this.label_ntr_viewer_args);
             this.tabPage_main_debug.Controls.Add(this.textBox_ntr_viewer_args);
             this.tabPage_main_debug.Controls.Add(this.button_ntr_viewer);
@@ -987,6 +1120,18 @@
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_disconnect
+            // 
+            this.checkBox_disconnect.AutoSize = true;
+            this.checkBox_disconnect.Checked = true;
+            this.checkBox_disconnect.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_disconnect.Location = new System.Drawing.Point(229, 196);
+            this.checkBox_disconnect.Name = "checkBox_disconnect";
+            this.checkBox_disconnect.Size = new System.Drawing.Size(100, 17);
+            this.checkBox_disconnect.TabIndex = 43;
+            this.checkBox_disconnect.Text = "Autodisconnect";
+            this.checkBox_disconnect.UseVisualStyleBackColor = true;
             // 
             // label_ntr_viewer_args
             // 
@@ -1314,11 +1459,19 @@
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 653);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(690, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(86, 22);
+            this.toolStripLabel1.Text = "toolStripLabel1";
             // 
             // toolStripStatusLabel1
             // 
@@ -1532,89 +1685,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(680, 22);
             this.statusStrip1.TabIndex = 2;
             // 
-            // button_mh4u_us_defense
-            // 
-            this.button_mh4u_us_defense.Location = new System.Drawing.Point(502, 90);
-            this.button_mh4u_us_defense.Name = "button_mh4u_us_defense";
-            this.button_mh4u_us_defense.Size = new System.Drawing.Size(150, 23);
-            this.button_mh4u_us_defense.TabIndex = 14;
-            this.button_mh4u_us_defense.Text = "Defense";
-            this.button_mh4u_us_defense.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_defense.Click += new System.EventHandler(this.button_mh4u_us_defense_Click);
-            // 
-            // button_mh4u_us_attack
-            // 
-            this.button_mh4u_us_attack.Location = new System.Drawing.Point(502, 61);
-            this.button_mh4u_us_attack.Name = "button_mh4u_us_attack";
-            this.button_mh4u_us_attack.Size = new System.Drawing.Size(150, 23);
-            this.button_mh4u_us_attack.TabIndex = 15;
-            this.button_mh4u_us_attack.Text = "Attack";
-            this.button_mh4u_us_attack.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_attack.Click += new System.EventHandler(this.button_mh4u_us_attack_Click);
-            // 
-            // button_mh4u_us_exefs
-            // 
-            this.button_mh4u_us_exefs.Location = new System.Drawing.Point(502, 32);
-            this.button_mh4u_us_exefs.Name = "button_mh4u_us_exefs";
-            this.button_mh4u_us_exefs.Size = new System.Drawing.Size(150, 23);
-            this.button_mh4u_us_exefs.TabIndex = 16;
-            this.button_mh4u_us_exefs.Text = "Patch Exefs";
-            this.button_mh4u_us_exefs.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_exefs.Click += new System.EventHandler(this.button_mh4u_us_exefs_Click);
-            // 
-            // textbox_mh4u_us_attack
-            // 
-            this.textbox_mh4u_us_attack.Location = new System.Drawing.Point(346, 61);
-            this.textbox_mh4u_us_attack.Name = "textbox_mh4u_us_attack";
-            this.textbox_mh4u_us_attack.Size = new System.Drawing.Size(150, 20);
-            this.textbox_mh4u_us_attack.TabIndex = 17;
-            this.textbox_mh4u_us_attack.Text = "1";
-            // 
-            // textBox_mh4u_us_defense
-            // 
-            this.textBox_mh4u_us_defense.Location = new System.Drawing.Point(346, 93);
-            this.textBox_mh4u_us_defense.Name = "textBox_mh4u_us_defense";
-            this.textBox_mh4u_us_defense.Size = new System.Drawing.Size(150, 20);
-            this.textBox_mh4u_us_defense.TabIndex = 18;
-            this.textBox_mh4u_us_defense.Text = "1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 167);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "INDEX: 0";
-            // 
-            // button_mh4u_us_nameforce
-            // 
-            this.button_mh4u_us_nameforce.Location = new System.Drawing.Point(6, 163);
-            this.button_mh4u_us_nameforce.Name = "button_mh4u_us_nameforce";
-            this.button_mh4u_us_nameforce.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_us_nameforce.TabIndex = 20;
-            this.button_mh4u_us_nameforce.Text = "Name bruteforce";
-            this.button_mh4u_us_nameforce.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_nameforce.Click += new System.EventHandler(this.button_mh4u_us_nameforce_Click);
-            // 
-            // textBox_mh4u_us_nameindex
-            // 
-            this.textBox_mh4u_us_nameindex.Location = new System.Drawing.Point(6, 137);
-            this.textBox_mh4u_us_nameindex.Name = "textBox_mh4u_us_nameindex";
-            this.textBox_mh4u_us_nameindex.Size = new System.Drawing.Size(150, 20);
-            this.textBox_mh4u_us_nameindex.TabIndex = 21;
-            this.textBox_mh4u_us_nameindex.Text = "1";
-            // 
-            // button_mh4u_us_nameindexset
-            // 
-            this.button_mh4u_us_nameindexset.Location = new System.Drawing.Point(162, 136);
-            this.button_mh4u_us_nameindexset.Name = "button_mh4u_us_nameindexset";
-            this.button_mh4u_us_nameindexset.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_us_nameindexset.TabIndex = 22;
-            this.button_mh4u_us_nameindexset.Text = "Name bruteforce";
-            this.button_mh4u_us_nameindexset.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_nameindexset.Click += new System.EventHandler(this.button_mh4u_us_nameindexset_Click);
-            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1659,6 +1729,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_debug_hextest)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1811,6 +1883,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_mh4u_us_nameindexset;
         private System.Windows.Forms.TextBox textBox_mh4u_us_nameindex;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        public System.Windows.Forms.CheckBox checkBox_disconnect;
+        private System.Windows.Forms.Button button_mk7_us_item;
+        private System.Windows.Forms.ComboBox comboBox_mk7_us_item;
     }
 }
 

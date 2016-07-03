@@ -119,14 +119,13 @@ namespace ntrclient.Prog.CS
                                 Program.GCmdWindow.textBox_memlayout.Invoke(
                                     new CmdWindow.SetMemregionsCallback(Program.GCmdWindow.SetMemregions), logMsg);
                             }
-                            else if (logMsg.StartsWith("pid: "))
-                            {
-                                Program.GCmdWindow.textBox_processes.Invoke(
-                                    new CmdWindow.SetProcessesCallback(Program.GCmdWindow.SetProcesses), logMsg);
-                            }
                             else if (logMsg.StartsWith("patching smdh") || logMsg.StartsWith("rtRecvSocket failed: "))
                             {
                                 Program.GCmdWindow.RunProcessesCmd();
+                            }
+                            else
+                            {
+                                Program.GCmdWindow.textBox_processes.Invoke(new CmdWindow.SetProcessesCallback(Program.GCmdWindow.SetProcesses), logMsg);
                             }
                             // END
 

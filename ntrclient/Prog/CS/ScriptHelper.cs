@@ -117,11 +117,15 @@ namespace ntrclient.Prog.CS
             Data(addr, size, pid);
         }
 
-        public void Remoteplay(uint priorityMode = 0, uint priorityFactor = 5, uint quality = 90, uint qosValue = 100)
+        public void Remoteplay(uint priorityMode = 1, uint priorityFactor = 5, uint quality = 75, uint qosValue = 100)
         {
             Program.NtrClient.SendRemoteplayPacket(priorityMode, priorityFactor, quality, qosValue);
-            Program.NtrClient.Log("Disconnecting in 10 seconds to improve performance");
-            Program.GCmdWindow.startAutoDisconnect();
+            if (Program.GCmdWindow.checkBox_disconnect.Checked)
+            {
+
+                Program.NtrClient.Log("Disconnecting in 10 seconds to improve performance");
+                Program.GCmdWindow.startAutoDisconnect();
+            }
         }
 
         public void Debug()
