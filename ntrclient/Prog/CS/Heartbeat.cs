@@ -34,7 +34,6 @@ namespace ntrclient.Prog.CS
         public void SetCode(string s)
         {
             GsCode = new Gateshark(s);
-            
         }
 
         public void SetCode(Gateshark s)

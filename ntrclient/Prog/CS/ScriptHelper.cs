@@ -35,8 +35,7 @@ namespace ntrclient.Prog.CS
         {
             Program.NtrClient.SendEmptyPacket(11, 0, 0, 4);
         }
-
-
+        
         public void Connect(string host, int port)
         {
             Program.NtrClient.SetServer(host, port);
@@ -122,9 +121,8 @@ namespace ntrclient.Prog.CS
             Program.NtrClient.SendRemoteplayPacket(priorityMode, priorityFactor, quality, qosValue);
             if (Program.GCmdWindow.checkBox_disconnect.Checked)
             {
-
                 Program.NtrClient.Log("Disconnecting in 10 seconds to improve performance");
-                Program.GCmdWindow.startAutoDisconnect();
+                Program.GCmdWindow.StartAutoDisconnect();
             }
         }
 

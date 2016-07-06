@@ -16,26 +16,21 @@ namespace ntrclient.Prog.CS.GitHub
 
         public static void Init()
         {
-            Git = new GitHubClient(new ProductHeaderValue("ntrclient"));
+            Git = new GitHubClient(new ProductHeaderValue("NTRClient"));
             Rep = Git.Repository;
         }
 
         public static async Task<Release> GetLastUpdate()
         {
-            try {
-                IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("imthe666st", "ntrclient");
+            try
+            {
+                IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("Shadowtrance", "NTRClient");
                 LastRelease = lastReleases[0];
                 return LastRelease;
-            //} catch ( TaskCanceledException e)
-            //{
-                
-            } catch ( Exception e )
+            }
+            catch (Exception e)
             {
-                if (e == new TaskCanceledException())
-                {
-                    
-                }
-                MessageBox.Show("An error occured trying to look for updates!");
+                MessageBox.Show(@"An error occured trying to look for updates!");
                 BugReporter br = new BugReporter(e, "Updater exception", false);
                 return null;
             }

@@ -46,7 +46,7 @@ namespace ntrclient.Prog.CS
             }
             catch (Exception ex)
             {
-                BugReporter br = new BugReporter(ex, "XML save exception", true);
+                BugReporter br = new BugReporter(ex, "XML save exception");
             }
         }
 
@@ -63,11 +63,8 @@ namespace ntrclient.Prog.CS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    @"Ignore this message if you just " + Environment.NewLine +
-                    @"Downloaded or Updated this tool..." + Environment.NewLine + Environment.NewLine +
-                    ex.Message
-                    );
+                MessageBox.Show(@"Ignore this message if you just downloaded or updated this tool..." +
+                                Environment.NewLine + Environment.NewLine + ex.Message);
                 BugReporter br = new BugReporter(ex, "XML Load exception", false);
             }
             return new SettingsManager();

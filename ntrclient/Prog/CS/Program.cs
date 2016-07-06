@@ -12,22 +12,22 @@ namespace ntrclient.Prog.CS
 
         public static ScriptEngine PyEngine;
         public static NtrClient NtrClient;
-		public static ScriptHelper ScriptHelper;
-		public static ScriptScope GlobalScope;
-		public static CmdWindow GCmdWindow;
-		public static SettingsManager Sm;
+        public static ScriptHelper ScriptHelper;
+        public static ScriptScope GlobalScope;
+        public static CmdWindow GCmdWindow;
+        public static SettingsManager Sm;
         public static DebugConsole Dc;
 
         public static void LoadConfig()
         {
-			Sm = SettingsManager.LoadFromXml("ntrconfig.xml");
-			Sm.Init();
-		}
+            Sm = SettingsManager.LoadFromXml("ntrconfig.xml");
+            Sm.Init();
+        }
 
         public static void SaveConfig()
         {
-			SettingsManager.SaveToXml("ntrconfig.xml", Sm);
-		}
+            SettingsManager.SaveToXml("ntrconfig.xml", Sm);
+        }
 
         /// <summary>
         /// The main entry point for the application
@@ -35,7 +35,8 @@ namespace ntrclient.Prog.CS
         [STAThread]
         private static void Main()
         {
-            try {
+            try
+            {
                 PyEngine = Python.CreateEngine();
                 NtrClient = new NtrClient();
                 ScriptHelper = new ScriptHelper();
@@ -50,15 +51,16 @@ namespace ntrclient.Prog.CS
                 GCmdWindow = new CmdWindow();
                 Dc = new DebugConsole();
                 Application.Run(GCmdWindow);
-            } catch ( Exception e )
+            }
+            catch (Exception e)
             {
-                BugReporter br = new BugReporter(e, "Program exception", true);
+                BugReporter br = new BugReporter(e, "Program exception");
                 MessageBox.Show(
-                    @"WARNING - NTRDebugger has encountered an error" + Environment.NewLine + 
-                    @"This error is about to crash the program, please send the generated" + Environment.NewLine + 
-                    @"Error log to imthe666st!" + Environment.NewLine + Environment.NewLine + 
+                    @"WARNING - NTRDebugger has encountered an error" + Environment.NewLine +
+                    @"This error is about to crash the program, please send the generated" + Environment.NewLine +
+                    @"Error log to imthe666st!" + Environment.NewLine + Environment.NewLine +
                     @"Sorry for the inconvinience -imthe666st"
-                );
+                    );
             }
         }
     }

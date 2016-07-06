@@ -8,7 +8,6 @@ namespace ntrclient.Prog.CS
 
         public Memregion(string mem)
         {
-
             string[] memparts = mem.Split(' ');
             try
             {

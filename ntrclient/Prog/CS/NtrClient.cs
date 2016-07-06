@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 using ntrclient.Prog.Window;
 using ntrclient.Extra;
 
@@ -33,26 +32,25 @@ namespace ntrclient.Prog.CS
         {
             int index = 0;
             bool useProgress = length > 1000;
-            
+
             try
             {
-            do
-            {
-                if (useProgress)
+                do
                 {
-                    this.Progress = (int)((double)index / length * 100);
-                }
-                int len = stream.Read(buf, index, length - index);
-                if (len == 0)
-                {
-                    return 0;
-                }
-                index += len;
-            } while (index < length);
-            Progress = -1;
-            return length;
-
-        }
+                    if (useProgress)
+                    {
+                        Progress = (int) ((double) index/length*100);
+                    }
+                    int len = stream.Read(buf, index, length - index);
+                    if (len == 0)
+                    {
+                        return 0;
+                    }
+                    index += len;
+                } while (index < length);
+                Progress = -1;
+                return length;
+            }
             catch (Exception)
             {
                 Log("Connection timed out");
@@ -80,7 +78,6 @@ namespace ntrclient.Prog.CS
                     t += 4;
                     uint seq = BitConverter.ToUInt32(buf, t);
                     t += 4;
-                    // ReSharper disable once UnusedVariable
                     uint type = BitConverter.ToUInt32(buf, t);
                     t += 4;
                     uint cmd = BitConverter.ToUInt32(buf, t);
@@ -91,8 +88,7 @@ namespace ntrclient.Prog.CS
                     }
                     t += 4;
                     uint dataLen = BitConverter.ToUInt32(buf, t);
-
-
+                    
                     if (cmd != 0)
                     {
                         Log(string.Format("packet: cmd = {0}, dataLen = {1}", cmd, dataLen));
@@ -149,8 +145,7 @@ namespace ntrclient.Prog.CS
                 {
                     Log(e.Message);
                     Log(e.StackTrace);
-                    BugReporter br = new BugReporter(e, "Packet receiver exception", true);
-                    //log("An error occured!");
+                    BugReporter br = new BugReporter(e, "Packet receiver exception");
                     break;
                 }
             }
@@ -159,7 +154,6 @@ namespace ntrclient.Prog.CS
             Disconnect(false);
         }
 
-        // ReSharper disable once UnusedParameter.Local
         private static string ByteToHex(IEnumerable<byte> datBuf, int type)
         {
             return datBuf.Aggregate("", (current, t) => current + t.ToString("X2"));
@@ -349,10 +343,8 @@ namespace ntrclient.Prog.CS
             }
             catch (Exception ex)
             {
-
                 BugReporter br = new BugReporter(ex, "Logging exception");
             }
         }
-
     }
 }

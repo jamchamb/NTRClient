@@ -35,7 +35,6 @@ namespace ntrclient.Prog.CS
                 Tid = 0x00;
                 MessageBox.Show(@"Invalid Process");
             }
-
         }
     }
 }
