@@ -10,7 +10,6 @@ namespace ntrclient.Prog.CS
         public string[] QuickCmds { set; get; }
         public string IpAddress { set; get; }
         public int GsUsed { set; get; }
-        public bool EnableUpdate { set; get; }
 
         public void Init()
         {
@@ -30,7 +29,6 @@ namespace ntrclient.Prog.CS
             {
                 GsUsed = 0;
             }
-            EnableUpdate = false;
         }
 
         public static void SaveToXml(string filePath, SettingsManager sourceObj)

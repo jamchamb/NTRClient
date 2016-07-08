@@ -18,15 +18,15 @@ namespace ntrclient.Prog.Window
     public partial class CmdWindow : Form
     {
 
-        private String version = @"V1.7";
+        private String version = @"V1.7-1";
         private String release = @"Public Version";
+        private bool enableUpdater = true;
 
         //________________________________________________________________
         // System
 
         private void UpdateProgress()
         {
-            string text = "";
             if (Program.NtrClient.Progress != -1)
             {
                 progressBar1.Value = Program.NtrClient.Progress;
@@ -78,7 +78,7 @@ namespace ntrclient.Prog.Window
         private async void LookForUpdate()
         {
             _lookedForUpdate = true;
-            if (Program.Sm.EnableUpdate)
+            if (enableUpdater)
             {
                 Release upd = await Octo.GetLastUpdate();
                 if (upd.TagName != version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
