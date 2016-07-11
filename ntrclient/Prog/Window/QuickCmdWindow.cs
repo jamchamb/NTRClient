@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using ntrclient.Prog.CS;
 
 namespace ntrclient.Prog.Window
@@ -19,8 +20,7 @@ namespace ntrclient.Prog.Window
                 string[] t = new string[2];
                 t[0] = i.ToString();
                 t[1] = Program.Sm.QuickCmds[i];
-                // ReSharper disable once CoVariantArrayConversion
-                dataGridView1.Rows.Add(t);
+                dataGridView1.Rows.Add(t.ToArray<object>());
             }
         }
 

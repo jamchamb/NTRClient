@@ -222,7 +222,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 678);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 667);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtLog
@@ -234,7 +234,7 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(684, 361);
+            this.txtLog.Size = new System.Drawing.Size(674, 361);
             this.txtLog.TabIndex = 8;
             // 
             // txtCmd
@@ -259,7 +259,7 @@
             this.tabControl_main.Location = new System.Drawing.Point(3, 402);
             this.tabControl_main.Name = "tabControl_main";
             this.tabControl_main.SelectedIndex = 0;
-            this.tabControl_main.Size = new System.Drawing.Size(684, 247);
+            this.tabControl_main.Size = new System.Drawing.Size(674, 247);
             this.tabControl_main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl_main.TabIndex = 13;
             // 
@@ -287,7 +287,7 @@
             this.tabPage_main_basic.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_basic.Name = "tabPage_main_basic";
             this.tabPage_main_basic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_basic.Size = new System.Drawing.Size(676, 221);
+            this.tabPage_main_basic.Size = new System.Drawing.Size(666, 221);
             this.tabPage_main_basic.TabIndex = 0;
             this.tabPage_main_basic.Text = "Basic";
             this.tabPage_main_basic.UseVisualStyleBackColor = true;
@@ -1865,7 +1865,7 @@
             this.commandsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(690, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(680, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1877,7 +1877,7 @@
             this.toolStripSeparator2,
             this.toggleDebugToolStripMenuItem});
             this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.ToolStripMenuItem.Text = "Tools";
             // 
             // CommandToolStripMenuItem
@@ -1974,7 +1974,7 @@
             this.toolStripSeparator3,
             this.checkingUpdateToolStripMenuItem});
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.versionToolStripMenuItem.Text = "Version";
             // 
             // VersionNumberToolStripMenuItem
@@ -2067,7 +2067,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 702);
+            this.ClientSize = new System.Drawing.Size(680, 691);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -2123,10 +2123,10 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Timer updateTimer;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CommandToolStripMenuItem;
+		private System.Windows.Forms.Timer updateTimer;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem CommandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asmScratchPadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem originalByCell9ToolStripMenuItem;

@@ -24,8 +24,6 @@ namespace ntrclient.Prog.CS
                     RedirectStandardError = true
                 }
             };
-
-            
                 proc.Start();
                 proc.WaitForExit();
                 var processOutput = proc.StandardError.ReadToEnd();
@@ -38,7 +36,7 @@ namespace ntrclient.Prog.CS
             catch (Exception e)
             {
                 output = e.Message;
-                //BugReporter br = new BugReporter(e, "Run CMD exception", false);
+                BugReporter br = new BugReporter(e, "Run CMD exception", false);
                 return -1;
             }
         }

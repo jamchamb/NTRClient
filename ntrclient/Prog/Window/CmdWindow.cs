@@ -30,7 +30,7 @@ namespace ntrclient.Prog.Window
         private void UpdateProgress()
         {
             progressBar1.Value = Program.NtrClient.Progress != -1 ? Program.NtrClient.Progress : 0;
-        }
+            }
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
@@ -98,7 +98,7 @@ namespace ntrclient.Prog.Window
         private void CmdWindow_Load(object sender, EventArgs e)
         {
             ResetLog();
-
+            
             VersionNumberToolStripMenuItem.Text = Version;
             VersionExtraToolStripMenuItem.Text = Release;
 
@@ -457,9 +457,9 @@ namespace ntrclient.Prog.Window
                     Addlog(ret.ToString());
                     return ret.ToString();
                 }
-                Addlog("null");
-                return "";
-            }
+                    Addlog("null");
+                    return "";
+                }
             catch (Exception ex)
             {
                 Addlog(ex.Message);
@@ -761,7 +761,7 @@ namespace ntrclient.Prog.Window
 
         private void githubRepositoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Browser.OpenUrl("https://github.com/imthe666st/NTRClient");
+            Browser.OpenUrl("https://github.com/Shadowtrance/NTRClient");
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1095,8 +1095,8 @@ namespace ntrclient.Prog.Window
             catch (Exception ex)
             {
                 BugReporter br = new BugReporter(ex, "Debug Convert HEXLE Exception");
-            }
-        }
+    }
+}
 
         private void button_debug_conv_dec_Click(object sender, EventArgs e)
         {
@@ -1178,7 +1178,7 @@ namespace ntrclient.Prog.Window
         {
             const int addr = 0x15FBEDD0;
             uint id = FromLe(textBox_aceu_itemid.Text);
-            if (id > 0xffff)
+            if (id > 0xffff) 
                 id /= 0x10000;
             RunCmd(GenerateWriteString(addr, id, 4));
         }
@@ -1564,7 +1564,7 @@ namespace ntrclient.Prog.Window
 
         private void button_mh4u_us_defense_Click(object sender, EventArgs e)
         {
-            RunCmd(GenerateWriteString(0x00DEC808, (uint)(0xE3A01000 + GetInt(textBox_mh4u_us_defense.Text)), 4));
+            RunCmd(GenerateWriteString(0x00DEC808, (uint) (0xE3A01000 + GetInt(textBox_mh4u_us_defense.Text)), 4));
         }
 
         private void button_mk7_us_item_Click(object sender, EventArgs e)
@@ -1585,7 +1585,7 @@ namespace ntrclient.Prog.Window
         }
 
         private void button_mh4u_us_charm_Click(object sender, EventArgs e)
-        {
+            {
             byte rarity = (byte)(comboBox_mh4u_us_charm_rarity.SelectedIndex + 1);
             byte skill1 = (byte)(comboBox_mh4u_us_skill1.SelectedIndex);
             byte skill2 = (byte)(comboBox_mh4u_us_skill2.SelectedIndex);
@@ -1634,7 +1634,7 @@ namespace ntrclient.Prog.Window
                 }
 
                 if (data.Count % 400 == 0 || id == maxSize - 1)
-                {
+            {
                     // Write the data
                     RunCmd(GenerateWriteString((uint)(basePointer + written * 4), data.ToArray()));
                     data.Clear();
@@ -1660,7 +1660,7 @@ namespace ntrclient.Prog.Window
                     data[i] = tdata[i];
                 }
                 else
-                {
+        {
                     data[i] = 0;
                 }
             }
@@ -1673,12 +1673,12 @@ namespace ntrclient.Prog.Window
         }
 
         private void button_wifi_fix_Click(object sender, EventArgs e)
-        {
+            {
             RunCmd("Write(0x0105AE4, (0x70, 0x47), pid=0x1a)");
         }
 
         private void button_ntr_viewer_Click(object sender, EventArgs e)
-        {
+                {
             ntrViewerWorker.RunWorkerAsync();
         }
 
@@ -1697,7 +1697,7 @@ namespace ntrclient.Prog.Window
                 {
                     ntrViewer.Start();
                 }
-            }
+                }
             else
             {
                 MessageBox.Show(

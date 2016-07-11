@@ -15,8 +15,9 @@ namespace ntrclient.Extra
             {
                 //Read default browser path from Win XP registry key
                 RegistryKey browserKey = Registry.ClassesRoot.OpenSubKey(@"HTTP\shell\open\command", false) ??
-                                 Registry.CurrentUser.OpenSubKey(
-                                     @"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http", false);
+                                         Registry.CurrentUser.OpenSubKey(
+                                             @"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http",
+                                             false);
 
                 //If browser path wasn't found, try Win Vista (and newer) registry key
 

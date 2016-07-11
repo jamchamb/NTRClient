@@ -64,8 +64,8 @@ namespace ntrclient.Extra
                     }
                     else if (cmd == 0x4)
                     {
-                        UInt32 r1 = Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4);
-                        UInt32 r2 = CmdWindow.FromLe(r1, 0);
+                        uint r1 = Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4);
+                        uint r2 = CmdWindow.FromLe(r1, 0);
                         
                         uint read = Convert.ToUInt32(r2);
                         gsIf = read > gsAr.getBlock_B();
@@ -145,16 +145,6 @@ namespace ntrclient.Extra
                     {
                         // Fix for Issue #8
                         uint b = gsAr.getBlock_B();
-                        //int bb;
-                        //if (b > int.MaxValue)
-                        //{
-                        //    // Offset in negative.
-                        //    int r = Convert.ToInt32(b % 0x80000000);
-                        //    bb = Convert.ToInt32(int.MinValue + r);
-                        //}
-                        //else
-                        //    bb = Convert.ToInt32(b);
-
 
                         _dxData += b;
                     }
@@ -202,16 +192,6 @@ namespace ntrclient.Extra
                     {
                         // Fix for Issue #8
                         uint b = gsAr.getBlock_B();
-                        //int bb;
-                        //if (b > int.MaxValue)
-                        //{
-                        //    // Offset in negative.
-                        //    int r = Convert.ToInt32(b % 0x80000000);
-                        //    bb = Convert.ToInt32(int.MinValue + r);
-                        //}
-                        //else
-                        //    bb = Convert.ToInt32(b);
-
 
                         _offset += b;
                     }
@@ -301,6 +281,7 @@ namespace ntrclient.Extra
 
             B   OFFSET = READ(X)
             D3  OFFSET = X
+
             */
 
             if (_cmd == 0xD)
