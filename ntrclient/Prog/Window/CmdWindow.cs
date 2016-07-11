@@ -18,28 +18,21 @@ namespace ntrclient.Prog.Window
 {
     public partial class CmdWindow : Form
     {
+        private const string Version = @"V1.7-1";
+        private const string Release = @"Public Version";
 
-        private String version = @"V1.7-1";
-        private String release = @"Public Version";
-        private bool enableUpdater = true;
+        private bool _lookedForUpdate;
+        public bool UpdateAvailable { get; private set; }
 
         //________________________________________________________________
         // System
 
         private void UpdateProgress()
         {
-            if (Program.NtrClient.Progress != -1)
-            {
-                progressBar1.Value = Program.NtrClient.Progress;
-            } else
-            {
-                progressBar1.Value = 0;
-            }
+            progressBar1.Value = Program.NtrClient.Progress != -1 ? Program.NtrClient.Progress : 0;
         }
 
-        private bool _lookedForUpdate;
-
-        private void timer1_Tick(object sender, EventArgs e)
+        private void updateTimer_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -61,10 +54,9 @@ namespace ntrclient.Prog.Window
                     LookForUpdate();
                 }
             }
-            catch (Exception e_)
+            catch (Exception ex)
             {
-                BugReporter br = new BugReporter(e_, "Timer exception");
-                
+                BugReporter br = new BugReporter(ex, "Timer exception");
             }
         }
 
@@ -74,15 +66,13 @@ namespace ntrclient.Prog.Window
             disconnectTimer.Enabled = false;
         }
 
-        public bool UpdateAvailable { get; private set; }
-
         private async void LookForUpdate()
         {
             _lookedForUpdate = true;
-            if (enableUpdater)
+            if (UpdateAvailable)
             {
                 Release upd = await Octo.GetLastUpdate();
-                if (upd.TagName != version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
+                if (upd.TagName != Version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
                 {
                     string nVersion = Octo.GetLastVersionName();
                     string nBody = Octo.GetLastVersionBody();
@@ -93,12 +83,13 @@ namespace ntrclient.Prog.Window
                 }
                 else
                 {
-                    //MessageBox.Show("No new release found!");
+                    MessageBox.Show(@"No new release found!");
                     UpdateAvailable = false;
                     checkingUpdateToolStripMenuItem.Text = @"No new Update!";
                     Program.Dc.Addlog("No Update found");
                 }
-            } else
+            }
+            else
             {
                 checkingUpdateToolStripMenuItem.Text = @"Autoupdater disabled";
             }
@@ -107,9 +98,9 @@ namespace ntrclient.Prog.Window
         private void CmdWindow_Load(object sender, EventArgs e)
         {
             ResetLog();
-            
-            this.VersionNumberToolStripMenuItem.Text = version;
-            this.VersionExtraToolStripMenuItem.Text = release;
+
+            VersionNumberToolStripMenuItem.Text = Version;
+            VersionExtraToolStripMenuItem.Text = Release;
 
             // Remove all errorreports. 
             DirectoryInfo di = new DirectoryInfo("bugreports");
@@ -149,7 +140,6 @@ namespace ntrclient.Prog.Window
             _hbc?.Stop();
         }
 
-
         // END of System
 
         // Logging
@@ -187,7 +177,7 @@ namespace ntrclient.Prog.Window
             }
         }
 
-        public String GetLog()
+        public string GetLog()
         {
             return txtLog.Text;
         }
@@ -285,7 +275,6 @@ namespace ntrclient.Prog.Window
             Regex regex = new Regex("\r\n");
             string[] lines = regex.Split(layout);
 
-
             Processes.Clear();
             comboBox_processes.Items.Clear();
 
@@ -382,7 +371,6 @@ namespace ntrclient.Prog.Window
             return "Game";
         }
 
-
         public delegate object DelComboBoxItem(ComboBox c);
 
         public object GetComboItem(ComboBox c)
@@ -435,13 +423,11 @@ namespace ntrclient.Prog.Window
 
         public uint ReadValue = 0xdeadbeef;
 
-
         public void SetReadValue(uint r)
         {
             ReadValue = r;
         }
 
-        // ReSharper disable once InconsistentNaming
         public uint readValue(uint addr, uint size)
         {
             Addlog("Started readValue(int, int)");
@@ -455,10 +441,6 @@ namespace ntrclient.Prog.Window
                 Task.Delay(25);
                 retry++;
             }
-            //if (retry >= 300000)
-            //    Addlog("[READ ERROR] COULDN'T READ FAST ENOUGH!");
-            //if (ReadValue == 0xdeadbeef)
-            //    ReadValue = 0;
             uint v = ReadValue;
             ReadValue = 0xdeadbeef;
             return v;
@@ -475,9 +457,9 @@ namespace ntrclient.Prog.Window
                     Addlog(ret.ToString());
                     return ret.ToString();
                 }
-                    Addlog("null");
-                    return "";
-                }
+                Addlog("null");
+                return "";
+            }
             catch (Exception ex)
             {
                 Addlog(ex.Message);
@@ -517,7 +499,6 @@ namespace ntrclient.Prog.Window
             return Convert.ToInt32(l, 10);
         }
 
-        // ReSharper disable once UnusedMember.Local
         private string ToHex(int v)
         {
             return string.Format("{0:X}", v);
@@ -588,7 +569,6 @@ namespace ntrclient.Prog.Window
         }
 
         // Generating Hex chunks
-
 
         public string GenerateHexChunk(uint value, uint length)
         {
@@ -694,7 +674,6 @@ namespace ntrclient.Prog.Window
         public string GenerateWriteString(int addr, int value, uint length)
         {
             string data = GenerateHexChunk(value, length);
-
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
@@ -722,7 +701,7 @@ namespace ntrclient.Prog.Window
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
-        public void startAutoDisconnect()
+        public void StartAutoDisconnect()
         {
             disconnectTimer.Enabled = true;
         }
@@ -733,21 +712,12 @@ namespace ntrclient.Prog.Window
 
         // Tool Strip
 
-        private void ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void CommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new QuickCmdWindow()).Show();
         }
 
-        private void CmdWindow_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-        }
-
-
-        public readonly int[] Keys = {38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13};
+        public readonly int[] Keys = { 38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13 };
         private int _kPos;
 
         private void CmdWindow_KeyDown(object sender, KeyEventArgs e)
@@ -794,6 +764,11 @@ namespace ntrclient.Prog.Window
             Browser.OpenUrl("https://github.com/imthe666st/NTRClient");
         }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Browser.OpenUrl("https://github.com/Shadowtrance");
+        }
+
         private void toggleDebugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabPage_main_debug.Enabled = !tabPage_main_debug.Enabled;
@@ -830,7 +805,7 @@ namespace ntrclient.Prog.Window
 
         private void checkingUpdateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Browser.OpenUrl("https://github.com/imthe666st/NTRClient/releases");
+            Browser.OpenUrl("https://github.com/Shadowtrance/NTRClient/releases");
         }
 
         private void openConsoleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -881,10 +856,10 @@ namespace ntrclient.Prog.Window
         private void button_dummy_read_Click(object sender, EventArgs e)
         {
             uint addr = Convert.ToUInt32(textBox_dummy_addr.Text, 16);
-            uint v = readValue(addr, (uint) numericUpDown_dummy_length.Value);
+            uint v = readValue(addr, (uint)numericUpDown_dummy_length.Value);
             textBox_dummy_value_hex.Text = string.Format("{0:X}", v);
-            textBox_dummy_value_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_dummy_length.Value));
-            textBox_dummy_value_dec.Text = string.Format("{0}", FromLe(v, (int) numericUpDown_dummy_length.Value));
+            textBox_dummy_value_hex_le.Text = string.Format("{0:X}", FromLe(v, (int)numericUpDown_dummy_length.Value));
+            textBox_dummy_value_dec.Text = string.Format("{0}", FromLe(v, (int)numericUpDown_dummy_length.Value));
         }
 
         private void button_dummy_write_Click(object sender, EventArgs e)
@@ -892,11 +867,14 @@ namespace ntrclient.Prog.Window
             try
             {
                 int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
-                uint v = FromLe(Convert.ToUInt32(textBox_dummy_value_hex.Text, 16), (int)numericUpDown_dummy_length.Value);
+                uint v = FromLe(Convert.ToUInt32(textBox_dummy_value_hex.Text, 16),
+                    (int)numericUpDown_dummy_length.Value);
                 RunCmd(GenerateWriteString(addr, v, (uint)numericUpDown_dummy_length.Value));
-            } catch ( Exception ex)
+            }
+            catch (Exception ex)
             {
-                BugReporter br = new BugReporter(ex, @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
+                BugReporter br = new BugReporter(ex,
+                    @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
             }
         }
 
@@ -906,10 +884,12 @@ namespace ntrclient.Prog.Window
             {
                 int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
                 uint v = Convert.ToUInt32(textBox_dummy_value_hex_le.Text, 16);
-                RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
-            } catch ( Exception ex)
+                RunCmd(GenerateWriteString(addr, v, (uint)numericUpDown_dummy_length.Value));
+            }
+            catch (Exception ex)
             {
-                BugReporter br = new BugReporter(ex, @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
+                BugReporter br = new BugReporter(ex,
+                    @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
             }
         }
 
@@ -919,25 +899,18 @@ namespace ntrclient.Prog.Window
             {
                 int addr = Convert.ToInt32(textBox_dummy_addr.Text, 16);
                 uint v = Convert.ToUInt32(textBox_dummy_value_dec.Text, 10);
-                RunCmd(GenerateWriteString(addr, v, (uint) numericUpDown_dummy_length.Value));
-            } catch ( Exception ex)
+                RunCmd(GenerateWriteString(addr, v, (uint)numericUpDown_dummy_length.Value));
+            }
+            catch (Exception ex)
             {
-                BugReporter br = new BugReporter(ex, @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
+                BugReporter br = new BugReporter(ex,
+                    @"Dummy HEX write Exception [" + textBox_dummy_addr.Text + @" -> " + textBox_dummy_value_hex + @"]");
             }
         }
 
-        // 
-
-        //private void button_dump_all_Click2(object sender, EventArgs e)
-        //{
-        //    String filename = textBox_dump_file.Text;
-        //    Memregion mem = Memregions[Memregions.Count - 1];
-        //    RunCmd(String.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", 0, mem.Start + mem.Length, filename, GetPid()));
-        //}
-
         private void button_dump_all_Click(object sender, EventArgs e)
         {
-            String filename = textBox_dump_file.Text;
+            string filename = textBox_dump_file.Text;
 
             uint memPos = 0;
             int fileSuffix = 0;
@@ -948,9 +921,9 @@ namespace ntrclient.Prog.Window
                 {
                     File.WriteAllBytes(filename + fileSuffix.ToString(), new byte[mem.Start - memPos]);
                     fileSuffix++;
-
                 }
-                RunCmd(String.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length, filename + fileSuffix.ToString(), GetPid()));
+                RunCmd(string.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length,
+                    filename + fileSuffix.ToString(), GetPid()));
                 while (!File.Exists(filename + fileSuffix.ToString()))
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(1));
@@ -964,12 +937,10 @@ namespace ntrclient.Prog.Window
             {
                 for (int i = 0; i < fileSuffix; i++)
                 {
-
                     using (Stream srcStream = File.OpenRead(filename + i.ToString()))
                     {
                         srcStream.CopyTo(destStream);
                     }
-
                 }
             }
 
@@ -977,8 +948,6 @@ namespace ntrclient.Prog.Window
             {
                 File.Delete(filename + i.ToString());
             }
-
-
         }
 
         // END of Basic
@@ -1103,9 +1072,11 @@ namespace ntrclient.Prog.Window
             {
                 int v = Convert.ToInt32(textBox_debug_conv_hex.Text, 16);
 
-                textBox_debug_conv_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_debug_hextest.Value));
+                textBox_debug_conv_hex_le.Text = string.Format("{0:X}",
+                    FromLe(v, (int)numericUpDown_debug_hextest.Value));
                 textBox_debug_conv_dec.Text = string.Format("{0}", v);
-            } catch ( Exception ex )
+            }
+            catch (Exception ex)
             {
                 BugReporter br = new BugReporter(ex, "Debug Convert HEX Exception");
             }
@@ -1115,15 +1086,17 @@ namespace ntrclient.Prog.Window
         {
             try
             {
-                uint v = FromLe(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16), (int) numericUpDown_debug_hextest.Value);
+                uint v = FromLe(Convert.ToInt32(textBox_debug_conv_hex_le.Text, 16),
+                    (int)numericUpDown_debug_hextest.Value);
 
                 textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
                 textBox_debug_conv_dec.Text = string.Format("{0}", v);
-            } catch ( Exception ex )
+            }
+            catch (Exception ex)
             {
                 BugReporter br = new BugReporter(ex, "Debug Convert HEXLE Exception");
-    }
-}
+            }
+        }
 
         private void button_debug_conv_dec_Click(object sender, EventArgs e)
         {
@@ -1132,8 +1105,10 @@ namespace ntrclient.Prog.Window
                 int v = Convert.ToInt32(textBox_debug_conv_dec.Text, 10);
 
                 textBox_debug_conv_hex.Text = string.Format("{0:X}", v);
-                textBox_debug_conv_hex_le.Text = string.Format("{0:X}", FromLe(v, (int) numericUpDown_debug_hextest.Value));
-            } catch ( Exception ex )
+                textBox_debug_conv_hex_le.Text = string.Format("{0:X}",
+                    FromLe(v, (int)numericUpDown_debug_hextest.Value));
+            }
+            catch (Exception ex)
             {
                 BugReporter br = new BugReporter(ex, "Debug Convert DEC Exception");
             }
@@ -1149,7 +1124,6 @@ namespace ntrclient.Prog.Window
         private void button_pTest_Click(object sender, EventArgs e)
         {
             const string p = "pid: 0x00000008, pname:     gpio, tid: 0004013000001b02, kpobj: fff76fb0";
-            // ReSharper disable once UnusedVariable
             NtrProcess np = new NtrProcess(p);
         }
 
@@ -1204,7 +1178,7 @@ namespace ntrclient.Prog.Window
         {
             const int addr = 0x15FBEDD0;
             uint id = FromLe(textBox_aceu_itemid.Text);
-            if (id > 0xffff) 
+            if (id > 0xffff)
                 id /= 0x10000;
             RunCmd(GenerateWriteString(addr, id, 4));
         }
@@ -1229,7 +1203,7 @@ namespace ntrclient.Prog.Window
 
             for (uint i = 0; i < invSize; i++)
             {
-                uint addrr = addr + i*4;
+                uint addrr = addr + i * 4;
                 RunCmd(GenerateWriteString(addrr, value + i, 4));
             }
         }
@@ -1242,7 +1216,7 @@ namespace ntrclient.Prog.Window
 
             for (int i = 0; i < invSize; i++)
             {
-                int addrr = addr + i*4;
+                int addrr = addr + i * 4;
                 RunCmd(GenerateWriteString(addrr, clearItem, 4));
             }
         }
@@ -1549,46 +1523,6 @@ namespace ntrclient.Prog.Window
             code.Execute();
         }
 
-        private void button_remoteplay_Click(object sender, EventArgs e)
-        {
-            RunCmd("Remoteplay()");
-        }
-
-        private void button_wifi_fix_Click(object sender, EventArgs e)
-        {
-            RunCmd("Write(0x0105AE4, (0x70, 0x47), pid=0x1a)");
-        }
-
-        private void button_ntr_viewer_Click(object sender, EventArgs e)
-        {
-            ntrViewerWorker.RunWorkerAsync();
-        }
-
-        private void ntrViewerWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            if (File.Exists(Directory.GetCurrentDirectory() + "/" + "NTRViewer" + "/" + "NTRViewer.exe"))
-            {
-                using (Process ntrViewer = new Process
-                {
-                    StartInfo =
-                    {
-                        FileName = Directory.GetCurrentDirectory() + "/" + "NTRViewer" + "/" + "NTRViewer.exe",
-                        Arguments = textBox_ntr_viewer_args.Text
-                    }
-                })
-                {
-                    ntrViewer.Start();
-                }
-            }
-            else
-            {
-                MessageBox.Show(
-                    @"NTRViewer not found." + Environment.NewLine +
-                    @"Place the NTRViewer folder in this folder and try again...",
-                    @"NTRViewer Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void button_mh4u_us_exefs_Click(object sender, EventArgs e)
         {
             Gateshark gs = new Gateshark(
@@ -1617,7 +1551,7 @@ namespace ntrclient.Prog.Window
                 "00AF8B60 EB0BCF16" + Environment.NewLine +
                 "00B1EA78 EB0B3750" + Environment.NewLine +
                 "00B6B328 E1D109B6" + Environment.NewLine + // Sharpness
-                "00B964E8 E3A00001"                         // Autotracker
+                "00B964E8 E3A00001" // Autotracker
             );
 
             gs.Execute();
@@ -1625,7 +1559,7 @@ namespace ntrclient.Prog.Window
 
         private void button_mh4u_us_attack_Click(object sender, EventArgs e)
         {
-            RunCmd(GenerateWriteString(0x00DEC7C8, (uint) (0xE3A01000 + GetInt(textbox_mh4u_us_attack.Text)), 4));
+            RunCmd(GenerateWriteString(0x00DEC7C8, (uint)(0xE3A01000 + GetInt(textbox_mh4u_us_attack.Text)), 4));
         }
 
         private void button_mh4u_us_defense_Click(object sender, EventArgs e)
@@ -1652,7 +1586,7 @@ namespace ntrclient.Prog.Window
 
         private void button_mh4u_us_charm_Click(object sender, EventArgs e)
         {
-            byte rarity = (byte) (comboBox_mh4u_us_charm_rarity.SelectedIndex + 1);
+            byte rarity = (byte)(comboBox_mh4u_us_charm_rarity.SelectedIndex + 1);
             byte skill1 = (byte)(comboBox_mh4u_us_skill1.SelectedIndex);
             byte skill2 = (byte)(comboBox_mh4u_us_skill2.SelectedIndex);
 
@@ -1665,7 +1599,7 @@ namespace ntrclient.Prog.Window
 
             byte[] data =
             {
-                0x06, slots, rarity, 0, 0, 0, 0, 0, 0, 0, 0, 0, skill1, 0, a1, 0, skill2, 0, a2, 0, 0, 0, 0, 0, 0, 0, 0, 0 
+                0x06, slots, rarity, 0, 0, 0, 0, 0, 0, 0, 0, 0, skill1, 0, a1, 0, skill2, 0, a2, 0, 0, 0, 0, 0, 0, 0, 0, 0
             };
 
             RunCmd(GenerateWriteString(0x0836Ab1A, data));
@@ -1724,13 +1658,54 @@ namespace ntrclient.Prog.Window
                 if (i < tdata.Length)
                 {
                     data[i] = tdata[i];
-                } else
+                }
+                else
                 {
                     data[i] = 0;
                 }
             }
-
             RunCmd(GenerateWriteString(addr, data));
+        }
+
+        private void button_remoteplay_Click(object sender, EventArgs e)
+        {
+            RunCmd("Remoteplay()");
+        }
+
+        private void button_wifi_fix_Click(object sender, EventArgs e)
+        {
+            RunCmd("Write(0x0105AE4, (0x70, 0x47), pid=0x1a)");
+        }
+
+        private void button_ntr_viewer_Click(object sender, EventArgs e)
+        {
+            ntrViewerWorker.RunWorkerAsync();
+        }
+
+        private void ntrViewerWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (File.Exists(Directory.GetCurrentDirectory() + "/" + "NTRViewer" + "/" + "NTRViewer.exe"))
+            {
+                using (Process ntrViewer = new Process
+                {
+                    StartInfo =
+                    {
+                        FileName = Directory.GetCurrentDirectory() + "/" + "NTRViewer" + "/" + "NTRViewer.exe",
+                        Arguments = textBox_ntr_viewer_args.Text
+                    }
+                })
+                {
+                    ntrViewer.Start();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    @"NTRViewer not found." + Environment.NewLine +
+                    @"Place the NTRViewer folder in this folder and try again...",
+                    @"NTRViewer Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
 

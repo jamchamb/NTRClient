@@ -124,7 +124,7 @@ namespace ntrclient.Prog.CS
             {
 
                 Program.NtrClient.Log("Disconnecting in 10 seconds to improve performance");
-                Program.GCmdWindow.startAutoDisconnect();
+                Program.GCmdWindow.StartAutoDisconnect();
             }
         }
 
