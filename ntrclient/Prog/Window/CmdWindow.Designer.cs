@@ -75,13 +75,18 @@
             this.button_aceu_setSlot1 = new System.Windows.Forms.Button();
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button_mhgen_eu_items = new System.Windows.Forms.Button();
             this.tabPage_main_us = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button_mh4u_us_nameindexset = new System.Windows.Forms.Button();
-            this.textBox_mh4u_us_nameindex = new System.Windows.Forms.TextBox();
-            this.button_mh4u_us_nameforce = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button_mh4u_us_charm = new System.Windows.Forms.Button();
+            this.numericUpDown_mh4u_us_skill2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_mh4u_us_skill1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_mh4u_us_slots = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_mh4u_us_skill2 = new System.Windows.Forms.ComboBox();
+            this.comboBox_mh4u_us_skill1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_mh4u_us_charm_rarity = new System.Windows.Forms.ComboBox();
             this.textBox_mh4u_us_defense = new System.Windows.Forms.TextBox();
             this.textbox_mh4u_us_attack = new System.Windows.Forms.TextBox();
             this.button_mh4u_us_exefs = new System.Windows.Forms.Button();
@@ -144,6 +149,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox_processes = new System.Windows.Forms.TextBox();
             this.textBox_memlayout = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -173,7 +179,8 @@
             this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.textBox_mhgen_eu_name = new System.Windows.Forms.TextBox();
+            this.button_mhgen_eu_name = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -182,9 +189,13 @@
             this.tabControl3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.tabPage_main_us.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mh4u_us_skill2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mh4u_us_skill1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mh4u_us_slots)).BeginInit();
             this.tabPage7.SuspendLayout();
             this.tabPage_main_gateshark.SuspendLayout();
             this.tabPage_main_debug.SuspendLayout();
@@ -486,6 +497,7 @@
             // 
             this.tabControl3.Controls.Add(this.tabPage1);
             this.tabControl3.Controls.Add(this.tabPage2);
+            this.tabControl3.Controls.Add(this.tabPage6);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
@@ -696,6 +708,29 @@
             this.button_aceu_openIds.UseVisualStyleBackColor = true;
             this.button_aceu_openIds.Click += new System.EventHandler(this.button_aceu_openIds_Click);
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.button_mhgen_eu_name);
+            this.tabPage6.Controls.Add(this.textBox_mhgen_eu_name);
+            this.tabPage6.Controls.Add(this.button_mhgen_eu_items);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(662, 189);
+            this.tabPage6.TabIndex = 2;
+            this.tabPage6.Text = "MHGen";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button_mhgen_eu_items
+            // 
+            this.button_mhgen_eu_items.Location = new System.Drawing.Point(6, 32);
+            this.button_mhgen_eu_items.Name = "button_mhgen_eu_items";
+            this.button_mhgen_eu_items.Size = new System.Drawing.Size(100, 23);
+            this.button_mhgen_eu_items.TabIndex = 0;
+            this.button_mhgen_eu_items.Text = "Itembox";
+            this.button_mhgen_eu_items.UseVisualStyleBackColor = true;
+            this.button_mhgen_eu_items.Click += new System.EventHandler(this.button_mhgen_eu_items_Click);
+            // 
             // tabPage_main_us
             // 
             this.tabPage_main_us.Controls.Add(this.tabControl2);
@@ -721,10 +756,13 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button_mh4u_us_nameindexset);
-            this.tabPage4.Controls.Add(this.textBox_mh4u_us_nameindex);
-            this.tabPage4.Controls.Add(this.button_mh4u_us_nameforce);
-            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.button_mh4u_us_charm);
+            this.tabPage4.Controls.Add(this.numericUpDown_mh4u_us_skill2);
+            this.tabPage4.Controls.Add(this.numericUpDown_mh4u_us_skill1);
+            this.tabPage4.Controls.Add(this.numericUpDown_mh4u_us_slots);
+            this.tabPage4.Controls.Add(this.comboBox_mh4u_us_skill2);
+            this.tabPage4.Controls.Add(this.comboBox_mh4u_us_skill1);
+            this.tabPage4.Controls.Add(this.comboBox_mh4u_us_charm_rarity);
             this.tabPage4.Controls.Add(this.textBox_mh4u_us_defense);
             this.tabPage4.Controls.Add(this.textbox_mh4u_us_attack);
             this.tabPage4.Controls.Add(this.button_mh4u_us_exefs);
@@ -744,42 +782,370 @@
             this.tabPage4.Text = "MH4U";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button_mh4u_us_nameindexset
+            // button_mh4u_us_charm
             // 
-            this.button_mh4u_us_nameindexset.Location = new System.Drawing.Point(162, 136);
-            this.button_mh4u_us_nameindexset.Name = "button_mh4u_us_nameindexset";
-            this.button_mh4u_us_nameindexset.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_us_nameindexset.TabIndex = 22;
-            this.button_mh4u_us_nameindexset.Text = "Name bruteforce";
-            this.button_mh4u_us_nameindexset.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_nameindexset.Click += new System.EventHandler(this.button_mh4u_us_nameindexset_Click);
+            this.button_mh4u_us_charm.Location = new System.Drawing.Point(522, 159);
+            this.button_mh4u_us_charm.Name = "button_mh4u_us_charm";
+            this.button_mh4u_us_charm.Size = new System.Drawing.Size(130, 23);
+            this.button_mh4u_us_charm.TabIndex = 25;
+            this.button_mh4u_us_charm.Text = "Generate Charm";
+            this.button_mh4u_us_charm.UseVisualStyleBackColor = true;
+            this.button_mh4u_us_charm.Click += new System.EventHandler(this.button_mh4u_us_charm_Click);
             // 
-            // textBox_mh4u_us_nameindex
+            // numericUpDown_mh4u_us_skill2
             // 
-            this.textBox_mh4u_us_nameindex.Location = new System.Drawing.Point(6, 137);
-            this.textBox_mh4u_us_nameindex.Name = "textBox_mh4u_us_nameindex";
-            this.textBox_mh4u_us_nameindex.Size = new System.Drawing.Size(150, 20);
-            this.textBox_mh4u_us_nameindex.TabIndex = 21;
-            this.textBox_mh4u_us_nameindex.Text = "1";
+            this.numericUpDown_mh4u_us_skill2.Location = new System.Drawing.Point(436, 162);
+            this.numericUpDown_mh4u_us_skill2.Name = "numericUpDown_mh4u_us_skill2";
+            this.numericUpDown_mh4u_us_skill2.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDown_mh4u_us_skill2.TabIndex = 24;
             // 
-            // button_mh4u_us_nameforce
+            // numericUpDown_mh4u_us_skill1
             // 
-            this.button_mh4u_us_nameforce.Location = new System.Drawing.Point(6, 163);
-            this.button_mh4u_us_nameforce.Name = "button_mh4u_us_nameforce";
-            this.button_mh4u_us_nameforce.Size = new System.Drawing.Size(150, 20);
-            this.button_mh4u_us_nameforce.TabIndex = 20;
-            this.button_mh4u_us_nameforce.Text = "Name bruteforce";
-            this.button_mh4u_us_nameforce.UseVisualStyleBackColor = true;
-            this.button_mh4u_us_nameforce.Click += new System.EventHandler(this.button_mh4u_us_nameforce_Click);
+            this.numericUpDown_mh4u_us_skill1.Location = new System.Drawing.Point(264, 163);
+            this.numericUpDown_mh4u_us_skill1.Name = "numericUpDown_mh4u_us_skill1";
+            this.numericUpDown_mh4u_us_skill1.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDown_mh4u_us_skill1.TabIndex = 23;
             // 
-            // label1
+            // numericUpDown_mh4u_us_slots
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 167);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "INDEX: 0";
+            this.numericUpDown_mh4u_us_slots.Location = new System.Drawing.Point(92, 162);
+            this.numericUpDown_mh4u_us_slots.Name = "numericUpDown_mh4u_us_slots";
+            this.numericUpDown_mh4u_us_slots.Size = new System.Drawing.Size(80, 20);
+            this.numericUpDown_mh4u_us_slots.TabIndex = 22;
+            // 
+            // comboBox_mh4u_us_skill2
+            // 
+            this.comboBox_mh4u_us_skill2.FormattingEnabled = true;
+            this.comboBox_mh4u_us_skill2.Items.AddRange(new object[] {
+            "None",
+            "Torso Up",
+            "Edgemaster",
+            "Steady Hand",
+            "Status Res",
+            "Fury",
+            "Biology",
+            "Nimbleness",
+            "Readiness",
+            "Resillience",
+            "Brutality",
+            "Ferocity",
+            "Stalwart",
+            "Prudence",
+            "Amplifiy",
+            "Hoarding",
+            "Avarice",
+            "FreeElemnt",
+            "Fencing",
+            "Handicraft",
+            "Crit Draw",
+            "PunishDraw",
+            "Reload Spd",
+            "Recoil",
+            "Rapid Fire",
+            "Gloves Off",
+            "Spirit",
+            "Unshakable",
+            "Charmer",
+            "Tenderizer",
+            "Blight Res",
+            "Attack",
+            "Defense",
+            "Gathering",
+            "Carving",
+            "Fate",
+            "Tranqilzr",
+            "Expert",
+            "Artillery",
+            "Evasion",
+            "Health",
+            "Hearing",
+            "Sharpness",
+            "Guard",
+            "Guard Up",
+            "Sharpener",
+            "Potential",
+            "Bomb Boost",
+            "Status",
+            "Stamina",
+            "Destroyer",
+            "Evade Dist",
+            "Sheating",
+            "FastCharge",
+            "Stam Drain",
+            "Unscathed",
+            "Guts",
+            "Loading",
+            "Normal Up",
+            "Pierce Up",
+            "Pellet Up",
+            "KO",
+            "Def Lock",
+            "LastingPwr",
+            "Normal S+",
+            "Pierce S+",
+            "Pellet S+",
+            "Crag S+",
+            "Clust S+",
+            "Slicing S+",
+            "Blast S+",
+            "Poison C+",
+            "Para C+",
+            "Sleep C+",
+            "Power C+",
+            "C.Range C+",
+            "Exhaust C+",
+            "Blast C+",
+            "Precision",
+            "Fire Atk",
+            "Water Atk",
+            "Thunder Atk",
+            "Ice Atk",
+            "Dragon Atk",
+            "Elemental",
+            "Fire Res",
+            "Water Res",
+            "Thunder Res",
+            "Ice Res",
+            "Dragon Res",
+            "Spd Gather",
+            "Psychic",
+            "Perception",
+            "Rec Level",
+            "Wide-Range",
+            "Maestro",
+            "Survivor",
+            "Carnivore",
+            "Gluttony",
+            "Constitutn",
+            "Stam Recov",
+            "Wind Res",
+            "Eating",
+            "Combo Rate",
+            "Combo Plus",
+            "Ranger",
+            "Heat Res",
+            "Cold Res",
+            "Commander",
+            "TeamPlayer",
+            "TeamLeader",
+            "RecSpeed",
+            "Whim",
+            "Protection",
+            "Hunger",
+            "Transportr",
+            "SpeedSetup",
+            "Honey",
+            "Poison",
+            "Paralysis",
+            "Sleep",
+            "Stun",
+            "Mud/Snow",
+            "Tremor Res",
+            "Anti-Theft",
+            "Sense",
+            "Flame Aura",
+            "Auto Guard",
+            "Franzy Res",
+            "Mounting",
+            "CritElemnt",
+            "CritStatus",
+            "Dead Eye",
+            "Mycology",
+            "LightEater",
+            "Bleeding",
+            "Sticky Res",
+            "Edge Lore",
+            "PowerEater",
+            "D. Fencing",
+            "Arcana",
+            "Mechanic",
+            "Brawn",
+            "Prayer",
+            "Covert"});
+            this.comboBox_mh4u_us_skill2.Location = new System.Drawing.Point(350, 162);
+            this.comboBox_mh4u_us_skill2.Name = "comboBox_mh4u_us_skill2";
+            this.comboBox_mh4u_us_skill2.Size = new System.Drawing.Size(80, 21);
+            this.comboBox_mh4u_us_skill2.TabIndex = 21;
+            // 
+            // comboBox_mh4u_us_skill1
+            // 
+            this.comboBox_mh4u_us_skill1.FormattingEnabled = true;
+            this.comboBox_mh4u_us_skill1.Items.AddRange(new object[] {
+            "None",
+            "Torso Up",
+            "Edgemaster",
+            "Steady Hand",
+            "Status Res",
+            "Fury",
+            "Biology",
+            "Nimbleness",
+            "Readiness",
+            "Resillience",
+            "Brutality",
+            "Ferocity",
+            "Stalwart",
+            "Prudence",
+            "Amplifiy",
+            "Hoarding",
+            "Avarice",
+            "FreeElemnt",
+            "Fencing",
+            "Handicraft",
+            "Crit Draw",
+            "PunishDraw",
+            "Reload Spd",
+            "Recoil",
+            "Rapid Fire",
+            "Gloves Off",
+            "Spirit",
+            "Unshakable",
+            "Charmer",
+            "Tenderizer",
+            "Blight Res",
+            "Attack",
+            "Defense",
+            "Gathering",
+            "Carving",
+            "Fate",
+            "Tranqilzr",
+            "Expert",
+            "Artillery",
+            "Evasion",
+            "Health",
+            "Hearing",
+            "Sharpness",
+            "Guard",
+            "Guard Up",
+            "Sharpener",
+            "Potential",
+            "Bomb Boost",
+            "Status",
+            "Stamina",
+            "Destroyer",
+            "Evade Dist",
+            "Sheating",
+            "FastCharge",
+            "Stam Drain",
+            "Unscathed",
+            "Guts",
+            "Loading",
+            "Normal Up",
+            "Pierce Up",
+            "Pellet Up",
+            "KO",
+            "Def Lock",
+            "LastingPwr",
+            "Normal S+",
+            "Pierce S+",
+            "Pellet S+",
+            "Crag S+",
+            "Clust S+",
+            "Slicing S+",
+            "Blast S+",
+            "Poison C+",
+            "Para C+",
+            "Sleep C+",
+            "Power C+",
+            "C.Range C+",
+            "Exhaust C+",
+            "Blast C+",
+            "Precision",
+            "Fire Atk",
+            "Water Atk",
+            "Thunder Atk",
+            "Ice Atk",
+            "Dragon Atk",
+            "Elemental",
+            "Fire Res",
+            "Water Res",
+            "Thunder Res",
+            "Ice Res",
+            "Dragon Res",
+            "Spd Gather",
+            "Psychic",
+            "Perception",
+            "Rec Level",
+            "Wide-Range",
+            "Maestro",
+            "Survivor",
+            "Carnivore",
+            "Gluttony",
+            "Constitutn",
+            "Stam Recov",
+            "Wind Res",
+            "Eating",
+            "Combo Rate",
+            "Combo Plus",
+            "Ranger",
+            "Heat Res",
+            "Cold Res",
+            "Commander",
+            "TeamPlayer",
+            "TeamLeader",
+            "RecSpeed",
+            "Whim",
+            "Protection",
+            "Hunger",
+            "Transportr",
+            "SpeedSetup",
+            "Honey",
+            "Poison",
+            "Paralysis",
+            "Sleep",
+            "Stun",
+            "Mud/Snow",
+            "Tremor Res",
+            "Anti-Theft",
+            "Sense",
+            "Flame Aura",
+            "Auto Guard",
+            "Franzy Res",
+            "Mounting",
+            "CritElemnt",
+            "CritStatus",
+            "Dead Eye",
+            "Mycology",
+            "LightEater",
+            "Bleeding",
+            "Sticky Res",
+            "Edge Lore",
+            "PowerEater",
+            "D. Fencing",
+            "Arcana",
+            "Mechanic",
+            "Brawn",
+            "Prayer",
+            "Covert"});
+            this.comboBox_mh4u_us_skill1.Location = new System.Drawing.Point(178, 162);
+            this.comboBox_mh4u_us_skill1.Name = "comboBox_mh4u_us_skill1";
+            this.comboBox_mh4u_us_skill1.Size = new System.Drawing.Size(80, 21);
+            this.comboBox_mh4u_us_skill1.TabIndex = 20;
+            // 
+            // comboBox_mh4u_us_charm_rarity
+            // 
+            this.comboBox_mh4u_us_charm_rarity.FormattingEnabled = true;
+            this.comboBox_mh4u_us_charm_rarity.Items.AddRange(new object[] {
+            "Pawn",
+            "Bishop",
+            "Knight",
+            "Rook",
+            "Queen",
+            "King",
+            "Dragon",
+            "Unknowable",
+            "Mystic",
+            "Hero",
+            "Legend",
+            "Creator",
+            "Sage",
+            "Miracle",
+            "Amber",
+            "Jade",
+            "Emery"});
+            this.comboBox_mh4u_us_charm_rarity.Location = new System.Drawing.Point(6, 162);
+            this.comboBox_mh4u_us_charm_rarity.Name = "comboBox_mh4u_us_charm_rarity";
+            this.comboBox_mh4u_us_charm_rarity.Size = new System.Drawing.Size(80, 21);
+            this.comboBox_mh4u_us_charm_rarity.TabIndex = 19;
             // 
             // textBox_mh4u_us_defense
             // 
@@ -1453,6 +1819,14 @@
             this.textBox_memlayout.TabIndex = 11;
             this.textBox_memlayout.TextChanged += new System.EventHandler(this.textBox_memlayout_TextChanged);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.Location = new System.Drawing.Point(3, 655);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(684, 20);
+            this.progressBar1.TabIndex = 14;
+            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
@@ -1665,13 +2039,22 @@
             this.statusStrip1.Size = new System.Drawing.Size(680, 22);
             this.statusStrip1.TabIndex = 2;
             // 
-            // progressBar1
+            // textBox_mhgen_eu_name
             // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.Location = new System.Drawing.Point(3, 655);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(684, 20);
-            this.progressBar1.TabIndex = 14;
+            this.textBox_mhgen_eu_name.Location = new System.Drawing.Point(6, 6);
+            this.textBox_mhgen_eu_name.Name = "textBox_mhgen_eu_name";
+            this.textBox_mhgen_eu_name.Size = new System.Drawing.Size(100, 20);
+            this.textBox_mhgen_eu_name.TabIndex = 1;
+            // 
+            // button_mhgen_eu_name
+            // 
+            this.button_mhgen_eu_name.Location = new System.Drawing.Point(112, 4);
+            this.button_mhgen_eu_name.Name = "button_mhgen_eu_name";
+            this.button_mhgen_eu_name.Size = new System.Drawing.Size(100, 23);
+            this.button_mhgen_eu_name.TabIndex = 2;
+            this.button_mhgen_eu_name.Text = "Change Name";
+            this.button_mhgen_eu_name.UseVisualStyleBackColor = true;
+            this.button_mhgen_eu_name.Click += new System.EventHandler(this.button_mhgen_eu_name_Click);
             // 
             // CmdWindow
             // 
@@ -1704,10 +2087,15 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.tabPage_main_us.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mh4u_us_skill2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mh4u_us_skill1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mh4u_us_slots)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             this.tabPage_main_gateshark.ResumeLayout(false);
@@ -1864,14 +2252,21 @@
         private System.Windows.Forms.Button button_mh4u_us_exefs;
         private System.Windows.Forms.Button button_mh4u_us_attack;
         private System.Windows.Forms.Button button_mh4u_us_defense;
-        private System.Windows.Forms.Button button_mh4u_us_nameforce;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button_mh4u_us_nameindexset;
-        private System.Windows.Forms.TextBox textBox_mh4u_us_nameindex;
         public System.Windows.Forms.CheckBox checkBox_disconnect;
         private System.Windows.Forms.Button button_mk7_us_item;
         private System.Windows.Forms.ComboBox comboBox_mk7_us_item;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ComboBox comboBox_mh4u_us_charm_rarity;
+        private System.Windows.Forms.Button button_mh4u_us_charm;
+        private System.Windows.Forms.NumericUpDown numericUpDown_mh4u_us_skill2;
+        private System.Windows.Forms.NumericUpDown numericUpDown_mh4u_us_skill1;
+        private System.Windows.Forms.NumericUpDown numericUpDown_mh4u_us_slots;
+        private System.Windows.Forms.ComboBox comboBox_mh4u_us_skill2;
+        private System.Windows.Forms.ComboBox comboBox_mh4u_us_skill1;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button button_mhgen_eu_items;
+        private System.Windows.Forms.Button button_mhgen_eu_name;
+        private System.Windows.Forms.TextBox textBox_mhgen_eu_name;
     }
 }
 

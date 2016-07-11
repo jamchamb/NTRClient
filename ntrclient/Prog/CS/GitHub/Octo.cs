@@ -43,7 +43,7 @@ namespace ntrclient.Prog.CS.GitHub
 
         public static string GetLastVersionName()
         {
-            return LastRelease != null ? LastRelease.Name : "ERROR";
+            return LastRelease != null ? LastRelease.TagName : "ERROR";
         }
 
         public static string GetLastVersionBody()

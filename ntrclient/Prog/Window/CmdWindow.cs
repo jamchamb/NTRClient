@@ -12,6 +12,7 @@ using ntrclient.Prog.CS;
 using ntrclient.Prog.CS.GitHub;
 using Octokit;
 using System.Threading;
+using System.Text;
 
 namespace ntrclient.Prog.Window
 {
@@ -130,6 +131,15 @@ namespace ntrclient.Prog.Window
 
             // Start Octo
             Octo.Init();
+
+            // Setting some values for combobox and so on.. 
+            comboBox_mh4u_us_charm_rarity.SelectedIndex = 0;
+            comboBox_mh4u_us_skill1.SelectedIndex = 0;
+            comboBox_mh4u_us_skill2.SelectedIndex = 0;
+
+            numericUpDown_mh4u_us_slots.Value = 0;
+            numericUpDown_mh4u_us_skill1.Value = 0;
+            numericUpDown_mh4u_us_skill2.Value = 0;
         }
 
         private void CmdWindow_FormClosed(object sender, FormClosedEventArgs e)
@@ -660,6 +670,25 @@ namespace ntrclient.Prog.Window
             return data + ")";
         }
 
+        public string GenerateHexChunk(byte[] bytes)
+        {
+            string data = "(";
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                byte b = bytes[i];
+                if (i < bytes.Length - 1)
+                {
+                    data += string.Format("0x{0:X}, ", b);
+                }
+                else
+                {
+                    data += string.Format("0x{0:X}", b);
+                    break;
+                }
+            }
+            return data + ")";
+        }
+
         // gen Write Strings
 
         public string GenerateWriteString(int addr, int value, uint length)
@@ -684,6 +713,12 @@ namespace ntrclient.Prog.Window
         public string GenerateWriteString(uint addr, int value, uint length)
         {
             string data = GenerateHexChunk(value, length);
+            return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
+        }
+
+        public string GenerateWriteString(uint addr, byte[] values)
+        {
+            string data = GenerateHexChunk(values);
             return string.Format("Write(0x{0:X}, {1}, pid=0x{2:X})", addr, data, GetPid());
         }
 
@@ -1598,38 +1633,6 @@ namespace ntrclient.Prog.Window
             RunCmd(GenerateWriteString(0x00DEC808, (uint)(0xE3A01000 + GetInt(textBox_mh4u_us_defense.Text)), 4));
         }
 
-        private int mh4uNameIndex = 0;
-        private void button_mh4u_us_nameforce_Click(object sender, EventArgs e)
-        {
-            string wCmd = "";
-            for (int i = 0; i < 11; i++)
-            {
-                wCmd += string.Format("{0} % 0x100, int({0} / 0x100)", mh4uNameIndex);
-                mh4uNameIndex++;
-
-                if (i < 10)
-                {
-                    wCmd += ", ";
-                }
-            }
-
-            string[] addr =
-            {
-                "083693DC", "083EED38"
-            };
-            foreach (string a in addr)
-            {
-                RunCmd(string.Format("Write(0x{0}, ({1}), pid=0x{2:X})", a, wCmd, GetPid()));
-            }
-            label1.Text = "INDEX: " + mh4uNameIndex;
-        }
-
-        private void button_mh4u_us_nameindexset_Click(object sender, EventArgs e)
-        {
-            mh4uNameIndex = GetInt(textBox_mh4u_us_nameindex.Text);
-            label1.Text = @"INDEX: " + mh4uNameIndex;
-        }
-
         private void button_mk7_us_item_Click(object sender, EventArgs e)
         {
             uint v1 = Convert.ToUInt32(CmdWindow.FromLe(Program.GCmdWindow.readValue(0x147909D4, 2), 2));
@@ -1646,6 +1649,94 @@ namespace ntrclient.Prog.Window
                 }
             }
         }
+
+        private void button_mh4u_us_charm_Click(object sender, EventArgs e)
+        {
+            byte rarity = (byte) (comboBox_mh4u_us_charm_rarity.SelectedIndex + 1);
+            byte skill1 = (byte)(comboBox_mh4u_us_skill1.SelectedIndex);
+            byte skill2 = (byte)(comboBox_mh4u_us_skill2.SelectedIndex);
+
+            // amount
+            byte slots = (byte)(numericUpDown_mh4u_us_slots.Value);
+            byte a1 = (byte)(numericUpDown_mh4u_us_skill1.Value);
+            byte a2 = (byte)(numericUpDown_mh4u_us_skill2.Value);
+
+            // Generate the byte array
+
+            byte[] data =
+            {
+                0x06, slots, rarity, 0, 0, 0, 0, 0, 0, 0, 0, 0, skill1, 0, a1, 0, skill2, 0, a2, 0, 0, 0, 0, 0, 0, 0, 0, 0 
+            };
+
+            RunCmd(GenerateWriteString(0x0836Ab1A, data));
+
+        }
+
+        private void button_mhgen_eu_items_Click(object sender, EventArgs e)
+        {
+            List<byte> data = new List<byte>();
+            // Boxes * rows * columns
+            int maxSize = 10 * 10 * 10 - 50;
+            byte amount = 30;
+
+            UInt16[] blocked = { 0x0000 };
+            int items = 0;
+            int written = 0;
+
+            uint basePointer = 0x083844E2;
+
+            for (UInt16 id = 1; id < maxSize; id++)
+            {
+                if (!blocked.Contains(id))
+                {
+                    byte s0 = (byte)(id / 0x100);
+                    byte s1 = (byte)(id % 0x100);
+
+                    data.Add(s1);
+                    data.Add(s0);
+                    data.Add(amount);
+                    data.Add(0);
+                    items++;
+                }
+
+                if (data.Count % 400 == 0 || id == maxSize - 1)
+                {
+                    // Write the data
+                    RunCmd(GenerateWriteString((uint)(basePointer + written * 4), data.ToArray()));
+                    data.Clear();
+                    written += 100;
+                }
+            }
+        }
+
+        private void button_mhgen_eu_name_Click(object sender, EventArgs e)
+        {
+            uint addr = 0x0832AE6A;
+
+            uint length = 32;
+
+            Encoding encode = Encoding.UTF8;
+            byte[] tdata = encode.GetBytes(textBox_mhgen_eu_name.Text);
+            byte[] data = new byte[32];
+
+            for (int i = 0; i < length; i++)
+            {
+                if (i < tdata.Length)
+                {
+                    data[i] = tdata[i];
+                } else
+                {
+                    data[i] = 0;
+                }
+            }
+
+            RunCmd(GenerateWriteString(addr, data));
+
+        }
+
+        // 083886A8
+        // E3818200
+        // 
 
         // New stuff.. Need to add this to a category.
     }
