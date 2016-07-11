@@ -24,7 +24,7 @@ namespace ntrclient.Prog.CS.GitHub
         {
             try
             {
-                IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("Shadowtrance", "NTRClient");
+                IReadOnlyList<Release> lastReleases = await Rep.Release.GetAll("imthe666st", "NTRClient");
                 LastRelease = lastReleases[0];
                 return LastRelease;
             }

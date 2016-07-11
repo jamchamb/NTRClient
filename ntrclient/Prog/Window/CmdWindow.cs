@@ -26,17 +26,23 @@ namespace ntrclient.Prog.Window
 
         //________________________________________________________________
         // System
-
-        private void UpdateProgress()
+        private delegate void SetProgressBarDelegate();
+        public void UpdateProgress()
         {
-            progressBar1.Value = Program.NtrClient.Progress != -1 ? Program.NtrClient.Progress : 0;
+            if (progressBar1.InvokeRequired)
+            {
+                progressBar1.Invoke(new SetProgressBarDelegate(UpdateProgress));
+            } else
+            {
+                progressBar1.Value = Program.NtrClient.Progress != -1 ? Program.NtrClient.Progress : 0;
             }
+
+        }
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
             try
             {
-                UpdateProgress();
                 Program.NtrClient.SendHeartbeatPacket();
 
                 if (_hbc != null)
@@ -69,9 +75,9 @@ namespace ntrclient.Prog.Window
         private async void LookForUpdate()
         {
             _lookedForUpdate = true;
-            if (UpdateAvailable)
+            Release upd = await Octo.GetLastUpdate() ?? null;
+            if (upd != null)
             {
-                Release upd = await Octo.GetLastUpdate();
                 if (upd.TagName != Version && upd.TagName != "ERROR" && !upd.Prerelease && !upd.Draft)
                 {
                     string nVersion = Octo.GetLastVersionName();
@@ -83,15 +89,14 @@ namespace ntrclient.Prog.Window
                 }
                 else
                 {
-                    MessageBox.Show(@"No new release found!");
+                    //MessageBox.Show(@"No new release found!");
                     UpdateAvailable = false;
                     checkingUpdateToolStripMenuItem.Text = @"No new Update!";
                     Program.Dc.Addlog("No Update found");
                 }
-            }
-            else
+            } else
             {
-                checkingUpdateToolStripMenuItem.Text = @"Autoupdater disabled";
+                checkingUpdateToolStripMenuItem.Text = @"An Error occured :-(";
             }
         }
 
@@ -761,7 +766,7 @@ namespace ntrclient.Prog.Window
 
         private void githubRepositoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Browser.OpenUrl("https://github.com/Shadowtrance/NTRClient");
+            Browser.OpenUrl("https://github.com/imthe666st/NTRClient");
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1645,7 +1650,35 @@ namespace ntrclient.Prog.Window
 
         private void button_mhgen_eu_name_Click(object sender, EventArgs e)
         {
-            uint addr = 0x0832AE6A;
+            uint[] addr = new uint[]
+            {
+                0x0832AE6A,
+                0x0832AE8A,
+                0x0834809C,
+                0x08348530,
+                0x083489C4,
+                0x08348E58,
+                0x083492EC,
+                0x08349780,
+                0x08349C14,
+                0x0834A53C,
+                0x0834A9D0,
+                0x0834AE64,
+                0x0834B2F8,
+                0x0834B780,
+                0x0834BC20,
+                0x0834C0B4,
+                0x0834CE70,
+                0x0834D304,
+                0x0834D798,
+                0x0834DC2C,
+                0x0834E0C0,
+                0x0834E554,
+                0x0834E9E0,
+                0x08448CC0,
+                0x08448EE4,
+                0x08449108
+            };
 
             uint length = 32;
 
@@ -1660,11 +1693,14 @@ namespace ntrclient.Prog.Window
                     data[i] = tdata[i];
                 }
                 else
-        {
+                {
                     data[i] = 0;
                 }
             }
-            RunCmd(GenerateWriteString(addr, data));
+            foreach (uint a in addr)
+            {
+                RunCmd(GenerateWriteString(a, data));
+            }
         }
 
         private void button_remoteplay_Click(object sender, EventArgs e)

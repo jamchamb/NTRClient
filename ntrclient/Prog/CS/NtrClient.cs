@@ -40,6 +40,7 @@ namespace ntrclient.Prog.CS
                     if (useProgress)
                     {
                         Progress = (int) ((double) index/length*100);
+                        Program.GCmdWindow.UpdateProgress();
                     }
                     int len = stream.Read(buf, index, length - index);
                     if (len == 0)
@@ -49,6 +50,7 @@ namespace ntrclient.Prog.CS
                     index += len;
                 } while (index < length);
                 Progress = -1;
+                Program.GCmdWindow.UpdateProgress();
                 return length;
             }
             catch (Exception)
