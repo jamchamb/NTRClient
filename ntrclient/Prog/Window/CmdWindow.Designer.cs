@@ -76,6 +76,8 @@
             this.textBox_aceu_itemid = new System.Windows.Forms.TextBox();
             this.button_aceu_openIds = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button_mhgen_eu_sharpness = new System.Windows.Forms.Button();
+            this.button_mhgen_eu_stamina = new System.Windows.Forms.Button();
             this.button_mhgen_eu_name = new System.Windows.Forms.Button();
             this.textBox_mhgen_eu_name = new System.Windows.Forms.TextBox();
             this.button_mhgen_eu_items = new System.Windows.Forms.Button();
@@ -163,6 +165,7 @@
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalByCell9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modByImthe666stToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.moreCreditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,7 +184,6 @@
             this.disconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.ntrViewerWorker = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl_main.SuspendLayout();
             this.tabPage_main_basic.SuspendLayout();
@@ -208,13 +210,13 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.txtLog, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtCmd, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tabControl_main, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.progressBar1, 0, 3);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -222,7 +224,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 253F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 667);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(690, 678);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtLog
@@ -234,7 +236,7 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(674, 361);
+            this.txtLog.Size = new System.Drawing.Size(684, 361);
             this.txtLog.TabIndex = 8;
             // 
             // txtCmd
@@ -259,7 +261,7 @@
             this.tabControl_main.Location = new System.Drawing.Point(3, 402);
             this.tabControl_main.Name = "tabControl_main";
             this.tabControl_main.SelectedIndex = 0;
-            this.tabControl_main.Size = new System.Drawing.Size(674, 247);
+            this.tabControl_main.Size = new System.Drawing.Size(684, 247);
             this.tabControl_main.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl_main.TabIndex = 13;
             // 
@@ -287,7 +289,7 @@
             this.tabPage_main_basic.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_basic.Name = "tabPage_main_basic";
             this.tabPage_main_basic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_basic.Size = new System.Drawing.Size(666, 221);
+            this.tabPage_main_basic.Size = new System.Drawing.Size(676, 221);
             this.tabPage_main_basic.TabIndex = 0;
             this.tabPage_main_basic.Text = "Basic";
             this.tabPage_main_basic.UseVisualStyleBackColor = true;
@@ -489,7 +491,7 @@
             this.tabPage_main_eu.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_eu.Name = "tabPage_main_eu";
             this.tabPage_main_eu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_eu.Size = new System.Drawing.Size(666, 221);
+            this.tabPage_main_eu.Size = new System.Drawing.Size(670, 221);
             this.tabPage_main_eu.TabIndex = 3;
             this.tabPage_main_eu.Text = "EUR";
             this.tabPage_main_eu.UseVisualStyleBackColor = true;
@@ -503,7 +505,7 @@
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(660, 215);
+            this.tabControl3.Size = new System.Drawing.Size(664, 215);
             this.tabControl3.TabIndex = 1;
             // 
             // tabPage1
@@ -517,7 +519,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(652, 189);
+            this.tabPage1.Size = new System.Drawing.Size(656, 189);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "MH4U";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -596,7 +598,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(652, 189);
+            this.tabPage2.Size = new System.Drawing.Size(656, 189);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Animal Crossing";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -711,20 +713,42 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button_mhgen_eu_sharpness);
+            this.tabPage6.Controls.Add(this.button_mhgen_eu_stamina);
             this.tabPage6.Controls.Add(this.button_mhgen_eu_name);
             this.tabPage6.Controls.Add(this.textBox_mhgen_eu_name);
             this.tabPage6.Controls.Add(this.button_mhgen_eu_items);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(652, 189);
+            this.tabPage6.Size = new System.Drawing.Size(656, 189);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "MHGen";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // button_mhgen_eu_sharpness
+            // 
+            this.button_mhgen_eu_sharpness.Location = new System.Drawing.Point(430, 4);
+            this.button_mhgen_eu_sharpness.Name = "button_mhgen_eu_sharpness";
+            this.button_mhgen_eu_sharpness.Size = new System.Drawing.Size(100, 23);
+            this.button_mhgen_eu_sharpness.TabIndex = 4;
+            this.button_mhgen_eu_sharpness.Text = "Sharpness";
+            this.button_mhgen_eu_sharpness.UseVisualStyleBackColor = true;
+            this.button_mhgen_eu_sharpness.Click += new System.EventHandler(this.button_mhgen_eu_sharpness_Click);
+            // 
+            // button_mhgen_eu_stamina
+            // 
+            this.button_mhgen_eu_stamina.Location = new System.Drawing.Point(324, 3);
+            this.button_mhgen_eu_stamina.Name = "button_mhgen_eu_stamina";
+            this.button_mhgen_eu_stamina.Size = new System.Drawing.Size(100, 23);
+            this.button_mhgen_eu_stamina.TabIndex = 3;
+            this.button_mhgen_eu_stamina.Text = "Stamina";
+            this.button_mhgen_eu_stamina.UseVisualStyleBackColor = true;
+            this.button_mhgen_eu_stamina.Click += new System.EventHandler(this.button_mhgen_eu_stamina_Click);
+            // 
             // button_mhgen_eu_name
             // 
-            this.button_mhgen_eu_name.Location = new System.Drawing.Point(112, 4);
+            this.button_mhgen_eu_name.Location = new System.Drawing.Point(112, 3);
             this.button_mhgen_eu_name.Name = "button_mhgen_eu_name";
             this.button_mhgen_eu_name.Size = new System.Drawing.Size(100, 23);
             this.button_mhgen_eu_name.TabIndex = 2;
@@ -741,7 +765,7 @@
             // 
             // button_mhgen_eu_items
             // 
-            this.button_mhgen_eu_items.Location = new System.Drawing.Point(6, 32);
+            this.button_mhgen_eu_items.Location = new System.Drawing.Point(218, 3);
             this.button_mhgen_eu_items.Name = "button_mhgen_eu_items";
             this.button_mhgen_eu_items.Size = new System.Drawing.Size(100, 23);
             this.button_mhgen_eu_items.TabIndex = 0;
@@ -755,7 +779,7 @@
             this.tabPage_main_us.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_us.Name = "tabPage_main_us";
             this.tabPage_main_us.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_us.Size = new System.Drawing.Size(666, 221);
+            this.tabPage_main_us.Size = new System.Drawing.Size(670, 221);
             this.tabPage_main_us.TabIndex = 4;
             this.tabPage_main_us.Text = "USA";
             this.tabPage_main_us.UseVisualStyleBackColor = true;
@@ -769,7 +793,7 @@
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(660, 215);
+            this.tabControl2.Size = new System.Drawing.Size(664, 215);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage4
@@ -795,7 +819,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(652, 189);
+            this.tabPage4.Size = new System.Drawing.Size(656, 189);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "MH4U";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1279,7 +1303,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(652, 189);
+            this.tabPage7.Size = new System.Drawing.Size(656, 189);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Mario Kart 7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1358,7 +1382,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(652, 189);
+            this.tabPage5.Size = new System.Drawing.Size(656, 189);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "P&DZ + SMB";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1368,7 +1392,7 @@
             this.tabPage_main_jp.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_jp.Name = "tabPage_main_jp";
             this.tabPage_main_jp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_jp.Size = new System.Drawing.Size(666, 221);
+            this.tabPage_main_jp.Size = new System.Drawing.Size(670, 221);
             this.tabPage_main_jp.TabIndex = 5;
             this.tabPage_main_jp.Text = "JPN";
             this.tabPage_main_jp.UseVisualStyleBackColor = true;
@@ -1385,7 +1409,7 @@
             this.tabPage_main_gateshark.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_gateshark.Name = "tabPage_main_gateshark";
             this.tabPage_main_gateshark.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_gateshark.Size = new System.Drawing.Size(666, 221);
+            this.tabPage_main_gateshark.Size = new System.Drawing.Size(670, 221);
             this.tabPage_main_gateshark.TabIndex = 6;
             this.tabPage_main_gateshark.Text = "Gateshark";
             this.tabPage_main_gateshark.UseVisualStyleBackColor = true;
@@ -1496,7 +1520,7 @@
             this.tabPage_main_debug.Location = new System.Drawing.Point(4, 22);
             this.tabPage_main_debug.Name = "tabPage_main_debug";
             this.tabPage_main_debug.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_main_debug.Size = new System.Drawing.Size(666, 221);
+            this.tabPage_main_debug.Size = new System.Drawing.Size(670, 221);
             this.tabPage_main_debug.TabIndex = 7;
             this.tabPage_main_debug.Text = "Debugging";
             this.tabPage_main_debug.UseVisualStyleBackColor = true;
@@ -1807,7 +1831,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(666, 221);
+            this.tabPage3.Size = new System.Drawing.Size(670, 221);
             this.tabPage3.TabIndex = 8;
             this.tabPage3.Text = "Data";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1865,7 +1889,7 @@
             this.commandsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(680, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1877,7 +1901,7 @@
             this.toolStripSeparator2,
             this.toggleDebugToolStripMenuItem});
             this.ToolStripMenuItem.Name = "ToolStripMenuItem";
-            this.ToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.ToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.ToolStripMenuItem.Text = "Tools";
             // 
             // CommandToolStripMenuItem
@@ -1933,6 +1957,13 @@
             this.modByImthe666stToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.modByImthe666stToolStripMenuItem.Text = "Mod by imthe666st";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(236, 22);
+            this.toolStripMenuItem1.Text = "Huge thanks to Shadowtrance!";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -1974,7 +2005,7 @@
             this.toolStripSeparator3,
             this.checkingUpdateToolStripMenuItem});
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.versionToolStripMenuItem.Text = "Version";
             // 
             // VersionNumberToolStripMenuItem
@@ -2056,31 +2087,24 @@
             this.statusStrip1.Size = new System.Drawing.Size(680, 22);
             this.statusStrip1.TabIndex = 2;
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(236, 22);
-            this.toolStripMenuItem1.Text = "Huge thanks to Shadowtrance!";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
             // CmdWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 691);
+            this.ClientSize = new System.Drawing.Size(684, 696);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(700, 734);
-            this.MinimumSize = new System.Drawing.Size(700, 734);
+            this.MinimumSize = new System.Drawing.Size(700, 380);
             this.Name = "CmdWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NTR Debugger";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CmdWindow_FormClosed);
             this.Load += new System.EventHandler(this.CmdWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CmdWindow_KeyDown);
+            this.Resize += new System.EventHandler(this.CmdWindow_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tabControl_main.ResumeLayout(false);
@@ -2274,6 +2298,8 @@
         private System.Windows.Forms.Button button_mhgen_eu_name;
         private System.Windows.Forms.TextBox textBox_mhgen_eu_name;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Button button_mhgen_eu_stamina;
+        private System.Windows.Forms.Button button_mhgen_eu_sharpness;
     }
 }
 

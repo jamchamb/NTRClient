@@ -1608,14 +1608,13 @@ namespace ntrclient.Prog.Window
             };
 
             RunCmd(GenerateWriteString(0x0836Ab1A, data));
-
         }
 
         private void button_mhgen_eu_items_Click(object sender, EventArgs e)
         {
             List<byte> data = new List<byte>();
             // Boxes * rows * columns
-            int maxSize = 10 * 10 * 10 - 50;
+            int maxSize = 12 * 10 * 10 - 50;
             byte amount = 30;
 
             UInt16[] blocked = { 0x0000 };
@@ -1743,6 +1742,26 @@ namespace ntrclient.Prog.Window
             }
 
 
+        }
+
+        private void button_mhgen_eu_stamina_Click(object sender, EventArgs e)
+        {
+            Gateshark gs = new Gateshark(
+                "0032E000 E3A01064"
+            );
+            gs.Execute();
+        }
+
+        private void button_mhgen_eu_sharpness_Click(object sender, EventArgs e)
+        {
+            Gateshark gs = new Gateshark(
+                "0035C26C E5901218"
+            );
+            gs.Execute();
+        }
+
+        private void CmdWindow_Resize(object sender, EventArgs e)
+        {
         }
 
         // 083886A8
