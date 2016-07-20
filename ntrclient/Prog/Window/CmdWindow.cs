@@ -1762,6 +1762,8 @@ namespace ntrclient.Prog.Window
 
         private void CmdWindow_Resize(object sender, EventArgs e)
         {
+            // 734 - 361
+            txtLog.Height = this.Height - 373;
         }
 
         // 083886A8
