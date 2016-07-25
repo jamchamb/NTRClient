@@ -152,7 +152,7 @@ namespace ntrclient.Extra
                     {
                         _dxData = gsAr.getBlock_B();
                     }
-                    else if (cmd == 0xD6) // DxData WORD
+                    else if (cmd == 0xD6) // DxData read WORD
                     {
                         uint addr = gsAr.getBlock_B() + _offset;
                         _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 4), 4);
@@ -167,7 +167,7 @@ namespace ntrclient.Extra
                         uint addr = gsAr.getBlock_B() + _offset;
                         _dxData = Program.GCmdWindow.readValue(addr, 1);
                     }
-                    else if (cmd == 0xD9) // DxData read WORD
+                    else if (cmd == 0xD9) // DxData WORD
                     {
                         uint len = 4;
                         string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
