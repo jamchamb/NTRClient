@@ -66,7 +66,7 @@ namespace ntrclient.Extra
                     {
                         uint r1 = Program.GCmdWindow.readValue(gsAr.getBlock_A() + _offset, 4);
                         uint r2 = CmdWindow.FromLe(r1, 0);
-                        
+
                         uint read = Convert.ToUInt32(r2);
                         gsIf = read > gsAr.getBlock_B();
                     }
@@ -152,41 +152,41 @@ namespace ntrclient.Extra
                     {
                         _dxData = gsAr.getBlock_B();
                     }
-                    else if (cmd == 0xD6) // DxData read WORD
-                    {
-                        uint addr = gsAr.getBlock_B() + _offset;
-                        _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 4), 4);
-                    }
-                    else if (cmd == 0xD7) // DxData read SHORT
-                    {
-                        uint addr = gsAr.getBlock_B() + _offset;
-                        _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 2), 2);
-                    }
-                    else if (cmd == 0xD8) // DxData read BYTE
-                    {
-                        uint addr = gsAr.getBlock_B() + _offset;
-                        _dxData = Program.GCmdWindow.readValue(addr, 1);
-                    }
-                    else if (cmd == 0xD9) // DxData WORD
+                    else if (cmd == 0xD6) // DxData WORD
                     {
                         uint len = 4;
                         string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
                         Program.GCmdWindow.RunCmd(cmdString);
                         _offset += len;
                     }
-                    else if (cmd == 0xDA) // DxData SHORT
+                    else if (cmd == 0xD7) // DxData SHORT
                     {
                         uint len = 2;
                         string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
                         Program.GCmdWindow.RunCmd(cmdString);
                         _offset += len;
                     }
-                    else if (cmd == 0xDB) // DxData Byte
+                    else if (cmd == 0xD8) // DxData Byte
                     {
                         uint len = 1;
                         string cmdString = Program.GCmdWindow.GenerateWriteString(gsAr.getBlock_B() + _offset, _dxData, len);
                         Program.GCmdWindow.RunCmd(cmdString);
                         _offset += len;
+                    }
+                    else if (cmd == 0xD9) // DxData read WORD
+                    {
+                        uint addr = gsAr.getBlock_B() + _offset;
+                        _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 4), 4);
+                    }
+                    else if (cmd == 0xDA) // DxData read SHORT
+                    {
+                        uint addr = gsAr.getBlock_B() + _offset;
+                        _dxData = CmdWindow.FromLe(Program.GCmdWindow.readValue(addr, 2), 2);
+                    }
+                    else if (cmd == 0xDB) // DxData read BYTE
+                    {
+                        uint addr = gsAr.getBlock_B() + _offset;
+                        _dxData = Program.GCmdWindow.readValue(addr, 1);
                     }
                     else if (cmd == 0xDC)
                     {
