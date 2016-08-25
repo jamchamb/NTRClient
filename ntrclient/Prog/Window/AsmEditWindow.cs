@@ -7,9 +7,9 @@ namespace ntrclient.Prog.Window
 {
     public partial class AsmEditWindow : Form
     {
-        private const string AsPath = "bin/arm-none-eabi-as";
-        private const string OcPath = "bin/arm-none-eabi-objcopy";
-        private const string LdPath = "bin/arm-none-eabi-ld";
+        private const string AsPath = "arm-none-eabi-as";
+        private const string OcPath = "arm-none-eabi-objcopy";
+        private const string LdPath = "arm-none-eabi-ld";
         private byte[] _compileResult;
 
         public AsmEditWindow()

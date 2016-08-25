@@ -10,8 +10,7 @@ namespace ntrclient.Prog.CS
         public static int RunCommandAndGetOutput(string exeFile, string args, ref string output)
         {
             try
-            { 
-            if (output == null) throw new ArgumentNullException(nameof(output));
+            {
             Process proc = new Process
             {
                 StartInfo = new ProcessStartInfo
