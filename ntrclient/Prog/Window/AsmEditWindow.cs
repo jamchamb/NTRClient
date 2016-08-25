@@ -24,7 +24,6 @@ namespace ntrclient.Prog.Window
 
         public static bool CallToolchain(string asOpts, string ldOpts, string ocOpts, ref string result)
         {
-            if (result == null) throw new ArgumentNullException(nameof(result));
             string output = null;
 
             result = "";
@@ -69,11 +68,11 @@ namespace ntrclient.Prog.Window
             ldOpts += " -Ttext 0x" + baseAddr.ToString("X8") + " payload.o";
             ocOpts += " -I elf32-little -O binary a.out payload.bin ";
 
-            string result = "";
+            string result = null;
             bool isSuccessed = CallToolchain(asOpts, ldOpts, ocOpts, ref result);
             if (!isSuccessed)
             {
-                result += "compile failed...";
+                result += "\r\nCompile failed...";
             }
             else
             {
