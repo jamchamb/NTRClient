@@ -10,20 +10,19 @@ namespace ntrclient.Prog.CS
         public static int RunCommandAndGetOutput(string exeFile, string args, ref string output)
         {
             try
-            { 
-            if (output == null) throw new ArgumentNullException(nameof(output));
-            Process proc = new Process
             {
-                StartInfo = new ProcessStartInfo
+                Process proc = new Process
                 {
-                    FileName = exeFile,
-                    Arguments = args,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true,
-                    UseShellExecute = false,
-                    RedirectStandardError = true
-                }
-            };
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = exeFile,
+                        Arguments = args,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
+                        UseShellExecute = false,
+                        RedirectStandardError = true
+                    }
+                };
                 proc.Start();
                 proc.WaitForExit();
                 var processOutput = proc.StandardError.ReadToEnd();
@@ -32,6 +31,11 @@ namespace ntrclient.Prog.CS
                 output = processOutput;
                 proc.Close();
                 return ret;
+            }
+            catch (System.ComponentModel.Win32Exception e) {
+                output = String.Format ("Could not open '{0}'. Make sure it is on your executable path.", exeFile);
+                Console.Error.WriteLine (e);
+                return -1;
             }
             catch (Exception e)
             {
