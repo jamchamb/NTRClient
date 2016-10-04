@@ -2096,8 +2096,8 @@
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(700, 734);
-            this.MinimumSize = new System.Drawing.Size(700, 380);
+            this.MaximumSize = new System.Drawing.Size(810, 734);
+            this.MinimumSize = new System.Drawing.Size(810, 380);
             this.Name = "CmdWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NTR Debugger";
