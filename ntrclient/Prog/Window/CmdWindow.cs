@@ -917,42 +917,84 @@ namespace ntrclient.Prog.Window
         {
             string filename = textBox_dump_file.Text;
 
-            uint memPos = 0;
-            int fileSuffix = 0;
+            // Create background worker to run Data commands and wait for each region to be dumped
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.WorkerReportsProgress = true;
 
-            foreach (Memregion mem in Memregions)
-            {
-                if (mem.Start > memPos)
+            bw.DoWork += new DoWorkEventHandler(
+                delegate(object o, DoWorkEventArgs args)
                 {
-                    File.WriteAllBytes(filename + fileSuffix.ToString(), new byte[mem.Start - memPos]);
-                    fileSuffix++;
-                }
-                RunCmd(string.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length,
-                    filename + fileSuffix.ToString(), GetPid()));
-                while (!File.Exists(filename + fileSuffix.ToString()))
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-                }
-                memPos = mem.Start + mem.Length;
-                fileSuffix++;
-            }
+                    BackgroundWorker b = o as BackgroundWorker;
 
-            string destFileName = filename;
-            using (Stream destStream = File.OpenWrite(destFileName))
-            {
-                for (int i = 0; i < fileSuffix; i++)
-                {
-                    using (Stream srcStream = File.OpenRead(filename + i.ToString()))
+                    uint memPos = 0;
+                    int fileSuffix = 0;
+                    uint endPos = Memregions.Last().End;
+
+                    // Run Data for each memregion and wait for it to complete
+                    foreach (Memregion mem in Memregions)
                     {
-                        srcStream.CopyTo(destStream);
-                    }
-                }
-            }
+                        // Create zero-fills in between memregions
+                        if (mem.Start > memPos)
+                        {
+                            File.WriteAllBytes(filename + fileSuffix.ToString(), new byte[mem.Start - memPos]);
+                            fileSuffix++;
+                        }
 
-            for (int i = 0; i < fileSuffix; i++)
-            {
-                File.Delete(filename + i.ToString());
-            }
+                        RunCmd(string.Format("Data(0x{0:X}, 0x{1:X}, filename='{2}', pid=0x{3:X})", mem.Start, mem.Length,
+                            filename + fileSuffix.ToString(), GetPid()));
+
+                        while (!File.Exists(filename + fileSuffix.ToString()))
+                        {
+                            Thread.Sleep(TimeSpan.FromSeconds(1));
+                        }
+
+                        fileSuffix++;
+                        memPos = mem.Start + mem.Length;
+
+                        // Don't set memPos past end of last memory region
+                        if (memPos > endPos) memPos = endPos;
+
+                        int percentage = (int) (Math.Ceiling(100.0 * ((double)memPos / (double)endPos)));
+                        b.ReportProgress(percentage);
+                    }
+
+                    // Conatenate all of the dumped regions
+                    string destFileName = filename;
+                    using (Stream destStream = File.OpenWrite(destFileName))
+                    {
+                        for (int i = 0; i < fileSuffix; i++)
+                        {
+                            using (Stream srcStream = File.OpenRead(filename + i.ToString()))
+                            {
+                                srcStream.CopyTo(destStream);
+                            }
+                        }
+                    }
+
+                    // Delete the individual memregion dumps
+                    for (int i = 0; i < fileSuffix; i++)
+                    {
+                        File.Delete(filename + i.ToString());
+                    }
+                });
+
+            bw.ProgressChanged += new ProgressChangedEventHandler(
+               delegate(object o, ProgressChangedEventArgs args)
+               {
+                    Addlog(string.Format("{0}% of memory dumped", args.ProgressPercentage));
+
+                    if (args.ProgressPercentage >= 100) {
+                        Addlog("Concatenating memory regions...");
+                    }
+               });
+
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+                delegate(object o, RunWorkerCompletedEventArgs args)
+                {
+                    Addlog(string.Format("Finished dumping to '{0}'", filename));
+                });
+
+            bw.RunWorkerAsync();
         }
 
         // END of Basic
